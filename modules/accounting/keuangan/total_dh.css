@@ -1,0 +1,27 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+.caption, .table{
+	font-family: 'Roboto';
+}
+
+.caption{
+	text-align: center;
+}
+
+.table{
+	border: 1px solid #E8EDFF;
+	border-collapse: collapse;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.table th{
+	background: #B9C9FE;
+	color: #039;
+	padding: 0;
+	padding: 3px;
+	text-align: left;
+}
+
+.table td{
+	padding: 0;
+}

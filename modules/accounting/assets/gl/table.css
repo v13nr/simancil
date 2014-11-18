@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.tabel_main {
+	vertical-align: top;
+	height: 100%;
+	width: 100%;
+}
+
+.row_top {
+	vertical-align: top;
+	height: inherit;
+}
+
+.row_bott {
+	height: 45px;
+}

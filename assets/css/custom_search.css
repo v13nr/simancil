@@ -1,0 +1,17 @@
+body,table{
+	font-family: Arial;
+	font-size: 12px;
+}
+.search_content{
+	clear: left;
+	height: 55px;
+	padding: 4px;
+}
+.detail_title{
+	background-color: #8E93E9;
+	padding: 2px;
+	-moz-border-radius: 2px;
+}
+img {
+   border:1px solid #021a40;
+}
