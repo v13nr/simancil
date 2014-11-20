@@ -1,26 +1,46 @@
 1.2.7
 	1. index.php
+		
 		menambah menu recycle
+	
 	2. modules/pos/inventory/rec_stok_ls.php
+		
 		interface recycle
+	
 	3. modules/accounting/gli/cetak_jurnal.php	
+		
 		jurnal penjualan yg benar
+		
 		kas		9000
+		
 		HPP		8000		=> termasuk R, Biaya
+			
 			penjualan 	9000
+			
 			persediaan 	8000
 			
 
+
+
 1.2.8
 	1. modules/pos/cafe/submission_cafe.php
+		
 		menghitung modal pada saat transaksi
+
+
 
 1.2.9
 	1. dasboard
 
+
+
 1.2.10
+	
+	
 	1. missing box fixed
 
-1.2.11
+1.
+
+2.11
 	1. Dashboard hutang
 				
