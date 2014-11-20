@@ -288,7 +288,7 @@ switch ($cmd) {
 				'".$_POST['dollar']."',
 				'$tipe',
 				'".$_SESSION["divisi"]."',
-				'$nomor',
+				'JUH-$nomor',
 				'$bulan',
 				'".$_SESSION["sess_user_id"]."',
 				'".$mutasi_id."'
