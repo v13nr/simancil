@@ -2,7 +2,7 @@
 
 	$host ="localhost";
     $user="root";
-    $password="AdaAdaSaja";
+    $password="pastes";
     $database="simancil";
     $dbh_jogjaide = mysql_connect($host,$user,$password) or die("Koneksi server gagal");
     mysql_select_db($database);
