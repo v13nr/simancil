@@ -1,4 +1,4 @@
-<?php 
+<?php  
 include "globalx.php";
 menuAkses(62);
 date_default_timezone_set('Asia/Shanghai');
@@ -75,27 +75,27 @@ $(document).ready(function(){
 <input type="hidden" value="bahanbaku_masuk" name="cmd">
 <table class="x1">
   
-  <input type="hidden" name="nobukti" value="<?=$_GET['nobukti']?>" />
-  <input type="hidden" name="bulan" value="<?=$_GET['bulan']?>" />
+  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
+  <input type="hidden" name="bulan" value="<?php  echo $_GET['bulan']?>" />
   <tr>
         <td>Tanggal</td>
-        <td><input type="text" value="<?php echo $tanggal;?>" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="Harap Mengisi Tanggal Terlebih Dahulu" value="<?=$_GET['tgl_transaksi']?>" <? if($_GET['tgl_transaksi']<>""){?> readonly="true" <? } ?> />
-		<? if($_GET['tgl_transaksi']==""){?>
+        <td><input type="text" value="<?php  echo $tanggal;?>" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="Harap Mengisi Tanggal Terlebih Dahulu" value="<?php  echo $_GET['tgl_transaksi']?>" <?php  if($_GET['tgl_transaksi']<>""){?> readonly="true" <?php  } ?> />
+		<?php  if($_GET['tgl_transaksi']==""){?>
           <a href="javascript:showCalendar('tgl_transaksi')"><img src="kalendar_files/calendar_icon.gif" border="0"></a></td>
-		  <? } ?>
+		  <?php  } ?>
       </tr>
   <tr>
     <td>Supplier</td>
     <td>
 		<select name="dk" id="dynamic_select" class="required" title="*">
 			<option value="str_bahan_masuk.php?id=0">-Pilih-</option>
-			<?php
+			<?php 
 				$SQL = "SELECT * FROM supplier WHERE status = 1";
 				$hasil = mysql_query($SQL);
 				while($baris = mysql_fetch_array($hasil)){
 			?>
-			<option value="<?php echo "str_bahan_masuk.php?id=".$baris["id"];?>" <?php $nih = isset($_GET["id"]) ? "selected" : ""; if($_GET["id"]==$baris["id"]) {echo $nih;};?>><?php echo $baris["nama"];?></option>
-			<?php } ?>
+			<option value="<?php  echo "str_bahan_masuk.php?id=".$baris["id"];?>" <?php  $nih = isset($_GET["id"]) ? "selected" : ""; if($_GET["id"]==$baris["id"]) {echo $nih;};?>><?php  echo $baris["nama"];?></option>
+			<?php  } ?>
 		</select>
         <div id="divAlert"></div>
 	</td>
@@ -104,7 +104,7 @@ $(document).ready(function(){
 	<td><input type="text" name="cp" id="cp" readonly="true" /></td>
 	</tr>
 </table>
-<?php $id = isset($_GET["id"]) ? $_GET["id"] : "0"; ?>
+<?php  $id = isset($_GET["id"]) ? $_GET["id"] : "0"; ?>
 <table border="1">
 <tr>
 	<td>Nama Bahan Baku</td>
@@ -112,22 +112,22 @@ $(document).ready(function(){
 	<td>Harga Terakhir</td>
 	<td>QTY</td>
 </tr>
-<?php
+<?php 
 	$SQL = "SELECT a.* FROM bahan_baku a, mapping_bb b, mapping_bb_detail c WHERE b.id = c.buyer_id AND a.id = c.bb_id AND b.supp_id = '".$id."'";
 	$hasil = mysql_query($SQL);
 	while($baris=mysql_fetch_array($hasil)){
 ?>
 <tr>
-	<input type="hidden" name="nng[]" value="<?php echo $baris["id"];?>">
-	<input type="hidden" name="nngnama[]" value="<?php echo $baris["nama"];?>">
-	<input type="hidden" name="nngsatuan[]" value="<?php echo $baris["satuan"];?>">
-	<td><?php echo $baris["nama"];?></td>
-	<td><?php echo $baris["satuan"];?></td>
-	<td><input type="text" name="nngharga[]" id="nngharga" value="<?php echo $baris["hargaterakhir"];?>"></td>
+	<input type="hidden" name="nng[]" value="<?php  echo $baris["id"];?>">
+	<input type="hidden" name="nngnama[]" value="<?php  echo $baris["nama"];?>">
+	<input type="hidden" name="nngsatuan[]" value="<?php  echo $baris["satuan"];?>">
+	<td><?php  echo $baris["nama"];?></td>
+	<td><?php  echo $baris["satuan"];?></td>
+	<td><input type="text" name="nngharga[]" id="nngharga" value="<?php  echo $baris["hargaterakhir"];?>"></td>
 	<td><input type="text" name="nngqty[]" id="nngqty" value="0"></td>
 </tr>
 
-<? } ?>
+<?php  } ?>
 <tr>
 	<td colspan="3"></td>
 	<td><input type="submit" value="Simpan" /></td>

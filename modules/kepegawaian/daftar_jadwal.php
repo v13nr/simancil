@@ -1,4 +1,4 @@
-<? //include "otentik_kepeg.php"; 
+<?php  //include "otentik_kepeg.php"; 
 include "../include/globalx.php"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,7 +34,7 @@ table.x1 td {
 </head>
 
 <body>
-<? 
+<?php  
 
 	$SQL = "select * from absen where status = 1" ;
 	$SQL = $SQL." ORDER BY id";
@@ -47,12 +47,12 @@ table.x1 td {
 		<td><b>Kode Jadwal </b></td>
 		<td><b>Nama</b></td>
 	</tr>
-	<?    while ($baris=mysql_fetch_array($hasil)) { ?>
+	<?php     while ($baris=mysql_fetch_array($hasil)) { ?>
 	<tr>
-		<td align="center"><a href="javascript:selectBuku('<?=$baris['KaryaCode']?>')"><?=$baris['KaryaCode']?></a></td>
-		<td><?=$baris['KaryaName']?></td>
+		<td align="center"><a href="javascript:selectBuku('<?php  echo $baris['KaryaCode']?>')"><?php  echo $baris['KaryaCode']?></a></td>
+		<td><?php  echo $baris['KaryaName']?></td>
 	</tr>
-	<? } ?>
+	<?php  } ?>
 </table>
 
 </body>

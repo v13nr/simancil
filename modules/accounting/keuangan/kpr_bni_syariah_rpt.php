@@ -23,7 +23,7 @@ $().ready(function() {
 	}
 	//nilaix = $('#combobox_carabayar option:selected').val();
 	//nilaix = $('#combobox_carabayar').val();
-	nilaix = "<?=$_SESSION["sess_tipe"]?>";
+	nilaix = "<?php  echo $_SESSION["sess_tipe"]?>";
 
 	$("#sales").autocomplete("ajax_auto_user.php?grup=user&divisi="+nilaix, {
 		width: 300,
@@ -204,7 +204,7 @@ function kosongtextarray(){
     <div align="center"></div></td>
   </tr>
   <form action="submission_keu.php" method="post" name="frmijin" id="frmijin">
-  <?php
+  <?php 
 	include ("../include/globalx.php");
 	include ("../include/functions.php");
 	if(isset($_GET['id'])){
@@ -213,43 +213,43 @@ function kosongtextarray(){
 	}
   ?>
   </form>
-	<?php
+	<?php 
 		$sql = mysql_query("SELECT * FROM kpr_bnisy ORDER BY nama");
 		$no = 1;
 		while($data = mysql_fetch_array($sql)){
 	?>
 		
 		<tr>
-			<td><?php echo $no;?></td>
-			<td><?php echo $data['nama']?></td>
-			<td align="center"><?php echo $data['blok']?></td>
-			<td align="center"><?php echo $data['tipe']?></td>
-			<td align="right"><?php echo number_format($data['kpr']); $kpr = $kpr + $data['kpr'];?></td>
-			<td><?php echo (baliktglindo($data['tanggal_t1']) <> '00-00-0000') ? baliktglindo($data['tanggal_t1']) : ''; ?></td>
-			<td align="right"><?php echo number_format($data['cair_t1'])?></td>
-			<td><?php echo (baliktglindo($data['tanggal_t2'])  != '00-00-0000') ? baliktglindo($data['tanggal_t2']) : '';?></td>
-			<td align="right"><?php echo number_format($data['cair_t2'])?></td>
-			<td><?php echo (baliktglindo($data['tanggal_t3'])  != '00-00-0000') ? baliktglindo($data['tanggal_t3']) : '';?></td>
-			<td align="right"><?php echo number_format($data['cair_t3'])?></td>
+			<td><?php  echo $no;?></td>
+			<td><?php  echo $data['nama']?></td>
+			<td align="center"><?php  echo $data['blok']?></td>
+			<td align="center"><?php  echo $data['tipe']?></td>
+			<td align="right"><?php  echo number_format($data['kpr']); $kpr = $kpr + $data['kpr'];?></td>
+			<td><?php  echo (baliktglindo($data['tanggal_t1']) <> '00-00-0000') ? baliktglindo($data['tanggal_t1']) : ''; ?></td>
+			<td align="right"><?php  echo number_format($data['cair_t1'])?></td>
+			<td><?php  echo (baliktglindo($data['tanggal_t2'])  != '00-00-0000') ? baliktglindo($data['tanggal_t2']) : '';?></td>
+			<td align="right"><?php  echo number_format($data['cair_t2'])?></td>
+			<td><?php  echo (baliktglindo($data['tanggal_t3'])  != '00-00-0000') ? baliktglindo($data['tanggal_t3']) : '';?></td>
+			<td align="right"><?php  echo number_format($data['cair_t3'])?></td>
 			
-			<td align="right"><?php echo number_format($data['totalcair']); $t_cair = $t_cair + $data['totalcair']; ?></td>
-			<td align="right"><?php echo number_format($data['terhold']); $terhold1 = $terhold1 + $data['terhold'];?></td>
-			<td align="right"><?php echo number_format($data['terhold5']); $terhold2 = $terhold2 + $data['terhold5']; ?></td>
-			<td><?php echo (baliktglindo($data['tanggal_akad'])  != '00-00-0000') ? baliktglindo($data['tanggal_akad']) : '';?></td>
+			<td align="right"><?php  echo number_format($data['totalcair']); $t_cair = $t_cair + $data['totalcair']; ?></td>
+			<td align="right"><?php  echo number_format($data['terhold']); $terhold1 = $terhold1 + $data['terhold'];?></td>
+			<td align="right"><?php  echo number_format($data['terhold5']); $terhold2 = $terhold2 + $data['terhold5']; ?></td>
+			<td><?php  echo (baliktglindo($data['tanggal_akad'])  != '00-00-0000') ? baliktglindo($data['tanggal_akad']) : '';?></td>
 			
 		</tr>
-	<?php
+	<?php 
 			$no++;
 		}
 	?>
 	<tr>
 		  <td colspan="3"><div align="center">TOTAL KPR </div></td>
 		  <td align="center">&nbsp;</td>
-		  <td align="right"><?php echo number_format($kpr); ?></td>
+		  <td align="right"><?php  echo number_format($kpr); ?></td>
 		  <td colspan="6"><div align="center">TOTAL TERHOLD </div></td>
-		  <td align="right"><?php echo number_format($t_cair); ?></td>
-		  <td align="right"><?php echo number_format($terhold1);?></td>
-		  <td align="right"><?php echo number_format($terhold2);?></td>
+		  <td align="right"><?php  echo number_format($t_cair); ?></td>
+		  <td align="right"><?php  echo number_format($terhold1);?></td>
+		  <td align="right"><?php  echo number_format($terhold2);?></td>
 		  <td>&nbsp;</td>
   </tr>
 </table>

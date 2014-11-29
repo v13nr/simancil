@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Image {
 	// variable image filename
 	var $filename = '';

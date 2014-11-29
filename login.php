@@ -44,7 +44,7 @@
 				<div class="corner tr"></div>
 			</div>
 		  <div class="messages">
-		  <?php if($_GET["err"] <> "") {
+		  <?php  if($_GET["err"] <> "") {
 		  
 		  ?>
 				<div id="message-error" class="message message-error">
@@ -59,7 +59,7 @@
 						<a href="#message-error"></a>
 					</div>
 				</div>
-				<?php } ?>
+				<?php  } ?>
 			</div>
 			<div class="inner">
 				<form action="sb_login.php" method="post">

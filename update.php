@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  *  Copyright (C) PT. Netsindo Sentra Computama
  *  Project Manager : Andi Micro
@@ -12,7 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Update SiMancil</title>
-<?php
+<?php 
 include "otentik_admin.php";
 		include "config_sistem.php";
 
@@ -140,7 +140,7 @@ if(isset($_GET["cmd"])) {
 <p>&nbsp;</p>
 <form method="get" action="">
 <input type="hidden" name="cmd" value="update" />
-<input type="submit" value="Proses Update Sekarang !" <?php if(!$fp){ ?>disabled="disabled"<?php } ?> />
+<input type="submit" value="Proses Update Sekarang !" <?php  if(!$fp){ ?>disabled="disabled"<?php  } ?> />
 </form>
 </body>
 </html>

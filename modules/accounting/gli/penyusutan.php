@@ -14,7 +14,7 @@
   </script>
  </head>
 <body>
-<?
+<?php 
  include '../include/globalx.php';
 include ("../include/functions.php");
  
@@ -34,30 +34,30 @@ include ("../include/functions.php");
 	</tr>
 	<tr  bgcolor="#FFFFFF">
 	  <td align="center">Tanggal Perolehan </td>
-	  <td align="center"><?php
+	  <td align="center"><?php 
 	  		$sqlp = "SELECT tgl, nilai from aktiva WHERE id = ".$_GET["ida"];
 	  		$hasilp = mysql_query($sqlp, $dbh_jogjaide);
 			$barisp = mysql_fetch_array($hasilp);
 			echo baliktglindo($barisp[0]);
 	  ?></td>
-	  <td align="right"><?php $sisa = $barisp[1]; echo number_format($sisa,2,",",".");?></td>
+	  <td align="right"><?php  $sisa = $barisp[1]; echo number_format($sisa,2,",",".");?></td>
 	  <td align="center">&nbsp;</td>
 	  <td align="center">&nbsp;</td>
   </tr>
-	<? 
+	<?php  
 	$nourut = 1; while($row = mysql_fetch_object($query)): ?>
 
 	<tr  bgcolor="#FFFFFF">
-		<td align="center"><?php echo $nourut++;?></td>
-		<td align="center"><?=baliktglindo($row->mano_post)?></td>
-		<td align="right"><?=number_format($row->nilai,2,",",".")?></td>
-		<td align="right"><?php $sisa = $sisa - ($row->nilai); echo number_format($sisa,2,",",".");  ?></td>
+		<td align="center"><?php  echo $nourut++;?></td>
+		<td align="center"><?php  echo baliktglindo($row->mano_post)?></td>
+		<td align="right"><?php  echo number_format($row->nilai,2,",",".")?></td>
+		<td align="right"><?php  $sisa = $sisa - ($row->nilai); echo number_format($sisa,2,",",".");  ?></td>
 		<td align="center">
-		<?php  if($row->posted == 0){ ?>
-			<a href="submission_gli.php?cmd=posting_susut&id=<?php echo $row->id; ?>&ida=<?=$_GET["ida"] ?>&tgl=<?php echo baliktglindo($row->mano_post); ?>">Posting Now</a>
-		<?php } else {echo "OK"; } ?>		</td>
+		<?php   if($row->posted == 0){ ?>
+			<a href="submission_gli.php?cmd=posting_susut&id=<?php  echo $row->id; ?>&ida=<?php  echo $_GET["ida"] ?>&tgl=<?php  echo baliktglindo($row->mano_post); ?>">Posting Now</a>
+		<?php  } else {echo "OK"; } ?>		</td>
 	</tr>
-	<? endwhile; ?>
+	<?php  endwhile; ?>
 </table>
 </body>
 </html>

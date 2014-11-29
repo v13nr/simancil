@@ -1,7 +1,7 @@
-<? session_start(); ?>
-<? include "otentik_admin.php"; include ("include/functions.php");
+<?php  session_start(); ?>
+<?php  include "otentik_admin.php"; include ("include/functions.php");
 include ("include/globalx.php");?>
-<?
+<?php 
 //taruh skrip ini di file tujuan, misal dari tes.php ke excell.php
 $filename = "Data Produksi -  Tanggal cetak : " . date('Y-m-d') . ".xls";
 header("Content-Disposition: attachment; filename=\"$filename\"");
@@ -16,7 +16,7 @@ header ("Cache-Control : must-revalidate, post-check=0, pre-check=0");
 </head>
 
 <body>
-Gudang = <?=$_POST["gudang"];?>
+Gudang = <?php  echo $_POST["gudang"];?>
 <table width="90%" border="1" style="border-collapse:collapse">
   <tr>
     <td><div align="center">No</div></td>
@@ -24,22 +24,22 @@ Gudang = <?=$_POST["gudang"];?>
     <td><div align="center">Jumlah</div></td>
     <td><div align="center">Jenis</div></td>
   </tr>
-  <?php
+  <?php 
   	$SQL = "select * from produksi_detail a where a.tanggal BETWEEN '".baliktgl($_POST["tgl_awal"])."' AND '".baliktgl($_POST["tgl_akhir"])."' AND gudang = '".$_POST["gudang"]."' order by tanggal, jenis asc";
 	$hasil = mysql_query($SQL, $dbh_produksi) or die(mysql_error());
 	while($baris = mysql_fetch_array($hasil)){
   ?>
   <tr>
-    <td align="right"><?=++$no?></td>
-    <td align="center"><?php echo baliktglindo($baris["tanggal"])?></td>
-    <td align="center"><?php echo ($baris["produksi"])?></td>
-    <td align="center"><?php 
+    <td align="right"><?php  echo ++$no?></td>
+    <td align="center"><?php  echo baliktglindo($baris["tanggal"])?></td>
+    <td align="center"><?php  echo ($baris["produksi"])?></td>
+    <td align="center"><?php  
 	$SQLc = "select nama from jenis where kode = '".$baris["jenis"]."'";
 	$hasilc = mysql_query($SQLc);
 	$barisc = mysql_fetch_array($hasilc);
 	echo $barisc[0];?></td>
   </tr>
-  <? } ?>
+  <?php  } ?>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

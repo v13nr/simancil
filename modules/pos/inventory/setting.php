@@ -1,4 +1,4 @@
-<? include "otentik_inv.php"; ?><head>
+<?php  include "otentik_inv.php"; ?><head>
 
 
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
@@ -51,7 +51,7 @@ td { padding: 5px; }
 input.kanan{ text-align:right; }
 .style10 {color: #FFFFFF}
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
@@ -73,18 +73,18 @@ input.kanan{ text-align:right; }
           <td align="center">&nbsp;</td>
           <td align="center"><span class="style10">NOREK</span></td>
         </tr>
-		<?
+		<?php 
 			$SQL = "SELECT * FROM setting";
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-		<input type="hidden" name="id[]" value="<?=$baris['id']?>" />
+		<input type="hidden" name="id[]" value="<?php  echo $baris['id']?>" />
         <tr bgcolor="#CCCCCC">
-          <td><?=$baris['setting']?></td>
+          <td><?php  echo $baris['setting']?></td>
           <td>:</td>
-          <td><input type="text" name="norek[]" class="required" maxlength="7" size="15" title="Harus Terisi" value="<?=$baris['norek']?>"></td>
+          <td><input type="text" name="norek[]" class="required" maxlength="7" size="15" title="Harus Terisi" value="<?php  echo $baris['norek']?>"></td>
         </tr>
-		<? }?>
+		<?php  }?>
         <tr bgcolor="#CCCCCC">
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -102,7 +102,7 @@ input.kanan{ text-align:right; }
     </form></td>
   </tr>
 </table>
- <? if ($_GET['confirm']<>"") { ?>
+ <?php  if ($_GET['confirm']<>"") { ?>
 
 	<script language="JavaScript">
 
@@ -114,4 +114,4 @@ input.kanan{ text-align:right; }
 
 	</script>
 
-<? } ?>
+<?php  } ?>

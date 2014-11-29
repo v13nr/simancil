@@ -1,4 +1,4 @@
-<? include "otentik_inv.php"; 
+<?php  include "otentik_inv.php"; 
 include ("../include/functions.php");
 
 ?>
@@ -50,12 +50,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -81,7 +81,7 @@ body {
       <td width="103" class="style3"><div align="center" class="style4">Satuan</div></td>
       <td width="46" class="style3"><div align="center" class="style4">Edit</div></td>
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM bahanjadi WHERE status = 1" ;
 		if($_GET['nama']<>""){
 			$SQL = $SQL . " AND nama LIKE '%".$_GET['nama']."%'";
@@ -90,33 +90,33 @@ body {
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
 	  <td class="style3" align="center">
-	  	<input type="checkbox" id="tambah" name="delete[]" value="<?=$row['kode'] ?>" /></td>
-      <td class="style3" align="center"><?=auto($row['kode'])?></td>
-	  <td class="style3" align="left"><?=$row['nama']?></td>
-	  <td class="style3" align="left"><?=$row['qty']?></td>
-      <td class="style3" align="left"><?=$row['satuan']?></td>
+	  	<input type="checkbox" id="tambah" name="delete[]" value="<?php  echo $row['kode'] ?>" /></td>
+      <td class="style3" align="center"><?php  echo auto($row['kode'])?></td>
+	  <td class="style3" align="left"><?php  echo $row['nama']?></td>
+	  <td class="style3" align="left"><?php  echo $row['qty']?></td>
+      <td class="style3" align="left"><?php  echo $row['satuan']?></td>
      
 	  
       <td class="style3"><div align="center">
-	  <a href="index.php?mn=input_bj&id=<?=$row['kode'] ?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
+	  <a href="index.php?mn=input_bj&id=<?php  echo $row['kode'] ?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
 	  </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>
   </form>
 </div>

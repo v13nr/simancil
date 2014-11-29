@@ -44,7 +44,7 @@ VERSION 1.2: (2007-08-13)
   REFACTORING:
     * Support for PHP4 is deprecated, as PHP 4 has reached its end of life.
     * Use of PHP5 OO constructs
-    * Use of <?php tags for better server compatibility
+    * Use of <?php  tags for better server compatibility
     * Better separation of data and presentation objects, introduction of dataset objects
 
 

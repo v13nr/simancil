@@ -1,5 +1,5 @@
-<?php session_start(); ?>
-<? include ("../include/functions.php"); include ("../include/globalx.php"); include "otentik_inv.php"; ?>
+<?php  session_start(); ?>
+<?php  include ("../include/functions.php"); include ("../include/globalx.php"); include "otentik_inv.php"; ?>
 <style type="text/css">
 <!--
 body {
@@ -27,7 +27,7 @@ input.kanan{ text-align:right; }
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
  <script language="javascript" src="../assets/thickbox/thickbox.js"></script>
  <link href="../assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
-  <? 
+  <?php  
  if($_SESSION["sess_kelasuser"]<>"User"){
  	//include "load_pl.php"; 
  }
@@ -72,7 +72,7 @@ $().ready(function() {
 	}
 	//nilaix = $('#combobox_carabayar option:selected').val();
 	//nilaix = $('#combobox_carabayar').val();
-	nilaix = "<?=$_SESSION["sess_tipe"]?>";
+	nilaix = "<?php  echo $_SESSION["sess_tipe"]?>";
 
 	$("#ppk").autocomplete("ajax_auto_barang.php?divisi="+nilaix, {
 		width: 300,
@@ -361,31 +361,31 @@ function clearNum(number){
 	<table width="663" class="x1">
 	<form name="frmijin" id="frmijin" method="post" action="submission_cafe.php">
           <input type="hidden" name="cmd" value="add_jualRetail" />
-		  <input type="hidden" name="nobukti" value="<?=$_GET['nobukti']?>" />
-		  <input type="hidden" name="namasupp" value="<?=$_GET['namasupp']?>" id="namasupp" />
+		  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
+		  <input type="hidden" name="namasupp" value="<?php  echo $_GET['namasupp']?>" id="namasupp" />
 		  <input type="hidden" name="namabrg" value="" id="namabrg" />
-		  <input type="hidden" name="nomor" value="<?=$_GET['nomor']?>" />
+		  <input type="hidden" name="nomor" value="<?php  echo $_GET['nomor']?>" />
       <tr>
         <td width="143">No. Faktur </td>
-        <td width="205"><input type="text" name="nonota" value="INV/<?=nobukti($_GET['nomor'])?>" readonly="true" /></td>
+        <td width="205"><input type="text" name="nonota" value="INV/<?php  echo nobukti($_GET['nomor'])?>" readonly="true" /></td>
         <td width="107">Tanggal</td>
-        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?
+        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?php 
 		echo date('d/m/Y');
-		?>" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?> />
+		?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?> />
           <a href="javascript:showCalendar('tgl_transaksi')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0"></a></td>
       </tr>
     </table>
 	<br />
 	<table border="1" style="border-collapse:collapse" align="left" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
-      <? if ($_GET['id']<>"") {?>
+      <?php  if ($_GET['id']<>"") {?>
       <tr>
         <td background="../images/impactg.png" colspan="12" align="center"><font color="white"><b>Edit Transaksi </b></font></td>
       </tr>
-      <? } else { ?>
+      <?php  } else { ?>
       <tr>
         <td background="../images/impactg.png" colspan="12" align="center"><strong><font color="white"> TRANSAKSI </font></strong></td>
       </tr>
-      <? } ?>
+      <?php  } ?>
       <tr bgcolor="#FFCC00">
         <td width="34" align="center"><strong>No</strong></td>
         <td align="center">Auto Complete / Barcode </td>
@@ -395,15 +395,15 @@ function clearNum(number){
 		
 		<td align="center"><strong>Discount(%)</strong></td>
 		<td align="center"><strong>Jumlah</strong></td>
-        <? if ($_GET['id']<>"") { ?>
+        <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="58" align="center"><strong>Edit</strong></td>
         <td width="58" align="center"><b>Hapus</b></td>
-        <? } ?>
+        <?php  } ?>
       </tr>
-      <? if ($_GET['id']=="") { ?>
+      <?php  if ($_GET['id']=="") { ?>
       <tr bgcolor="yellow">
         
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
@@ -412,13 +412,13 @@ function clearNum(number){
           <td align="center">
 		  <select name="barang" id="barang"   class="required kanan" title="*" >
 		  	<option value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-		  <?php
+		  <?php 
 		  		$sql9 = "select * from $database.stock";
 				$hasil9 = mysql_query($sql9, $dbh_jogjaide);
 				while($baris9=mysql_fetch_array($hasil9)){
 		  ?>
-		  	<option value="<?=$baris9["kodebrg"]?>"><?=$baris9["namabrg"]?></option>
-			<? }?>
+		  	<option value="<?php  echo $baris9["kodebrg"]?>"><?php  echo $baris9["namabrg"]?></option>
+			<?php  }?>
 		  </select>
 		  </td>
           <td align="center"><input type="text" name="qty" id="qty" size="5" class="required kanan" title="*" onKeyUp="hitung()" value="1" /></td>
@@ -428,8 +428,8 @@ function clearNum(number){
           <td align="center" colspan="4"><input name="image" type="image" src="../images/add.gif" border="0" /></td>
         </form>
       </tr>
-      <? } ?>
-      <?
+      <?php  } ?>
+      <?php 
 	  	
 		$SQLj = "SELECT * FROM mutasi WHERE status = 1 AND model = 'INV' AND nomor = '".$_GET['nomor']."'";
 		//echo $SQLj; 		
@@ -438,30 +438,30 @@ function clearNum(number){
 		if (mysql_num_rows($hasilj) > 0) { 
 		while ($row=mysql_fetch_array($hasilj)) { 
 	?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<? } else {?> else="else" bgcolor="#CCCCCC"<? }?>>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<?php  } else {?> else="else" bgcolor="#CCCCCC"<?php  }?>>
         <form action="submission_inv.php" method="post" name="frmijin" id="frmijin">
-          <input type="hidden" name="id" value="<?=$_GET['id']?>" />
+          <input type="hidden" name="id" value="<?php  echo $_GET['id']?>" />
           <input type="hidden" name="cmd" value="upd_jurnal" />
-          <td align="center"><?=$nRecord?></td>
+          <td align="center"><?php  echo $nRecord?></td>
           <td align="center">&nbsp;</td>
-          <td align="center"><?=($row['kodebrg'])?> - <?=$row['namabrg']?></td>
-          <td align="left"><?=$row['qtyout']?></td>
-          <td align="right"><?=number_format($row["harga"],2,'.',',');?></td>
+          <td align="center"><?php  echo ($row['kodebrg'])?> - <?php  echo $row['namabrg']?></td>
+          <td align="left"><?php  echo $row['qtyout']?></td>
+          <td align="right"><?php  echo number_format($row["harga"],2,'.',',');?></td>
 		  <td></td>
-		  <td align="right"><?=number_format($row["harga"] * $row["qtyout"],2,'.',',')?></td>
-		  <? $t_jumlah = $t_jumlah + ($row["harga"] * $row["qtyout"]); ?>
-		  <? $t_debet = $t_debet + $row["kredit"]; ?>
-          <? if ($_GET['id']<>"") { ?>
+		  <td align="right"><?php  echo number_format($row["harga"] * $row["qtyout"],2,'.',',')?></td>
+		  <?php  $t_jumlah = $t_jumlah + ($row["harga"] * $row["qtyout"]); ?>
+		  <?php  $t_debet = $t_debet + $row["kredit"]; ?>
+          <?php  if ($_GET['id']<>"") { ?>
           <td align="center"><input name="image" type="image" src="../images/approve.gif" border="0" /></td>
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
+          <?php  } else { ?>
           <td align="center"><a href=""></a></td>
-          <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?=$row["id"]?>&cmd=del_jual&nonota=<?=$_GET['nonota']?>&supp=<?=$_GET['supp']?>&alamat=<?=$_GET['alamat']?>&kota=<?=$_GET['kota']?>&telp=<?=$_GET['telp']?>&tgl_transaksi=<?=$_GET['tgl_transaksi']?>&saldo=<?=$_GET['saldo']?>&rek=<?=$_GET['rek']?>&namarek=<?=$_GET['namarek']?>&nomor=<?=$_GET['nomor']?>&namasupp=<?=$_GET['namasupp']?>&brg=<?=$row['kodebrg']?>&qtyout=<?=$row['qtyout']?>&netto=<?=$row["kredit"]?>')">
+          <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?php  echo $row["id"]?>&cmd=del_jual&nonota=<?php  echo $_GET['nonota']?>&supp=<?php  echo $_GET['supp']?>&alamat=<?php  echo $_GET['alamat']?>&kota=<?php  echo $_GET['kota']?>&telp=<?php  echo $_GET['telp']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&saldo=<?php  echo $_GET['saldo']?>&rek=<?php  echo $_GET['rek']?>&namarek=<?php  echo $_GET['namarek']?>&nomor=<?php  echo $_GET['nomor']?>&namasupp=<?php  echo $_GET['namasupp']?>&brg=<?php  echo $row['kodebrg']?>&qtyout=<?php  echo $row['qtyout']?>&netto=<?php  echo $row["kredit"]?>')">
 		  <img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
-          <? } ?>
+          <?php  } ?>
         </form>
       </tr>
-      <?  
+      <?php   
 		 $nRecord = $nRecord + 1;
 		} ?>
 		<tr>
@@ -470,23 +470,23 @@ function clearNum(number){
 	      <td align="center">&nbsp;</td>
 	      <td align="center">&nbsp;</td>
 	      
-		  <td align="right"><?=number_format($t_jumlah,2,'.',',');?></td>
+		  <td align="right"><?php  echo number_format($t_jumlah,2,'.',',');?></td>
 	      <td align="center">&nbsp;</td>
-	      <td align="right"><?=number_format($t_debet,2,'.',',');?></td>
+	      <td align="right"><?php  echo number_format($t_debet,2,'.',',');?></td>
 	      <td align="center">&nbsp;</td>
 	      <td align="center">&nbsp;</td>
 		</tr>
 		<tr>
 			<td colspan="20" align="center">
-			<a href="cetak_penjualan.php?model=INV&nomor=<?=$_GET['nomor']?>">[ CETAK ]</a>&nbsp;<a href="index.php?mn=penjualan">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
+			<a href="cetak_penjualan.php?model=INV&nomor=<?php  echo $_GET['nomor']?>">[ CETAK ]</a>&nbsp;<a href="index.php?mn=penjualan">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
 		  </td>
 		</tr>
-		<?
+		<?php 
 	} else { ?>
       <tr>
         <td align="center" colspan="12"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
-      <?  } ?>
+      <?php   } ?>
     </table>	
 	<p>&nbsp;</p></td>
   </tr>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*******************************************************************************
 * Utility to generate font definition files                                    *
 *                                                                              *
@@ -336,7 +336,7 @@ function MakeFont($fontfile, $afmfile, $enc='cp1252', $patch=array(), $type='Tru
 			die('<b>Error:</b> incorrect font type: '.$type);
 	}
 	//Start generation
-	$s='<?php'."\n";
+	$s='<?php '."\n";
 	$s.='$type=\''.$type."';\n";
 	$s.='$name=\''.$fm['FontName']."';\n";
 	$s.='$desc='.$fd.";\n";

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 class chart extends msDB {
 	function __construct($connection) {

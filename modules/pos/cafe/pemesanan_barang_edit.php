@@ -1,6 +1,6 @@
-<? @session_start(); ?>
-<? include ("../include/functions.php");?>
-<? include ("../include/globalx.php");?>
+<?php  @session_start(); ?>
+<?php  include ("../include/functions.php");?>
+<?php  include ("../include/globalx.php");?>
 <style type="text/css">
 <!--
 body {
@@ -29,7 +29,7 @@ input.kanan{ text-align:right; }
  <script language="javascript" src="../assets/thickbox/thickbox.js"></script>
  <link href="../assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
 
-<? 
+<?php  
  if($_SESSION["sess_kelasuser"]<>"User"){
  	include "load_sp.php"; 
  }
@@ -106,7 +106,7 @@ $().ready(function() {
 	}
 	//nilaix = $('#combobox_carabayar option:selected').val();
 	//nilaix = $('#combobox_carabayar').val();
-	nilaix = "<?=$_SESSION["sess_tipe"]?>";
+	nilaix = "<?php  echo $_SESSION["sess_tipe"]?>";
 
 	$("#ppk").autocomplete("ajax_auto_barang.php?divisi="+nilaix+"&tipe=NonProject", {
 		width: 300,
@@ -362,15 +362,15 @@ $(document).ready(function() {
 	  );
 	  
 	  
-	  <?php
+	  <?php 
 	  $SQLj = "SELECT * FROM $database.po WHERE status = 1 AND model = 'PO' AND nomor = '".$_GET['nomor']."'";
 		//echo $SQLj; 		
 		$hasilj = mysql_query($SQLj, $dbh_jogjaide);
 		while ($row=mysql_fetch_array($hasilj)) { 
 		?>
-		var _href = $("a.posted_url_<?=$row["id"];?>").attr("href");
-		$("a.posted_url_<?=$row["id"];?>").attr("href", _href + '&supplier='+vNIP+'\')');
-		<?php } ?>
+		var _href = $("a.posted_url_<?php  echo $row["id"];?>").attr("href");
+		$("a.posted_url_<?php  echo $row["id"];?>").attr("href", _href + '&supplier='+vNIP+'\')');
+		<?php  } ?>
 
 	}
   );
@@ -502,7 +502,7 @@ function hitung(){
 	<table width="1140" border="0">
   <tr>
     <td width="32"><img src="../images/calendar.png" width="32" height="32" /></td>
-    <td width="1090"><span class="style1">PO : <?=$_GET['pesan_id']?> </span>
+    <td width="1090"><span class="style1">PO : <?php  echo $_GET['pesan_id']?> </span>
       <hr /></td>
   </tr>
   <tr>
@@ -512,44 +512,44 @@ function hitung(){
 	<table width="663" class="x1">
 	<form name="frmijin" id="frmijin" method="post" action="submission_cafe.php">
           <input type="hidden" name="cmd" value="add_pesanBarang" />
-		  <input type="hidden" name="nobukti" value="<?=$_GET['nobukti']?>" />
-		  <input type="hidden" name="namasupp" value="<?=$_GET['namasupp']?>" id="namasupp" />
+		  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
+		  <input type="hidden" name="namasupp" value="<?php  echo $_GET['namasupp']?>" id="namasupp" />
 		  <input type="hidden" name="namabrg" value="" id="namabrg" />
-		  <input type="hidden" name="nomor" value="<?=$_GET['nomor']?>" />
+		  <input type="hidden" name="nomor" value="<?php  echo $_GET['nomor']?>" />
       <tr>
         <td width="143">No. Faktur </td>
-        <td width="205"><input type="text" name="nonota" value="PO/<?=nobukti($_GET['nomor'])?>" readonly="true" /></td>
+        <td width="205"><input type="text" name="nonota" value="PO/<?php  echo nobukti($_GET['nomor'])?>" readonly="true" /></td>
         <td width="107">Tanggal</td>
-        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?=$_GET['tgl_transaksi']?>" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?> />
+        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?php  echo $_GET['tgl_transaksi']?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?> />
           <a href="javascript:showCalendar('tgl_transaksi')"></a></td>
       </tr>
 	  
-	  <?php if($_SESSION["sess_kelasuser"]!= "Logistik") { ?>
+	  <?php  if($_SESSION["sess_kelasuser"]!= "Logistik") { ?>
 	  
 	   <tr>
         <td>Supplier </td>
         <td>
-		<? //if($_SESSION["sess_kelasuser"]<>"User"){ 
+		<?php  //if($_SESSION["sess_kelasuser"]<>"User"){ 
 		
 			// <select name="supp" id="combobox_subcarabayar" class="required" title="Harus pilih Supplier"></select>
 		?>
-		<? //} else {?>
+		<?php  //} else {?>
 		<select name="supp" id="combobox_subcarabayar" class="required" title="Pilih Supplier">
 		 <option value="">-Pilih-</option>
-          <?
+          <?php 
 			$SQL = "SELECT * FROM $database.supplier WHERE kode <> ''";
 			$SQL = $SQL . " AND divisi = '".$_SESSION["sess_tipe"]."'";
 				
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-          <option value="<?=$baris['kode']?>" <? if($_GET['kode']==$baris['kode']){?> selected="selected" <? }?>>
-          <?=$baris['nama']?>
+          <option value="<?php  echo $baris['kode']?>" <?php  if($_GET['kode']==$baris['kode']){?> selected="selected" <?php  }?>>
+          <?php  echo $baris['nama']?>
           </option>
-          <? } ?>
+          <?php  } ?>
         </select>
 		
-		<? //} 
+		<?php  //} 
 		?>		</td>
         <td>Saldo</td>
         <td><input type="text" name="saldo" id="saldo" class="kanan" readonly="true"></td>
@@ -570,23 +570,23 @@ function hitung(){
         <td>Telp.</td>
         <td><input type="text" name="telp" id="telp" readonly="true"></td>
         <td>LPB</td>
-        <td><input type="text" readonly="true" id="lpb" name="lpb" value="YFD/<?=nobukti($_GET['nomor'])?>"></td>
+        <td><input type="text" readonly="true" id="lpb" name="lpb" value="YFD/<?php  echo nobukti($_GET['nomor'])?>"></td>
       </tr>
 	  
-	  <?php } ?>
+	  <?php  } ?>
 	  
     </table>
 	<br />
 	<table border="1" a style="border-collapse:collapse" lign="left" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
-      <? if ($_GET['id']<>"") {?>
+      <?php  if ($_GET['id']<>"") {?>
       <tr>
         <td background="../images/impactg.png" colspan="12" align="center"><font color="white"><b>Edit Transaksi </b></font></td>
       </tr>
-      <? } else { ?>
+      <?php  } else { ?>
       <tr>
         <td background="../images/impactg.png" colspan="12" align="center"><strong><font color="white"> TRANSAKSI </font></strong></td>
       </tr>
-      <? } ?>
+      <?php  } ?>
       <tr bgcolor="#FFCC00">
         <td width="34" align="center"><strong>No</strong></td>
         <td align="center">Auto Complete / Barcode </td>
@@ -595,15 +595,15 @@ function hitung(){
         <td align="center"><strong>Harga </strong></strong></td>
 		<td align="center"><strong>Discount(%)</strong></td>
 		<td align="center"><strong>Jumlah</strong></td>
-        <? if ($_GET['id']<>"") { ?>
+        <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="58" align="center"><strong>Post</strong></td>
         <td width="58" align="center"><b>Hapus</b></td>
-        <? } ?>
+        <?php  } ?>
       </tr>
-      <? if ($_GET['id']=="") { ?>
+      <?php  if ($_GET['id']=="") { ?>
       <tr bgcolor="yellow">
         
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
@@ -612,13 +612,13 @@ function hitung(){
           <td align="center">
 		  <select name="barang" id="barang">
 		  	<option value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-		  <?php
+		  <?php 
 		  		$sql = "select * from $database.stock";
 				$hasil = mysql_query($sql, $dbh_jogjaide);
 				while($baris=mysql_fetch_array($hasil)){
 		  ?>
-		  	<option value="<?=$baris["kodebrg"]?>"><?=$baris["namabrg"]?></option>
-			<? }?>
+		  	<option value="<?php  echo $baris["kodebrg"]?>"><?php  echo $baris["namabrg"]?></option>
+			<?php  }?>
 		  </select>
 		  </td>
           <td align="center"><input type="text" name="qty" id="qty" size="5" value="1" class="required kanan" title="*" onKeyUp="hitung()" /></td>
@@ -629,8 +629,8 @@ function hitung(){
           <td align="center" colspan="4"><input name="image2" type="image" src="../images/add.gif" border="0" /></td>
         </form>
       </tr>
-      <? } ?>
-      <?
+      <?php  } ?>
+      <?php 
 	  	
 		$SQLj = "SELECT * FROM $database.po WHERE status = 1 AND model = 'PO' AND nomor = '".$_GET['nomor']."'";
 		//echo $SQLj; 		
@@ -639,47 +639,47 @@ function hitung(){
 		if (mysql_num_rows($hasilj) > 0) { 
 		while ($row=mysql_fetch_array($hasilj)) { 
 	?>
-	<?php $id_posting = $row["id"]?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<? } else {?> else="else" bgcolor="#CCCCCC"<? }?>>
+	<?php  $id_posting = $row["id"]?>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<?php  } else {?> else="else" bgcolor="#CCCCCC"<?php  }?>>
         
-          <td align="center"><?=$nRecord?></td>
-          <td align="left"><?=$row['kodebrg']?></td>
-          <td align="left"><?=$row['namabrg']?></td>
+          <td align="center"><?php  echo $nRecord?></td>
+          <td align="left"><?php  echo $row['kodebrg']?></td>
+          <td align="left"><?php  echo $row['namabrg']?></td>
           <td align="right">
-		  <?php if($row["posted"] != "1") { ?>
-		  <input type="text" class="kanan" value="<?=$row['qtyin']?>" name="<?=$row['id']?>" size="5"  onBlur="hitungUlang(this.value+'-'+this.name+'-'+'<?=$row['kodebrg']?>'+'-'+'<?=$_GET['nomor']?>'+'-'+<?=$row['harga']?>);" onfocus= "this.select()"/>
-		  <?php } else { ?>
+		  <?php  if($row["posted"] != "1") { ?>
+		  <input type="text" class="kanan" value="<?php  echo $row['qtyin']?>" name="<?php  echo $row['id']?>" size="5"  onBlur="hitungUlang(this.value+'-'+this.name+'-'+'<?php  echo $row['kodebrg']?>'+'-'+'<?php  echo $_GET['nomor']?>'+'-'+<?php  echo $row['harga']?>);" onfocus= "this.select()"/>
+		  <?php  } else { ?>
 		  
-		  <?php echo $row['qtyin']; } ?>
+		  <?php  echo $row['qtyin']; } ?>
 		  </td>
-          <td align="right"><?=number_format($row["harga"],2,'.',',');?></td>
-		  <td align="right"><?=$row["disc"];?></td>
-		  <td align="right"><?=number_format(($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100),2,'.',',')?></td>
-		  <? $t_jumlah = $t_jumlah + (($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100)); ?>
-		  <? $t_debet = $t_debet + $row["kredit"]; ?>
-          <?php if($row["posted"] == "1") { ?>
+          <td align="right"><?php  echo number_format($row["harga"],2,'.',',');?></td>
+		  <td align="right"><?php  echo $row["disc"];?></td>
+		  <td align="right"><?php  echo number_format(($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100),2,'.',',')?></td>
+		  <?php  $t_jumlah = $t_jumlah + (($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100)); ?>
+		  <?php  $t_debet = $t_debet + $row["kredit"]; ?>
+          <?php  if($row["posted"] == "1") { ?>
           <td align="center"><input name="image" type="image" src="../images/approve.gif" border="0" /></td>
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
+          <?php  } else { ?>
           <td align="center">
-		  <?php if($_SESSION["sess_kelasuser"]!= "Logistik" && $row["posted"] != "1") { ?>
-		  <a class="posted_url_<?=$row["id"];?>" href="javascript:confirmPOS('submission_inv.php?id_posted=<?=$row["id"];?>&harga=<?=$row["harga"]?>&qty=<?=$row["qtyin"]?>&cmd=add_to_inv&nonota=PO/<?=nobukti($_GET['nomor'])?>&supp=<?=$_GET['supp']?>&alamat=<?=$_GET['alamat']?>&kota=<?=$_GET['kota']?>&
-		  telp=<?=$_GET['telp']?>&tgl_transaksi=<?=$_GET['tgl_transaksi']?>&saldo=<?=$_GET['saldo']?>&rek=<?=$_GET['rek']?>&namarek=<?=$_GET['namarek']?>&nomor=<?=$_GET['nomor']?>&namasupp=<?=$_GET['namasupp']?>&brg=<?=$row['kodebrg']?>&qtyin=<?=$row['qtyin']?>&netto=<?=$row["kredit"]?>&meja=<?=$row["meja_id"]?>&jumlah=<?=($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100)?>"> Posting</a>
-		  <? } ?>
-		  <?php if($row["posted"] == "1") { ?>
+		  <?php  if($_SESSION["sess_kelasuser"]!= "Logistik" && $row["posted"] != "1") { ?>
+		  <a class="posted_url_<?php  echo $row["id"];?>" href="javascript:confirmPOS('submission_inv.php?id_posted=<?php  echo $row["id"];?>&harga=<?php  echo $row["harga"]?>&qty=<?php  echo $row["qtyin"]?>&cmd=add_to_inv&nonota=PO/<?php  echo nobukti($_GET['nomor'])?>&supp=<?php  echo $_GET['supp']?>&alamat=<?php  echo $_GET['alamat']?>&kota=<?php  echo $_GET['kota']?>&
+		  telp=<?php  echo $_GET['telp']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&saldo=<?php  echo $_GET['saldo']?>&rek=<?php  echo $_GET['rek']?>&namarek=<?php  echo $_GET['namarek']?>&nomor=<?php  echo $_GET['nomor']?>&namasupp=<?php  echo $_GET['namasupp']?>&brg=<?php  echo $row['kodebrg']?>&qtyin=<?php  echo $row['qtyin']?>&netto=<?php  echo $row["kredit"]?>&meja=<?php  echo $row["meja_id"]?>&jumlah=<?php  echo ($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100)?>"> Posting</a>
+		  <?php  } ?>
+		  <?php  if($row["posted"] == "1") { ?>
 		  Posted
-		  <? } ?>
+		  <?php  } ?>
 		  </td>
           <td align="center">
-		  <?php if($row["posted"] == "0") { ?>
-		  <a href="javascript:confirmDelete('submission_cafe.php?id=<?=$row["id"]?>&cmd=del_pemesanan&nonota=<?=$_GET['nonota']?>&supp=<?=$_GET['supp']?>&alamat=<?=$_GET['alamat']?>&kota=<?=$_GET['kota']?>&telp=<?=$_GET['telp']?>&tgl_transaksi=<?=$_GET['tgl_transaksi']?>&saldo=<?=$_GET['saldo']?>&rek=<?=$_GET['rek']?>&namarek=<?=$_GET['namarek']?>&nomor=<?=$_GET['nomor']?>&namasupp=<?=$_GET['namasupp']?>&brg=<?=$row['kodebrg']?>&qtyin=<?=$row['qtyin']?>&netto=<?=$row["kredit"]?>&meja=<?=$row["meja_id"]?>&jumlah=<?=($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100)?>')">
+		  <?php  if($row["posted"] == "0") { ?>
+		  <a href="javascript:confirmDelete('submission_cafe.php?id=<?php  echo $row["id"]?>&cmd=del_pemesanan&nonota=<?php  echo $_GET['nonota']?>&supp=<?php  echo $_GET['supp']?>&alamat=<?php  echo $_GET['alamat']?>&kota=<?php  echo $_GET['kota']?>&telp=<?php  echo $_GET['telp']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&saldo=<?php  echo $_GET['saldo']?>&rek=<?php  echo $_GET['rek']?>&namarek=<?php  echo $_GET['namarek']?>&nomor=<?php  echo $_GET['nomor']?>&namasupp=<?php  echo $_GET['namasupp']?>&brg=<?php  echo $row['kodebrg']?>&qtyin=<?php  echo $row['qtyin']?>&netto=<?php  echo $row["kredit"]?>&meja=<?php  echo $row["meja_id"]?>&jumlah=<?php  echo ($row["harga"] * $row["qtyin"])-($row["harga"] * $row["qtyin"]*$row["disc"]/100)?>')">
 		  <img src="../images/hapus.gif" alt="Hapus" border="0" /></a>
-		  <?php } ?>
+		  <?php  } ?>
 		  </td>
-          <? } ?>
+          <?php  } ?>
         </form>
       </tr>
-      <?  
+      <?php   
 		 $nRecord = $nRecord + 1;
 		} ?>
 		<tr>
@@ -691,21 +691,21 @@ function hitung(){
 	      <td align="center">&nbsp;</td>
 	      
 	      <td align="center">&nbsp;</td>
-		  <td align="right"><h3><?=number_format($t_jumlah,2,'.',',');?></h3></td>
+		  <td align="right"><h3><?php  echo number_format($t_jumlah,2,'.',',');?></h3></td>
 	      <td align="right">&nbsp;</td>
 	      <td align="center">&nbsp;</td>
 		</tr>
 		<tr>
 			<td colspan="20" align="center">
-			<a href="popup_bayar.php?width=500&height=300&nonota=<?=$_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="pemesanan_barang.php">[ SELESAI ATAU KE NOMOR PO BERIKUTNYA ]</a>
+			<a href="popup_bayar.php?width=500&height=300&nonota=<?php  echo $_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="pemesanan_barang.php">[ SELESAI ATAU KE NOMOR PO BERIKUTNYA ]</a>
 		  </td>
 		</tr>
-		<?
+		<?php 
 	} else { ?>
       <tr>
         <td align="center" colspan="12"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
-      <?  } ?>
+      <?php   } ?>
     </table>	
 	<p>&nbsp;</p></td>
   </tr>

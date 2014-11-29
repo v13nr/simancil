@@ -1,4 +1,4 @@
-<?php
+<?php 
     // proses akan berjalan ketika ada inputan data_type dan parent_id berupa POST
 	if(isset($_POST['data_type']) && isset($_POST['parent_id'])){
 		$data_type = $_POST['data_type'];

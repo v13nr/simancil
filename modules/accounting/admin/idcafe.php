@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?php
+<?php 
 	$sql = "select * from cafeid where id = 1";
 	$hasil = mysql_query($sql);
 	$baris = mysql_fetch_array($hasil);
@@ -17,12 +17,12 @@
   <tr>
     <td width="101">Nama Cafe </td>
     <td width="6">:</td>
-    <td width="243"><input type="text" name="nama" size="40" value="<?=$baris["nama"]?>" /></td>
+    <td width="243"><input type="text" name="nama" size="40" value="<?php  echo $baris["nama"]?>" /></td>
   </tr>
   <tr>
     <td>Alamat</td>
     <td>:</td>
-    <td><input type="text" name="alamat" size="40" value="<?=$baris["alamat"]?>" /></td>
+    <td><input type="text" name="alamat" size="40" value="<?php  echo $baris["alamat"]?>" /></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

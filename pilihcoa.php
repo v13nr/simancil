@@ -13,7 +13,7 @@
 	</script>
  </head>
 <body>
-<?
+<?php 
  require_once('phppagination.class.php');
  include '../include/globalx.php';
  
@@ -47,7 +47,7 @@ $oPagination = new phpPagination ($nTotalItems, $nItemsPerPage);
  //echo $SQL;
 ?>
 <form action="" method="post">
- Cari nama: <input type="text" name="search_name" size="15" value="<?php echo @$_POST['search_name']; ?>" />
+ Cari nama: <input type="text" name="search_name" size="15" value="<?php  echo @$_POST['search_name']; ?>" />
  <input type="submit" name="search" value="Cari" />
 </form>
 <table width="100%" bgcolor="#000000" cellspacing="1" cellpadding="3">	
@@ -55,8 +55,8 @@ $oPagination = new phpPagination ($nTotalItems, $nItemsPerPage);
 		<th>COA</th>
 		<th>Nama</th>
 	</tr>
-	<? while($row = mysql_fetch_object($query)): ?>
-	<?
+	<?php  while($row = mysql_fetch_object($query)): ?>
+	<?php 
 		$jkel = "Laki-laki";
 		if($row->jkel=="P"){ $jkel = "Perempuan"; }
 	?>
@@ -64,12 +64,12 @@ $oPagination = new phpPagination ($nTotalItems, $nItemsPerPage);
 		<!-- fungsi selectBuku di deklarasikan di index.html dan file ini bisa memanggilnya selama file ini
 			 dipanggil oleh thickbox dari index.html, fungsi dari selectPegawai adalah untuk memasukan nilai
 			 NIP dan nama pegawai dari masing-masing baris di daftar pegawai ini -->
-		<td align="center"><a href="javascript:pickCOA(<?=$row->coa?>,'<?=$row->coa?>','<?=$row->coa?>','<?=$row->name?>')"><?=$row->coa?></a></td>
-		<td><?=$row->name?></td>
+		<td align="center"><a href="javascript:pickCOA(<?php  echo $row->coa?>,'<?php  echo $row->coa?>','<?php  echo $row->coa?>','<?php  echo $row->name?>')"><?php  echo $row->coa?></a></td>
+		<td><?php  echo $row->name?></td>
 	</tr>
-	<? endwhile; ?>
+	<?php  endwhile; ?>
 </table>
-Halaman : <? // print pagination for current page
+Halaman : <?php  // print pagination for current page
 echo $oPagination->GetHtml($nCurrentPage)."\n"; ?>
 </body>
 </html>

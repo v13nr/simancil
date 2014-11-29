@@ -1,4 +1,4 @@
-<?php
+<?php 
 include "../../../config_sistem.php";
 $q = strtolower($_GET["q"]);
 //if (!$q) return;

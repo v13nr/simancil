@@ -1,4 +1,4 @@
-<?php
+<?php 
  class Customer extends msDB {
    
    private $grid; 

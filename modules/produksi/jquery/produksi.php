@@ -1,4 +1,4 @@
-<?php 
+<?php  
 include "globalx.php";
 include "../include/functions.php";
 
@@ -9,7 +9,7 @@ $tanggal = date('d-m-Y');
 $ok = isset($_GET['tes']) ? "OKK" : "NOT READY";
 //echo $ok;
  ?>
- <?php
+ <?php 
 	if(isset($_GET["submit"])){
 		$id = $_GET['nng'];
 		$item = $_GET['nngqty'];
@@ -111,72 +111,72 @@ $(document).ready(function(){
 </head>
 
 <form method="get" action="produksi.php">
-<input type="hidden" value="<?=$_GET["bulan"]?>" name="bulan">
+<input type="hidden" value="<?php  echo $_GET["bulan"]?>" name="bulan">
 <table class="x1" align="center" border="1" style="border-collapse:collapse; border-color:#666666">
   
-  <input type="hidden" name="nobukti" value="<?=$_GET['nobukti']?>" />
-  <input type="hidden" name="bulan" value="<?=$_GET['bulan']?>" />
+  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
+  <input type="hidden" name="bulan" value="<?php  echo $_GET['bulan']?>" />
   
   <tr>
     <td><strong>Bulan</strong> : </td>
     <td><select name="tahun"  id="dynamic_select" class="required">
-          <?php
+          <?php 
 						$tahun = $_POST["tahun"];
 						$tahunx = date('Y');
 						//echo $tahun;
 						for ($i=2010; $i<=$tahunx+1;$i++){
 							for ($j=1; $j<=12;$j++){
 					?>
-          <option value="<?php echo $j.'-'.$i;?>" <?php if($_GET["bulan"]==$j.'-'.$i){ echo 'selected="selected"';} ?>><?php echo $j.'-'.$i;?></option>
-          <?php } 
+          <option value="<?php  echo $j.'-'.$i;?>" <?php  if($_GET["bulan"]==$j.'-'.$i){ echo 'selected="selected"';} ?>><?php  echo $j.'-'.$i;?></option>
+          <?php  } 
 		  } ?>
         </select>
         <div id="divAlert"></div>	</td>
 		<td><strong>Jenis</strong> : </td>
 		<td><select name="jenis" id="jenis" >
-          <?php
+          <?php 
 				$SQLj = "select * from jenis";
 				$hasilj = mysql_query($SQLj) or die(mysql_error());
 				while($barisj=mysql_fetch_array($hasilj)){
 		?>
-          <option value="<?=$barisj["kode"]?>" <?php if($_GET["jenis"]==$barisj["kode"]) { ?> selected="selected" <? } ?>>
-          <?=$barisj["nama"]?>
+          <option value="<?php  echo $barisj["kode"]?>" <?php  if($_GET["jenis"]==$barisj["kode"]) { ?> selected="selected" <?php  } ?>>
+          <?php  echo $barisj["nama"]?>
           </option>
-          <?php } ?>
+          <?php  } ?>
         </select></td>
 		<td><strong>Merek</strong> : </td>
-		<td><select name="merek" id="merek" ><?php
+		<td><select name="merek" id="merek" ><?php 
 				$SQLj = "select * from stock";
 				$hasilj = mysql_query($SQLj) or die(mysql_error());
 				while($barisj=mysql_fetch_array($hasilj)){
 		?>
-          <option value="<?=$barisj["kodebrg"]?>" <?php if($_GET["merek"]==$barisj["kodebrg"]) { ?> selected="selected" <? } ?>>
-          <?=$barisj["namabrg"]?>
+          <option value="<?php  echo $barisj["kodebrg"]?>" <?php  if($_GET["merek"]==$barisj["kodebrg"]) { ?> selected="selected" <?php  } ?>>
+          <?php  echo $barisj["namabrg"]?>
           </option>
-          <?php } ?>
+          <?php  } ?>
 		  </select></td>
 		  <td><strong>Gudang</strong> : </td>
 		  <td><select name="gudang" id="gudang" >
-		    <?php
+		    <?php 
 				$SQLj = "select * from gudang";
 				$hasilj = mysql_query($SQLj) or die(mysql_error());
 				while($barisj=mysql_fetch_array($hasilj)){
 		?>
-            <option value="<?=$barisj["kode"]?>" <?php if($_GET["gudang"]==$barisj["kode"]) { ?> selected="selected" <? } ?>>
-            <?=$barisj["nama"]?>
+            <option value="<?php  echo $barisj["kode"]?>" <?php  if($_GET["gudang"]==$barisj["kode"]) { ?> selected="selected" <?php  } ?>>
+            <?php  echo $barisj["nama"]?>
             </option>
-            <?php } ?>
+            <?php  } ?>
           </select>
 		  </td>
   </tr>
 </table>
 <p>
-  <?php $id = isset($_GET["id"]) ? $_GET["id"] : "0"; ?>
+  <?php  $id = isset($_GET["id"]) ? $_GET["id"] : "0"; ?>
 </p>
 <p>
   <table border="1">
   
-  <?php
+  <?php 
 	
 	$col = 5;
 	$split = isset($_GET["bulan"]) ? explode('-',$_GET["bulan"]) : explode('-','1-2010');

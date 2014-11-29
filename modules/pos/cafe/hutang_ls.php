@@ -1,4 +1,4 @@
-<? @session_start(); include "otentik_inv.php"; 
+<?php  @session_start(); include "otentik_inv.php"; 
 include ("../include/functions.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,7 +34,7 @@ function do_scroll(point)
   }
   function showx(page, div){
     //do_scroll(0);
-	var site = "<?=$site_path?>";
+	var site = "<?php  echo $site_path?>";
     url= site+"/"+page;
 	//top.frames['main'].location.href = url; 	      
 	window.location = url; 	      
@@ -76,12 +76,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -111,7 +111,7 @@ body {
 	  
       <td width="36" class="style3"><div align="center" class="style4">Edit</div></td>
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM hutang WHERE id <> 0" ;
 		if($_SESSION["sess_kelasuser"]=="User"){
 			$SQL = $SQL . " AND sub = '".$_SESSION["sess_tipe"]."'";
@@ -121,44 +121,44 @@ body {
 		$id = 0;
 		//echo $SQL;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
 	  <td class="style3" align="center">
-	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?=$row['id'] ?>" /></td>
-	  <td class="style3" align="center"><?=baliktglindo($row['tgl'])?></td>
-      <td class="style3" align="let"><?=$row['nota']?></td>
-      <td class="style3" align="left"><?=$row['nama']?></td>
-	  <td class="style3" align="left"><?
+	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php  echo $row['id'] ?>" /></td>
+	  <td class="style3" align="center"><?php  echo baliktglindo($row['tgl'])?></td>
+      <td class="style3" align="let"><?php  echo $row['nota']?></td>
+      <td class="style3" align="left"><?php  echo $row['nama']?></td>
+	  <td class="style3" align="left"><?php 
 	  	$SQLc = "SELECT namadiv FROM divisi WHERE subdiv = '".$row['sub']."'";
 		$hasilc = mysql_query($SQLc);
 		$barisc = mysql_fetch_array($hasilc);
 		echo $barisc[0];
 	  ?></td>
-	  <td class="style3" align="left"><?=$row['alamat']?></td>
-	  <td class="style3" align="right"><?=number_format($row['saldo'],2,'.',',')?></td>
-      <td class="style3" align="center"><?=baliktglindo($row['jtempo'])?></td>
+	  <td class="style3" align="left"><?php  echo $row['alamat']?></td>
+	  <td class="style3" align="right"><?php  echo number_format($row['saldo'],2,'.',',')?></td>
+      <td class="style3" align="center"><?php  echo baliktglindo($row['jtempo'])?></td>
 	  
 	  
       <td class="style3"><div align="center">
-	  <? //if($_SESSION["sess_tipe"]==$row['sub']) 
+	  <?php  //if($_SESSION["sess_tipe"]==$row['sub']) 
 	  { ?>
-      <a href="pembelian_edit.php?sub=<?=$row['sub']?>&nomor=<?=$row['nomor']?>&supp=<?=$row['kode']?>" onclick='showx("","#content")' ><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
-	  <? } ?>
+      <a href="pembelian_edit.php?sub=<?php  echo $row['sub']?>&nomor=<?php  echo $row['nomor']?>&supp=<?php  echo $row['kode']?>" onclick='showx("","#content")' ><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
+	  <?php  } ?>
 	  </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>
   </form>
 </div>

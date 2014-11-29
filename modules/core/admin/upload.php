@@ -1,4 +1,4 @@
-<? 
+<?php  
 session_start();
 include "../include/globalx.php"; 
 include "../include/otentik_admin.php"; 
@@ -16,9 +16,9 @@ include "../include/otentik_admin.php";
 
 </head>
 <body>
-<?
+<?php 
 if ($_REQUEST['modx']=="ok") { ?>
-			<? 
+			<?php  
 			if($_GET["act"] == "insert" )
 				{
 				unset($nama_dokumen);
@@ -80,14 +80,14 @@ if ($_REQUEST['modx']=="ok") { ?>
 				else
 				{
 			?>
-			<form enctype="multipart/form-data" id="form1" name="form1" method="post" action="upload.php?act=insert&idusr=<?= $_REQUEST['idusr'] ?>">
+			<form enctype="multipart/form-data" id="form1" name="form1" method="post" action="upload.php?act=insert&idusr=<?php  echo  $_REQUEST['idusr'] ?>">
 				<input type=hidden name="modx" value="ok">
 			 <font face="verdana" size="2">Upload Foto : </font><input name="dokumen" type="file" class="form_isian"><br /><br />
 			 <input name="update" type="submit" id="update" value="Update" class="tombol"/>
 			 
 			 </form>	
 
-			<?
+			<?php 
 				}
 	} else {
 		echo "Gagal .. ";

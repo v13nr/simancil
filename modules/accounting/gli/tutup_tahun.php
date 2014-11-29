@@ -1,4 +1,4 @@
-<? if ($_GET['update']<>"") { ?>
+<?php  if ($_GET['update']<>"") { ?>
 
 	<script language="JavaScript">
 
@@ -10,8 +10,8 @@
 
 	</script>
 
-<? } ?>
-<?
+<?php  } ?>
+<?php 
 include "../include/globalx.php";
 require_once("otentik_gli.php");
 $SQL = "select * from $database.periode";
@@ -29,8 +29,8 @@ $tahun = $baris["tahun"];
       <td>Tahun Yang Akan diaktifkan </td>
     </tr>
     <tr>
-      <td><input type="text" value="<?php echo $tahun;?>" name="tahun" size="50" /></td>
-      <td><input type="text"  value="<?php echo $tahun + 1;?>" name="tahun_next" size="60" /></td>
+      <td><input type="text" value="<?php  echo $tahun;?>" name="tahun" size="50" /></td>
+      <td><input type="text"  value="<?php  echo $tahun + 1;?>" name="tahun_next" size="60" /></td>
     </tr>
     <tr>
       <td>&nbsp;</td>

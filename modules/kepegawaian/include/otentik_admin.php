@@ -1,4 +1,4 @@
-<?
+<?php 
 include("globalx.php");
 if ($_SESSION['sess_kelasuser']<>"Super Admin")
 {

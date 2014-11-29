@@ -1,4 +1,4 @@
-<?php session_start();
+<?php  session_start();
 include("../include/globalx.php");
 include("../include/functions.php");
 include("../include/infoclient.php");
@@ -75,25 +75,25 @@ function selectrm(rm){
 </head>
 
 <body>
-<?php
+<?php 
 	$SQL = "SELECT tahun from periode WHERE aktif = 1";
 	$hasil = mysql_query($SQL);
 	$baris = mysql_fetch_array($hasil);
 ?>
-Tahun Fiskal : <?=$baris[0];?>
-<?php
+Tahun Fiskal : <?php  echo $baris[0];?>
+<?php 
 	$SQLu = "SELECT * FROM pajak_detail WHERE tahun =".$baris[0];
 	$hasilu = mysql_query($SQLu);
 	$barisu = mysql_fetch_array($hasilu);
 ?>
 <form method="post" action="submission_gli.php">
-<input type="hidden" name="tahun" value="<?php echo $baris[0]; ?>" />
+<input type="hidden" name="tahun" value="<?php  echo $baris[0]; ?>" />
 <input type="hidden" name="cmd"  value="upd_pajak" />
 <table width="90%" border="1">
   <tr>
     <td colspan="6">Laba(Rugi) sebelum Pajak </td>
     <td width="10%">&nbsp;</td>
-    <td width="10%"><input type="text" name="lr_sbl_pajak"  id="lr_sbl_pajak" value="<?php echo $_SESSION["laba_sebelum_pajak"];  ?>" readonly="true" />   </td>
+    <td width="10%"><input type="text" name="lr_sbl_pajak"  id="lr_sbl_pajak" value="<?php  echo $_SESSION["laba_sebelum_pajak"];  ?>" readonly="true" />   </td>
   </tr>
   <tr>
     <td colspan="6">Koreksi Fiskal </td>
@@ -103,36 +103,36 @@ Tahun Fiskal : <?=$baris[0];?>
   <tr>
     <td>&nbsp;</td>
     <td colspan="5">Beban Gaji Pimpinan </td>
-    <td><input type="text" name="bb_gajipimpinan"  onKeyUp="hitung()"  id="bb_gajipimpinan"  value="<?php echo $barisu["bb_gajipimpinan"]; ?>" /></td>
+    <td><input type="text" name="bb_gajipimpinan"  onKeyUp="hitung()"  id="bb_gajipimpinan"  value="<?php  echo $barisu["bb_gajipimpinan"]; ?>" /></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td colspan="5">Beban Sumbangan </td>
-    <td><input type="text" name="bb_sumbangan"  onKeyUp="hitung()"   id="bb_sumbangan"  value="<?php echo $barisu["bb_sumbangan"]; ?>" /></td>
+    <td><input type="text" name="bb_sumbangan"  onKeyUp="hitung()"   id="bb_sumbangan"  value="<?php  echo $barisu["bb_sumbangan"]; ?>" /></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td colspan="5">Beban Pajak Penghasilan </td>
-    <td><input type="text" name="bb_pajak_penghsl"  onKeyUp="hitung()"   id="bb_pajak_penghsl"  value="<?php echo $barisu["bb_pajak_penghsl"]; ?>" /></td>
+    <td><input type="text" name="bb_pajak_penghsl"  onKeyUp="hitung()"   id="bb_pajak_penghsl"  value="<?php  echo $barisu["bb_pajak_penghsl"]; ?>" /></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td width="9%">&nbsp;</td>
     <td colspan="5">Beban RT Kantor </td>
-    <td><input type="text" name="bb_rt_kantor"  id="bb_rt_kantor"  onKeyUp="hitung()"  value="<?php echo $barisu["bb_rt_kantor"]; ?>" /></td>
+    <td><input type="text" name="bb_rt_kantor"  id="bb_rt_kantor"  onKeyUp="hitung()"  value="<?php  echo $barisu["bb_rt_kantor"]; ?>" /></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td colspan="6"><div align="center"><em>Total Koreksi Fiskal </em></div></td>
     <td>&nbsp;</td>
-    <td><input type="text" name="total_koreksi_fis"  id="total_koreksi_fis" value="<?php echo $barisu["total_koreksi_fis"]; ?>" readonly="true" /></td>
+    <td><input type="text" name="total_koreksi_fis"  id="total_koreksi_fis" value="<?php  echo $barisu["total_koreksi_fis"]; ?>" readonly="true" /></td>
   </tr>
   <tr>
     <td colspan="6">Laba(Rugi) Fiskal </td>
     <td>&nbsp;</td>
-    <td><input type="text" name="lr_fiskal" id="lr_fiskal"  value="<?php echo $barisu["lr_fiskal"]; ?>" /></td>
+    <td><input type="text" name="lr_fiskal" id="lr_fiskal"  value="<?php  echo $barisu["lr_fiskal"]; ?>" /></td>
   </tr>
   <tr>
     <td colspan="6">&nbsp;</td>
@@ -142,7 +142,7 @@ Tahun Fiskal : <?=$baris[0];?>
   <tr>
     <td colspan="6">TKP (K/3) </td>
     <td>&nbsp;</td>
-    <td><input type="text" name="tkp"   id="tkp"  value="<?php echo $barisu["tkp"]; ?>" /></td>
+    <td><input type="text" name="tkp"   id="tkp"  value="<?php  echo $barisu["tkp"]; ?>" /></td>
   </tr>
   <tr>
     <td colspan="6">&nbsp;</td>
@@ -152,12 +152,12 @@ Tahun Fiskal : <?=$baris[0];?>
   <tr>
     <td colspan="6">Pendapatan Kena Pajak </td>
     <td>&nbsp;</td>
-    <td><input type="text" name="pdpt_kena_pajak"  id="pdpt_kena_pajak"  value="<?php echo $barisu["pdpt_kena_pajak"]; ?>" /></td>
+    <td><input type="text" name="pdpt_kena_pajak"  id="pdpt_kena_pajak"  value="<?php  echo $barisu["pdpt_kena_pajak"]; ?>" /></td>
   </tr>
   <tr>
     <td colspan="6">Pendapatan Kena Pajak pembulatan </td>
     <td>&nbsp;</td>
-    <td><input type="text" name="pdpt_kena_pajak_bulat"   id="pdpt_kena_pajak_bulat" onkeyup="hitung()"  value="<?php echo $barisu["pdpt_kena_pajak_bulat"]; ?>" /></td>
+    <td><input type="text" name="pdpt_kena_pajak_bulat"   id="pdpt_kena_pajak_bulat" onkeyup="hitung()"  value="<?php  echo $barisu["pdpt_kena_pajak_bulat"]; ?>" /></td>
   </tr>
   <tr>
     <td colspan="2">Tarif:</td>
@@ -170,11 +170,11 @@ Tahun Fiskal : <?=$baris[0];?>
   </tr>
   <tr>
     <td colspan="2">&nbsp;</td>
-    <td><input type="text" name="tarif_hit"   id="tarif_hit"  value="<?php echo $barisu["tarif_1"]; ?>" /></td>
+    <td><input type="text" name="tarif_hit"   id="tarif_hit"  value="<?php  echo $barisu["tarif_1"]; ?>" /></td>
     <td>x</td>
     <td>15%</td>
     <td>=</td>
-    <td><input type="text" name="tarif_2"  id="tarif_2"  value="<?php echo $barisu["tarif_2"]; ?>" /></td>
+    <td><input type="text" name="tarif_2"  id="tarif_2"  value="<?php  echo $barisu["tarif_2"]; ?>" /></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -186,7 +186,7 @@ Tahun Fiskal : <?=$baris[0];?>
   <tr>
     <td colspan="6">PPh terhutang </td>
     <td>&nbsp;</td>
-    <td><input type="text" name="pph_terhutang" id="pph_terhutang"  value="<?php echo $barisu["pph_terhutang"]; ?>" /></td>
+    <td><input type="text" name="pph_terhutang" id="pph_terhutang"  value="<?php  echo $barisu["pph_terhutang"]; ?>" /></td>
   </tr>
   <tr>
     <td colspan="6">&nbsp;</td>

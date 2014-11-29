@@ -1,4 +1,4 @@
-<?php
+<?php 
 		
 	//load the table default definitions
 	require("example2_def.inc");

@@ -1,4 +1,4 @@
-<?php
+<?php 
 include("../include/globalx.php");
 include ("../../accounting/include/globalx.php");
 if($_POST['id'])

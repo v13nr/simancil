@@ -1,4 +1,4 @@
-<?php @session_start; 
+<?php  @session_start; 
 include "../../../config_sistem.php";
 include "otentik_gli.php"; 
 include ("../include/functions.php");
@@ -33,7 +33,7 @@ include ("../include/functions.php");
 </script>
 <script  type="text/javascript"  src="../assets/app.js"></script>
 <script language="javascript" type="text/javascript">
-	var site = '<?php  echo $url_site_neraca_awal; ?>';
+	var site = '<?php   echo $url_site_neraca_awal; ?>';
 	//var site = 'http://indowebit.web.id/modules/accounting/gli/';
 	function neraca_awal()
 	{
@@ -97,12 +97,12 @@ body {
       <td width="17"><div align="center"><img src="../images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <?php date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../images/user.png" width="16" height="16" /></div></td>
@@ -126,19 +126,19 @@ body {
       <td width="382" class="style3"><div align="center" class="style4">Nama Rekening </div></td>
       <td width="54" class="style3"><div align="center" class="style4">Type</div></td>
       <td width="80" class="style3"><div align="center" class="style4">Saldo Normal</div></td>
-	  <?php if($_SESSION['sess_kelasuser']=="Super Admin"){?>
+	  <?php  if($_SESSION['sess_kelasuser']=="Super Admin"){?>
 	  <td width="107" class="style3"><div align="center" class="style4">Saldo Awal </div></td>
-	  <? }?>
+	  <?php  }?>
       <td width="111" class="style3"><div align="center" class="style4">Edit</div></td>
     </tr>
-	<?php
+	<?php 
 		$SQL = "select * FROM $database.rekening WHERE status = 1 AND divisi = '".$_SESSION["sess_tipe"]."'" ;
 		
 		$SQL = $SQL." ORDER BY  tipe, norek ASC";
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<?php 
+	<?php  
 		$tampil = 0; 
 		 $nRecord = 1;
 		 $No = 0;
@@ -146,13 +146,13 @@ body {
 			while ($row=mysql_fetch_array($hasil)) { 
 			$tampil = (substr($row['norek'],-3)<>"000" && ($row['tipe']=="A"  || $row['tipe']=="P" )) ? 1 : 0;
  	?>
-    <tr <?php	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php }  else {?>bgcolor="#FFFFCC"<?php } ?>>
-      <td align="center" class="style3"><?php echo ++$No?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
 	  <td class="style3" align="center">
-	  <?php if(substr($row['norek'],-4)<>"0000") {?>
-	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php echo $row['norek'] ?>" /></td>
-		<?php } ?>
-	  <td class="style3" style="padding-left:10" align="center"><?php
+	  <?php  if(substr($row['norek'],-4)<>"0000") {?>
+	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php  echo $row['norek'] ?>" /></td>
+		<?php  } ?>
+	  <td class="style3" style="padding-left:10" align="center"><?php 
 	  
 	  if(substr($row["norek"],-4)=="0000"){
 			echo "";		  
@@ -161,7 +161,7 @@ body {
 		  	echo $split[1];
 	  }
 	  ?></td>
-      <td class="style3" style="padding-left:10" ><?php
+      <td class="style3" style="padding-left:10" ><?php 
 	  
 	  if(substr($row["norek"],-4)=="0000"){
 	  		echo "<b>". $row['namarek'] ."</b>";
@@ -170,25 +170,25 @@ body {
 	  
 	  }
 	  ?></td>
-      <td class="style3" align="center"><?php echo $row['tipe']?></td>
-      <td class="style3" align="center"><?php echo $row['saldonormal']?></td>
-	  <?php if($_SESSION['sess_kelasuser']=="Super Admin" ){?>
-	  <td class="style3" align="center"><?php echo  ($tampil == 1) ? '<input type="textbox"  class=""  name="'.$row['norek'].','.$row['tipe'].'" value="'. ($row['saldoawal']) .'">' : ""; ?></td>
-	  <?php } ?>
-      <td class="style3"><div align="center">
-	  <?php if(substr($row['norek'],-4)<>"0000" && $row['defaul'] != "1"){ ?>
-	  <a href="index.php?mn=input_rp&id=<?php echo $row['norek'] ?>"><img src="../images/user_go.png" border="0" width="16" height="16"></a>
+      <td class="style3" align="center"><?php  echo $row['tipe']?></td>
+      <td class="style3" align="center"><?php  echo $row['saldonormal']?></td>
+	  <?php  if($_SESSION['sess_kelasuser']=="Super Admin" ){?>
+	  <td class="style3" align="center"><?php  echo  ($tampil == 1) ? '<input type="textbox"  class=""  name="'.$row['norek'].','.$row['tipe'].'" value="'. ($row['saldoawal']) .'">' : ""; ?></td>
 	  <?php  } ?>
+      <td class="style3"><div align="center">
+	  <?php  if(substr($row['norek'],-4)<>"0000" && $row['defaul'] != "1"){ ?>
+	  <a href="index.php?mn=input_rp&id=<?php  echo $row['norek'] ?>"><img src="../images/user_go.png" border="0" width="16" height="16"></a>
+	  <?php   } ?>
 	  </div></td>
     </tr>
-	<?php  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?php  } ?>
+	<?php   } ?>
   </table>
   </form>
 </div>

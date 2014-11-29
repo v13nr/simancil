@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 include "../../../config_sistem.php";
 $SQL = "select * from $database.laporanid";

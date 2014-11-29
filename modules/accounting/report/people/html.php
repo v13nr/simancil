@@ -26,7 +26,7 @@ color:#000;
 background-color:#EAF2D3;
 }
 </style>
-<?php
+<?php 
 echo '<table id="customers">';
 	echo '<tr>';
     echo "<th>NAMA</th>"; 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
  * Copyright (c) 2009 David Soria Parra
  *

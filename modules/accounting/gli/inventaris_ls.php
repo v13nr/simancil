@@ -1,4 +1,4 @@
-<? include "otentik_gli.php"; 
+<?php  include "otentik_gli.php"; 
 include ("../include/functions.php");
 
 ?>
@@ -46,12 +46,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -85,7 +85,7 @@ body {
                 Todo
               </div></td>
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM $database.aktiva WHERE status = 1" ;
 		if($_GET['c_no']<>""){
 			$SQL = $SQL . " AND noinduk LIKE '%".$_GET['c_no']."%'";
@@ -103,44 +103,44 @@ body {
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
 	  <td class="style3" align="center">
-	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?=$row['id'] ?>" /></td>
-	  <td class="style3" align="center"><?=baliktglindo($row['tgl'])?></td>
-      <td class="style3"><?=$row['nama']?></td>
-      <td class="style3" align="right"><?=number_format($row['nilai'],2,'.',',')?></td>
-	  <td class="style3" align="center"><?=$row['tarif']?></td>
-      <td class="style3" align="right"><?=number_format($row['susut'],2,'.',',')?></td>
-      <td class="style3" align="center"><font color="red"><?php 
+	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php  echo $row['id'] ?>" /></td>
+	  <td class="style3" align="center"><?php  echo baliktglindo($row['tgl'])?></td>
+      <td class="style3"><?php  echo $row['nama']?></td>
+      <td class="style3" align="right"><?php  echo number_format($row['nilai'],2,'.',',')?></td>
+	  <td class="style3" align="center"><?php  echo $row['tarif']?></td>
+      <td class="style3" align="right"><?php  echo number_format($row['susut'],2,'.',',')?></td>
+      <td class="style3" align="center"><font color="red"><?php  
 			$SQLcari = "SELECT mano_post FROM $database.aktiva_details WHERE aktiva_id = '" . $row['id'] . "' ORDER BY id DESC LIMIT 1";
 			$hasilcari = mysql_query($SQLcari, $dbh_jogjaide);
 			while ($bariscari = mysql_fetch_array($hasilcari)){
 				echo baliktglindo($bariscari[0]);
 			};
 	?></font></td>
-	  <td class="style3" align="center"><?=$row['rekdebet']?></td>
-	  <td class="style3" align="center"><?=$row['rekkredit']?></td>
-	  <td class="style3" align="center"><?=$row['rek_d_bbsusut']?></td>
-	  <td class="style3" align="center"><?=$row['rek_k_akmsusut']?></td>
+	  <td class="style3" align="center"><?php  echo $row['rekdebet']?></td>
+	  <td class="style3" align="center"><?php  echo $row['rekkredit']?></td>
+	  <td class="style3" align="center"><?php  echo $row['rek_d_bbsusut']?></td>
+	  <td class="style3" align="center"><?php  echo $row['rek_k_akmsusut']?></td>
       <td class="style3"><div align="center">
-	<a href="penyusutan.php?ida=<?=$row['id'] ?>&amp;width=600&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>
-	  <a href="index.php?mn=input_inv&id=<?=$row['id'] ?>"></a>
+	<a href="penyusutan.php?ida=<?php  echo $row['id'] ?>&amp;width=600&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>
+	  <a href="index.php?mn=input_inv&id=<?php  echo $row['id'] ?>"></a>
 	  </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>
   </form>
 </div>

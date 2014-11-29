@@ -1,4 +1,4 @@
-<?php 
+<?php  
 /*
  * Copyright 2013 Sean Proctor
  *

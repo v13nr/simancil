@@ -1,4 +1,4 @@
-<?php
+<?php 
 $type='TrueType';
 $name='Calligrapher-Regular';
 $desc=array('Ascent'=>899,'Descent'=>-234,'CapHeight'=>731,'Flags'=>32,'FontBBox'=>'[-50 -234 1328 899]','ItalicAngle'=>0,'StemV'=>70,'MissingWidth'=>800);

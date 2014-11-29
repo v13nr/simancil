@@ -1,4 +1,4 @@
-<? include "otentik_admin.php"; include ("include/functions.php");
+<?php  include "otentik_admin.php"; include ("include/functions.php");
 include ("include/globalx.php");?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,15 +57,15 @@ $(document).ready(function() {
 		<td width="28" rowspan="2"></td>
 		<td width="83">Gudang</td>
 		<td width="276"><select name="gudang" id="gudang" >
-          <?php
+          <?php 
 				$SQLj = "select * from gudang";
 				$hasilj = mysql_query($SQLj) or die(mysql_error());
 				while($barisj=mysql_fetch_array($hasilj)){
 		?>
-          <option value="<?=$barisj["kode"]?>" <?php if($_GET["gudang"]==$barisj["kode"]) { ?> selected="selected" <? } ?>>
-          <?=$barisj["nama"]?>
+          <option value="<?php  echo $barisj["kode"]?>" <?php  if($_GET["gudang"]==$barisj["kode"]) { ?> selected="selected" <?php  } ?>>
+          <?php  echo $barisj["nama"]?>
           </option>
-          <?php } ?>
+          <?php  } ?>
         </select></td>
 	</tr>
 	<tr bgcolor="#FFFFCC">

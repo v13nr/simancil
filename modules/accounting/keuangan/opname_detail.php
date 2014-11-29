@@ -1,4 +1,4 @@
-<?php
+<?php 
 	include "otentik_keu.php";
 	
 include ("../include/globalx.php");
@@ -35,12 +35,12 @@ include ("../include/functions.php");
 <body>
 <table width="90%" border="1" align="center">
   <tr>
-    <td colspan="7" style="background:red"><div align="center"><?=$_GET["keterangan"]?></div></td>
+    <td colspan="7" style="background:red"><div align="center"><?php  echo $_GET["keterangan"]?></div></td>
   </tr>
   <tr>
     <td width="4%">
       <div align="center">
-        <?=$_GET["tanggal"]?>
+        <?php  echo $_GET["tanggal"]?>
       </div></td>
     <td width="40%"><div align="center">KETERANGAN</div></td>
     <td width="6%"><div align="center">HARI KERJA </div></td>
@@ -51,9 +51,9 @@ include ("../include/functions.php");
   </tr>
   <form method="post" action="submission_keu.php">
   <input type="hidden" name="cmd" value="add_opname_ket" />
-  <input type="hidden" name="tanggal" value="<?=$_GET["tanggal"]?>" />
-  <input type="hidden" name="keterangan" value="<?=$_GET["keterangan"]?>" />
-  <input type="hidden" name="id" value="<?=$_GET["id"]?>" />
+  <input type="hidden" name="tanggal" value="<?php  echo $_GET["tanggal"]?>" />
+  <input type="hidden" name="keterangan" value="<?php  echo $_GET["keterangan"]?>" />
+  <input type="hidden" name="id" value="<?php  echo $_GET["id"]?>" />
   <tr>
     <td>&nbsp;</td>
     <td><input type="text" name="opname_ket" size="60" style="background:yellow" /></td>
@@ -64,7 +64,7 @@ include ("../include/functions.php");
     <td align="center"><input type="submit" value="Tambah" /></td>
   </tr>
   </form>
-  <?php
+  <?php 
   		$SQLket = "select * from opname_detail where opname_id = '". $_GET["id"] ."' AND parent_id = 0";
 		$hasilket = mysql_query($SQLket);
 		while($barisket = mysql_fetch_array($hasilket)){
@@ -72,30 +72,30 @@ include ("../include/functions.php");
   <tr style="background-color:#FFFF66">
     <td>&nbsp;</td>
     <td bgcolor="#FFFF00"><div align="right">
-      <?=$barisket["keterangan"]?>
+      <?php  echo $barisket["keterangan"]?>
     </div></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td align="right">Rp.
-			<?php
+			<?php 
 					$SQLr = "SELECT SUM(harikerja * upah) from opname_detail WHERE opname_id = '". $_GET["id"] ."' and parent_id = '". $barisket["id"] ."'";
 					$hasilr = mysql_query($SQLr);
 					$barisr = mysql_fetch_array($hasilr);
 					echo number_format($barisr[0]);
 					$total = $total + ($barisr[0]);
 			?> </td>
-    <td align="center"><a href="javascript:confirmDelete('submission_keu.php?id=<?=$_GET["id"]?>&amp;cmd=del_opname_parent&keterangan=<?=$_GET["keterangan"]?>&tanggal=<?=$_GET["tanggal"]?>&parent_id=<?=$barisket["id"]?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
+    <td align="center"><a href="javascript:confirmDelete('submission_keu.php?id=<?php  echo $_GET["id"]?>&amp;cmd=del_opname_parent&keterangan=<?php  echo $_GET["keterangan"]?>&tanggal=<?php  echo $_GET["tanggal"]?>&parent_id=<?php  echo $barisket["id"]?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
   </tr>
 	<form method="post" action="submission_keu.php">
   <input type="hidden" name="cmd" value="add_opname_rinci" />
-  <input type="hidden" name="tanggal" value="<?=$_GET["tanggal"]?>" />
-  <input type="hidden" name="keterangan" value="<?=$_GET["keterangan"]?>" />
-  <input type="hidden" name="id" value="<?=$_GET["id"]?>" />
+  <input type="hidden" name="tanggal" value="<?php  echo $_GET["tanggal"]?>" />
+  <input type="hidden" name="keterangan" value="<?php  echo $_GET["keterangan"]?>" />
+  <input type="hidden" name="id" value="<?php  echo $_GET["id"]?>" />
  
 		  <tr>
 			<td>&nbsp;</td>
-			<td> <input type="hidden" name="parent_id" value="<?=$barisket["id"]?>" /><input type="text" name="keterangan_child" size="60" style="background-color:#CCCFFF" /></td>
+			<td> <input type="hidden" name="parent_id" value="<?php  echo $barisket["id"]?>" /><input type="text" name="keterangan_child" size="60" style="background-color:#CCCFFF" /></td>
 			<td align="center"><input type="text" name="harikerja" size="5"  style="background-color:#CCCFFF" /></td>
 			<td><input type="text" name="upah" size="10" style="background-color:#CCCFFF"  /></td>
 			<td>&nbsp;</td>
@@ -104,28 +104,28 @@ include ("../include/functions.php");
 		  </tr>
 		  </form>
 		  
-	<?php
+	<?php 
 			$SQLc = "select * from opname_detail where opname_id = '". $_GET["id"] ."' AND parent_id = '". $barisket["id"] ."'";
 			$hasilc = mysql_query($SQLc);
 			while($barisc = mysql_fetch_array($hasilc)){
 	?>		  
 			<tr>
 			<td>&nbsp;</td>
-			<td><?=$barisc["keterangan"];?></td>
+			<td><?php  echo $barisc["keterangan"];?></td>
 			<td><div align="right">
-			  <?=$barisc["harikerja"];?>
+			  <?php  echo $barisc["harikerja"];?>
 			</div></td>
 			<td><div align="right">
-              <?=number_format($barisc["upah"]);?>
+              <?php  echo number_format($barisc["upah"]);?>
             </div></td>
 			<td><div align="right">
-              <?=number_format($barisc["harikerja"]*$barisc["upah"]);?>
+              <?php  echo number_format($barisc["harikerja"]*$barisc["upah"]);?>
             </div></td>
 			<td><div align="right"></div></td>
-			<td align="center"><a href="javascript:confirmDelete('submission_keu.php?id=<?=$_GET["id"]?>&amp;cmd=del_opname_rinci&keterangan=<?=$_GET["keterangan"]?>&tanggal=<?=$_GET["tanggal"]?>&del_id=<?=$barisc["id"]?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
+			<td align="center"><a href="javascript:confirmDelete('submission_keu.php?id=<?php  echo $_GET["id"]?>&amp;cmd=del_opname_rinci&keterangan=<?php  echo $_GET["keterangan"]?>&tanggal=<?php  echo $_GET["tanggal"]?>&del_id=<?php  echo $barisc["id"]?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
 		  </tr>
 	
-  <?php 
+  <?php  
   	} // end child
   } // end keternangan opname 
   ?>
@@ -145,7 +145,7 @@ include ("../include/functions.php");
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td><div align="right">Rp. 
-        <?php
+        <?php 
 					echo number_format($total);
 			?>
     </div></td>

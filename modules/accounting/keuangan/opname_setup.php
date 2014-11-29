@@ -1,4 +1,4 @@
-<?php
+<?php 
 	include "otentik_keu.php";
 	
 include ("../include/globalx.php");
@@ -45,20 +45,20 @@ include ("../include/functions.php");
     <td width="78%"><div align="center">Keterangan</div></td>
     <td width="6%"><div align="center">Todo</div></td>
   </tr>
-  <?php 
+  <?php  
   		$SQL = "select * from opname order by tanggal desc";
 		$hasil = mysql_query($SQL);
 		while($baris=mysql_fetch_array($hasil)){
   ?>
   <tr>
-    <td><?=++$no; ?></td>
+    <td><?php  echo ++$no; ?></td>
     <td><div align="center">
-      <?=baliktglindo($baris["tanggal"]);?>
+      <?php  echo baliktglindo($baris["tanggal"]);?>
     </div></td>
-    <td><?=($baris["keterangan"]);?></td>
-    <td><div align="center"><a href="opname_detail.php?id=<?=$baris["id"];?>&tanggal=<?=baliktglindo($baris["tanggal"]);?>&keterangan=<?=($baris["keterangan"]);?>">View</a>&nbsp;&nbsp;<a href="opname_cetak.php?id=<?=$baris["id"];?>&tanggal=<?=baliktglindo($baris["tanggal"]);?>&keterangan=<?=($baris["keterangan"]);?>">Cetak</a></div></td>
+    <td><?php  echo ($baris["keterangan"]);?></td>
+    <td><div align="center"><a href="opname_detail.php?id=<?php  echo $baris["id"];?>&tanggal=<?php  echo baliktglindo($baris["tanggal"]);?>&keterangan=<?php  echo ($baris["keterangan"]);?>">View</a>&nbsp;&nbsp;<a href="opname_cetak.php?id=<?php  echo $baris["id"];?>&tanggal=<?php  echo baliktglindo($baris["tanggal"]);?>&keterangan=<?php  echo ($baris["keterangan"]);?>">Cetak</a></div></td>
   </tr>
-  <?php } ?>
+  <?php  } ?>
 </table>
 
 </body>

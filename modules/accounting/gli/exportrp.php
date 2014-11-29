@@ -1,9 +1,9 @@
-<? session_start();
+<?php  session_start();
 include "otentik_gli.php"; 
 include ("../include/functions.php");
 include ("../include/infoclient.php");
 ?>
-<?
+<?php 
 //taruh skrip ini di file tujuan, misal dari tes.php ke excell.php
 $filename = "Data Rekening Pembantu - " . date('Y-m-d') . ".xls";
 header("Content-Disposition: attachment; filename=\"$filename\"");
@@ -27,7 +27,7 @@ h4 { font-size:36px}
       <td width="118" class="style3"><div align="center" class="style4">Kredit</div></td>
 	  <td width="103" class="style3"><div align="center" class="style4">Saldo Akhir</div></td>
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM $database.rekening WHERE status = 1" ;
 		if($_GET['c_no']<>""){
 			$SQL = $SQL . " AND noinduk LIKE '%".$_GET['c_no']."%'";
@@ -45,27 +45,27 @@ h4 { font-size:36px}
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
-	  <td class="style3" align="center"><?=$row['norek']?></td>
-      <td class="style3"><?=$row['namarek']?></td>
-      <td class="style3" align="center"><?=$row['tipe']?></td>
-	  <td class="style3" align="center"><?=number_format($row['saldoawal'],2,',','.')?></td>
-      <td class="style3" align="center"><?=number_format($row['debet'],2,',','.')?></td>
-      <td class="style3" align="center"><?=number_format($row['kredit'],2,',','.')?></td>
-	  <td class="style3" align="center"><?=number_format($row['saldoakhir'],2,',','.')?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
+	  <td class="style3" align="center"><?php  echo $row['norek']?></td>
+      <td class="style3"><?php  echo $row['namarek']?></td>
+      <td class="style3" align="center"><?php  echo $row['tipe']?></td>
+	  <td class="style3" align="center"><?php  echo number_format($row['saldoawal'],2,',','.')?></td>
+      <td class="style3" align="center"><?php  echo number_format($row['debet'],2,',','.')?></td>
+      <td class="style3" align="center"><?php  echo number_format($row['kredit'],2,',','.')?></td>
+	  <td class="style3" align="center"><?php  echo number_format($row['saldoakhir'],2,',','.')?></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>

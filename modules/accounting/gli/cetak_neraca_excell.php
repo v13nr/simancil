@@ -1,5 +1,5 @@
-<? session_start(); ?>
-<?
+<?php  session_start(); ?>
+<?php 
 //taruh skrip ini di file tujuan, misal dari tes.php ke excell.php
 $filename = "Neraca Saldo -  Tanggal cetak : " . date('Y-m-d') . ".xls";
 header("Content-Disposition: attachment; filename=\"$filename\"");
@@ -7,7 +7,7 @@ header ("Content-Type: application/vnd.ms-excel");
 header ("Expires: 0");
 header ("Cache-Control : must-revalidate, post-check=0, pre-check=0");
 ?>
-<?php
+<?php 
 include("../include/globalx.php");
 include("../include/functions.php");
 include("../include/infoclient.php");
@@ -22,7 +22,7 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
 </head>
-<?php
+<?php 
 
 
 	$SQLdel = "DELETE FROM $database.dbfn WHERE id = '".$a."'";
@@ -157,7 +157,7 @@ $a = session_id();
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
-   <?php
+   <?php 
  	//looping aktiva
 	
 	$total_k_aktiva = 0;
@@ -165,7 +165,7 @@ $a = session_id();
 	$hasil = mysql_query($SQL, $dbh_jogjaide);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-		<?php
+		<?php 
 				if(substr($baris['norek'],0,2) == 'AP'){
 					$d_aktiva = $d_aktiva -  $baris['debet'];
 					$k_aktiva = $k_aktiva - $baris['kredit'];
@@ -180,45 +180,45 @@ $a = session_id();
 				
 
 		?>
-  <?php
+  <?php 
 	if(substr($baris['norek'],-4)=="0000"){
 	
 ?>
   <tr>
     <td>&nbsp;</td>
     <td>
-      <strong><?=$baris['namarek']?></strong></td>
+      <strong><?php  echo $baris['namarek']?></strong></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
- <?php } else {
+ <?php  } else {
  ?>
  <tr>
     <td><div align="center">
-      <?=noreknn($baris['norek'])?>
+      <?php  echo noreknn($baris['norek'])?>
     </div></td>
-    <td><?=$baris['namarek']?></td>
+    <td><?php  echo $baris['namarek']?></td>
     <td>&nbsp;</td>
-    <td><div align="right"><?php echo (substr($baris['norek'],0,2) != 'AP') ? minuss(($baris['saldoawal']+$baris['debet']-$baris['kredit']))  : "0.00"; ?></div></td>
-    <td><div align="right"><?php echo (substr($baris['norek'],0,2) == 'AP') ? minuss(($baris['saldoawal']-$baris['debet']+$baris['kredit']))  : "0.00"; ?></div></td>
+    <td><div align="right"><?php  echo (substr($baris['norek'],0,2) != 'AP') ? minuss(($baris['saldoawal']+$baris['debet']-$baris['kredit']))  : "0.00"; ?></div></td>
+    <td><div align="right"><?php  echo (substr($baris['norek'],0,2) == 'AP') ? minuss(($baris['saldoawal']-$baris['debet']+$baris['kredit']))  : "0.00"; ?></div></td>
     <td>&nbsp;</td>
   </tr>
- <?php
+ <?php 
   } } ?>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td><div align="right">
-      <?=number_format($total_d_aktiva,2,'.',',')?>
+      <?php  echo number_format($total_d_aktiva,2,'.',',')?>
     </div></td>
     <td><div align="right">
-      <?=number_format($total_k_aktiva,2,'.',',')?>
+      <?php  echo number_format($total_k_aktiva,2,'.',',')?>
     </div></td>
     <td><div align="right">
-      <?=number_format($total_d_aktiva - $total_k_aktiva,2,'.',',')?>
+      <?php  echo number_format($total_d_aktiva - $total_k_aktiva,2,'.',',')?>
     </div></td>
   </tr>
  	
@@ -230,7 +230,7 @@ $a = session_id();
           <td>&nbsp;</td>
         </tr>
 		
- <?php
+ <?php 
  
 //looping pasiva
 $SQL = "SELECT * FROM $database.dbfn WHERE  id = '".$a."' AND (tipe = 'P' || tipe = 'R' ||tipe = 'R2') AND norek NOT LIKE 'AP%' ORDER BY norek";
@@ -242,16 +242,16 @@ while($baris = mysql_fetch_array($hasil)){
 	$sr_passiva = $sr_passiva + ($baris['saldoawal']-$baris['debet']+$baris['kredit']);
 
 ?> 	
-  		<? if(substr($baris['norek'],-4)=="0000"){		
+  		<?php  if(substr($baris['norek'],-4)=="0000"){		
 		?>       <tr>
           <td>&nbsp;</td>
-          <td><strong><?=$baris['namarek']?></strong></td>
+          <td><strong><?php  echo $baris['namarek']?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
-		<?php } else { 
+		<?php  } else { 
 				if ($baris['saldonormal'] == 'D'){
 					$d_aktiva = $d_aktiva +  $baris['debet'];
 					$k_aktiva = $k_aktiva + $baris['kredit'];
@@ -268,18 +268,18 @@ while($baris = mysql_fetch_array($hasil)){
 		
         <tr>
           <td><div align="center">
-            <?=noreknn($baris['norek'])?>
+            <?php  echo noreknn($baris['norek'])?>
           </div></td>
-          <td><?=$baris['namarek']?></td>
+          <td><?php  echo $baris['namarek']?></td>
           <td>&nbsp;</td>
-          <td><div align="right"><?php echo ($baris['saldonormal'] == 'D') ? number_format($baris['saldoawal']+$baris['debet']-$baris['kredit'],2,'.',',') : "0.00"; ?></div></td>
-          <td><div align="right"><?php echo ($baris['saldonormal'] == 'K')  ? number_format($baris['saldoawal']-$baris['debet']+$baris['kredit'],2,'.',',') : "0.00"; ?></div></td>
+          <td><div align="right"><?php  echo ($baris['saldonormal'] == 'D') ? number_format($baris['saldoawal']+$baris['debet']-$baris['kredit'],2,'.',',') : "0.00"; ?></div></td>
+          <td><div align="right"><?php  echo ($baris['saldonormal'] == 'K')  ? number_format($baris['saldoawal']-$baris['debet']+$baris['kredit'],2,'.',',') : "0.00"; ?></div></td>
           <td>&nbsp;</td>
         </tr>
-		<?php } } ?>
+		<?php  } } ?>
 		
 		
-		<?php
+		<?php 
 		
 
 //rugi laba
@@ -314,13 +314,13 @@ while($baris = mysql_fetch_array($hasil)){
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td><div align="right">
-      <?=number_format($total_d_passiva,2,'.',',')?>
+      <?php  echo number_format($total_d_passiva,2,'.',',')?>
     </div></td>
     <td><div align="right">
-      <?=number_format($total_k_passiva,2,'.',',')?>
+      <?php  echo number_format($total_k_passiva,2,'.',',')?>
     </div></td>
     <td><div align="right">
-      <?=number_format($total_k_passiva-$total_d_passiva,2,'.',',')?>
+      <?php  echo number_format($total_k_passiva-$total_d_passiva,2,'.',',')?>
     </div></td>
   </tr>
 </table>

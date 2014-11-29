@@ -66,7 +66,7 @@ NOMOR KENDALI : </p>
     <td>&nbsp;</td>
   </tr>
 </table>
-<?php
+<?php 
 echo '<table id="customers">';
 
  while ($row=$rs->FetchNextObject()) {

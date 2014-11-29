@@ -1,4 +1,4 @@
-<? session_start(); ?><?php  
+<?php  session_start(); ?><?php   
 require('../fpdf16/fpdf.php');
 include("../include/globalx.php");
 include("../include/functions.php");

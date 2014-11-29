@@ -1,6 +1,6 @@
 <script type="text/javascript" src="assets/kalendar_files/jsCalendar.js"></script>
 <link href="assets/kalendar_files/calendar.css" rel="stylesheet" type="text/css">
-<?php
+<?php 
 	@session_start();
 	require_once('modules/pos/include/globalx.php');
 	require_once('modules/pos/include/functions.php');
@@ -31,17 +31,17 @@
 						</thead>
 						<tbody>
 							<form action="modules/accounting/gli/submission_gli.php" method="post" id="formRekening">
-								<input type="hidden" name="id" value="<?php echo $id;?>">
+								<input type="hidden" name="id" value="<?php  echo $id;?>">
 								<input type="hidden" name="cmd" value="upd_rekening" />
 								<tr align="center">
 									<td><img src="images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
-									<td><input type="text" name="norek" value="<?php echo $data['norek']; ?>"></td>
+									<td><input type="text" name="norek" value="<?php  echo $data['norek']; ?>"></td>
 									<td>
-										<input type="text" name="namarek" value="<?php echo $data['namarek']; ?>" style="width: 300px;">
+										<input type="text" name="namarek" value="<?php  echo $data['namarek']; ?>" style="width: 300px;">
 									</td>
 									<td>&nbsp;</td>
 									<td><input type="image" src="resources/images/save.png" title="Simpan" /></td>
-									<td><a href="index.php?mn=rekening_ls&getmodule=<?php echo base64_encode('accounting/gli/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
+									<td><a href="index.php?mn=rekening_ls&getmodule=<?php  echo base64_encode('accounting/gli/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
 								</tr>							
 							</form>
 						</tbody>
@@ -50,7 +50,7 @@
 			</div>
 			<!-- end table -->
 		</div>
-<?php	
+<?php 	
 	}
 	else{	
 		$idDivisi = $_SESSION["sess_tipe"];
@@ -106,49 +106,49 @@
 								<td><input type="submit" value="Simpan" />								</td>
 							</tr>
 							</form>
-							<?php
+							<?php 
 								if($jumlah == 0){
 							?>
 									<tr>
 										<td colspan="5" style="color:#f00; text-align:center;">Mohon maaf, tidak ada data yang dimaksud</td>
 									</tr>
-							<?
+							<?php 
 								}
 								else{
 									$no = $offset+1;
 									while($data = mysql_fetch_array($datas)){
 							?>
 										<tr align="center">
-											<td><?php echo $no; ?></td>
-											<td><?php echo baliktglindo($data['tanggal']); ?></td>
-											<td align="center"><?php echo $data['ret'];  $total = $total + $data['ret']; ?></td>
-											<td align="center"><?php echo number_format($total);  ?></td>
-											<td><a href="index.php?mn=rekening_ls&getmodule=<?php echo base64_encode('accounting/gli/');?>&amp;id=<?php echo $data['norek']; ?>" title="Edit"></a><a href="javascript:confirmDelete('modules/pos/inventory/submission_inv.php?id=<?php echo $data['id']; ?>&amp;cmd=del_timbunan')" title="Hapus"><img src="resources/images/delete.gif" /></a></td>
+											<td><?php  echo $no; ?></td>
+											<td><?php  echo baliktglindo($data['tanggal']); ?></td>
+											<td align="center"><?php  echo $data['ret'];  $total = $total + $data['ret']; ?></td>
+											<td align="center"><?php  echo number_format($total);  ?></td>
+											<td><a href="index.php?mn=rekening_ls&getmodule=<?php  echo base64_encode('accounting/gli/');?>&amp;id=<?php  echo $data['norek']; ?>" title="Edit"></a><a href="javascript:confirmDelete('modules/pos/inventory/submission_inv.php?id=<?php  echo $data['id']; ?>&amp;cmd=del_timbunan')" title="Hapus"><img src="resources/images/delete.gif" /></a></td>
 										</tr>						
-							<?php
+							<?php 
 										$no++;
 									}
 								}
 							?>
 						</tbody>
 					</table>
-					<?php
+					<?php 
 						if($jumlah > 0){
 					?>
 							<!-- pagination -->
 							<div class="pagination pagination-left">
 								<div class="results">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch']))
 											$rekening = mysql_query("SELECT tanggal FROM $database.timbunan WHERE tanggal LIKE '%".baliktgl($search)."%' AND id_divisi = '$idDivisi'");
 										else
 											$rekening = mysql_query("SELECT tanggal FROM $database.timbunan");	
 										$jumlah_rekening = mysql_num_rows($rekening);
 									?>
-									<span>showing results <?php echo ++$offset.'-'.--$no; ?> of <?php echo $jumlah_rekening; ?></span>
+									<span>showing results <?php  echo ++$offset.'-'.--$no; ?> of <?php  echo $jumlah_rekening; ?></span>
 								</div>
 								<ul class="pager">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch'])){
 											$query = "SELECT COUNT(*) AS rs_Jumlah FROM timbunan WHERE tanggal LIKE '%$search%'";
 											//$link = 
@@ -184,14 +184,14 @@
 								</ul>
 							</div>
 							<!-- end pagination -->			
-					<?php
+					<?php 
 						}
 					?>
 				</div>
 			</div>
 			<!-- end table -->
 		</div>
-<?php
+<?php 
 	}
 ?>
 <!-- scripts (jquery) -->

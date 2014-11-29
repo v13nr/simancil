@@ -1,4 +1,4 @@
-<?
+<?php 
 session_start();
 include_once "../../../config_sistem.php";
 include ("../include/globalx.php");

@@ -1,4 +1,4 @@
-<?php
+<?php 
 	
 include "../../core/include/globalx.php";	
 include "../include/globalx.php";		

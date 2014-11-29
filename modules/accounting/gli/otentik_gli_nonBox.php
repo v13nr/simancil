@@ -1,4 +1,4 @@
-<?php
+<?php 
 @session_start();
 include_once("../include/globalx.php");
 switch ($_SESSION['sess_kelasuser']) {

@@ -1,4 +1,4 @@
-<?php
+<?php 
  require_once ("install_function.php"); 
  
 		
@@ -172,34 +172,34 @@ function doInstall() {
 <div id="wrapper">
   <form action="index.php" method="post" name="form1" id="form1">
   <img src="image/install.jpg" width="405" height="86" />
-  <?php if ($step==0) { ?>
+  <?php  if ($step==0) { ?>
   <table width="79%" border="0" cellspacing="2" cellpadding="2">
       
       
       <tr>
         <td width="36%"><div align="right">Server</div></td>
-        <td width="64%"><input name="dbserver" type="text" id="dbserver" value="<?php echo $dbserver;  ?>" size="22" /></td>
+        <td width="64%"><input name="dbserver" type="text" id="dbserver" value="<?php  echo $dbserver;  ?>" size="22" /></td>
       </tr>
       <tr>
         <td><div align="right">User</div></td>
-        <td><input name="dbuser" type="text" id="dbuser" value="<?php echo $dbuser;  ?>" size="22" /></td>
+        <td><input name="dbuser" type="text" id="dbuser" value="<?php  echo $dbuser;  ?>" size="22" /></td>
       </tr>
       <tr>
         <td><div align="right">Password</div></td>
-        <td><input name="dbpass" type="text" id="dbpass" value="<?php echo $dbpass;  ?>" size="22" /></td>
+        <td><input name="dbpass" type="text" id="dbpass" value="<?php  echo $dbpass;  ?>" size="22" /></td>
       </tr>
       <tr>
         <td><div align="right">Database</div></td>
-        <td><input name="dbname" type="text" id="dbname"  value="<?php echo $dbname;  ?>" size="22" /></td>
+        <td><input name="dbname" type="text" id="dbname"  value="<?php  echo $dbname;  ?>" size="22" /></td>
       </tr>
       <tr>
         <td><div align="right">Nama Usaha</div></td>
-        <td><input type="text" name="site_title" id="site_title"  value="<?php echo $site_title;  ?>" size="32" /></td>
+        <td><input type="text" name="site_title" id="site_title"  value="<?php  echo $site_title;  ?>" size="32" /></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
         <td><label>
-          <input name="ndb" type="checkbox" id="ndb" value="1" <?php if ($ndb) echo "checked=\"checked\""; ?> />
+          <input name="ndb" type="checkbox" id="ndb" value="1" <?php  if ($ndb) echo "checked=\"checked\""; ?> />
         Buat Database Baru</label></td>
       </tr>
       <tr>
@@ -209,7 +209,7 @@ function doInstall() {
       </tr>
       <tr>
         <td colspan="2" class="alert">
-		<?php if ($errors) {
+		<?php  if ($errors) {
 		            echo "<ul>";
 					foreach($errors as $err) 
 					   echo "<li>$err</li>";
@@ -218,8 +218,8 @@ function doInstall() {
 		 ?></td>
       </tr>
     </table>
-	<?php } ?>
-	<?php if ($step ==1) { ?>
+	<?php  } ?>
+	<?php  if ($step ==1) { ?>
 	<div id="install">
     <table width="79%" border="0" cellspacing="0" cellpadding="0">
       <tr>
@@ -243,15 +243,15 @@ function doInstall() {
         </tr>
       </table>
     </div>
-	<?php } ?>
-    <?php if ($step ==2) { ?>
+	<?php  } ?>
+    <?php  if ($step ==2) { ?>
     <table width="79%" border="0" cellspacing="0" cellpadding="0">
       
       <tr>
         <td><div align="center"><a href="../"><img src="image/sukses.jpg" width="329" height="74" border="0" /></a></div></td>
       </tr>
     </table>
-    <?php } ?>
+    <?php  } ?>
   </form>
 </div>
   

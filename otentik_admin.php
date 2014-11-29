@@ -1,4 +1,4 @@
-<?
+<?php 
 @session_start();
 if ($_SESSION['sess_kelasuser']<>"Super Admin")
 {

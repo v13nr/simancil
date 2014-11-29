@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  *	Copyright (C) PT. Netsindo Sentra Computama
  *  Project Manager : Andi Micro
@@ -7,12 +7,12 @@
  *	Date: April 2014
 **/
 ?>
-<?php @session_start(); include "otentik_admin.php"; 
+<?php  @session_start(); include "otentik_admin.php"; 
 include ("../include/functions.php");
 include "phppagination.persediaan.class.php";
 
 ?>
-<?php
+<?php 
 	$excel = "tes";
   $filename1= 'Stok Barang_'.date('Y-m-d').'.doc';
   $filename2= 'Stok Barang_'.date('Y-m-d').'.xls';
@@ -62,7 +62,7 @@ include "phppagination.persediaan.class.php";
       <td width="74" class="style3"><div align="center" class="style4">Partai</div></td>
 	  <td width="85" class="style3"><div align="center" class="style4">Tarif</div></td>
     </tr>
-	<?php
+	<?php 
 	
 	$SQL = "SELECT * FROM stock where status = 1";
 	if($_GET['kdbarang']<>""){
@@ -77,39 +77,39 @@ include "phppagination.persediaan.class.php";
 	$SQL = $SQL." ORDER BY grup DESC";
 	$hasil=mysql_query($SQL, $dbh_jogjaide);
 	?>
-	<?php 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?php	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php }  else {?>bgcolor="#FFFFCC"<?php } ?>  class="simplehighlight">
-      <td align="center" class="style3"><?php echo ++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>  class="simplehighlight">
+      <td align="center" class="style3"><?php  echo ++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?></td>
 	  <td class="style3" align="center">
-	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php echo $row['kodebrg'] ?>" /></td>
-	  <td class="style3" align="center"><?php 
+	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php  echo $row['kodebrg'] ?>" /></td>
+	  <td class="style3" align="center"><?php  
 	  	$SQLc = "SELECT namadiv FROM divisi WHERE subdiv = '".$row['divisi']."'";
 		$hasilc = mysql_query($SQLc);
 		$barisc = mysql_fetch_array($hasilc);
 		echo $barisc[0];
 	  ?></td>
-          <td class="style3" align="center"><?php echo $row['expedisi']?></td>
-	  <td class="style3" align="center"><?php echo $row['grup']?></td>
-      <td class="style3" align="center"><?php echo ($row['kodebrg'])?></td>
-      <td class="style3" align="left"><?php echo $row['namabrg']?></td>
-	  <td class="style3" align="center"><?php echo number_format(($row['qtyin']-$row['qtyout']),2,'.',',')?></td>
-	  <td class="style3" align="center"><?php echo number_format($row['isi'],2,'.',',')?></td>
-      <td class="style3" align="center"><?php echo number_format($row['hargaeceran'])?></td>
-      <td class="style3" align="center"><?php echo number_format($row['hargapartai'])?></td>
-	  <td class="style3" align="center"><?php echo $row['tarif']?></td>
+          <td class="style3" align="center"><?php  echo $row['expedisi']?></td>
+	  <td class="style3" align="center"><?php  echo $row['grup']?></td>
+      <td class="style3" align="center"><?php  echo ($row['kodebrg'])?></td>
+      <td class="style3" align="left"><?php  echo $row['namabrg']?></td>
+	  <td class="style3" align="center"><?php  echo number_format(($row['qtyin']-$row['qtyout']),2,'.',',')?></td>
+	  <td class="style3" align="center"><?php  echo number_format($row['isi'],2,'.',',')?></td>
+      <td class="style3" align="center"><?php  echo number_format($row['hargaeceran'])?></td>
+      <td class="style3" align="center"><?php  echo number_format($row['hargapartai'])?></td>
+	  <td class="style3" align="center"><?php  echo $row['tarif']?></td>
     </tr>
-	<?php
+	<?php 
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?php  } ?>
+	<?php   } ?>
   </table>
 
 	

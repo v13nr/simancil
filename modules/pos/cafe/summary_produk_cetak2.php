@@ -1,4 +1,4 @@
-<?php
+<?php 
 include "../include/globalx.php";
 include "../include/functions.php";
 ?>
@@ -22,12 +22,12 @@ include "../include/functions.php";
 	<tr>
 	  <td>PERIODE</td>
 	  <td>:</td>
-	  <td><?=$_POST['tgl_awal']?> s/d <?=$_POST['tgl_akhir']?></td>
+	  <td><?php  echo $_POST['tgl_awal']?> s/d <?php  echo $_POST['tgl_akhir']?></td>
   </tr>
 	<tr>
 		<td width="87">SHIFT</td>
 		<td width="8">:</td>
-		<td width="548"><?php 
+		<td width="548"><?php  
 			$SQL = "select * from ml_user b where id = '". $_POST['shift'] ."'";
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			$baris = mysql_fetch_array($hasil);
@@ -47,12 +47,12 @@ include "../include/functions.php";
     <td width="13%">Total Terjual </td>
     <td width="33%" align="right">Nilai</td>
   </tr>
-  <?php 
+  <?php  
   		$SQL = "SELECT * from stock";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
 		while($baris=mysql_fetch_array($hasil)){
   ?>
-  <?php 
+  <?php  
 				$sqlw = "SELECT SUM(qtyout) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
 				if($_POST['shift']<>""){
 					$sqlw = $sqlw . " AND user_id = '".$_POST['shift']."'";
@@ -65,9 +65,9 @@ include "../include/functions.php";
 				if($barisw["jumlah"]<> 0){
 		?>
   <tr>
-    <td><?=++$no?></td>
-    <td><?php echo $baris["namabrg"] ?></td>
-    <td align="center"><?php 
+    <td><?php  echo ++$no?></td>
+    <td><?php  echo $baris["namabrg"] ?></td>
+    <td align="center"><?php  
 				$sqlk = "SELECT SUM(qtyout) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
 				if($_POST['shift']<>""){
 					$sqlk = $sqlk . " AND user_id = '".$_POST['shift']."'";
@@ -79,7 +79,7 @@ include "../include/functions.php";
 				$barisk = mysql_fetch_array($hasilk);
 				echo $barisk["jumlah"];
 		?>    </td>
-    <td align="right"><?php
+    <td align="right"><?php 
 			$sqld = "SELECT SUM(qtyout*harga-(qtyout*harga*disc/100)) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
 				if($_POST['shift']<>""){
 					$sqld = $sqld . " AND user_id = '".$_POST['shift']."'";
@@ -94,13 +94,13 @@ include "../include/functions.php";
 			//$totalp = $totalp + ($baris["harga"] * $baris["qtyout"]);
 	?></td>
   </tr>
-  <? } // end if
+  <?php  } // end if
   } //end whikle ?>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td align="right"><?=number_format($totalp)?></td>
+    <td align="right"><?php  echo number_format($totalp)?></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

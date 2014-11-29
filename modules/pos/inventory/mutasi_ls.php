@@ -1,4 +1,4 @@
-<? include "otentik_inv.php"; 
+<?php  include "otentik_inv.php"; 
 include ("../include/functions.php");
 
 ?>
@@ -54,12 +54,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -101,7 +101,7 @@ body {
 	  <td width="85" class="style3"><div align="center" class="style4">User </div></td>
       <td width="46" class="style3"><div align="center" class="style4">Edit</div></td>
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM mutasi where id <> ''" ;
 		if($_GET['c_no']<>""){
 			$SQL = $SQL . " AND noinduk LIKE '%".$_GET['c_no']."%'";
@@ -119,73 +119,73 @@ body {
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
     
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
 	  <td class="style3" align="center">&nbsp;</td>
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=baliktglindo($row['tgl'])?></td>
-	  <?
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo baliktglindo($row['tgl'])?></td>
+	  <?php 
 	  	$nota = $row['nota'];
 	  	if($row['model']=="INV"){
 			$nota = "INV/".$row['sub']."/".nobukti($row['nomor']);
 		}
 	  ?>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=$nota?></td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="left"><?=$row['nobukti']?></td>
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="left"><span class="style3">
-	    <?
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo $nota?></td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="left"><?php  echo $row['nobukti']?></td>
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="left"><span class="style3">
+	    <?php 
 	  	$SQLc = "SELECT nama FROM meja WHERE id = '".$row['meja_id']."'";
 		$hasilc = mysql_query($SQLc);
 		$barisc = mysql_fetch_array($hasilc);
 		echo $barisc[0];
 	  ?>
 	  </span></td>
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php 
 	  	
 		echo $row["shift_id"];
 	  ?></td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=$row['nama']?></td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=$row['alamat']?></td>
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=auto($row['kodebrg'])?></td>
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=$row['namabrg']?></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['qtyin'],2,'.',',')?>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo $row['nama']?></td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo $row['alamat']?></td>
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo auto($row['kodebrg'])?></td>
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo $row['namabrg']?></td>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['qtyin'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['qtyout'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['qtyout'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="center">
-	    <?=$row['satuan']?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="center">
+	    <?php  echo $row['satuan']?>
 	    </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['disc'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['disc'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['disc2'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['disc2'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['disc3'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['disc3'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['discrp'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['discrp'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['harga'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['harga'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['debet'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['debet'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format(($row['harga']*$row['qtyout']),2,'.',',')?>
-		<? $total = $total + ($row['harga'] * $row['qtyout']); ?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format(($row['harga']*$row['qtyout']),2,'.',',')?>
+		<?php  $total = $total + ($row['harga'] * $row['qtyout']); ?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="center">
-	  <?
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="center">
+	  <?php 
 			$SQLuser = "SELECT nama FROM ml_user WHERE id = ".$row['user_id'];
 			$hasiluser= mysql_query($SQLuser);
 			$barisuser = mysql_fetch_array($hasiluser);
@@ -194,40 +194,40 @@ body {
 	   </div></td>
 	  
       <td class="style3"><div align="center">
-	  <a href="index.php?mn=&id=<?=$row['id'] ?>"></a>
+	  <a href="index.php?mn=&id=<?php  echo $row['id'] ?>"></a>
 	  </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="27"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
-	<tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
+	<?php   } ?>
+	<tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
       <td align="center" class="style3">&nbsp;</td>
       <td class="style3" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="left">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="left">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
-      <td align="right" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><?=number_format(($total),2,'.',',')?></td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="left">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="left">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
+      <td align="right" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><?php  echo number_format(($total),2,'.',',')?></td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>">&nbsp;</td>
       <td class="style3">&nbsp;</td>
     </tr>
   </table>

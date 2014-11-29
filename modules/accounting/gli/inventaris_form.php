@@ -1,4 +1,4 @@
-<? include "otentik_gli.php"; ?><head>
+<?php  include "otentik_gli.php"; ?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
@@ -165,11 +165,11 @@ td { padding: 5px; }
 }
 input.kanan{ text-align:right; }
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
-  <? $SQL = "select * from $database.aktiva WHERE status = 1";
+  <?php  $SQL = "select * from $database.aktiva WHERE status = 1";
 	 	if ($_GET['id']<>"")
 		{ 
 			$SQL = $SQL." AND id = ". $_GET['id'];
@@ -200,12 +200,12 @@ input.kanan{ text-align:right; }
   <tr>
     <td>&nbsp;</td>
     <td><form id="pegForm" method="post" name="pegForm" action="submission_gli.php">
-      <? if($_GET['id']<>""){ ?>
+      <?php  if($_GET['id']<>""){ ?>
       <input type="hidden" name="cmd" value="upd_inv" />
-      <input type="hidden" name="id" value="<?=$id?>" />
-      <? } else { ?>
+      <input type="hidden" name="id" value="<?php  echo $id?>" />
+      <?php  } else { ?>
       <input type="hidden" name="cmd" value="add_inv" />
-      <? } ?>
+      <?php  } ?>
       <table align="left" class="x1">
         <tr background="../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1">Form Inventaris </span></td>
@@ -213,19 +213,19 @@ input.kanan{ text-align:right; }
         <tr>
           <td><span class="style6">Tanggal Beli  </span></td>
           <td>:</td>
-          <td><input type="text" name="tgl" id="tgl" size="10" class="required" title="Harap Mengisi Tanggal Beli Dahulu" <? if($_GET['id']<>""){?> value="<?=baliktglindo($tgl)?>" <? }?>/>
+          <td><input type="text" name="tgl" id="tgl" size="10" class="required" title="Harap Mengisi Tanggal Beli Dahulu" <?php  if($_GET['id']<>""){?> value="<?php  echo baliktglindo($tgl)?>" <?php  }?>/>
             <a href="javascript:showCalendar('tgl')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0" /></a><a href="daftar_rek.php?width=400&amp;height=350&amp;TB_iframe=true" class="thickbox"></a>
             <div id="divAlert"></div></td>
         </tr>
         <tr>
           <td><span class="style6">Nama Barang </span></td>
           <td>:</td>
-          <td><input name="nama" size="40" type="text" class="required " id="nama"  title="Nama Barang harus terisi" value="<?=$nama?>" /></td>
+          <td><input name="nama" size="40" type="text" class="required " id="nama"  title="Nama Barang harus terisi" value="<?php  echo $nama?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Nilai</span></td>
           <td><span class="style6">:</span></td>
-          <td><input type="text" name="nilai" id="nilai" class="required kanan"  onkeyup="hitungSusut()" title="Nilai harus terisi" value="<?=$nilai?>" /></td>
+          <td><input type="text" name="nilai" id="nilai" class="required kanan"  onkeyup="hitungSusut()" title="Nilai harus terisi" value="<?php  echo $nilai?>" /></td>
         </tr>
         <tr> 
           <td><span class="style6">Umur Ekonomis (Thn)  </span></td>
@@ -235,30 +235,30 @@ input.kanan{ text-align:right; }
 		<tr>
           <td>Tarif</td>
           <td>:</td>
-          <td><input type="text" name="tarif" id="tarif"  onkeyup="hitungSusut()" readonly="true" title="Nilai harus terisi" value="<?=$tarif?>" /></td>
+          <td><input type="text" name="tarif" id="tarif"  onkeyup="hitungSusut()" readonly="true" title="Nilai harus terisi" value="<?php  echo $tarif?>" /></td>
         </tr>
         
         <tr>
           <td><span class="style6">Penyusutan / Tahun </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="susut" type="text" class="required kanan" id="susut" readonly="true"   title="Nilai Susut harus diisi" value="<?=$susut?>" / ></td>
+          <td><input name="susut" type="text" class="required kanan" id="susut" readonly="true"   title="Nilai Susut harus diisi" value="<?php  echo $susut?>" / ></td>
         </tr>
 		<tr>
           <td><span class="style6">Ay Jr. Perolehan Aktiva : (D)</span> </td>
           <td>:</td>
           <td><select name="rekdebet" class="required" title="*" >
               <option value="">-Pilih-</option>
-              <?
+              <?php 
 				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -3) <> '000' ORDER BY norek";
 				$hasil = mysql_query($SQL, $dbh_jogjaide);
 				while($baris = mysql_fetch_array($hasil)){
 			?>
-              <option value="<?=$baris['norek']?>" <? if($rekdebet == $baris['norek']){?>selected="selected" <? }?>>
-              <?=$baris['norek']?>
+              <option value="<?php  echo $baris['norek']?>" <?php  if($rekdebet == $baris['norek']){?>selected="selected" <?php  }?>>
+              <?php  echo $baris['norek']?>
                 -
-                <?=$baris['namarek']?>
+                <?php  echo $baris['namarek']?>
               </option>
-              <? } ?>
+              <?php  } ?>
             </select>
           </td>
         </tr>
@@ -267,17 +267,17 @@ input.kanan{ text-align:right; }
           <td>:</td>
           <td><select name="rekkredit" class="required" title="*" >
               <option value="">-Pilih-</option>
-              <?
+              <?php 
 				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -3) <> '000' ORDER BY norek";
 				$hasil = mysql_query($SQL, $dbh_jogjaide);
 				while($baris = mysql_fetch_array($hasil)){
 			?>
-              <option value="<?=$baris['norek']?>"  <? if($rekkredit == $baris['norek']){?>selected="selected" <? }?>>
-              <?=$baris['norek']?>
+              <option value="<?php  echo $baris['norek']?>"  <?php  if($rekkredit == $baris['norek']){?>selected="selected" <?php  }?>>
+              <?php  echo $baris['norek']?>
                 -
-                <?=$baris['namarek']?>
+                <?php  echo $baris['namarek']?>
               </option>
-              <? } ?>
+              <?php  } ?>
             </select>
           </td>
         </tr>
@@ -286,17 +286,17 @@ input.kanan{ text-align:right; }
           <td>:</td>
           <td><select name="rek_d_bbsusut" class="required" title="*" >
               <option value="">-Pilih-</option>
-              <?
+              <?php 
 				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -3) <> '000' ORDER BY norek";
 				$hasil = mysql_query($SQL, $dbh_jogjaide);
 				while($baris = mysql_fetch_array($hasil)){
 			?>
-              <option value="<?=$baris['norek']?>" <? if($rekdebet == $baris['norek']){?>selected="selected" <? }?>>
-              <?=$baris['norek']?>
+              <option value="<?php  echo $baris['norek']?>" <?php  if($rekdebet == $baris['norek']){?>selected="selected" <?php  }?>>
+              <?php  echo $baris['norek']?>
                 -
-                <?=$baris['namarek']?>
+                <?php  echo $baris['namarek']?>
               </option>
-              <? } ?>
+              <?php  } ?>
             </select>
           </td>
         </tr>
@@ -305,17 +305,17 @@ input.kanan{ text-align:right; }
           <td>:</td>
           <td><select name="rek_k_akmsusut" class="required" title="*" >
               <option value="">-Pilih-</option>
-              <?
+              <?php 
 				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -3) <> '000' ORDER BY norek";
 				$hasil = mysql_query($SQL, $dbh_jogjaide);
 				while($baris = mysql_fetch_array($hasil)){
 			?>
-              <option value="<?=$baris['norek']?>"  <? if($rekkredit == $baris['norek']){?>selected="selected" <? }?>>
-              <?=$baris['norek']?>
+              <option value="<?php  echo $baris['norek']?>"  <?php  if($rekkredit == $baris['norek']){?>selected="selected" <?php  }?>>
+              <?php  echo $baris['norek']?>
                 -
-                <?=$baris['namarek']?>
+                <?php  echo $baris['namarek']?>
               </option>
-              <? } ?>
+              <?php  } ?>
             </select>
           </td>
         </tr>
@@ -329,11 +329,11 @@ input.kanan{ text-align:right; }
           <td><span class="style7"></span></td>
           <td><span class="style7"></span></td>
           <td><span class="style6">
-            <? if($_GET['id']<>""){ ?>
+            <?php  if($_GET['id']<>""){ ?>
             <input name="submit" type="submit" value="Update" />
-            <? } else { ?>
+            <?php  } else { ?>
             <input name="submit" type="submit" value="Simpan" />
-            <? } ?>
+            <?php  } ?>
             <input name="button" type="button" onClick="javascript:history.back()" value="Batal" />
           </span></td>
         </tr>

@@ -1,4 +1,4 @@
-<?php
+<?php 
  class Identitas extends msDB {
    
    private $grid; 

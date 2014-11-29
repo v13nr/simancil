@@ -11,7 +11,7 @@ $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 });
 </script>
 </head>
-<?php
+<?php 
 	@session_start();
 	require_once('modules/produksi/include/globalx.php');
 	require_once('modules/produksi/include/functions.php');
@@ -43,25 +43,25 @@ $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 						</thead>
 						<tbody>
 							<form action="modules/produksi/submission_produksi.php" method="post" id="formRekening">
-								<input type="hidden" name="id" value="<?php echo $id;?>">
+								<input type="hidden" name="id" value="<?php  echo $id;?>">
 								<input type="hidden" name="cmd" value="upd_keluarjadi" />
 								<tr align="center">
 									<td><img src="images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
-									<td><input type="text" name="tanggal" value="<?php echo baliktglindo($data['tanggal']); ?>"></td>
+									<td><input type="text" name="tanggal" value="<?php  echo baliktglindo($data['tanggal']); ?>"></td>
 									<td>
-										<input type="text" name="produksi" value="<?php echo $data['produksi']; ?>" style="width: 30px;" readonly="true">
+										<input type="text" name="produksi" value="<?php  echo $data['produksi']; ?>" style="width: 30px;" readonly="true">
 									</td>
 									<td>
-										<input type="text" name="keluar" value="<?php echo $data['pengeluaran']; ?>" style="width: 30px;">
+										<input type="text" name="keluar" value="<?php  echo $data['pengeluaran']; ?>" style="width: 30px;">
 									</td>
 									<td>
 										<select name="unit" class="tes">
-											<option value="Unit 1" <?php echo $data['unit']=='Unit 1' ? 'selected' : ''; ?>>Unit 1</option>
-											<option value="Unit 2" <?php echo $data['unit']=='Unit 2' ? 'selected' : ''; ?>>Unit 2</option>
+											<option value="Unit 1" <?php  echo $data['unit']=='Unit 1' ? 'selected' : ''; ?>>Unit 1</option>
+											<option value="Unit 2" <?php  echo $data['unit']=='Unit 2' ? 'selected' : ''; ?>>Unit 2</option>
 										</select>
 									</td>
 									<td><input type="image" src="resources/images/save.png" title="Simpan" /></td>
-									<td><a href="index.php?mn=keluar_jadi_ls&getmodule=<?php echo base64_encode('produksi/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
+									<td><a href="index.php?mn=keluar_jadi_ls&getmodule=<?php  echo base64_encode('produksi/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
 								</tr>							
 							</form>
 						</tbody>
@@ -70,7 +70,7 @@ $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			</div>
 			<!-- end table -->
 		</div>
-<?php	
+<?php 	
 	}
 	else{	
 		$idDivisi = $_SESSION["sess_tipe"];
@@ -102,7 +102,7 @@ $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 						<form action="index.php" method="get">
 							<div class="input">
 								<input type="hidden" name="mn" value="keluar_jadi_ls">
-								<input type="hidden" name="getmodule" value="<?php echo base64_encode('produksi') ?>">
+								<input type="hidden" name="getmodule" value="<?php  echo base64_encode('produksi') ?>">
 								<input type="text" id="search" name="search" />
 							</div>
 							<div class="button">
@@ -128,51 +128,51 @@ $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 						<form action="modules/produksi/submission_produksi.php" method="post" id="formRekening">
 						<input type="hidden" name="cmd" value="add_pjadi" />
 					  </form>
-							<?php
+							<?php 
 								if($jumlah == 0){
 							?>
 									<tr>
 										<td colspan="6" style="color:#f00; text-align:center;">Mohon maaf, tidak ada data yang dimaksud</td>
 									</tr>
-							<?
+							<?php 
 								}
 								else{
 									$no = $offset+1;
 									while($data = mysql_fetch_array($datas)){
 							?>
 										<tr align="center">
-											<td><?php echo $no; ?></td>
-											<td><?php echo baliktglindo($data['tanggal']); ?></td>
-											<td align="center"><?php echo $data['produksi']; ?></td>
-											<td align="center"><?php echo $data['pengeluaran']; ?></td>
-											<td><?php echo $data['unit']; ?></td>
-											<td><a href="index.php?mn=keluar_jadi_ls&getmodule=<?php echo base64_encode('produksi/');?>&amp;id=<?php echo $data['id']; ?>" title="Edit"><img src="resources/images/edit.png" /></a></td>
+											<td><?php  echo $no; ?></td>
+											<td><?php  echo baliktglindo($data['tanggal']); ?></td>
+											<td align="center"><?php  echo $data['produksi']; ?></td>
+											<td align="center"><?php  echo $data['pengeluaran']; ?></td>
+											<td><?php  echo $data['unit']; ?></td>
+											<td><a href="index.php?mn=keluar_jadi_ls&getmodule=<?php  echo base64_encode('produksi/');?>&amp;id=<?php  echo $data['id']; ?>" title="Edit"><img src="resources/images/edit.png" /></a></td>
 											<td>&nbsp;</td>
 										</tr>						
-							<?php
+							<?php 
 										$no++;
 									}
 								}
 							?>
 						</tbody>
 					</table>
-					<?php
+					<?php 
 						if($jumlah > 0){
 					?>
 							<!-- pagination -->
 							<div class="pagination pagination-left">
 								<div class="results">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch']))
 											$rekening = mysql_query("SELECT terima FROM nas_produksi.produksi WHERE terima = '$search' AND id_divisi = '$idDivisi'");
 										else
 											$rekening = mysql_query("SELECT terima FROM nas_produksi.produksi WHERE id_divisi = '$idDivisi'");	
 										$jumlah_rekening = mysql_num_rows($rekening);
 									?>
-									<span>showing results <?php echo ++$offset.'-'.--$no; ?> of <?php echo $jumlah_rekening; ?></span>
+									<span>showing results <?php  echo ++$offset.'-'.--$no; ?> of <?php  echo $jumlah_rekening; ?></span>
 								</div>
 								<ul class="pager">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch'])){
 											$query = "SELECT COUNT(*) AS rs_Jumlah FROM nas_produksi.produksi WHERE terima = '$search' AND id_divisi = '$idDivisi'";
 											//$link = 
@@ -209,14 +209,14 @@ $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 								</ul>
 							</div>
 							<!-- end pagination -->			
-					<?php
+					<?php 
 						}
 					?>
 				</div>
 			</div>
 			<!-- end table -->
 		</div>
-<?php
+<?php 
 	}
 ?>
 <!-- scripts (jquery) -->

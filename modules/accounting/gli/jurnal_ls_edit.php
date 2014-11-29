@@ -1,4 +1,4 @@
-<? include "otentik_gli.php"; 
+<?php  include "otentik_gli.php"; 
 include ("../include/functions.php");
 
 ?>
@@ -89,12 +89,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -113,31 +113,31 @@ body {
   <table width="1000" border="0" bgcolor="#000000" cellspacing="1">
     <tr height="30" background="../images/impactg.png">
       <td colspan="2" class="style3"><div align="center" class="style4">Filter : </div></td>
-      <td colspan="3" class="style3"><input type="text" name="tgl_awal" id="tgl_awal" size="10" value="<?=$_GET['tgl_awal']?>" class="required" title="Harap Mengisi Tanggal Awal Dahulu" />
+      <td colspan="3" class="style3"><input type="text" name="tgl_awal" id="tgl_awal" size="10" value="<?php  echo $_GET['tgl_awal']?>" class="required" title="Harap Mengisi Tanggal Awal Dahulu" />
       <a href="javascript:showCalendar('tgl_awal')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0" /></a>
 s/d      
-<input type="text" name="tgl_akhir" id="tgl_akhir"  value="<?=$_GET['tgl_akhir']?>" size="10" class="required" title="Harap Mengisi Tanggal Akhir Dahulu" />
+<input type="text" name="tgl_akhir" id="tgl_akhir"  value="<?php  echo $_GET['tgl_akhir']?>" size="10" class="required" title="Harap Mengisi Tanggal Akhir Dahulu" />
         <a href="javascript:showCalendar('tgl_akhir')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0" /></a></td>
       <td class="style3">
 	  <select name="user" id="user">
 	  <option value="">-ALL User-</option>
-	  <?
+	  <?php 
 	  	$SQLu = "SELECT * FROM ml_user WHERE id <> 1 AND status = 1";
 		$hasilu = mysql_query($SQLu);
 		while($barisu=mysql_fetch_array($hasilu)){
 	  ?>
-	  	<option value="<?=$barisu['id']?>" <? if($_GET['user']==$barisu['id']){ ?> selected="selected" <? }?>><?=$barisu['nama'].' -- '.$barisu['id']?></option>
-	  <? } ?>
+	  	<option value="<?php  echo $barisu['id']?>" <?php  if($_GET['user']==$barisu['id']){ ?> selected="selected" <?php  }?>><?php  echo $barisu['nama'].' -- '.$barisu['id']?></option>
+	  <?php  } ?>
 	  </select>	  </td>
       <td colspan="3" class="style3"><select name="divisi" id="divisi">
         <option value="">-ALL Divisi-</option>
-        <?
+        <?php 
 			$SQL = "SELECT * FROM divisi WHERE subdiv <> ''";
 			$hasil = mysql_query($SQL);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-        <option value="<?=$baris['subdiv']?>" <? if($_GET['divisi']==$baris['subdiv']){?> selected="selected" <? }?>> <?=$baris['namadiv'].' -- '.$baris['subdiv']?>         </option>
-        <? } ?>
+        <option value="<?php  echo $baris['subdiv']?>" <?php  if($_GET['divisi']==$baris['subdiv']){?> selected="selected" <?php  }?>> <?php  echo $baris['namadiv'].' -- '.$baris['subdiv']?>         </option>
+        <?php  } ?>
       </select></td>
       <td class="style3">&nbsp;</td>
       <td class="style3">&nbsp;</td>
@@ -155,15 +155,15 @@ s/d
 	  <td width="63" class="style3"><div align="center" class="style4">No Bukti </div></td>
 	  <td width="64" class="style3"><div align="center" class="style4">User</div></td>
       <td width="76" class="style3"><div align="center" class="style4">Divisi</div></td>
-	  <? if ($_GET['id']<>"") { ?>
+	  <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="76" class="style3"><div align="center" class="style4">Edit</div></td>
-        <? } ?>
+        <?php  } ?>
 	  
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM jurnal_srb WHERE id <> ''" ;
 		if($_GET['divisi']<>""){
 			$SQL = $SQL . " AND divisi = '".$_GET['divisi']."'";
@@ -183,29 +183,29 @@ s/d
 		$hasil=mysql_query($SQL) or die(mysql_error());
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
-      <td class="style3" align="center"><input type="checkbox" id="tambah" name="tambah[]" value="<?=$row['id'] ?>" /></td>
-      <td class="style3" align="center"><?=baliktglindo($row['tanggal'])?></td>
-      <td class="style3" align="center"><?=$row['kd']?></td>
-      <td class="style3" align="center"><?=$row['kk']?></td>
-      <td class="style3" align="left"><?=$row['ket']?></td>
-      <td class="style3" align="left"><?=$row['ket2']?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
+      <td class="style3" align="center"><input type="checkbox" id="tambah" name="tambah[]" value="<?php  echo $row['id'] ?>" /></td>
+      <td class="style3" align="center"><?php  echo baliktglindo($row['tanggal'])?></td>
+      <td class="style3" align="center"><?php  echo $row['kd']?></td>
+      <td class="style3" align="center"><?php  echo $row['kk']?></td>
+      <td class="style3" align="left"><?php  echo $row['ket']?></td>
+      <td class="style3" align="left"><?php  echo $row['ket2']?></td>
       <td class="style3" align="right">
-	  	<? if ($_GET['id']=="") { ?>
-	  	<?=number_format($row['jumlah'],2,'.',',')?>
-		<? } else { ?>
-		<input type="text" name="harga" value="<?=number_format($row['jumlah'])?>"  class="required kanan" title="*" />
-		<? } ?>
+	  	<?php  if ($_GET['id']=="") { ?>
+	  	<?php  echo number_format($row['jumlah'],2,'.',',')?>
+		<?php  } else { ?>
+		<input type="text" name="harga" value="<?php  echo number_format($row['jumlah'])?>"  class="required kanan" title="*" />
+		<?php  } ?>
 		</td>
-      <td class="style3" align="center"><a href="cetak_pdf.php?divisi=<?=$row['sub']?>&nobukti=<?=$row['nobukti']?>&tanggal=<?=baliktglindo($row['tanggal'])?>"><?=$row['sub']?>/<?=nobukti($row['nobukti'])?></a></td>
+      <td class="style3" align="center"><a href="cetak_pdf.php?divisi=<?php  echo $row['sub']?>&nobukti=<?php  echo $row['nobukti']?>&tanggal=<?php  echo baliktglindo($row['tanggal'])?>"><?php  echo $row['sub']?>/<?php  echo nobukti($row['nobukti'])?></a></td>
       <td class="style3" align="center">
-	  	<?
+	  	<?php 
 			$SQLuser = "SELECT nama FROM ml_user WHERE id = ".$row['user_id'];
 			//$hasiluser= mysql_query($SQLuser);
 			//$barisuser = mysql_fetch_array($hasiluser);
@@ -213,30 +213,30 @@ s/d
 			echo $row['user_id'];
 		?>		</td>
       <td class="style3" align="center">
-	  <?
+	  <?php 
 	  	$SQLuser = "SELECT namadiv FROM divisi WHERE subdiv = '".$row['divisi']."'";
 			//$hasiluser= mysql_query($SQLuser);
 			//$barisuser = mysql_fetch_array($hasiluser);
 			//echo $barisuser[0];
 			echo $row['divisi'];
 	  ?></td>
-	   <? if ($_GET['id']<>"") { ?>
+	   <?php  if ($_GET['id']<>"") { ?>
           <td align="center"><input name="image" type="image" src="../images/approve.gif" border="0" /></td>
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
-          <td align="center"><a href="index.php?mn=jurnal&id=<?=$row['id']?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16" /></a></td>
-          <? } ?>
+          <?php  } else { ?>
+          <td align="center"><a href="index.php?mn=jurnal&id=<?php  echo $row['id']?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16" /></a></td>
+          <?php  } ?>
 	  
     </tr>
 
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>
   </form>
 </div>

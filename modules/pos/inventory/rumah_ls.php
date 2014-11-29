@@ -1,4 +1,4 @@
-<? @session_start(); include "otentik_inv.php"; 
+<?php  @session_start(); include "otentik_inv.php"; 
 include ("../include/globalx.php");
 include ("../include/functions.php");
 include "phppagination.persediaan.class.php";
@@ -105,12 +105,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -135,9 +135,9 @@ body {
       <td class="style3">&nbsp;</td>
       <td class="style3">&nbsp;</td>
       <td class="style3">&nbsp;</td>
-      <td class="style3"><input type="text" name="group" size="10" value="<?=$_GET['group']?>" id="group"  onclick="uncek()" /></td>
-      <td class="style3"><input type="text" name="kdbarang" size="5"  value="<?=$_GET['kdbarang']?>" id="kdbarang" onclick="uncek()"/></td>
-      <td class="style3"><input type="text" name="nama" value="<?=$_GET['nama']?>" id="nama" onclick="uncek()"/></td>
+      <td class="style3"><input type="text" name="group" size="10" value="<?php  echo $_GET['group']?>" id="group"  onclick="uncek()" /></td>
+      <td class="style3"><input type="text" name="kdbarang" size="5"  value="<?php  echo $_GET['kdbarang']?>" id="kdbarang" onclick="uncek()"/></td>
+      <td class="style3"><input type="text" name="nama" value="<?php  echo $_GET['nama']?>" id="nama" onclick="uncek()"/></td>
       <td class="style3">&nbsp;</td>
       
       <td class="style3">&nbsp;</td>
@@ -154,7 +154,7 @@ body {
 	  
       <td width="46" class="style3"><div align="center" class="style4">Edit</div></td>
     </tr>
-	<?
+	<?php 
 	
 	 $nTotalItems = 0;
  $nItemsPerPage = 15; // set length of page
@@ -200,43 +200,43 @@ else
 		//echo $SQL;
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>  class="simplehighlight">
-      <td align="center" class="style3"><?=++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>  class="simplehighlight">
+      <td align="center" class="style3"><?php  echo ++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?></td>
 	  <td class="style3" align="center">
-	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?=$row['kodebrg'] ?>" /></td>
-	  <td class="style3" align="center"><?
+	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php  echo $row['kodebrg'] ?>" /></td>
+	  <td class="style3" align="center"><?php 
 	  	$SQLc = "SELECT namadiv FROM divisi WHERE subdiv = '".$row['divisi']."'";
 		$hasilc = mysql_query($SQLc);
 		$barisc = mysql_fetch_array($hasilc);
 		echo $barisc[0];
 	  ?></td>
-          <td class="style3" align="center"><?=$row['norek']?></td>
-	  <td class="style3" align="center"><?=$row['grup']?></td>
-      <td class="style3" align="center"><?=($row['kodebrg'])?></td>
-      <td class="style3" align="left"><?=$row['namabrg']?></td>
-	  <td class="style3" align="center"><?=number_format(($row['qtyin']-$row['qtyout']),2,'.',',')?></td>
+          <td class="style3" align="center"><?php  echo $row['norek']?></td>
+	  <td class="style3" align="center"><?php  echo $row['grup']?></td>
+      <td class="style3" align="center"><?php  echo ($row['kodebrg'])?></td>
+      <td class="style3" align="left"><?php  echo $row['namabrg']?></td>
+	  <td class="style3" align="center"><?php  echo number_format(($row['qtyin']-$row['qtyout']),2,'.',',')?></td>
 	  
 	  
       <td class="style3"><div align="center">
-	  <a href="index.php?mn=input_persediaanRumah&id=<?=$row['kodebrg'] ?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
+	  <a href="index.php?mn=input_persediaanRumah&id=<?php  echo $row['kodebrg'] ?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
 	  </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>
   </form>
-  <? // print pagination for current page
+  <?php  // print pagination for current page
   	if ($nTotalItems>0){
 		echo $oPagination->GetHtml($nCurrentPage)."\n"; 
 	} else {	}	

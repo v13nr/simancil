@@ -1,4 +1,4 @@
-<? include "otentik_inv.php"; ?><head>
+<?php  include "otentik_inv.php"; ?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
@@ -130,11 +130,11 @@ td { padding: 5px; }
 }
 input.kanan{ text-align:right; }
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
-  <? 
+  <?php  
     $SQL = "select * from bahanjadi WHERE kode = '". $_GET['id']."'";
 
     $hasil = mysql_query($SQL, $dbh_jogjaide);
@@ -157,12 +157,12 @@ input.kanan{ text-align:right; }
   <tr>
     <td>&nbsp;</td>
     <td><form id="pegForm" method="post" name="pegForm" action="submission_inv.php">
-      <? if($_GET['id']<>""){ ?>
+      <?php  if($_GET['id']<>""){ ?>
       <input type="hidden" name="cmd" value="upd_bj" />
-      <input type="hidden" name="id" value="<?=$id?>" />
-      <? } else { ?>
+      <input type="hidden" name="id" value="<?php  echo $id?>" />
+      <?php  } else { ?>
       <input type="hidden" name="cmd" value="add_bj" />
-      <? } ?>
+      <?php  } ?>
       <table align="left" class="x1">
         <tr background="../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1">Form Bahan Jadi </span></td>
@@ -170,22 +170,22 @@ input.kanan{ text-align:right; }
         <tr>
           <td><span class="style6">Kode</span></td>
           <td>:</td>
-          <td><input type="text" name="kode" id="kodebrg" size="10" maxlength="6" class="required" title="Harap Mengisi Kode Barang Dahulu" value="<?=($id)?>"/>            </td>
+          <td><input type="text" name="kode" id="kodebrg" size="10" maxlength="6" class="required" title="Harap Mengisi Kode Barang Dahulu" value="<?php  echo ($id)?>"/>            </td>
         </tr>
         <tr>
           <td><span class="style6">Nama Barang  </span></td>
           <td>:</td>
-          <td><input name="namabrg" size="40" type="text" class="required " id="namabrg"  title="Nama Barang harus terisi" value="<?=$namabrg?>" /></td>
+          <td><input name="namabrg" size="40" type="text" class="required " id="namabrg"  title="Nama Barang harus terisi" value="<?php  echo $namabrg?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Satuan</span></td>
           <td><span class="style6">:</span></td>
-          <td><input type="text" name="satuan" id="satuan" class="required" title="Satuan harus terisi" value="<?=$satuan?>" /></td>
+          <td><input type="text" name="satuan" id="satuan" class="required" title="Satuan harus terisi" value="<?php  echo $satuan?>" /></td>
         </tr>
         <tr> 
           <td><span class="style6">Isi  </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="isi" type="text" id="isi"  class="required kanan" title="Isi harus diisi" value="<?=$isi?>" /></td>
+          <td><input name="isi" type="text" id="isi"  class="required kanan" title="Isi harus diisi" value="<?php  echo $isi?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Kemasan </span></td>
@@ -193,8 +193,8 @@ input.kanan{ text-align:right; }
           <td>
               <select name="kemasan" class="required" title="Kemasan harus dipilih">
                   <option value="">-Pilih-</option>
-                  <option value="Y" <?if($kemasan=="Y"){?> selected="selected"<?}?>>Y</option>
-                  <option value="T" <?if($kemasan=="T"){?> selected="selected"<?}?>>T</option>
+                  <option value="Y" <?php if($kemasan=="Y"){?> selected="selected"<?php }?>>Y</option>
+                  <option value="T" <?php if($kemasan=="T"){?> selected="selected"<?php }?>>T</option>
               </select>
           </td>
         </tr>
@@ -202,11 +202,11 @@ input.kanan{ text-align:right; }
           <td><span class="style7"></span></td>
           <td><span class="style7"></span></td>
           <td><span class="style6">
-            <? if($_GET['id']<>""){ ?>
+            <?php  if($_GET['id']<>""){ ?>
             <input name="submit" type="submit" value="Update" />
-            <? } else { ?>
+            <?php  } else { ?>
             <input name="submit" type="submit" value="Simpan" />
-            <? } ?>
+            <?php  } ?>
             <input name="button" type="button" onClick="javascript:history.back()" value="Batal" />
           </span></td>
         </tr>

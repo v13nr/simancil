@@ -1,4 +1,4 @@
-<? @session_start(); include "otentik_inv.php"; 
+<?php  @session_start(); include "otentik_inv.php"; 
 include ("../include/globalx.php");
 include ("../include/functions.php");
 include "phppagination.persediaan.class.php";
@@ -105,12 +105,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -134,9 +134,9 @@ body {
       <td class="style3">&nbsp;</td>
       
       <td class="style3">&nbsp;</td>
-      <td class="style3"><input type="text" name="nama" size="10" value="<?=$_GET['nama']?>" id="group"  onclick="uncek()" /></td>
-      <td class="style3"><input type="text" name="tipe_luas" size="5"  value="<?=$_GET['tipe_luas']?>" id="kdbarang" onclick="uncek()"/></td>
-      <td class="style3"><input type="text" name="blok" value="<?=$_GET['blok']?>" id="nama" onclick="uncek()"/></td>
+      <td class="style3"><input type="text" name="nama" size="10" value="<?php  echo $_GET['nama']?>" id="group"  onclick="uncek()" /></td>
+      <td class="style3"><input type="text" name="tipe_luas" size="5"  value="<?php  echo $_GET['tipe_luas']?>" id="kdbarang" onclick="uncek()"/></td>
+      <td class="style3"><input type="text" name="blok" value="<?php  echo $_GET['blok']?>" id="nama" onclick="uncek()"/></td>
       <td class="style3">&nbsp;</td>
       
       <td class="style3">&nbsp;</td>
@@ -152,7 +152,7 @@ body {
 	  
       <td width="54" class="style3"><div align="center" class="style4">Todo</div></td>
     </tr>
-	<?
+	<?php 
 	
 	 $nTotalItems = 0;
  $nItemsPerPage = 1500; // set length of page
@@ -198,37 +198,37 @@ else
 		//echo $SQL;
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>  class="simplehighlight">
-      <td align="center" class="style3"><?=++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>  class="simplehighlight">
+      <td align="center" class="style3"><?php  echo ++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?></td>
 	  
-	  <td align="center" class="style3"><input type="checkbox" name="tambah[]" value="<?=$row['id']?>" /></td>
-	  <td class="style3" align="left"><?=$row['nama']?></td>
-      <td class="style3" align="center"><?=($row['tipe_luas'])?></td>
-      <td class="style3" align="left"><?=$row['blok']?></td>
-	  <td class="style3" align="right"><?=number_format(($row['kontrak']),2,'.',',')?></td>
+	  <td align="center" class="style3"><input type="checkbox" name="tambah[]" value="<?php  echo $row['id']?>" /></td>
+	  <td class="style3" align="left"><?php  echo $row['nama']?></td>
+      <td class="style3" align="center"><?php  echo ($row['tipe_luas'])?></td>
+      <td class="style3" align="left"><?php  echo $row['blok']?></td>
+	  <td class="style3" align="right"><?php  echo number_format(($row['kontrak']),2,'.',',')?></td>
 	  
 	  
       <td class="style3"><div align="center">
-	  <a href="index.php?mn=input_persediaan&id=<?=$row['kodebrg'] ?>"></a>
-	  &nbsp;&nbsp; <a href="subkon_setup.php?id=<?=$row['id'] ?>">Pembayaran</a>
+	  <a href="index.php?mn=input_persediaan&id=<?php  echo $row['kodebrg'] ?>"></a>
+	  &nbsp;&nbsp; <a href="subkon_setup.php?id=<?php  echo $row['id'] ?>">Pembayaran</a>
 	  </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="18"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>
   </form>
-  <? // print pagination for current page
+  <?php  // print pagination for current page
   	if ($nTotalItems>0){
 		echo $oPagination->GetHtml($nCurrentPage)."\n"; 
 	} else {	}	

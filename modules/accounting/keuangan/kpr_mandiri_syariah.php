@@ -23,7 +23,7 @@ $().ready(function() {
 	}
 	//nilaix = $('#combobox_carabayar option:selected').val();
 	//nilaix = $('#combobox_carabayar').val();
-	nilaix = "<?=$_SESSION["sess_tipe"]?>";
+	nilaix = "<?php  echo $_SESSION["sess_tipe"]?>";
 
 	$("#sales").autocomplete("ajax_auto_user.php?grup=user&divisi="+nilaix, {
 		width: 300,
@@ -207,7 +207,7 @@ function kosongtextarray(){
     <td><div align="center">10%</div></td>
   </tr>
   <form action="submission_keu.php" method="post" name="frmijin" id="frmijin">
-  <?php
+  <?php 
 	include ("../include/globalx.php");
 	include ("../include/functions.php");
 	if(isset($_GET['id'])){
@@ -217,68 +217,68 @@ function kosongtextarray(){
   ?>
   <tr>
     <td>&nbsp;</td>
-    <td><input type="text" name="nama" value="<?php echo $data['nama']; ?>" id="ppk" size="20" onclick="kosongtext()"  />
-	<input name="cmd" type="hidden" value="<?php echo isset($_GET['id']) ? 'upd_kpr_mandirisy' : 'add_kpr_mandirisy'; ?>">
-	<input name="id" type="hidden" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
-    <input name="kode" type="hidden" id="kode" value="<?php echo $data['kode']; ?>" size="8" readonly="readonly" class="required" title="Kode Barang Harus Terisi !"/></td>
-    <td><input type="text" name="blok" value="<?php echo $data['blok']; ?>" size="5" /></td>
-    <td><input type="text" name="tipe" value="<?php echo $data['tipe']; ?>" size="5" /></td>
-    <td><input type="text" name="kpr" value="<?php echo $data['kpr']; ?>" size="12" /></td>
-    <td><input type="text" name="tanggal70" value="<?php echo baliktglindo($data['tanggal70']); ?>" size="10" /></td>
-    <td><input type="text" name="cair70" value="<?php echo $data['cair70']; ?>" size="12" /></td>
-    <td><input type="text" name="tanggal20" value="<?php echo baliktglindo($data['tanggal20']); ?>" size="10" /></td>
-    <td><input type="text" name="cair20" value="<?php echo $data['cair20']; ?>" size="12" /></td>
-    <td><input type="text" name="tanggal10" value="<?php echo baliktglindo($data['tanggal10']); ?>" size="10" /></td>
-    <td><input type="text" name="cair10" value="<?php echo $data['cair10']; ?>" size="12" /></td>
+    <td><input type="text" name="nama" value="<?php  echo $data['nama']; ?>" id="ppk" size="20" onclick="kosongtext()"  />
+	<input name="cmd" type="hidden" value="<?php  echo isset($_GET['id']) ? 'upd_kpr_mandirisy' : 'add_kpr_mandirisy'; ?>">
+	<input name="id" type="hidden" value="<?php  echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
+    <input name="kode" type="hidden" id="kode" value="<?php  echo $data['kode']; ?>" size="8" readonly="readonly" class="required" title="Kode Barang Harus Terisi !"/></td>
+    <td><input type="text" name="blok" value="<?php  echo $data['blok']; ?>" size="5" /></td>
+    <td><input type="text" name="tipe" value="<?php  echo $data['tipe']; ?>" size="5" /></td>
+    <td><input type="text" name="kpr" value="<?php  echo $data['kpr']; ?>" size="12" /></td>
+    <td><input type="text" name="tanggal70" value="<?php  echo baliktglindo($data['tanggal70']); ?>" size="10" /></td>
+    <td><input type="text" name="cair70" value="<?php  echo $data['cair70']; ?>" size="12" /></td>
+    <td><input type="text" name="tanggal20" value="<?php  echo baliktglindo($data['tanggal20']); ?>" size="10" /></td>
+    <td><input type="text" name="cair20" value="<?php  echo $data['cair20']; ?>" size="12" /></td>
+    <td><input type="text" name="tanggal10" value="<?php  echo baliktglindo($data['tanggal10']); ?>" size="10" /></td>
+    <td><input type="text" name="cair10" value="<?php  echo $data['cair10']; ?>" size="12" /></td>
     
     
-    <td><input type="text" name="totalcair" value="<?php echo $data['totalcair']; ?>" size="12" /></td>
-    <td><input type="text" name="sisa" value="<?php echo $data['sisa']; ?>" size="12" /></td>
-    <td><input type="text" name="terhold10" value="<?php echo $data['terhold10']; ?>" size="12" /></td>
-    <td><input type="text" name="tanggal_akad" value="<?php echo baliktglindo($data['tanggal_akad']); ?>" size="10" /></td>
-    <td><input type="submit" value="<?php echo isset($_GET['id']) ? 'Ubah' : 'Tambah'; ?>" /></td>
+    <td><input type="text" name="totalcair" value="<?php  echo $data['totalcair']; ?>" size="12" /></td>
+    <td><input type="text" name="sisa" value="<?php  echo $data['sisa']; ?>" size="12" /></td>
+    <td><input type="text" name="terhold10" value="<?php  echo $data['terhold10']; ?>" size="12" /></td>
+    <td><input type="text" name="tanggal_akad" value="<?php  echo baliktglindo($data['tanggal_akad']); ?>" size="10" /></td>
+    <td><input type="submit" value="<?php  echo isset($_GET['id']) ? 'Ubah' : 'Tambah'; ?>" /></td>
   </tr>
   </form>
-	<?php
+	<?php 
 		$sql = mysql_query("SELECT * FROM kpr_mandirisy ORDER BY nama");
 		$no = 1;
 		while($data = mysql_fetch_array($sql)){
 	?>
 		
 		<tr>
-			<td><?php echo $no;?></td>
-			<td><?php echo $data['nama']?></td>
-			<td align="center"><?php echo $data['blok']?></td>
-			<td align="center"><?php echo $data['tipe']?></td>
-			<td align="right"><?php echo number_format($data['kpr']); $kpr = $kpr + $data['kpr'];?></td>
-			<td><?php echo (baliktglindo($data['tanggal70']) <> '00-00-0000') ? baliktglindo($data['tanggal70']) : ''; ?></td>
-			<td align="right"><?php echo number_format($data['cair70'])?></td>
-			<td><?php echo (baliktglindo($data['tanggal20'])  != '00-00-0000') ? baliktglindo($data['tanggal20']) : '';?></td>
-			<td align="right"><?php echo number_format($data['cair20'])?></td>
-			<td><?php echo (baliktglindo($data['tanggal10'])  != '00-00-0000') ? baliktglindo($data['tanggal10']) : '';?></td>
-			<td align="right"><?php echo number_format($data['cair10'])?></td>
+			<td><?php  echo $no;?></td>
+			<td><?php  echo $data['nama']?></td>
+			<td align="center"><?php  echo $data['blok']?></td>
+			<td align="center"><?php  echo $data['tipe']?></td>
+			<td align="right"><?php  echo number_format($data['kpr']); $kpr = $kpr + $data['kpr'];?></td>
+			<td><?php  echo (baliktglindo($data['tanggal70']) <> '00-00-0000') ? baliktglindo($data['tanggal70']) : ''; ?></td>
+			<td align="right"><?php  echo number_format($data['cair70'])?></td>
+			<td><?php  echo (baliktglindo($data['tanggal20'])  != '00-00-0000') ? baliktglindo($data['tanggal20']) : '';?></td>
+			<td align="right"><?php  echo number_format($data['cair20'])?></td>
+			<td><?php  echo (baliktglindo($data['tanggal10'])  != '00-00-0000') ? baliktglindo($data['tanggal10']) : '';?></td>
+			<td align="right"><?php  echo number_format($data['cair10'])?></td>
 			
 			
-			<td align="right"><?php echo number_format($data['totalcair']); $t_cair = $t_cair + $data['totalcair']; ?></td>
-			<td align="right"><?php echo number_format($data['sisa']); ?></td>
-			<td align="right"><?php echo number_format($data['terhold10']); $t_terhold10 = $t_terhold10 +  $data['terhold10']; ?></td>
-			<td><?php echo (baliktglindo($data['tanggal_akad'])  != '00-00-0000') ? baliktglindo($data['tanggal_akad']) : '';?></td>
+			<td align="right"><?php  echo number_format($data['totalcair']); $t_cair = $t_cair + $data['totalcair']; ?></td>
+			<td align="right"><?php  echo number_format($data['sisa']); ?></td>
+			<td align="right"><?php  echo number_format($data['terhold10']); $t_terhold10 = $t_terhold10 +  $data['terhold10']; ?></td>
+			<td><?php  echo (baliktglindo($data['tanggal_akad'])  != '00-00-0000') ? baliktglindo($data['tanggal_akad']) : '';?></td>
 			<td>
-				<a href="submission_keu.php?cmd=del_kpr_mandirisy&id=<?php echo $data['id']; ?>" onclick="return confirm('Apakah anda yakin ?')">Delete</a>
-				<a href="?mn=kpr_mandirisy&id=<?php echo $data['id']; ?>">Edit</a>			</td>
+				<a href="submission_keu.php?cmd=del_kpr_mandirisy&id=<?php  echo $data['id']; ?>" onclick="return confirm('Apakah anda yakin ?')">Delete</a>
+				<a href="?mn=kpr_mandirisy&id=<?php  echo $data['id']; ?>">Edit</a>			</td>
 		</tr>
-	<?php
+	<?php 
 			$no++;
 		}
 	?>
 	<tr>
 		  <td colspan="3"><div align="center">TOTAL KPR </div></td>
 		  <td align="center">&nbsp;</td>
-		  <td align="right"><?php echo number_format($kpr); ?></td>
+		  <td align="right"><?php  echo number_format($kpr); ?></td>
 		  <td colspan="6"><div align="center">TOTAL TERHOLD </div></td>
-		  <td align="right"><?php echo number_format($t_cair); ?></td>
+		  <td align="right"><?php  echo number_format($t_cair); ?></td>
 		  <td align="right">&nbsp;</td>
-		  <td align="right"><?php echo number_format($t_terhold10);?></td>
+		  <td align="right"><?php  echo number_format($t_terhold10);?></td>
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
   </tr>

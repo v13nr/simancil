@@ -1,4 +1,4 @@
-<?php
+<?php 
 	$task = $_REQUEST['task']; //parameter yang dikirim oleh js
 	$handler->loadModel("chart_m");  //model di core
         $chart = new chart(true); 

@@ -1,4 +1,4 @@
-<?php session_start(); ?><?php
+<?php  session_start(); ?><?php 
 if(isset($_POST["excell"])){
 	header("location: cetak_jurnal_excell.php");
 }

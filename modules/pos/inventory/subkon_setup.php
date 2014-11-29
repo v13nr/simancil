@@ -1,4 +1,4 @@
-<?
+<?php 
 @session_start(); include "otentik_inv.php"; 
 include ("../include/globalx.php");
 include ("../include/functions.php");
@@ -18,22 +18,22 @@ include ("../include/functions.php");
 
 <body>
 <table width="90%" border="1">
-  <?php
+  <?php 
   	$SQLh = "SELECT  * From subkon WHERE id = ". $_GET["id"];
 	$hasilh = mysql_query($SQLh);
 	$barish = mysql_fetch_array($hasilh);
   ?>
   <tr>
-    <td rowspan="2"><?=$barish["nama"];?></td>
+    <td rowspan="2"><?php  echo $barish["nama"];?></td>
     <td>Tipe/Luas</td>
     <td>Blok</td>
     <td>Nilai Kontrak </td>
     <td colspan="3" rowspan="2">&nbsp;</td>
   </tr>
   <tr>
-    <td><?=$barish["tipe_luas"];?></td>
-    <td><?=$barish["blok"];?></td>
-    <td align="right"><?=number_format($barish["kontrak"]);?></td>
+    <td><?php  echo $barish["tipe_luas"];?></td>
+    <td><?php  echo $barish["blok"];?></td>
+    <td align="right"><?php  echo number_format($barish["kontrak"]);?></td>
   </tr>
   <tr>
     <td>Tanggal</td>
@@ -44,35 +44,35 @@ include ("../include/functions.php");
     <td>Sisa</td>
     <td>Todo</td>
   </tr>
-  <?php
+  <?php 
   
   	$SQL = "SELECT * FROM subkon_detail WHERE subkon_id = '". $_GET["id"] ."' order by id ASC";
 	$hasil = mysql_query($SQL);
   	while($baris = mysql_fetch_array($hasil)){
   ?>
   <form method="post" action="submission_inv.php">
-  <input type="hidden" name="id" value="<?=$_GET["id"]?>" />
-  <input type="hidden" name="id_detail" value="<?=$baris["id"]?>" />
+  <input type="hidden" name="id" value="<?php  echo $_GET["id"]?>" />
+  <input type="hidden" name="id_detail" value="<?php  echo $baris["id"]?>" />
   <input type="hidden" name="cmd" value="upd_subkon_detail" />
   <tr>
-    <td><input type="text" name="tanggal" id="tanggal" size="10" class="required" title="*" value="<?=baliktglindo($baris["tanggal"])?>"  />
+    <td><input type="text" name="tanggal" id="tanggal" size="10" class="required" title="*" value="<?php  echo baliktglindo($baris["tanggal"])?>"  />
           <a href="javascript:showCalendar('tanggal')"></a></td>
-    <td><?=$baris["keterangan"]?></td>
-    <td align="right"><input type="text" name="jumlah" value="<?=number_format($baris["jumlah"])?>" /></td>
-    <td align="right"><input type="text" name="material"  value="<?=number_format($baris["material"])?>" /></td>
-    <td align="right"><input type="text" name="tambahan" value="<?=number_format($baris["tambahan"])?>"  /></td>
-    <td align="right"><input type="text" name="sisa" value="<?php echo number_format($baris["sisa"]); $total = $total + $baris["sisa"];?>" /></td>
+    <td><?php  echo $baris["keterangan"]?></td>
+    <td align="right"><input type="text" name="jumlah" value="<?php  echo number_format($baris["jumlah"])?>" /></td>
+    <td align="right"><input type="text" name="material"  value="<?php  echo number_format($baris["material"])?>" /></td>
+    <td align="right"><input type="text" name="tambahan" value="<?php  echo number_format($baris["tambahan"])?>"  /></td>
+    <td align="right"><input type="text" name="sisa" value="<?php  echo number_format($baris["sisa"]); $total = $total + $baris["sisa"];?>" /></td>
     <td align="center"><input type="submit" value="Update" /></td>
   </tr>
   </form>
-  <?php } ?>
+  <?php  } ?>
   <tr>
     <td>&nbsp;</td>
     <td>TOTAL</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td align="right"><?=number_format($total)?></td>
+    <td align="right"><?php  echo number_format($total)?></td>
     <td>&nbsp;</td>
   </tr>
 </table>

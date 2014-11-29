@@ -1,4 +1,4 @@
-<?php
+<?php 
 include ("globalx.php");	
 	
 	$purchase_date_timestamp = strtotime('2009-12-31');

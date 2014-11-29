@@ -67,7 +67,7 @@ function clearNum(number){
   </script>
  </head>
 <body>
-<?
+<?php 
  include '../include/globalx.php';
 include ("../include/functions.php");
  
@@ -87,7 +87,7 @@ include ("../include/functions.php");
 		<th width="16%">Sisa Harga Kontrak </th>
 		<th width="19%">Posting</th>
 	</tr>
-	<? 
+	<?php  
 	 
  $SQL = "SELECT * FROM $database.piutang_detail WHERE piutang_id = '".$_GET["ida"]."' AND ket = 'Uang Muka'";
  if(isset($_POST['search'])){
@@ -97,36 +97,36 @@ include ("../include/functions.php");
 	 while($row = mysql_fetch_object($query)){ ?>
 	<tr  bgcolor="#FFFFFF">
 	  <td align="center">DP</td>
-	  <td align="center"><?=baliktglindo($row->jtempo)?></td>
+	  <td align="center"><?php  echo baliktglindo($row->jtempo)?></td>
 	  <td align="center">-</td>
 	  <td align="center">-</td>
 	  <td align="center">-</td>
 	  <td align="center"><div align="right">
-	    <?php 
+	    <?php  
 	  	$SQLt = "SELECT saldo from piutang WHERE nomor = ".$_GET["nomor"];
 	  	$hasilt = mysql_query($SQLt, $dbh_jogjaide);
 		$barist = mysql_fetch_array($hasilt);
 		$kontrak = $barist[0];
 	  ?>
-	    <?php $sisa = $kontrak -  $sisa; echo number_format($sisa);?>
+	    <?php  $sisa = $kontrak -  $sisa; echo number_format($sisa);?>
       </div></td>
 	  <td align="center">&nbsp;</td>
   </tr>
 	<tr  bgcolor="#FFFFFF">
 	  <td align="center">Booking Fee </td>
-	  <td align="center"><?=baliktglindo($row->jtempo)?></td>
+	  <td align="center"><?php  echo baliktglindo($row->jtempo)?></td>
 	  <td align="center">-</td>
 	  <td align="center"><div align="right">
-        <?php echo number_format($row->nilai); $angsuran = $angsuran + $row->nilai; ?>
+        <?php  echo number_format($row->nilai); $angsuran = $angsuran + $row->nilai; ?>
       </div></td>
-	  <td align="center"><div align="right"> <?php echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
+	  <td align="center"><div align="right"> <?php  echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
 	  <td align="center"><div align="right">
-	    <?php $bayar = $row->nilai; $sisa =   $sisa -$bayar ; echo number_format($sisa);?>
+	    <?php  $bayar = $row->nilai; $sisa =   $sisa -$bayar ; echo number_format($sisa);?>
 	  </div></td>
 	  <td align="center">&nbsp;</td>
   </tr>
-  <?php } ?>
-	<? 
+  <?php  } ?>
+	<?php  
 	 
  $SQL = "SELECT * FROM $database.piutang_detail WHERE piutang_id = '".$_GET["ida"]."' AND ket <> 'Uang Muka'";
  if(isset($_POST['search'])){
@@ -138,21 +138,21 @@ include ("../include/functions.php");
 	
 	<form method="post" action="submission_inv.php">
 	<input type="hidden" name="cmd" value="upd_angsuran">
-	<input type="hidden" name="ida" value="<?php echo $_GET["ida"]; ?>">
-	<input type="hidden" name="nomor" value="<?php echo $_GET["nomor"]; ?>">
+	<input type="hidden" name="ida" value="<?php  echo $_GET["ida"]; ?>">
+	<input type="hidden" name="nomor" value="<?php  echo $_GET["nomor"]; ?>">
 	<tr  bgcolor="#FFFFFF">
-		<td align="center"><?php echo $nourut++;?><input type="hidden" name="id" value="<?php echo $row->id; ?>"></td>
-		<td align="center"><input type="text" value="<?=baliktglindo($row->jtempo)?>" name="jtempo" size="10"></td>
-		<td align="center"><div align="right"><?php
+		<td align="center"><?php  echo $nourut++;?><input type="hidden" name="id" value="<?php  echo $row->id; ?>"></td>
+		<td align="center"><input type="text" value="<?php  echo baliktglindo($row->jtempo)?>" name="jtempo" size="10"></td>
+		<td align="center"><div align="right"><?php 
 			$bunga =  ($row->bunga /100) * (1/12) * $sisa;
 			echo number_format($bunga);
 			$tbunga = $tbunga + $bunga;
 		?></div>
 	      <div align="right"></div></td>
-		<td align="center"><div align="right"><input type="text" size="15" class="kanan" value="<?=number_format($row->nilai); ?>" name="nilai"> <?php $angsuran = $angsuran + $row->nilai; ?></div></td>
-		<td align="center"><div align="right"> <?php echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
+		<td align="center"><div align="right"><input type="text" size="15" class="kanan" value="<?php  echo number_format($row->nilai); ?>" name="nilai"> <?php  $angsuran = $angsuran + $row->nilai; ?></div></td>
+		<td align="center"><div align="right"> <?php  echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
 		<td align="center"><div align="right">
-		  <?php $bayar = $row->nilai; $sisa =   $sisa -$bayar ;
+		  <?php  $bayar = $row->nilai; $sisa =   $sisa -$bayar ;
 		  if(($row->nilai + $bunga)!="0"){
 		   echo number_format($sisa); 
 		   } else {
@@ -160,25 +160,25 @@ include ("../include/functions.php");
 		   } ?>
 		</div></td>
 		<td align="center">
-		<?php  if($row->posted == 0){ ?>
+		<?php   if($row->posted == 0){ ?>
 			<input type="submit" value="Posting Now">
-		<?php } else {echo "OK"; //echo '&nbsp;&nbsp;&nbsp;<input type="submit" name="cancel_angsuran" value="X">'; 
+		<?php  } else {echo "OK"; //echo '&nbsp;&nbsp;&nbsp;<input type="submit" name="cancel_angsuran" value="X">'; 
 		}?>	</td>
 	</tr>
 	</form>
-	<? endwhile; ?>
+	<?php  endwhile; ?>
 	<tr  bgcolor="#FFFFFF">
 	  <td colspan="2" align="center">Jumlah Total </td>
 	  <td align="center"><div align="right">
-	    <?php
+	    <?php 
 			$bunga =  ($row->bunga /100) * (1/12) * $sisa;
 			echo number_format($tbunga);
 		?>
       </div></td>
-	  <td align="center"><div align="right"><?php echo number_format($angsuran);  ?></div></td>
-	  <td align="center"><div align="right"> <?php echo number_format($tbayar);  ?> </div></td>
+	  <td align="center"><div align="right"><?php  echo number_format($angsuran);  ?></div></td>
+	  <td align="center"><div align="right"> <?php  echo number_format($tbayar);  ?> </div></td>
 	  <td align="center">&nbsp;</td>
-	  <td align="center"><a href="cetak_angsuran.php?ida=<?=$_GET["ida"]?>&nomor=<?=$_GET["nomor"]?>">CETAK</a></td>
+	  <td align="center"><a href="cetak_angsuran.php?ida=<?php  echo $_GET["ida"]?>&nomor=<?php  echo $_GET["nomor"]?>">CETAK</a></td>
   </tr>
 </table>
 </body>

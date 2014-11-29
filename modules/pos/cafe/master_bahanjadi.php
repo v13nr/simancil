@@ -1,4 +1,4 @@
-<? 
+<?php  
 session_start();
 include "otentik_inv.php"; 
 include ("../include/functions.php");
@@ -94,7 +94,7 @@ input.kanan{ text-align:right; }
 </head>
 
 <body>
-<?
+<?php 
 	$SQL = "SELECT namabrg, kodebrg FROM stock WHERE kodebrg = '".$_GET['id']."'";
 	$hasil = mysql_query($SQL, $dbh_jogjaide);
 	$baris = mysql_fetch_array($hasil);
@@ -106,101 +106,101 @@ input.kanan{ text-align:right; }
 	$hasil=mysql_query($tsql0);
 ?>
 <table border="1" width="100%%" bordercolorlight="silver" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" align="center" style="border-collapse:collapse">
-  <? if ($_GET['idtt']<>"") {?>
+  <?php  if ($_GET['idtt']<>"") {?>
     <tr>
 		<td background="../images/impactg.png" colspan=17 align="center"><font color="white"><B>Edit Bahan Jadi </B></font></td>
   </tr>
-  <? } else { ?>
+  <?php  } else { ?>
     <tr>
 		<td background="../images/impactg.png" colspan=17 align="center"><font color=white>
-			DAFTAR BAHAN JADI : <?=$barang?> &nbsp; &nbsp;[
-			<?=$kode_barang?>
+			DAFTAR BAHAN JADI : <?php  echo $barang?> &nbsp; &nbsp;[
+			<?php  echo $kode_barang?>
 		]</font></td>
   </tr>
-  <? }?>
+  <?php  }?>
     <tr bgcolor="silver">
 		<td background="images/fraglight.gif" width="5%" align="center"><strong>No</strong></td>
 		<td background="images/fraglight.gif" align="center" width="75%"><strong>Nama Barang </strong></td>
 		<td background="images/fraglight.gif" align="center" width="75%"><strong>Satuan </strong></td>
 		<td background="images/fraglight.gif" align="center" width="75%"><strong>Qty</strong></td>
 		<td background="images/fraglight.gif" align="center" width="75%"><strong>Kemasan</strong></td>
-			<? if ($_GET['idtt']<>"") { ?>
+			<?php  if ($_GET['idtt']<>"") { ?>
 		<td background="images/fraglight.gif" width="5%" align="center"><B>Update</B></td>
 		<td background="images/fraglight.gif" width="5%" align="center"><B>Batal</B></td>
-			<? } else { ?>
+			<?php  } else { ?>
 		<!--
 		<td background="images/fraglight.gif" width="5%" align="center"><strong>Edit</strong></td> -->
 		<td background="images/fraglight.gif" width="5%" align="center"><B>Hapus</B></td>
-			<? } ?>
+			<?php  } ?>
   </tr>
-<?	 $nRecord = 1;
+<?php 	 $nRecord = 1;
 	if (mysql_num_rows($hasil) > 0) { 
 		 while ($row=mysql_fetch_array($hasil)) { ?>
-		  <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<? } ?>>
+		  <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<?php  } ?>>
 			<form method="post" action="submission_cafe.php">
-				<input type=hidden name="id" value="<?=$_GET['id']?>">
-				<input type="hidden" name="idtt" value="<?=$row["id"];?>" />
-			<td align="right"><?=$nRecord?></td>
-			<? if ($_GET['idtt']<>"") { ?>
-					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?=$row["namatt"];?>"></td>
-					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?=$row["namatt"];?>"></td>
-					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?=$row["namatt"];?>"></td>
-					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?=$row["namatt"];?>"></td>
-				<? } else { ?>
-					<td><?=$row["namabrg"]?></td>
-					<td><?=$row["satuan"]?></td>
-					<td><?=$row["qty"]?></td>
-					<td><?=$row["kemasan"]?></td>
-				<? } ?>
+				<input type=hidden name="id" value="<?php  echo $_GET['id']?>">
+				<input type="hidden" name="idtt" value="<?php  echo $row["id"];?>" />
+			<td align="right"><?php  echo $nRecord?></td>
+			<?php  if ($_GET['idtt']<>"") { ?>
+					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?php  echo $row["namatt"];?>"></td>
+					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?php  echo $row["namatt"];?>"></td>
+					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?php  echo $row["namatt"];?>"></td>
+					<td align="left"><INPUT TYPE="text" NAME="namatt" size=40 class="form_isian" value="<?php  echo $row["namatt"];?>"></td>
+				<?php  } else { ?>
+					<td><?php  echo $row["namabrg"]?></td>
+					<td><?php  echo $row["satuan"]?></td>
+					<td><?php  echo $row["qty"]?></td>
+					<td><?php  echo $row["kemasan"]?></td>
+				<?php  } ?>
 			
-			<? if ($_GET['idtt']<>"") { ?>
+			<?php  if ($_GET['idtt']<>"") { ?>
 				<td align="center">
 					<input type=image src="../images/approve.gif" border=0>
 				</td>
 				
 				<td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" width="10" height="18" border=0></a></td>
-			<? } else { ?>
+			<?php  } else { ?>
 				<!--
 				<td align="center"><a href=""><img src="../images/edit.gif" border=0></a></td> -->
-				<td align="center"><a href="javascript:confirmDelete('submission_inv.php?iddel=<?=$row['id']?>&cmd=del_bj&id=<?=$_GET['id']?>')"><img src="../images/hapus.gif" border=0></a></td>
-			<? } ?>
+				<td align="center"><a href="javascript:confirmDelete('submission_inv.php?iddel=<?php  echo $row['id']?>&cmd=del_bj&id=<?php  echo $_GET['id']?>')"><img src="../images/hapus.gif" border=0></a></td>
+			<?php  } ?>
 		  </form></tr>
-		<?  
+		<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr>
 		<td align="center" colspan="71"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
-		<? if ($_GET['idtt']=="") { ?>
+	<?php   } ?>
+		<?php  if ($_GET['idtt']=="") { ?>
 			  <tr bgcolor="yellow">
 				<form method="post" action="submission_inv.php" id="pegForm" >
 				<input type=hidden name="cmd" value="add_bj">
-				<input type="hidden" name="id" value="<?=$_GET['id']?>" />
+				<input type="hidden" name="id" value="<?php  echo $_GET['id']?>" />
 				<td align="right"><img src="../images/kal_next.gif" border=0></td>
 				<td align="left">
 				<select name="kodeanak" id="kodeanak" class="required" title="Pilih Kode Barang">
 					<option value="">-Pilih-</option>
-					<?
+					<?php 
 						$SQLa = "SELECT * FROM stock where status = 1 AND grup NOT LIKE 'BAHAN JADI%'";
 						$hasila = mysql_query($SQLa);
 						while($barisa = mysql_fetch_array($hasila)){
 					?>
-					<option value="<?=$barisa['kodebrg']?>"><?=$barisa['kodebrg']?> -- <?=$barisa['namabrg']?></option>
-					<? }?>
+					<option value="<?php  echo $barisa['kodebrg']?>"><?php  echo $barisa['kodebrg']?> -- <?php  echo $barisa['namabrg']?></option>
+					<?php  }?>
 				</select>&nbsp;&nbsp;<input type="text" name="namabrg" />
 				</td>
 				<td><input type="text" name="satuan" id="satuan" class="required" readonly="true" title="Satuan harus terisi" size="20"/></td>
 				<td><input type="text" name="isi" id="satuan2" class="required" title="Satuan harus terisi" size="5"/></td>
 				<td><select name="kemasan" class="required" title="Kemasan harus dipilih">
                   <option value="">-Pilih-</option>
-                  <option value="Y" <?if($kemasan=="Y"){?> selected="selected"<?}?>>Y</option>
-                  <option value="T" <?if($kemasan=="T"){?> selected="selected"<?}?>>T</option>
+                  <option value="Y" <?php if($kemasan=="Y"){?> selected="selected"<?php }?>>Y</option>
+                  <option value="T" <?php if($kemasan=="T"){?> selected="selected"<?php }?>>T</option>
                 </select></td>
 				<td colspan=3 align="center"><input type=image src="../images/add.gif" border=0></td>
 			  </form></tr>
-		<? } ?>
+		<?php  } ?>
 </table>
 </body>
 </html>

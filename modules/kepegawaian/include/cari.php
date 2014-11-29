@@ -1,4 +1,4 @@
-<?
+<?php 
  // pastikan file ini diakses dengan mengirimkan variable POST dengan nama "nip"
  isset($_GET['id']) or die('Kirim parameter id');
 

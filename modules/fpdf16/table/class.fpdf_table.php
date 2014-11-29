@@ -1,4 +1,4 @@
-<?php
+<?php 
  /****************************************************************************
  * Software:    FPDF class extension
  *              Creates Pdf Tables

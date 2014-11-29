@@ -1,4 +1,4 @@
-<?php
+<?php 
 require ABSPATH .'includes/fpdf/fpdf.php'; 
 
   $pdf=new FPDF();

@@ -1,4 +1,4 @@
-<?php 
+<?php  
 define('CONF_DB','../config_sistem.php'); 
 $errors =array();
 /**
@@ -87,7 +87,7 @@ function test_sql_connection($ndb=0)
 
 function build_cfg_file()
 {
-$cfg = "<?php
+$cfg = "<?php 
 
 	\$host =\"{$_POST['dbserver']}\";
     \$user=\"{$_POST['dbuser']}\";

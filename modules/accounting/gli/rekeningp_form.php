@@ -1,4 +1,4 @@
-<? include "otentik_gli.php"; ?><head>
+<?php  include "otentik_gli.php"; ?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
@@ -69,11 +69,11 @@ td { padding: 5px; }
 	color: #00000FF;
 }
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
-  <? $SQL = "select * from $database.rekening WHERE status = 1";
+  <?php  $SQL = "select * from $database.rekening WHERE status = 1";
 	 	if ($_GET['id']<>"")
 		{ 
 			$SQL = $SQL." AND norek = '". $_GET['id']."'";
@@ -110,12 +110,12 @@ td { padding: 5px; }
   <tr>
     <td>&nbsp;</td>
     <td><form id="pegForm" method="post" name="pegForm" action="submission_gli.php">
-      <? if($_GET['id']<>""){ ?>
+      <?php  if($_GET['id']<>""){ ?>
       <input type="hidden" name="cmd" value="upd_rekeningp" />
-      <input type="hidden" name="id" value="<?=$norek?>" />
-      <? } else { ?>
+      <input type="hidden" name="id" value="<?php  echo $norek?>" />
+      <?php  } else { ?>
       <input type="hidden" name="cmd" value="add_rekeningp" />
-      <? } ?>
+      <?php  } ?>
       <table align="left" class="x1">
         <tr background="../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1">Form Rekening Pembantu </span></td>
@@ -123,37 +123,37 @@ td { padding: 5px; }
         <tr>
           <td><span class="style6">Nomor Rekening Induk </span></td>
           <td>:</td>
-          <td><input name="induk" type="text" id="induk"  maxlength="4" class="required " title="Nomor Rekening harus diisi" value="<?=$induk?>" readonly="true" />
+          <td><input name="induk" type="text" id="induk"  maxlength="4" class="required " title="Nomor Rekening harus diisi" value="<?php  echo $induk?>" readonly="true" />
             <a href="daftar_rek.php?width=400&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>
             <div id="divAlert"></div></td>
         </tr>
         <tr>
           <td><span class="style6">Nama Rekening Induk </span></td>
           <td>:</td>
-          <td><input name="namarekeninginduk" size="40" type="text" class="required " id="namarekeninginduk"  title="Nama Rekening induk harus terisi" value="<?=$namarekeninginduk?>" readonly="true" /></td>
+          <td><input name="namarekeninginduk" size="40" type="text" class="required " id="namarekeninginduk"  title="Nama Rekening induk harus terisi" value="<?php  echo $namarekeninginduk?>" readonly="true" /></td>
         </tr>
         <tr>
           <td><span class="style6">Tipe</span></td>
           <td><span class="style6">:</span></td>
-          <td><input type="text" name="tipe" id="tipe" class="required" title="Tipe Rekening harus terisi" value="<?=$tipe?>"  readonly="true"  /></td>
+          <td><input type="text" name="tipe" id="tipe" class="required" title="Tipe Rekening harus terisi" value="<?php  echo $tipe?>"  readonly="true"  /></td>
         </tr>
         <tr> 
           <td><span class="style6">Nomor Rekening </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="norek" type="text" id="suggest"  maxlength="4" class="required " title="Nomor Rekening Pembantu harus diisi" value="<?=$norek?>" <? if($_GET['id']<>""){?>readonly="true" <? }?> /></td>
+          <td><input name="norek" type="text" id="suggest"  maxlength="4" class="required " title="Nomor Rekening Pembantu harus diisi" value="<?php  echo $norek?>" <?php  if($_GET['id']<>""){?>readonly="true" <?php  }?> /></td>
         </tr>
         <tr>
           <td><span class="style6">Nama Rekening </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="namarekening" size="40" type="text" class="required " id="namarekening"  title="Nama Rekening harus diisi" value="<?=$namarekening?>" /></td>
+          <td><input name="namarekening" size="40" type="text" class="required " id="namarekening"  title="Nama Rekening harus diisi" value="<?php  echo $namarekening?>" /></td>
         </tr>
         <tr>
           <td>Saldo Normal </td>
           <td>:</td>
           <td><select name="saldonormal" class="required">
 		  	<option value="">-Pilih-</option>
-			<option value="D" <?php if($saldonormal == "D") { ?>selected="selected" <?php } ?>>Debet</option>
-			<option value="K" <?php if($saldonormal == "K") { ?>selected="selected" <?php } ?>>Kredit</option>
+			<option value="D" <?php  if($saldonormal == "D") { ?>selected="selected" <?php  } ?>>Debet</option>
+			<option value="K" <?php  if($saldonormal == "K") { ?>selected="selected" <?php  } ?>>Kredit</option>
 		  </select></td>
         </tr>
         <tr>
@@ -167,11 +167,11 @@ td { padding: 5px; }
           <td><span class="style7"></span></td>
           <td><span class="style7"></span></td>
           <td><span class="style6">
-            <? if($_GET['id']<>""){ ?>
+            <?php  if($_GET['id']<>""){ ?>
             <input name="submit" type="submit" value="Update" />
-            <? } else { ?>
+            <?php  } else { ?>
             <input name="submit" type="submit" value="Simpan" />
-            <? } ?>
+            <?php  } ?>
             <input name="button" type="button" onClick="javascript:history.back()" value="Batal" />
           </span></td>
         </tr>

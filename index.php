@@ -1,4 +1,4 @@
-﻿<?php
+﻿<?php 
 /**
  *  Copyright (C) PT. Netsindo Sentra Computama
  *  Project Manager : Andi Micro
@@ -7,7 +7,7 @@
  *  Date: April 2014
 **/
 ?>
-<?php @session_start();  
+<?php  @session_start();  
 if($_SESSION["is_login"] != "yes")
 {
 echo'
@@ -99,7 +99,7 @@ include ("config_sistem.php");
             <img src="resources/images/logo.png" alt="SiMANCiL" />
           </a>
 		  <ul id="user">
-		  	<li style="color:#FFFFFF"><strong><?php echo SITE_TITLE; ?></strong></li>
+		  	<li style="color:#FFFFFF"><strong><?php  echo SITE_TITLE; ?></strong></li>
 		  </ul>
       </div>
       <!-- end logo -->
@@ -107,12 +107,12 @@ include ("config_sistem.php");
       <ul id="user">
         <li class="first">
           <a href="">
-            <?=$_SESSION["sess_name"]?>
+            <?php  echo $_SESSION["sess_name"]?>
           </a>
         </li>
         <li>
           <a href="index.php?mn=update_passwd&getmodule=
-<?php echo base64_encode('user'); ?>
+<?php  echo base64_encode('user'); ?>
 &box=1">
   Account
                   </a>
@@ -148,39 +148,39 @@ include ("config_sistem.php");
           </span>
         </a>
       </li>
-  <?php if($_SESSION["sess_kelasuser"]=="Super Admin" || $_SESSION["sess_kelasuser"]=="Admin" || $_SESSION["sess_kelasuser"]=="User"){ ?>
+  <?php  if($_SESSION["sess_kelasuser"]=="Super Admin" || $_SESSION["sess_kelasuser"]=="Admin" || $_SESSION["sess_kelasuser"]=="User"){ ?>
 				  
-				  <?php $SQL_0 = "SELECT *, a.id as ibu1 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = 0 AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_0 = mysql_query($SQL_0); while($baris_0=mysql_fetch_array($hasil_0)) { ?>
+				  <?php  $SQL_0 = "SELECT *, a.id as ibu1 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = 0 AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_0 = mysql_query($SQL_0); while($baris_0=mysql_fetch_array($hasil_0)) { ?>
                   <li>
                     <a href="#" title="">
                       <span class="icon">
-                        <img src="resources/images/icons/<?php echo $baris_0['icon']; ?>" alt="Products" />
+                        <img src="resources/images/icons/<?php  echo $baris_0['icon']; ?>" alt="Products" />
                       </span>
                       <span>
-                        <?php echo $baris_0['title']; ?>
+                        <?php  echo $baris_0['title']; ?>
                       </span>
                     </a>
                     <ul>
-						<?php $SQL_1 = "SELECT *, a.id as ibu2 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_0['ibu1']."' AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_1 = mysql_query($SQL_1); while($baris_1=mysql_fetch_array($hasil_1)) { ?>
+						<?php  $SQL_1 = "SELECT *, a.id as ibu2 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_0['ibu1']."' AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_1 = mysql_query($SQL_1); while($baris_1=mysql_fetch_array($hasil_1)) { ?>
                       <li>
                         <a href="" title="Settings"  class="childs">
-                          <?php echo $baris_1['title']; ?>
+                          <?php  echo $baris_1['title']; ?>
                         </a>
                         <ul>
-									<?php $SQL_2 = "SELECT *, a.id as ibu3 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_1['ibu2']."' AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_2 = mysql_query($SQL_2); while($baris_2=mysql_fetch_array($hasil_2)) { ?>
+									<?php  $SQL_2 = "SELECT *, a.id as ibu3 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_1['ibu2']."' AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_2 = mysql_query($SQL_2); while($baris_2=mysql_fetch_array($hasil_2)) { ?>
                                   <li class="">
-                                    <a href="index.php?mn=<?php echo $baris_2['file']; ?>&getmodule=
-<?php echo base64_encode($baris_2['modul']); ?>&box=<?php echo $baris_2['frame']; ?>">
-  <?php echo $baris_2['title']; ?>
+                                    <a href="index.php?mn=<?php  echo $baris_2['file']; ?>&getmodule=
+<?php  echo base64_encode($baris_2['modul']); ?>&box=<?php  echo $baris_2['frame']; ?>">
+  <?php  echo $baris_2['title']; ?>
                                       </a>
                                   </li>
-								  <?php } //level 3 ?>
+								  <?php  } //level 3 ?>
                         </ul>
                        </li>
-						   <?php } //level 2 ?>
+						   <?php  } //level 2 ?>
                       </ul>
                   </li>
-				  <?php } //level 1 ?>
+				  <?php  } //level 1 ?>
 				    <li>    
 					<a href="#" title="">
                       <span class="icon">
@@ -193,21 +193,21 @@ include ("config_sistem.php");
 					
 						<ul>
 							<li>
-								<a href="update.php" title="<?php $sql = "SELECT versi from versi order by id DESC LIMIT 1";
+								<a href="update.php" title="<?php  $sql = "SELECT versi from versi order by id DESC LIMIT 1";
 								$hasil = mysql_query($sql);
 								$baris = mysql_fetch_array($hasil);
 								echo "Versi Anda Saat ini adalah ".$baris[0]; ?>">           Update </a>   
 							</li>
 							<li>
 								<a href="index.php?mn=rec_stok_ls&getmodule=
-<?php echo base64_encode("pos/inventory"); ?>" title="Recycle Inventory">Recycle Inventory</a>   
+<?php  echo base64_encode("pos/inventory"); ?>" title="Recycle Inventory">Recycle Inventory</a>   
 							</li>
 						</ul>			
 					</li>
 				    <li>        <a href="index.php?mn=about" title="Home">          <span class="normal">            About Us          </span>        </a>     </li>
               </ul>
   </li>
-  <?php } ?>
+  <?php  } ?>
   
       </ul>
       <!-- end quick -->
@@ -227,7 +227,7 @@ include ("config_sistem.php");
   <div class="box">
     <div class="title">
       <h5>
-        <?php $split = explode('/', base64_decode($_GET["getmodule"])); echo isset($_GET["getmodule"]) ? ucfirst($split[0]) : ""; ?>
+        <?php  $split = explode('/', base64_decode($_GET["getmodule"])); echo isset($_GET["getmodule"]) ? ucfirst($split[0]) : ""; ?>
       </h5>
       <ul class="links">
         <li>
@@ -235,7 +235,7 @@ include ("config_sistem.php");
       </ul>
     </div>
     <div class="table">
-      <?php
+      <?php 
 if($_GET["mn"]
 <>
 "") 
@@ -250,13 +250,13 @@ switch($_GET["mn"]){case "about" :	include "about.php";	break;case "$menu" :	if 
 	</div>
   </div>
   
-  <?php
+  <?php 
 if($_GET["mn"]==""){		  
 ?>
   <div class="box">
 	<iframe src="db.php" width="100%" height="600"></iframe>
   </div>
-  <?php } ?>
+  <?php  } ?>
   <!-- messages -->
   <!-- end messages -->
   <!-- forms -->

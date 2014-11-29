@@ -1,4 +1,4 @@
-<? @session_start(); include "otentik_admin.php"; ?><head>
+<?php  @session_start(); include "otentik_admin.php"; ?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
@@ -138,11 +138,11 @@ label.error { color:red; margin-left: 10px; }
 }
 input.kanan{ text-align:right; }
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
-  <? $SQL = "select * from stock WHERE kodebrg <> ''";
+  <?php  $SQL = "select * from stock WHERE kodebrg <> ''";
 	 	if ($_GET['id']<>"")
 		{ 
 			$SQL = $SQL." AND kodebrg = '". $_GET['id']."'";
@@ -180,12 +180,12 @@ input.kanan{ text-align:right; }
   <tr>
     <td>&nbsp;</td>
     <td><form id="pegForm" method="post" name="pegForm" action="submission_inv.php">
-      <? if($_GET['id']<>""){ ?>
+      <?php  if($_GET['id']<>""){ ?>
       <input type="hidden" name="cmd" value="upd_stok" />
-      <input type="hidden" name="id" value="<?=$id?>" />
-      <? } else { ?>
+      <input type="hidden" name="id" value="<?php  echo $id?>" />
+      <?php  } else { ?>
       <input type="hidden" name="cmd" value="add_stok" />
-      <? } ?>
+      <?php  } ?>
       <table align="left" class="x1">
         <tr background="../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1">Form Persediaan </span></td>
@@ -193,63 +193,63 @@ input.kanan{ text-align:right; }
         <tr>
           <td><span class="style6">Kode   </span></td>
           <td>:</td>
-          <td><input type="text" name="kodebrg" id="kodebrg"  value="<?=($id)?>" size="10"  class="required" title="Harap Mengisi Kode Barang Dahulu" />            </td>
+          <td><input type="text" name="kodebrg" id="kodebrg"  value="<?php  echo ($id)?>" size="10"  class="required" title="Harap Mengisi Kode Barang Dahulu" />            </td>
         </tr>
         <tr>
           <td><span class="style6">Nama Barang  </span></td>
           <td>:</td>
-          <td><input name="namabrg" size="40" type="text" onblur="cekstring();" class="required " id="namabrg"  title="Nama Barang harus terisi" value="<?=$namabrg?>" /></td>
+          <td><input name="namabrg" size="40" type="text" onblur="cekstring();" class="required " id="namabrg"  title="Nama Barang harus terisi" value="<?php  echo $namabrg?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Satuan Eceran</span></td>
           <td><span class="style6">:</span></td>
-          <td><input type="text" name="satuank" id="satuank"  title="Satuan Kecil harus terisi" value="<?=$satuank?>" /></td>
+          <td><input type="text" name="satuank" id="satuank"  title="Satuan Kecil harus terisi" value="<?php  echo $satuank?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Satuan Partai </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="satuanb" type="text" id="satuanb"  title="Satuan Besar harus diisi" value="<?=$satuanb?>" /></td>
+          <td><input name="satuanb" type="text" id="satuanb"  title="Satuan Besar harus diisi" value="<?php  echo $satuanb?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Isi </span></td>
           <td>&nbsp;</td>
-          <td><input name="isi" type="text" id="isi"  class="required kanan" title="Isi harus diisi" value="<?=number_format($isi)?>" /></td>
+          <td><input name="isi" type="text" id="isi"  class="required kanan" title="Isi harus diisi" value="<?php  echo number_format($isi)?>" /></td>
         </tr>
         <tr>
           <td>HJE </td>
           <td>:</td>
-          <td><input name="hargaeceran" type="text" id="hargaeceran"  class="required kanan" title="Harga eceran harus diisi" value="<?=number_format($hargaeceran)?>" /></td>
+          <td><input name="hargaeceran" type="text" id="hargaeceran"  class="required kanan" title="Harga eceran harus diisi" value="<?php  echo number_format($hargaeceran)?>" /></td>
         </tr>
         <tr>
           <td>Harga Partai </td>
           <td>:</td>
-          <td><input name="hargapartai" type="text" id="hargapartai"  class="required kanan" title="Harga Partai harus diisi" value="<?=number_format($hargapartai)?>" /></td>
+          <td><input name="hargapartai" type="text" id="hargapartai"  class="required kanan" title="Harga Partai harus diisi" value="<?php  echo number_format($hargapartai)?>" /></td>
         </tr>
         <tr>
           <td>Tarif / Cukai </td>
           <td>:</td>
-          <td><input name="tarif" type="text" id="tarif"  class="" title="" value="<?=($tarif)?>" /></td>
+          <td><input name="tarif" type="text" id="tarif"  class="" title="" value="<?php  echo ($tarif)?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Group</span></td>
           <td>:</td>
-          <td><input type="text" name="group"  value="<?=($group)?>" /></td>
+          <td><input type="text" name="group"  value="<?php  echo ($group)?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Modal/Harga Beli </span></td>
           <td>:</td>
-          <td><input name="modal" type="text" class="required kanan" id="modal"  title="Modal harus diisi" value="<?=number_format($modal)?>" /></td>
+          <td><input name="modal" type="text" class="required kanan" id="modal"  title="Modal harus diisi" value="<?php  echo number_format($modal)?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Nomor Rekening </span></td>
           <td>:</td>
-          <td><input type="text" name="norek" id="norek" maxlength="10" size="10" readonly="true" class="" title="Harap Mengisi Nomor Rekening Dahulu" value="<?=$norek?>"/>
+          <td><input type="text" name="norek" id="norek" maxlength="10" size="10" readonly="true" class="" title="Harap Mengisi Nomor Rekening Dahulu" value="<?php  echo $norek?>"/>
             <a href="../../accounting/gli/daftar_rekp.php?width=400&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>   <div id="divAlert"></div>         </td>
         </tr>
         <tr>
           <td><span class="style6">Nama Rekening </span></td>
           <td>:</td>
-          <td><input type="text" name="namarekeninginduk" value="<?=$namarekeninginduk?>" readonly="true" size="40" class="" title="Nama Rekening Harus Terisi" /></td>
+          <td><input type="text" name="namarekeninginduk" value="<?php  echo $namarekeninginduk?>" readonly="true" size="40" class="" title="Nama Rekening Harus Terisi" /></td>
         </tr>
         <tr>
           <td>Divisi</td>
@@ -259,17 +259,17 @@ input.kanan{ text-align:right; }
         <tr>
           <td><span class="style6">Expedisi </span></td>
           <td>:</td>
-          <td><input type="text" name="expedisi" value="<?=$expedisi?>" class="" title="isi Expedisi" /></td>
+          <td><input type="text" name="expedisi" value="<?php  echo $expedisi?>" class="" title="isi Expedisi" /></td>
         </tr>
         <tr>
           <td><span class="style7"></span></td>
           <td><span class="style7"></span></td>
           <td><span class="style6">
-            <? if($_GET['id']<>""){ ?>
+            <?php  if($_GET['id']<>""){ ?>
             <input name="submit" type="submit" value="Update" />
-            <? } else { ?>
+            <?php  } else { ?>
             <input name="submit" type="submit" value="Simpan" />
-            <? } ?>
+            <?php  } ?>
             <input name="button" type="button" onClick="javascript:history.back()" value="Batal" />
           </span></td>
         </tr>

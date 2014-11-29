@@ -1,9 +1,9 @@
-<?
+<?php 
 //include("globalx.php");
 //error_reporting(0);
 //$dbh2=odbc_connect("dbabsensi","" ,"") or die("Tidak Terkoneksi ke Server Absensi");
 ?>
-<?PHP
+<?php 
 
 //$server = "192.168.200.252";
 $server = "JOGJAIDE-NN";

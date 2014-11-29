@@ -1,4 +1,4 @@
-<?php
+<?php 
  $conf_db = Array();
  $conf_db['db_host'] = 'localhost';
  $conf_db['db_type'] = 'mysqlt';

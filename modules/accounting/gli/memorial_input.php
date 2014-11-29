@@ -1,4 +1,4 @@
-<?php
+<?php 
 	include "../../../modules/core/include/globalx.php";
 	include "otentik_gli.php";
 
@@ -53,11 +53,11 @@ $(document).ready(function() {
 <link  href="../assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
 
 <form id="frmMemorial" action="akuntansi_submission.php" method="post" onsubmit="return validate(this);">
-<? if($_GET['id']==""){?>
+<?php  if($_GET['id']==""){?>
 	<input type="hidden" name="cmd" value="add_memorial">
-<? } else {?>
+<?php  } else {?>
 	<input type="hidden" name="cmd" value="upd_memorial">
-<? }?>
+<?php  }?>
 <script type="text/javascript">
 //<![CDATA[
 //<!--
@@ -131,13 +131,13 @@ return false;
 </select></td>
      	<td class="data_col_item" align="center"><select name="untush_id_1">
 <option value="">- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_1" id="no_referensi_1" size="18"  /></td>
      </tr>
@@ -159,13 +159,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_2">
 
 <option value="">- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_2" id="no_referensi_2" size="18"  /></td>
      </tr>
@@ -187,13 +187,13 @@ return false;
 </select></td>
      	<td class="data_col_item" align="center"><select name="untush_id_3">
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_3" value="" id="no_referensi_3" size="18"  /></td>
      </tr>
@@ -215,13 +215,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_4">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_4" value="" id="no_referensi_4" size="18"  /></td>
      </tr>
@@ -243,13 +243,13 @@ return false;
 </select></td>
      	<td class="data_col_item" align="center"><select name="untush_id_5">
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_5" value="" id="no_referensi_5" size="18"  /></td>
      </tr>
@@ -271,13 +271,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_6">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_6" value="" id="no_referensi_6" size="18"  /></td>
      </tr>
@@ -299,13 +299,13 @@ return false;
 </select></td>
      	<td class="data_col_item" align="center"><select name="untush_id_7">
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_7" value="" id="no_referensi_7" size="18"  /></td>
      </tr>
@@ -327,13 +327,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_8">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_8" value="" id="no_referensi_8" size="18"  /></td>
      </tr>
@@ -355,13 +355,13 @@ return false;
 </select></td>
      	<td class="data_col_item" align="center"><select name="untush_id_9">
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_9" value="" id="no_referensi_9" size="18"  /></td>
      </tr>
@@ -383,13 +383,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_10">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_10" value="" id="no_referensi_10" size="18"  /></td>
      </tr>
@@ -411,13 +411,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_11">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_11" value="" id="no_referensi_11" size="18"  /></td>
      </tr>
@@ -439,13 +439,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_12">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_12" value="" id="no_referensi_12" size="18"  /></td>
      </tr>
@@ -467,13 +467,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_13">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_13" value="" id="no_referensi_13" size="18"  /></td>
      </tr>
@@ -495,13 +495,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_14">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_14" value="" id="no_referensi_14" size="18"  /></td>
      </tr>
@@ -523,13 +523,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_15">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_15" value="" id="no_referensi_15" size="18"  /></td>
      </tr>
@@ -551,13 +551,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_16">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_16" value="" id="no_referensi_16" size="18"  /></td>
      </tr>
@@ -579,13 +579,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_17">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_17" value="" id="no_referensi_17" size="18"  /></td>
      </tr>
@@ -607,13 +607,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_18">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_18" value="" id="no_referensi_18" size="18"  /></td>
      </tr>
@@ -635,13 +635,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_19">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_19" value="" id="no_referensi_19" size="18"  /></td>
      </tr>
@@ -663,13 +663,13 @@ return false;
      	<td class="data_col_item" align="center"><select name="untush_id_20">
 
 <option value="" >- select -</option>
-<?php
+<?php 
 	$SQL = "select * From $database.divisi where status = 1";
 	$hasil = mysql_query($SQL);
 	while($baris = mysql_fetch_array($hasil)){
 ?>
-<option value="<?php echo $baris["subdiv"]; ?>"><?php echo $baris["namadiv"]; ?></option>
-<?php } ?>
+<option value="<?php  echo $baris["subdiv"]; ?>"><?php  echo $baris["namadiv"]; ?></option>
+<?php  } ?>
 </select></td>
      	<td class="data_col_item upperCase" align="center"><input type="text" name="no_referensi_20" value="" id="no_referensi_20" size="18"  /></td>
      </tr>

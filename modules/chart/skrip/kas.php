@@ -1,4 +1,4 @@
-<?php @session_start();
+<?php  @session_start();
 	include "../libchart/libchart/classes/libchart.php";
 
 	header("Content-type: image/png");

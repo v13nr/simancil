@@ -1,4 +1,4 @@
-<? include "otentik_inv.php"; ?><head>
+<?php  include "otentik_inv.php"; ?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
@@ -130,11 +130,11 @@ td { padding: 5px; }
 }
 input.kanan{ text-align:right; }
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
-  <? $SQL = "select * from konsumen WHERE status = 1";
+  <?php  $SQL = "select * from konsumen WHERE status = 1";
 	 	if ($_GET['id']<>"")
 		{ 
 			$SQL = $SQL." AND kode = ". $_GET['id'];
@@ -169,51 +169,51 @@ input.kanan{ text-align:right; }
       <tr>
         <td colspan="11">
 		<form method="get" action="" id="pegForm">
-  <input type="hidden" name="mn" value="<?=$_GET['mn']?>" />
+  <input type="hidden" name="mn" value="<?php  echo $_GET['mn']?>" />
   <input type="hidden" name="tampil" value="1" />
 		<table width="100%" border="1">
           <tr>
             <td width="11%">Nama Barang                </td>
             <td width="15%"><select name="brg" id="brg" class="required" title="*">
               <option value="">-Pilih-</option>
-              <?
+              <?php 
 				$SQL = "SELECT * FROM stock WHERE status = 1";
 				$hasil = mysql_query($SQL, $dbh_jogjaide);
 				while($baris = mysql_fetch_array($hasil)){
 			?>
-              <option value="<?=$baris['kodebrg']?>" <? if($_GET['brg']==$baris['kodebrg']){?>selected="selected"<? }?>>
-              <?=auto($baris['kodebrg'])?>
+              <option value="<?php  echo $baris['kodebrg']?>" <?php  if($_GET['brg']==$baris['kodebrg']){?>selected="selected"<?php  }?>>
+              <?php  echo auto($baris['kodebrg'])?>
                 -
-  <?=$baris['namabrg']?>
-  <?=$baris['namarek']?>
+  <?php  echo $baris['namabrg']?>
+  <?php  echo $baris['namarek']?>
               </option>
-              <? } ?>
+              <?php  } ?>
             </select></td>
             <td width="13%"><select name="slBulan" class="required" title="*">
               <option value="">-Bulan-</option>
-              <option value="01" <? if($_GET['slBulan']=="01"){?> selected="selected" <? }?>>Januari</option>
-              <option value="02" <? if($_GET['slBulan']=="02"){?> selected="selected" <? }?>>Februari</option>
-              <option value="03" <? if($_GET['slBulan']=="03"){?> selected="selected" <? }?>>Maret</option>
-              <option value="04" <? if($_GET['slBulan']=="04"){?> selected="selected" <? }?>>April</option>
-              <option value="05" <? if($_GET['slBulan']=="05"){?> selected="selected" <? }?>>Mei</option>
-              <option value="06" <? if($_GET['slBulan']=="06"){?> selected="selected" <? }?>>Juni</option>
-              <option value="07" <? if($_GET['slBulan']=="07"){?> selected="selected" <? }?>>Juli</option>
-              <option value="08" <? if($_GET['slBulan']=="08"){?> selected="selected" <? }?>>Agustus</option>
-              <option value="09" <? if($_GET['slBulan']=="09"){?> selected="selected" <? }?>>September</option>
-              <option value="10" <? if($_GET['slBulan']=="10"){?> selected="selected" <? }?>>Oktober</option>
-              <option value="11" <? if($_GET['slBulan']=="11"){?> selected="selected" <? }?>>September</option>
-              <option value="12" <? if($_GET['slBulan']=="12"){?> selected="selected" <? }?>>Desember</option>
+              <option value="01" <?php  if($_GET['slBulan']=="01"){?> selected="selected" <?php  }?>>Januari</option>
+              <option value="02" <?php  if($_GET['slBulan']=="02"){?> selected="selected" <?php  }?>>Februari</option>
+              <option value="03" <?php  if($_GET['slBulan']=="03"){?> selected="selected" <?php  }?>>Maret</option>
+              <option value="04" <?php  if($_GET['slBulan']=="04"){?> selected="selected" <?php  }?>>April</option>
+              <option value="05" <?php  if($_GET['slBulan']=="05"){?> selected="selected" <?php  }?>>Mei</option>
+              <option value="06" <?php  if($_GET['slBulan']=="06"){?> selected="selected" <?php  }?>>Juni</option>
+              <option value="07" <?php  if($_GET['slBulan']=="07"){?> selected="selected" <?php  }?>>Juli</option>
+              <option value="08" <?php  if($_GET['slBulan']=="08"){?> selected="selected" <?php  }?>>Agustus</option>
+              <option value="09" <?php  if($_GET['slBulan']=="09"){?> selected="selected" <?php  }?>>September</option>
+              <option value="10" <?php  if($_GET['slBulan']=="10"){?> selected="selected" <?php  }?>>Oktober</option>
+              <option value="11" <?php  if($_GET['slBulan']=="11"){?> selected="selected" <?php  }?>>September</option>
+              <option value="12" <?php  if($_GET['slBulan']=="12"){?> selected="selected" <?php  }?>>Desember</option>
             </select></td>
             <td width="18%"><select name="slTahun" class="required" title="*">
               <option value="">-Tahun-</option>
-              <?
+              <?php 
 				$hariini = getdate(); 										
 				$taun = $hariini['year']+1; 
 				for ($yz=0;$yz<5;$yz++){ ?>
-              <option  value="<?=($taun-$yz)?>" <? if ($_GET['slTahun']==($taun-$yz)) {?> selected="selected" <? }else {}?>>
-              <?=($taun-$yz) ?>
+              <option  value="<?php  echo ($taun-$yz)?>" <?php  if ($_GET['slTahun']==($taun-$yz)) {?> selected="selected" <?php  }else {}?>>
+              <?php  echo ($taun-$yz) ?>
               </option>
-              <? } ?>
+              <?php  } ?>
             </select></td>
             <td width="43%"><input name="submit" type="submit" value="Tampilkan"></td>
           </tr>
@@ -237,7 +237,7 @@ input.kanan{ text-align:right; }
         <td>Harga Pokok Per Unit </td>
         <td>Jumlah</td>
       </tr>
-	  <?
+	  <?php 
 	  		if($_GET['tampil']==1){
 			//AWAL
 			$i++;
@@ -258,31 +258,31 @@ input.kanan{ text-align:right; }
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td align="center"><?	
+        <td align="center"><?php 	
 							//echo $SQLawal;		
 							echo number_format($saldoawal);
 							
 							?></td>
-        <td align="center"><?	
+        <td align="center"><?php 	
 							//echo $SQLb;		
 							echo number_format($hp[$i]);
 							
 							?></td>
-        <td align="center"><?	
+        <td align="center"><?php 	
 							//echo $SQLb;		
 							echo number_format($jumlahawal);
 							
 							?></td>
       </tr>
 	  
-	  <?
+	  <?php 
 	  	
 	  		$SQL = "SELECT DISTINCT tgl FROM mutasi WHERE MONTH(tgl) = '".$_GET['slBulan']."' AND YEAR(tgl) = '".$_GET['slTahun']."' AND kode = '".$_GET['brg']."' ORDER BY tgl ASC";
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 	  ?>
       <tr>
-        <td align="center"><?=baliktglindo($baris['tgl'])?></td>
+        <td align="center"><?php  echo baliktglindo($baris['tgl'])?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -294,7 +294,7 @@ input.kanan{ text-align:right; }
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
-	  <?
+	  <?php 
 	  		//mutasi 
 			$SQLa = "SELECT * FROM mutasi WHERE tgl = '".$baris['tgl']."' AND status = 1 ORDER by tgl ASC, id ASC";
 			$hasila = mysql_query($SQLa);
@@ -307,30 +307,30 @@ input.kanan{ text-align:right; }
 	  ?>
 	  <tr>
         <td align="center">&nbsp;</td>
-        <td align="center"><?=$nota?></td>
-        <td align="center"><?=number_format($barisa['qtyin'])?></td>
-        <td align="center"><?
+        <td align="center"><?php  echo $nota?></td>
+        <td align="center"><?php  echo number_format($barisa['qtyin'])?></td>
+        <td align="center"><?php 
 								if($barisa['model']==""){
 									echo number_format($barisa['harga']);
 								}
 								?></td>
-        <td align="center"><?
+        <td align="center"><?php 
 								if($barisa['model']==""){
 									echo number_format($barisa['qtyin'] * $barisa['harga']);
 								}
 								?></td>
-        <td align="center"><?
+        <td align="center"><?php 
 							
 							echo number_format($barisa['qtyout']);
 							
 							?></td>
-        <td align="center"><?
+        <td align="center"><?php 
 								if($barisa['model']=="INV"){
 									
 									echo number_format($hp[$i]);
 								}
 								?></td>
-        <td align="center"><?
+        <td align="center"><?php 
 								if($barisa['model']=="INV"){
 									echo number_format($barisa['qtyout'] * $hp[$i]);
 								}
@@ -339,7 +339,7 @@ input.kanan{ text-align:right; }
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
-	  <?
+	  <?php 
 	  		//saldo  
 			$i++;
 			$SQLb = "SELECT SUM(qtyin)-SUM(qtyout) AS saldo, SUM(debet-kredit) AS jumlah  FROM mutasi WHERE tgl BETWEEN '".$_GET['slTahun']."-".$_GET['slBulan']."-01' AND '".$baris['tgl']."'";
@@ -358,23 +358,23 @@ input.kanan{ text-align:right; }
         <td align="center">&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td align="center"><?	
+        <td align="center"><?php 	
 							//echo $SQLb;		
 							echo number_format($saldo);
 							
 							?></td>
-        <td align="center"><?	
+        <td align="center"><?php 	
 							//echo $SQLb;		
 							echo number_format($hp[$i]);
 							
 							?></td>
-        <td align="center"><?	
+        <td align="center"><?php 	
 							//echo $SQLb;		
 							echo number_format($jumlah);
 							
 							?></td>
       </tr>
-	  <?			
+	  <?php 			
 	  			} // end while mutasi
 	  		} // end while distinct tgl
 	  	} // end if tampil

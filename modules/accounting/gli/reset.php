@@ -1,4 +1,4 @@
-<?php
+<?php 
 include ("../include/globalx.php");	
 
 $tahunx = date('Y');

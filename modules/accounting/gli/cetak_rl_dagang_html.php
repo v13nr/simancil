@@ -1,6 +1,6 @@
-<? session_start(); ?>
+<?php  session_start(); ?>
 
-<?php
+<?php 
 include("../include/globalx.php");
 require_once "../include/functions.php";
 include("../include/infoclient.php");
@@ -29,7 +29,7 @@ function viksel(delUrl) {
     <td><div align="center">Kredit</div></td>
     <td><div align="center">Saldo</div></td>
   </tr>
-  <?php
+  <?php 
   	
 	$a = session_id();
 
@@ -39,32 +39,32 @@ function viksel(delUrl) {
 	$hasil = mysql_query($SQL, $dbh_jogjaide);
 	while($baris = mysql_fetch_array($hasil)){
   ?>
-  <? if(substr($baris['norek'],-4)=="0000"){ ?>
+  <?php  if(substr($baris['norek'],-4)=="0000"){ ?>
   <tr>
     <td align="center">&nbsp;</td>
-    <td><?=($baris['namarek'])?></td>
+    <td><?php  echo ($baris['namarek'])?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
-  <? } else { ?>
+  <?php  } else { ?>
   
 	  <tr>
-		<td align="center"><?=noreknn($baris['norek'])?></td>
-		<td><?=($baris['namarek'])?></td>
-		<td><div align="right"><?php echo number_format($baris['saldoawal'],2,',','.'); $sa_passiva = $sa_passiva + $baris['saldoawal'];?></div></td>
+		<td align="center"><?php  echo noreknn($baris['norek'])?></td>
+		<td><?php  echo ($baris['namarek'])?></td>
+		<td><div align="right"><?php  echo number_format($baris['saldoawal'],2,',','.'); $sa_passiva = $sa_passiva + $baris['saldoawal'];?></div></td>
 		<td><div align="right">
-		  <?php echo number_format($baris['debet'],2,',','.'); $d_passiva = $d_passiva +  $baris['debet'];?>
+		  <?php  echo number_format($baris['debet'],2,',','.'); $d_passiva = $d_passiva +  $baris['debet'];?>
 	    </div></td>
 		<td><div align="right">
-		  <?php echo number_format($baris['kredit'],2,',','.'); $k_passiva = $k_passiva + $baris['kredit'];?>
+		  <?php  echo number_format($baris['kredit'],2,',','.'); $k_passiva = $k_passiva + $baris['kredit'];?>
 		</div></td>
 		<td><div align="right">
-		  <?php echo minuss($baris['saldoawal']-$baris['debet']+$baris['kredit']); $sr_passiva = $sr_passiva + ($baris['saldoawal']-$baris['debet']+$baris['kredit']);?>
+		  <?php  echo minuss($baris['saldoawal']-$baris['debet']+$baris['kredit']); $sr_passiva = $sr_passiva + ($baris['saldoawal']-$baris['debet']+$baris['kredit']);?>
 		</div></td>
 	  </tr>
-  <?php } } ?>
+  <?php  } } ?>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -73,7 +73,7 @@ function viksel(delUrl) {
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
-  <?php $ketrl = "";
+  <?php  $ketrl = "";
 if(substr($sr_passiva,0,1) == "0"){
 	$ketrl = "NIHIL";
 }
@@ -86,10 +86,10 @@ else{
 ?>
   <tr>
     <td><div align="right"></div></td>
-    <td><div align="right"><?php echo $ketrl; ?></div></td>
-    <td><div align="right"><?php echo number_format($sa_passiva,2,'.',',');?></div></td>
-    <td><div align="right"><?php echo number_format($d_passiva,2,'.',',');?></div></td>
-    <td><div align="right"><?php echo number_format($k_passiva,2,'.',',');?></div></td>
-    <td><div align="right"><?php echo number_format($sr_passiva,2,'.',',');?></div></td>
+    <td><div align="right"><?php  echo $ketrl; ?></div></td>
+    <td><div align="right"><?php  echo number_format($sa_passiva,2,'.',',');?></div></td>
+    <td><div align="right"><?php  echo number_format($d_passiva,2,'.',',');?></div></td>
+    <td><div align="right"><?php  echo number_format($k_passiva,2,'.',',');?></div></td>
+    <td><div align="right"><?php  echo number_format($sr_passiva,2,'.',',');?></div></td>
   </tr>
 </table>

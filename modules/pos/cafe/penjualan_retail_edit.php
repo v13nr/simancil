@@ -1,6 +1,6 @@
-<? @session_start(); ?>
-<? include ("../include/functions.php");?>
-<? include ("../include/globalx.php");?>
+<?php  @session_start(); ?>
+<?php  include ("../include/functions.php");?>
+<?php  include ("../include/globalx.php");?>
 <style type="text/css">
 <!--
 body {
@@ -88,7 +88,7 @@ $().ready(function() {
 	}
 	//nilaix = $('#combobox_carabayar option:selected').val();
 	//nilaix = $('#combobox_carabayar').val();
-	nilaix = "<?=$_SESSION["sess_tipe"]?>";
+	nilaix = "<?php  echo $_SESSION["sess_tipe"]?>";
 
 	$("#ppk").autocomplete("ajax_auto_barang.php?divisi="+nilaix, {
 		width: 300,
@@ -405,7 +405,7 @@ function hitung(){
 	<table width="1140" border="0">
   <tr>
     <td width="32"><img src="../images/calendar.png" width="32" height="32" /></td>
-    <td width="1090"><span class="style1">PENJUALAN / BARANG KELUAR : <?=$_GET['pesan_id']?> </span>
+    <td width="1090"><span class="style1">PENJUALAN / BARANG KELUAR : <?php  echo $_GET['pesan_id']?> </span>
       <hr /></td>
   </tr>
   <tr>
@@ -415,29 +415,29 @@ function hitung(){
 	<table width="663" class="x1">
 	<form name="frmijin" id="frmijin" method="post" action="submission_cafe.php">
           <input type="hidden" name="cmd" value="add_jualRetail" />
-		  <input type="hidden" name="nobukti" value="<?=$_GET['nobukti']?>" />
-		  <input type="hidden" name="namasupp" value="<?=$_GET['namasupp']?>" id="namasupp" />
+		  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
+		  <input type="hidden" name="namasupp" value="<?php  echo $_GET['namasupp']?>" id="namasupp" />
 		  <input type="hidden" name="namabrg" value="" id="namabrg" />
-		  <input type="hidden" name="nomor" value="<?=$_GET['nomor']?>" />
+		  <input type="hidden" name="nomor" value="<?php  echo $_GET['nomor']?>" />
       <tr>
         <td width="143">No. Faktur </td>
-        <td width="205"><input type="text" name="nonota" value="INV/<?=nobukti($_GET['nomor'])?>" readonly="true" /></td>
+        <td width="205"><input type="text" name="nonota" value="INV/<?php  echo nobukti($_GET['nomor'])?>" readonly="true" /></td>
         <td width="107">Tanggal</td>
-        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?=$_GET['tgl_transaksi']?>" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?> />
+        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?php  echo $_GET['tgl_transaksi']?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?> />
           <a href="javascript:showCalendar('tgl_transaksi')"></a></td>
       </tr>
     </table>
 	<br />
 	<table border="1" a style="border-collapse:collapse" lign="left" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
-      <? if ($_GET['id']<>"") {?>
+      <?php  if ($_GET['id']<>"") {?>
       <tr>
         <td background="../images/impactg.png" colspan="12" align="center"><font color="white"><b>Edit Transaksi </b></font></td>
       </tr>
-      <? } else { ?>
+      <?php  } else { ?>
       <tr>
         <td background="../images/impactg.png" colspan="12" align="center"><strong><font color="white"> TRANSAKSI </font></strong></td>
       </tr>
-      <? } ?>
+      <?php  } ?>
       <tr bgcolor="#FFCC00">
         <td width="34" align="center"><strong>No</strong></td>
         <td align="center">Auto Complete / Barcode </td>
@@ -446,15 +446,15 @@ function hitung(){
         <td align="center"><strong>Harga </strong></strong></td>
 		<td align="center"><strong>Discount(%)</strong></td>
 		<td align="center"><strong>Jumlah</strong></td>
-        <? if ($_GET['id']<>"") { ?>
+        <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="58" align="center"><strong>Edit</strong></td>
         <td width="58" align="center"><b>Hapus</b></td>
-        <? } ?>
+        <?php  } ?>
       </tr>
-      <? if ($_GET['id']=="") { ?>
+      <?php  if ($_GET['id']=="") { ?>
       <tr bgcolor="yellow">
         
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
@@ -463,13 +463,13 @@ function hitung(){
           <td align="center">
 		  <select name="barang" id="barang">
 		  	<option value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-		  <?php
+		  <?php 
 		  		$sql = "select * from $database.stock";
 				$hasil = mysql_query($sql, $dbh_jogjaide);
 				while($baris=mysql_fetch_array($hasil)){
 		  ?>
-		  	<option value="<?=$baris["kodebrg"]?>"><?=$baris["namabrg"]?></option>
-			<? }?>
+		  	<option value="<?php  echo $baris["kodebrg"]?>"><?php  echo $baris["namabrg"]?></option>
+			<?php  }?>
 		  </select>
 		  </td>
           <td align="center"><input type="text" name="qty" id="qty" size="5" value="1" class="required kanan" title="*" onKeyUp="hitung()" /></td>
@@ -480,8 +480,8 @@ function hitung(){
           <td align="center" colspan="4"><input name="image2" type="image" src="../images/add.gif" border="0" /></td>
         </form>
       </tr>
-      <? } ?>
-      <?
+      <?php  } ?>
+      <?php 
 	  	
 		$SQLj = "SELECT * FROM $database.mutasi WHERE status = 1 AND model = 'INV' AND nomor = '".$_GET['nomor']."'";
 		//echo $SQLj; 		
@@ -490,28 +490,28 @@ function hitung(){
 		if (mysql_num_rows($hasilj) > 0) { 
 		while ($row=mysql_fetch_array($hasilj)) { 
 	?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<? } else {?> else="else" bgcolor="#CCCCCC"<? }?>>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<?php  } else {?> else="else" bgcolor="#CCCCCC"<?php  }?>>
         
-          <td align="center"><?=$nRecord?></td>
-          <td align="left"><?=$row['kodebrg']?></td>
-          <td align="left"><?=$row['namabrg']?></td>
-          <td align="right"><input type="text" class="kanan" value="<?=$row['qtyout']?>" name="<?=$row['id']?>" size="5"  onBlur="hitungUlang(this.value+'-'+this.name+'-'+<?=$row['kodebrg']?>+'-'+<?=$_GET['nomor']?>+'-'+<?=$row['harga']?>);" onfocus= "this.select()"/></td>
-          <td align="right"><?=number_format($row["harga"],2,'.',',');?></td>
-		  <td align="right"><?=$row["disc"];?></td>
-		  <td align="right"><?=number_format(($row["harga"] * $row["qtyout"])-($row["harga"] * $row["qtyout"]*$row["disc"]/100),2,'.',',')?></td>
-		  <? $t_jumlah = $t_jumlah + (($row["harga"] * $row["qtyout"])-($row["harga"] * $row["qtyout"]*$row["disc"]/100)); ?>
-		  <? $t_debet = $t_debet + $row["kredit"]; ?>
-          <? if ($_GET['id']<>"") { ?>
+          <td align="center"><?php  echo $nRecord?></td>
+          <td align="left"><?php  echo $row['kodebrg']?></td>
+          <td align="left"><?php  echo $row['namabrg']?></td>
+          <td align="right"><input type="text" class="kanan" value="<?php  echo $row['qtyout']?>" name="<?php  echo $row['id']?>" size="5"  onBlur="hitungUlang(this.value+'-'+this.name+'-'+<?php  echo $row['kodebrg']?>+'-'+<?php  echo $_GET['nomor']?>+'-'+<?php  echo $row['harga']?>);" onfocus= "this.select()"/></td>
+          <td align="right"><?php  echo number_format($row["harga"],2,'.',',');?></td>
+		  <td align="right"><?php  echo $row["disc"];?></td>
+		  <td align="right"><?php  echo number_format(($row["harga"] * $row["qtyout"])-($row["harga"] * $row["qtyout"]*$row["disc"]/100),2,'.',',')?></td>
+		  <?php  $t_jumlah = $t_jumlah + (($row["harga"] * $row["qtyout"])-($row["harga"] * $row["qtyout"]*$row["disc"]/100)); ?>
+		  <?php  $t_debet = $t_debet + $row["kredit"]; ?>
+          <?php  if ($_GET['id']<>"") { ?>
           <td align="center"><input name="image" type="image" src="../images/approve.gif" border="0" /></td>
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
+          <?php  } else { ?>
           <td align="center"><a href=""></a></td>
-          <td align="center"><a href="javascript:confirmDelete('submission_cafe.php?id=<?=$row["id"]?>&cmd=del_jualRetail&nonota=<?=$_GET['nonota']?>&supp=<?=$_GET['supp']?>&alamat=<?=$_GET['alamat']?>&kota=<?=$_GET['kota']?>&telp=<?=$_GET['telp']?>&tgl_transaksi=<?=$_GET['tgl_transaksi']?>&saldo=<?=$_GET['saldo']?>&rek=<?=$_GET['rek']?>&namarek=<?=$_GET['namarek']?>&nomor=<?=$_GET['nomor']?>&namasupp=<?=$_GET['namasupp']?>&brg=<?=$row['kodebrg']?>&qtyout=<?=$row['qtyout']?>&netto=<?=$row["kredit"]?>&meja=<?=$row["meja_id"]?>&jumlah=<?=($row["harga"] * $row["qtyout"])-($row["harga"] * $row["qtyout"]*$row["disc"]/100)?>')">
+          <td align="center"><a href="javascript:confirmDelete('submission_cafe.php?id=<?php  echo $row["id"]?>&cmd=del_jualRetail&nonota=<?php  echo $_GET['nonota']?>&supp=<?php  echo $_GET['supp']?>&alamat=<?php  echo $_GET['alamat']?>&kota=<?php  echo $_GET['kota']?>&telp=<?php  echo $_GET['telp']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&saldo=<?php  echo $_GET['saldo']?>&rek=<?php  echo $_GET['rek']?>&namarek=<?php  echo $_GET['namarek']?>&nomor=<?php  echo $_GET['nomor']?>&namasupp=<?php  echo $_GET['namasupp']?>&brg=<?php  echo $row['kodebrg']?>&qtyout=<?php  echo $row['qtyout']?>&netto=<?php  echo $row["kredit"]?>&meja=<?php  echo $row["meja_id"]?>&jumlah=<?php  echo ($row["harga"] * $row["qtyout"])-($row["harga"] * $row["qtyout"]*$row["disc"]/100)?>')">
 		  <img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
-          <? } ?>
+          <?php  } ?>
         </form>
       </tr>
-      <?  
+      <?php   
 		 $nRecord = $nRecord + 1;
 		} ?>
 		<tr>
@@ -523,21 +523,21 @@ function hitung(){
 	      <td align="center">&nbsp;</td>
 	      
 	      <td align="center">&nbsp;</td>
-		  <td align="right"><h3><?=number_format($t_jumlah,2,'.',',');?></h3></td>
+		  <td align="right"><h3><?php  echo number_format($t_jumlah,2,'.',',');?></h3></td>
 	      <td align="right">&nbsp;</td>
 	      <td align="center">&nbsp;</td>
 		</tr>
 		<tr>
 			<td colspan="20" align="center">
-			<a href="popup_bayar.php?width=500&height=300&nonota=<?=$_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="penjualan_retail.php">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
+			<a href="popup_bayar.php?width=500&height=300&nonota=<?php  echo $_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="penjualan_retail.php">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
 		  </td>
 		</tr>
-		<?
+		<?php 
 	} else { ?>
       <tr>
         <td align="center" colspan="12"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
-      <?  } ?>
+      <?php   } ?>
     </table>	
 	<p>&nbsp;</p></td>
   </tr>

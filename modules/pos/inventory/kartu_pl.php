@@ -1,6 +1,6 @@
-<? session_start();
+<?php  session_start();
 include "otentik_inv.php"; ?>
-<? 
+<?php  
 include ("../include/functions.php");
 
 ?>
@@ -36,14 +36,14 @@ body {
 
 <body>
 <div align="center">
-<?
+<?php 
 	$SQL = "select * FROM konsumen where kode = '".$_GET['id']."'" ;
 	$hasil = mysql_query($SQL, $dbh_jogjaide);
 	$baris = mysql_fetch_array($hasil)
 ?>
 <div align="center">
 	KARTU STOCK <BR />
-	<?=$baris['nama'];?><br />
+	<?php  echo $baris['nama'];?><br />
 	
 	<br />
 </div>
@@ -70,7 +70,7 @@ body {
 	  <td width="85" class="style3"><div align="center" class="style4">User </div></td>
      
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM mutasi where kode = '".$_GET['id']."'" ;
 		if($_GET['c_no']<>""){
 			$SQL = $SQL . " AND noinduk LIKE '%".$_GET['c_no']."%'";
@@ -88,57 +88,57 @@ body {
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=baliktglindo($row['tgl'])?></td>
-	  <?
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo baliktglindo($row['tgl'])?></td>
+	  <?php 
 	  	$nota = $row['nota'];
 	  	if($row['model']=="INV"){
 			$nota = "INV/".$row['sub']."/".nobukti($row['nomor']);
 		}
 	  ?>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=$nota?></td>
-      <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="left"><?=$row['nobukti']?></td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo $nota?></td>
+      <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="left"><?php  echo $row['nobukti']?></td>
 	  
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=auto($row['kodebrg'])?></td>
-	  <td class="style3 <? if($row['status']=="0"){?> mystri <? }?>" align="center"><?=$row['namabrg']?></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['qtyin'],2,'.',',')?>
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo auto($row['kodebrg'])?></td>
+	  <td class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>" align="center"><?php  echo $row['namabrg']?></td>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['qtyin'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['qtyout'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['qtyout'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="center">
-	    <?=$row['satuan']?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="center">
+	    <?php  echo $row['satuan']?>
 	    </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['disc'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['disc'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['disc2'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['disc2'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['disc3'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['disc3'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['discrp'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['discrp'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['harga'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['harga'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['debet'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['debet'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="right">
-	    <?=number_format($row['kredit'],2,'.',',')?>
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="right">
+	    <?php  echo number_format($row['kredit'],2,'.',',')?>
 	  </div></td>
-	  <td width="85" class="style3 <? if($row['status']=="0"){?> mystri <? }?>"><div align="center">
-	  <?
+	  <td width="85" class="style3 <?php  if($row['status']=="0"){?> mystri <?php  }?>"><div align="center">
+	  <?php 
 			$SQLuser = "SELECT nama FROM ml_user WHERE id = ".$row['user_id'];
 			$hasiluser= mysql_query($SQLuser);
 			$barisuser = mysql_fetch_array($hasiluser);
@@ -146,14 +146,14 @@ body {
 		?>
 	   </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="27"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
   </table>
   </form>
 </div>

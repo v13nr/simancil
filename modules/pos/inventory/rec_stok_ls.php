@@ -1,4 +1,4 @@
-<?php
+<?php 
 	@session_start();
 	//require_once('../../../../config_sistem.php');
 	//require_once('otentik_gli_nonBox.php');
@@ -30,24 +30,24 @@
 						</thead>
 						<tbody>
 							<form action="modules/accounting/gli/submission_gli.php" method="post" id="formRekening">
-								<input type="hidden" name="id" value="<?php echo $id;?>">
+								<input type="hidden" name="id" value="<?php  echo $id;?>">
 								<input type="hidden" name="cmd" value="upd_rekening" />
 								<tr align="center">
 									<td><img src="images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
-									<td><input type="text" name="norek" maxlength="4" value="<?php echo $data['norek']; ?>"></td>
+									<td><input type="text" name="norek" maxlength="4" value="<?php  echo $data['norek']; ?>"></td>
 									<td>
-										<input type="text" name="namarek" value="<?php echo $data['namarek']; ?>" style="width: 300px;">
+										<input type="text" name="namarek" value="<?php  echo $data['namarek']; ?>" style="width: 300px;">
 									</td>
 									<td>
 										<select name="tipe" class="tes">
-											<option value="A" <?php echo $data['tipe']=='A' ? 'selected' : ''; ?>>A</option>
-											<option value="P" <?php echo $data['tipe']=='P' ? 'selected' : ''; ?>>P</option>
-											<option value="R" <?php echo $data['tipe']=='R' ? 'selected' : ''; ?>>R</option>
-											<option value="R2" <?php echo $data['tipe']=='R2' ? 'selected' : ''; ?>>R2</option>
+											<option value="A" <?php  echo $data['tipe']=='A' ? 'selected' : ''; ?>>A</option>
+											<option value="P" <?php  echo $data['tipe']=='P' ? 'selected' : ''; ?>>P</option>
+											<option value="R" <?php  echo $data['tipe']=='R' ? 'selected' : ''; ?>>R</option>
+											<option value="R2" <?php  echo $data['tipe']=='R2' ? 'selected' : ''; ?>>R2</option>
 										</select>
 									</td>
 									<td><input type="image" src="resources/images/save.png" title="Simpan" /></td>
-									<td><a href="index.php?mn=rekening_ls&getmodule=<?php echo base64_encode('accounting/gli/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
+									<td><a href="index.php?mn=rekening_ls&getmodule=<?php  echo base64_encode('accounting/gli/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
 								</tr>							
 							</form>
 						</tbody>
@@ -56,7 +56,7 @@
 			</div>
 			<!-- end table -->
 		</div>
-<?php	
+<?php 	
 	}
 	else{	
 		$idDivisi = $_SESSION["sess_tipe"];
@@ -88,7 +88,7 @@
 						<form action="index.php" method="get">
 							<div class="input">
 								<input type="hidden" name="mn" value="rec_stok_ls">
-								<input type="hidden" name="getmodule" value="<?php echo base64_encode('pos/inventory/') ?>">
+								<input type="hidden" name="getmodule" value="<?php  echo base64_encode('pos/inventory/') ?>">
 								<input type="text" id="search" name="search" />
 							</div>
 							<div class="button">
@@ -112,49 +112,49 @@
 							</tr>
 						</thead>
 						<tbody>
-						<?php
+						<?php 
 								if($jumlah == 0){
 							?>
 									<tr>
 										<td colspan="6" style="color:#f00; text-align:center;">Data Recycle Kosong</td>
 									</tr>
-							<?
+							<?php 
 								}
 								else{
 									$no = $offset+1;
 									while($data = mysql_fetch_array($datas)){
 							?>
 										<tr align="center">
-											<td><?php echo $no; ?></td>
-											<td><span  style="display:none" ><?php echo $data['kodebrg']; ?></span><?php echo $data['kodebrg']; ?></td>
-											<td align="left"><?php echo $data['namabrg']; ?></td>
-											<td><a href="index.php?mn=rekening_ls&getmodule=<?php echo base64_encode('accounting/gli/');?>&amp;id=<?php echo $data['norek']; ?>" title="Edit"><img style="display:none" src="resources/images/edit.png" /></a></td>
-											<td><a href="javascript:confirmDelete('modules/accounting/gli/submission_gli.php?id=<?php echo $data['norek']; ?>&amp;cmd=del_rekening')" title="Hapus"><img style="display:none"  src="resources/images/delete.gif" /></a></td>
+											<td><?php  echo $no; ?></td>
+											<td><span  style="display:none" ><?php  echo $data['kodebrg']; ?></span><?php  echo $data['kodebrg']; ?></td>
+											<td align="left"><?php  echo $data['namabrg']; ?></td>
+											<td><a href="index.php?mn=rekening_ls&getmodule=<?php  echo base64_encode('accounting/gli/');?>&amp;id=<?php  echo $data['norek']; ?>" title="Edit"><img style="display:none" src="resources/images/edit.png" /></a></td>
+											<td><a href="javascript:confirmDelete('modules/accounting/gli/submission_gli.php?id=<?php  echo $data['norek']; ?>&amp;cmd=del_rekening')" title="Hapus"><img style="display:none"  src="resources/images/delete.gif" /></a></td>
 										</tr>						
-							<?php
+							<?php 
 										$no++;
 									}
 								}
 							?>
 						</tbody>
 					</table>
-					<?php
+					<?php 
 						if($jumlah > 0){
 					?>
 							<!-- pagination -->
 							<div class="pagination pagination-left">
 								<div class="results">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch']))
 											$rekening = mysql_query("SELECT kodebrg, namabrg FROM $database.stock WHERE (namabrg LIKE '%$search%' OR kodebrg LIKE '%$search%' ) AND status = 0 and divisi = '$idDivisi'");
 										else
 											$rekening = mysql_query("SELECT kodebrg, namabrg FROM $database.stock WHERE divisi = '$idDivisi' and status = 0");	
 										$jumlah_rekening = mysql_num_rows($rekening);
 									?>
-									<span>showing results <?php echo ++$offset.'-'.--$no; ?> of <?php echo $jumlah_rekening; ?></span>
+									<span>showing results <?php  echo ++$offset.'-'.--$no; ?> of <?php  echo $jumlah_rekening; ?></span>
 								</div>
 								<ul class="pager">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch'])){
 											$query = "SELECT COUNT(*) AS rs_Jumlah FROM stock WHERE namabrg LIKE '%$search%' and status = 0 AND divisi = '$idDivisi'";
 											//$link = 
@@ -190,14 +190,14 @@
 								</ul>
 							</div>
 							<!-- end pagination -->			
-					<?php
+					<?php 
 						}
 					?>
 				</div>
 			</div>
 			<!-- end table -->
 		</div>
-<?php
+<?php 
 	}
 ?>
 <!-- scripts (jquery) -->

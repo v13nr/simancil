@@ -52,15 +52,15 @@ $(document).ready(function() {
 	<tr bgcolor="#FFFFCC">
 		<td width="81">Periode</td>
 	  <td width="171"><select name="bulan"  id="dynamic_select" class="required">
-        <?php
+        <?php 
 						$tahun = $_POST["tahun"];
 						$tahunx = date('Y');
 						//echo $tahun;
 						for ($i=2010; $i<=$tahunx+1;$i++){
 							for ($j=1; $j<=12;$j++){
 					?>
-        <option value="<?php echo $j.'-'.$i;?>" <?php if($_GET["bulan"]==$j.'-'.$i){ echo 'selected="selected"';} ?>><?php echo $j.'-'.$i;?></option>
-        <?php } 
+        <option value="<?php  echo $j.'-'.$i;?>" <?php  if($_GET["bulan"]==$j.'-'.$i){ echo 'selected="selected"';} ?>><?php  echo $j.'-'.$i;?></option>
+        <?php  } 
 		  } ?>
       </select>
       <a href="javascript:showCalendar('tgl_awal')"></a></td>

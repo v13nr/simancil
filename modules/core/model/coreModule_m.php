@@ -1,4 +1,4 @@
-<?php
+<?php 
  class CoreModule extends msDB {
    
    private $grid; 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  *	Copyright (C) PT. Netsindo Sentra Computama
  *  Project Manager : Andi Micro
@@ -7,7 +7,7 @@
  *	Date: April 2014
 **/
 ?>
-<? 
+<?php  
 	if (!isset($_SESSION['is_login'])) { exit; }
 	include "../include/otentik_admin.php"; 
 	
@@ -31,11 +31,11 @@
 
 $(document).ready(function() {
 	
-<? if($_GET['id']==""){ ?>	
+<?php  if($_GET['id']==""){ ?>	
     $("#username").val('');
 	$("#password").val('');
 	$("#password_again").val('');
-<? } ?>
+<?php  } ?>
 	
 	$("#userForm").validate({
 		rules: {
@@ -66,43 +66,43 @@ td { padding: 5px; }
 </style>
 <br>
 <form id="userForm" method="post" action="admin_submission.php">
-<? if($_GET['id']<>""){ ?>
+<?php  if($_GET['id']<>""){ ?>
 <input type="hidden" name="cmd" value="upd_user">
-<input type="hidden" name="id" value="<?=$id?>" />
-<? } else { ?>
+<input type="hidden" name="id" value="<?php  echo $id?>" />
+<?php  } else { ?>
 <input type="hidden" name="cmd" value="add_user">
-<? } ?>
+<?php  } ?>
 <table align="center" class="x1">
 	<tr>
 		<td>Username</td>
 		<td>:</td>
-		<td><input type="text" id="username" name="username"  class="required"  title="Username harus diisi" value="<?=$user?>"/></td>
+		<td><input type="text" id="username" name="username"  class="required"  title="Username harus diisi" value="<?php  echo $user?>"/></td>
 	</tr>
-	<? if($_GET['id']==""){ ?>
+	<?php  if($_GET['id']==""){ ?>
 	<tr>
 		<td>Password</td>
 		<td>:</td>
-		<td><input type="password" id="password" name="password"  class="required"  title="Password harus diisi" value="<?=$password?>"/>		</td>
+		<td><input type="password" id="password" name="password"  class="required"  title="Password harus diisi" value="<?php  echo $password?>"/>		</td>
 	</tr>
 	<tr>
 		<td>Confirm Password</td>
 		<td>:</td>
-		<td><input type="password" name="password_again" id="password_again"   class="required"  title="isikan Password yg sama di atas" value="<?=$password?>" /></td>
+		<td><input type="password" name="password_again" id="password_again"   class="required"  title="isikan Password yg sama di atas" value="<?php  echo $password?>" /></td>
 	</tr>
-	<?php } ?>
+	<?php  } ?>
 	<tr>
 		<td>Nama</td>
 		<td>:</td>
-		<td><input type="text" name="nama"  class="required"  title="Nama harus diisi" value="<?=$nama?>"/></td>
+		<td><input type="text" name="nama"  class="required"  title="Nama harus diisi" value="<?php  echo $nama?>"/></td>
 	</tr>
 	<tr>
 		<td>Kelas User</td>
 		<td>:</td>
 		<td><select name="slKelas" class="required"  title="Tipe Login harus diisi">
           <option value="">- Pilih Tipe Login -</option>
-		  <option value="User" <? if($kelasuser=="User") { ?>selected="selected" <? } ?>>User</option>
-		  <option value="Admin" <? if($kelasuser=="Admin") { ?>selected="selected" <? } ?>>Admin</option>
-		  <option value="Super Admin" <? if($kelasuser=="Super Admin") { ?>selected="selected" <? } ?>>Super Admin</option>
+		  <option value="User" <?php  if($kelasuser=="User") { ?>selected="selected" <?php  } ?>>User</option>
+		  <option value="Admin" <?php  if($kelasuser=="Admin") { ?>selected="selected" <?php  } ?>>Admin</option>
+		  <option value="Super Admin" <?php  if($kelasuser=="Super Admin") { ?>selected="selected" <?php  } ?>>Super Admin</option>
         </select></td>
 	</tr>
 	<tr>
@@ -110,28 +110,28 @@ td { padding: 5px; }
 	  <td>:</td>
 	  <td><select name="slTipe" class="required"  title="Tipe Akses harus diisi">
         <option value="">- Pilih -</option>
-		<?
+		<?php 
 			$SQL = "SELECT * FROM divisi";
 			$hasil = mysql_query($SQL);
 			while($baris=mysql_fetch_array($hasil)){
 		?>
-	        <option value="<?=$baris['subdiv']?>" <? if($tipe==$baris['subdiv']) { ?>selected="selected" <? } ?>><?=$baris['namadiv']?></option>
-		<? } ?>
+	        <option value="<?php  echo $baris['subdiv']?>" <?php  if($tipe==$baris['subdiv']) { ?>selected="selected" <?php  } ?>><?php  echo $baris['namadiv']?></option>
+		<?php  } ?>
       </select></td>
     </tr>
 	<tr>
 		<td>Status</td>
 		<td>:</td>
-		<td><input type="radio" name="status" value="1" <? if ($aktif == "1") {?> checked="checked" <? } ?>  class="required" title="Pilih On atau Off">On &nbsp;&nbsp;<input type="radio" name="status" value="0" <? if ($aktif == "0") {?> checked="checked" <? } ?>  class="required"  title="Pilih On atau Off">Off</td>
+		<td><input type="radio" name="status" value="1" <?php  if ($aktif == "1") {?> checked="checked" <?php  } ?>  class="required" title="Pilih On atau Off">On &nbsp;&nbsp;<input type="radio" name="status" value="0" <?php  if ($aktif == "0") {?> checked="checked" <?php  } ?>  class="required"  title="Pilih On atau Off">Off</td>
 	</tr><tr>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>
-			<? if($_GET['id']<>""){ ?>
+			<?php  if($_GET['id']<>""){ ?>
 			<input type="submit" value="Update">
-			<? } else { ?>
+			<?php  } else { ?>
 			<input type="submit" value="Tambah">
-			<? } ?>
+			<?php  } ?>
 			<input type="button" value="Batal" onclick="javascript:history.back()">		</td>
 	</tr>
 </table>

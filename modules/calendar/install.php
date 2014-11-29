@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
  * Copyright 2013 Sean Proctor
  *
@@ -450,7 +450,7 @@ function add_sql_user_db()
 function create_config($sql_hostname, $sql_username, $sql_passwd, $sql_database,
                 $sql_prefix, $sql_type)
 {
-	return "<?php\n"
+	return "<?php \n"
 		."define('SQL_HOST',     '$sql_hostname');\n"
 		."define('SQL_USER',     '$sql_username');\n"
 		."define('SQL_PASSWD',   '$sql_passwd');\n"

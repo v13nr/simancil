@@ -1,4 +1,4 @@
-<? session_start(); ?><?php  
+<?php  session_start(); ?><?php   
 require('../fpdf16/fpdf.php');
 include("../include/globalx.php");
 include("../include/functions.php");
@@ -22,8 +22,8 @@ function viksel(delUrl) {
 }
 </script>
 <body onLoad="viksel('cetak_neraca99_excell.php');">
-<div align="center">NERACA<br> <?=$namaclient;?><br>
-  <?=$baris['periode'];?>
+<div align="center">NERACA<br> <?php  echo $namaclient;?><br>
+  <?php  echo $baris['periode'];?>
 </div>
 <table width="100%" border="1">
   <tr>
@@ -42,7 +42,7 @@ function viksel(delUrl) {
         <td colspan="2" valign="top">AKTIVA LANCAR </td>
         <td width="39%">&nbsp;</td>
       </tr>
-	  <?php
+	  <?php 
 	  //looping aktiva LANCAR
 	$jml_alancar=0;
 	$SQL = "SELECT * FROM $database.dbfn WHERE  id = '".$a."' and tipe = 'A' AND substr(norek,-4) = '0000' AND substr(norek,1,2) = 'AL' AND substr(norek,0,2) != 'AP' ORDER BY norek";
@@ -63,13 +63,13 @@ function viksel(delUrl) {
 	?>
       <tr>
         <td width="11%">&nbsp;</td>
-        <td width="50%"><?php echo $baris['namarek']; ?></td>
-        <td><div align="right"><?php echo minuss($barisc['saldoawal']+$barisc['debet']-$barisc['kredit']); ?></div></td>
+        <td width="50%"><?php  echo $baris['namarek']; ?></td>
+        <td><div align="right"><?php  echo minuss($barisc['saldoawal']+$barisc['debet']-$barisc['kredit']); ?></div></td>
       </tr>
-	  <? }  ?>
+	  <?php  }  ?>
       <tr>
         <td colspan="2">JUMLAH AKTIVA LANCAR </td>
-        <td><div align="right"><?php echo '<b>'.number_format($jml_alancar,2,'.',',') . '</b>'; ?></div></td>
+        <td><div align="right"><?php  echo '<b>'.number_format($jml_alancar,2,'.',',') . '</b>'; ?></div></td>
       </tr>
       <tr>
         <td colspan="2">&nbsp;</td>
@@ -79,7 +79,7 @@ function viksel(delUrl) {
         <td colspan="2">AKTIVA TETAP </td>
         <td>&nbsp;</td>
       </tr>
-	  <?php
+	  <?php 
 	  
 	  //looping aktiva TETAP
 		$jml_atetap=0;
@@ -102,13 +102,13 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 ?>
       <tr>
         <td>&nbsp;</td>
-        <td><?php echo $baris['namarek']; ?></td>
-        <td><div align="right"><?php echo minuss($barisc['saldoawal']+$barisc['debet']-$barisc['kredit']); ?></div></td>
+        <td><?php  echo $baris['namarek']; ?></td>
+        <td><div align="right"><?php  echo minuss($barisc['saldoawal']+$barisc['debet']-$barisc['kredit']); ?></div></td>
       </tr>
-	  <? } ?>
+	  <?php  } ?>
       <tr>
         <td colspan="2">JUMLAH AKTIVA TETAP </td>
-        <td><div align="right"><?php echo '<b>'.number_format($jml_atetap,2,'.',',') . '</b>'; ?></div></td>
+        <td><div align="right"><?php  echo '<b>'.number_format($jml_atetap,2,'.',',') . '</b>'; ?></div></td>
       </tr>
       <tr>
         <td colspan="2">&nbsp;</td>
@@ -120,7 +120,7 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
         <td><div align="right">
 		
 		
-		 <?php
+		 <?php 
 	  
 	  //looping aktiva TETAP
 		$jml_ap=0;
@@ -146,7 +146,7 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
       </tr>
       <tr>
         <td colspan="2">NILAI BUKU AKTIVA TETAP </td>
-        <td><div align="right"><?php echo '<b>'.number_format(($jml_atetap - ($jml_ap * -1) ),2,'.',',') . '</b>'; ?></div></td>
+        <td><div align="right"><?php  echo '<b>'.number_format(($jml_atetap - ($jml_ap * -1) ),2,'.',',') . '</b>'; ?></div></td>
       </tr>
       <tr>
         <td colspan="2">&nbsp;</td>
@@ -154,7 +154,7 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
       </tr>
       <tr>
         <td colspan="2">JUMLAH AKTIVA </td>
-        <td><div align="right"><?php echo '<b>'.number_format(($jml_alancar + $jml_atetap - ($jml_ap * -1) ),2,'.',',') . '</b>'; ?></div></td>
+        <td><div align="right"><?php  echo '<b>'.number_format(($jml_alancar + $jml_atetap - ($jml_ap * -1) ),2,'.',',') . '</b>'; ?></div></td>
       </tr>
     </table></td>
     <td>&nbsp;</td>
@@ -163,7 +163,7 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
         <td colspan="2">KEWAJIBAN LANCAR </td>
         <td width="39%">&nbsp;</td>
       </tr>
-      <?php
+      <?php 
 	  //looping KW LANCAR
 	$jml_alancar=0;
 	$SQL = "SELECT * FROM $database.dbfn WHERE  norek NOT LIKE  'MO1-%' AND norek NOT LIKE 'MO2-%'  AND id = '".$a."' and tipe = 'P' AND substr(norek,-4) = '0000' AND substr(norek,1,2) = 'KL' ORDER BY norek";
@@ -182,13 +182,13 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 	?>
       <tr>
         <td width="11%">&nbsp;</td>
-        <td width="50%"><?php echo $baris['namarek']; ?></td>
-        <td><div align="right"><?php echo minuss($barisc['saldoawal']-$barisc['debet']+$barisc['kredit']); ?></div></td>
+        <td width="50%"><?php  echo $baris['namarek']; ?></td>
+        <td><div align="right"><?php  echo minuss($barisc['saldoawal']-$barisc['debet']+$barisc['kredit']); ?></div></td>
       </tr>
-      <? }  ?>
+      <?php  }  ?>
       <tr>
         <td colspan="2">JUMLAH KEWAJIBAN LANCAR </td>
-        <td><div align="right"><?php echo '<b>'.number_format($jml_klancar,2,'.',',') . '</b>'; ?></div></td>
+        <td><div align="right"><?php  echo '<b>'.number_format($jml_klancar,2,'.',',') . '</b>'; ?></div></td>
       </tr>
       <tr>
         <td colspan="2">&nbsp;</td>
@@ -198,7 +198,7 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
         <td colspan="2">MODAL SENDIRI </td>
         <td>&nbsp;</td>
       </tr>
-      <?php
+      <?php 
 	  
 	  //looping aktiva TETAP
 		$jml_atetap=0;
@@ -221,13 +221,13 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 ?>
       <tr>
         <td>&nbsp;</td>
-        <td><?php echo $baris['namarek']; ?></td>
-        <td><div align="right"><?php echo number_format($_SESSION["modalAkhir"],2,'.',','); ?></div></td>
+        <td><?php  echo $baris['namarek']; ?></td>
+        <td><div align="right"><?php  echo number_format($_SESSION["modalAkhir"],2,'.',','); ?></div></td>
       </tr>
-      <? } ?>
+      <?php  } ?>
       <tr>
         <td colspan="2">JUMLAH MODAL SENDIRI </td>
-        <td><div align="right"><b><?php echo number_format($_SESSION["modalAkhir"],2,'.',','); ?></b></div></td>
+        <td><div align="right"><b><?php  echo number_format($_SESSION["modalAkhir"],2,'.',','); ?></b></div></td>
       </tr>
       <tr>
         <td colspan="2">&nbsp;</td>
@@ -275,7 +275,7 @@ $hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
       </tr>
       <tr>
         <td colspan="2">JUMLAH KEWAJIBAN DAN MODAL SENDIRI</td>
-        <td><div align="right"><?php echo '<b>'.number_format($_SESSION["modalAkhir"] + $jml_klancar,2,'.',',') . '</b>'; ?></div></td>
+        <td><div align="right"><?php  echo '<b>'.number_format($_SESSION["modalAkhir"] + $jml_klancar,2,'.',',') . '</b>'; ?></div></td>
       </tr>
     </table></td>
   </tr>

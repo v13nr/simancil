@@ -1,4 +1,4 @@
-<?php
+<?php 
 	include "../../config_sistem.php";	
 
 ?>
@@ -27,8 +27,8 @@ body {
 
 -->
 </style>
-<? include "otentik_kepeg.php"; ?>
-<?
+<?php  include "otentik_kepeg.php"; ?>
+<?php 
 	$tsql0 = "select * from master_dept where namadept <> '' and status = 1";
 	if ($_GET['iddep']<>"") {
 		$tsql0 = $tsql0." and iddep=".$_GET['iddep'];
@@ -45,59 +45,59 @@ body {
   <tr>
     <td>&nbsp;</td>
     <td><table border="1" width="60%" bordercolorlight="silver" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" align="left">
-      <? if ($_GET['iddep']<>"") {?>
+      <?php  if ($_GET['iddep']<>"") {?>
       <tr>
         <td  background="../../images/impactg.png" height="30" colspan="7" align="center"><font color="white"><b>EDIT DEPARTEMEN </b></font></td>
       </tr>
-      <? } else { ?>
+      <?php  } else { ?>
       <tr>
         <td  background="../../images/impactg.png" height="30" colspan="7" align="center"><font color="white"><b> DATA DEPARTEMEN </b></font> </td>
       </tr>
-      <? }?>
+      <?php  }?>
       <tr bgcolor="#FFCC00">
         <td width="5%" align="center"><div align="center"><strong>No</strong></div></td>
         <td align="center"><strong>Nama Departemen </strong></td>
-        <? if ($_GET['iddep']<>"") { ?>
+        <?php  if ($_GET['iddep']<>"") { ?>
         <td  width="5%" align="center"><b>Update</b></td>
         <td  width="5%" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="5%" align="center"><strong>Edit</strong></td>
         <td width="5%" align="center"><b>Hapus</b></td>
-        <? } ?>
+        <?php  } ?>
       </tr>
-      <?	 $nRecord = 1;
+      <?php 	 $nRecord = 1;
 	if ($hasil) { 
 		 while ($row=mysql_fetch_array($hasil)) { ?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<? } else{ ?>bgcolor="#E4E4E4" <? } ?>>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<?php  } else{ ?>bgcolor="#E4E4E4" <?php  } ?>>
         <form method="post" action="pegawai_submission.php">
-          <input type="hidden" name="iddep" value="<?=$_GET['iddep']?>" />
+          <input type="hidden" name="iddep" value="<?php  echo $_GET['iddep']?>" />
           <input type="hidden" name="cmd" value="upd_dept" />
           <td align="right"><div align="center">
-            <?=$nRecord?>
+            <?php  echo $nRecord?>
           </div></td>
-          <td align="left"><? if ($_GET['iddep']<>"") { ?>
-              <input type="text" name="departemen" size="40" class="form_isian" value="<?=$row["namadept"];?>" />
-              <? } else { ?>
-              <?=$row["namadept"]?>
-              <? } ?>          </td>
-          <? if ($_GET['iddep']<>"") { ?>
+          <td align="left"><?php  if ($_GET['iddep']<>"") { ?>
+              <input type="text" name="departemen" size="40" class="form_isian" value="<?php  echo $row["namadept"];?>" />
+              <?php  } else { ?>
+              <?php  echo $row["namadept"]?>
+              <?php  } ?>          </td>
+          <?php  if ($_GET['iddep']<>"") { ?>
           <td align="center"><input name="image" type="image" src="../../images/approve.gif" border="0" />          </td>
           <td align="center"><a href="javascript:history.back()"><img src="../../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
-          <td align="center"><a href="?mn=<?=$_GET['mn']?>&amp;iddep=<?=$row["iddep"]?>"><img src="../../images/edit.gif" alt="Edit" border="0" /></a></td>
-          <td align="center"><a href="javascript:confirmDelete('pegawai_submission.php?id=<?=$row["iddep"]?>&amp;cmd=del_dep')"><img src="../../images/hapus.gif" alt="Hapus" border="0" /></a></td>
-          <? } ?>
+          <?php  } else { ?>
+          <td align="center"><a href="?mn=<?php  echo $_GET['mn']?>&amp;iddep=<?php  echo $row["iddep"]?>"><img src="../../images/edit.gif" alt="Edit" border="0" /></a></td>
+          <td align="center"><a href="javascript:confirmDelete('pegawai_submission.php?id=<?php  echo $row["iddep"]?>&amp;cmd=del_dep')"><img src="../../images/hapus.gif" alt="Hapus" border="0" /></a></td>
+          <?php  } ?>
         </form>
       </tr>
-      <?  
+      <?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
       <tr>
         <td align="center" colspan="7"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
-      <?  } ?>
-      <? if ($_GET['iddep']=="") { ?>
+      <?php   } ?>
+      <?php  if ($_GET['iddep']=="") { ?>
       <tr bgcolor="yellow">
         <form method="post" action="pegawai_submission.php">
           <input type="hidden" name="cmd" value="add_dept" />
@@ -106,7 +106,7 @@ body {
           <td colspan="3" align="center"><input name="image" type="image" src="../../images/add.gif" border="0" /></td>
         </form>
       </tr>
-      <? } ?>
+      <?php  } ?>
     </table></td>
   </tr>
 </table>

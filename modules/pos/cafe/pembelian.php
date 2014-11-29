@@ -1,5 +1,5 @@
-<? session_start(); ?>
-<? include "otentik_inv.php"; include ("../include/functions.php");?>
+<?php  session_start(); ?>
+<?php  include "otentik_inv.php"; include ("../include/functions.php");?>
 <style type="text/css">
 <!--
 body {
@@ -24,7 +24,7 @@ input.kanan{ text-align:right; }
  <script language="javascript" src="../assets/thickbox/thickbox.js"></script>
  <link href="../assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
 
- <? 
+ <?php  
  if($_SESSION["sess_kelasuser"]<>"User"){
  	include "load_sp.php"; 
  }
@@ -332,7 +332,7 @@ $().ready(function() {
 	}
 	//nilaix = $('#combobox_carabayar option:selected').val();
 	//nilaix = $('#combobox_carabayar').val();
-	nilaix = "<?=$_SESSION["sess_tipe"]?>";
+	nilaix = "<?php  echo $_SESSION["sess_tipe"]?>";
 
 	$("#ppk").autocomplete("ajax_auto_barang.php?divisi="+nilaix, {
 		width: 300,
@@ -379,64 +379,64 @@ function kosongtextarray(){
 	<table width="663" class="x1">
 	<form name="frmijin" id="frmijin" method="post" action="submission_inv.php">
           <input type="hidden" name="cmd" value="add_beli" />
-		  <input type="hidden" name="nobukti" value="<?=$_GET['nobukti']?>" />
-		  <input type="hidden" name="namasupp" value="<?=$_GET['namasupp']?>" id="namasupp" />
+		  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
+		  <input type="hidden" name="namasupp" value="<?php  echo $_GET['namasupp']?>" id="namasupp" />
 		  <input type="hidden" name="namabrg" value="" id="namabrg" />
-		  <input type="hidden" name="nomor" value="<?=$_GET['nomor']?>" />
+		  <input type="hidden" name="nomor" value="<?php  echo $_GET['nomor']?>" />
       <tr>
         <td width="143">No. Nota </td>
-        <td width="205"><input type="text" name="nonota" value="<?=$_GET['nonota']?>" class="required" title="*" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?>/></td>
+        <td width="205"><input type="text" name="nonota" value="<?php  echo $_GET['nonota']?>" class="required" title="*" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?>/></td>
         <td width="107">Tanggal</td>
-        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?=$_GET['tgl_transaksi']?>" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?>/>
+        <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?php  echo $_GET['tgl_transaksi']?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?>/>
           <a href="javascript:showCalendar('tgl_transaksi')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0"></a></td>
       </tr>
       <tr>
         <td>Divisi</td>
         <td>
           
-            <? if($_SESSION["sess_kelasuser"]<>"User"){?>
+            <?php  if($_SESSION["sess_kelasuser"]<>"User"){?>
 			<select name="divisi" id="combobox_carabayar"></select>
-            <? } else { ?>
+            <?php  } else { ?>
 			<select name="divisi" id="divisi" class="required" title="Pilih Divisi">
-            <?
+            <?php 
 			$SQL = "SELECT * FROM $database.divisi WHERE subdiv <> ''";
 				$SQL = $SQL . " AND subdiv = '".$_SESSION["sess_tipe"]."'";
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-            <option value="<?=$baris['subdiv']?>" <? if($_GET['divisi']==$baris['subdiv']){?> selected="selected" <? }?>>
-            <?=$baris['namadiv']." -- ".$baris['subdiv']?>
+            <option value="<?php  echo $baris['subdiv']?>" <?php  if($_GET['divisi']==$baris['subdiv']){?> selected="selected" <?php  }?>>
+            <?php  echo $baris['namadiv']." -- ".$baris['subdiv']?>
             </option>
-            <? } ?>
+            <?php  } ?>
           </select>
-		  <? } ?>
+		  <?php  } ?>
 		  </td>
         <td>Jatuh Tempo</td>
-        <td><input type="text" name="jtempo" id="jtempo" size="10" class="" title="*" value="<?=$_GET['jtempo']?>" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?>/>
+        <td><input type="text" name="jtempo" id="jtempo" size="10" class="" title="*" value="<?php  echo $_GET['jtempo']?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?>/>
           <a href="javascript:showCalendar('jtempo')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0" /></a></td>
       </tr>
       <tr>
         <td>Supplier </td>
         <td>
-		<? if($_SESSION["sess_kelasuser"]<>"User"){?>
+		<?php  if($_SESSION["sess_kelasuser"]<>"User"){?>
 		<select name="supp" id="combobox_subcarabayar" class="required" title="Harus pilih Supplier"></select>
-		<? } else {?>
+		<?php  } else {?>
 		<select name="supp" id="combobox_subcarabayar" class="required" title="Pilih Supplier">
 		 <option value="">-Pilih-</option>
-          <?
+          <?php 
 			$SQL = "SELECT * FROM $database.supplier WHERE kode <> ''";
 			$SQL = $SQL . " AND divisi = '".$_SESSION["sess_tipe"]."'";
 				
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-          <option value="<?=$baris['kode']?>" <? if($_GET['kode']==$baris['kode']){?> selected="selected" <? }?>>
-          <?=$baris['nama']?>
+          <option value="<?php  echo $baris['kode']?>" <?php  if($_GET['kode']==$baris['kode']){?> selected="selected" <?php  }?>>
+          <?php  echo $baris['nama']?>
           </option>
-          <? } ?>
+          <?php  } ?>
         </select>
 		
-		<? } ?>		</td>
+		<?php  } ?>		</td>
         <td>Saldo</td>
         <td><input type="text" name="saldo" id="saldo" class="kanan" readonly="true"></td>
       </tr>
@@ -456,20 +456,20 @@ function kosongtextarray(){
         <td>Telp.</td>
         <td><input type="text" name="telp" id="telp" readonly="true"></td>
         <td>LPB</td>
-        <td><input type="text" readonly="true" id="lpb" name="lpb" value="YFD/<?=nobukti($_GET['nomor'])?>"></td>
+        <td><input type="text" readonly="true" id="lpb" name="lpb" value="YFD/<?php  echo nobukti($_GET['nomor'])?>"></td>
       </tr>
     </table>
 	<br />
 	<table border="1" style="border-collapse:collapse" align="left" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
-      <? if ($_GET['id']<>"") {?>
+      <?php  if ($_GET['id']<>"") {?>
       <tr>
         <td background="../images/impactg.png" colspan="11" align="center"><font color="white"><b>Edit Transaksi </b></font></td>
       </tr>
-      <? } else { ?>
+      <?php  } else { ?>
       <tr>
         <td background="../images/impactg.png" colspan="11" align="center"><strong><font color="white"> TRANSAKSI </font></strong></td>
       </tr>
-      <? } ?>
+      <?php  } ?>
       <tr bgcolor="#FFCC00">
         <td width="34" align="center"><strong>No</strong></td>
         <td align="center">Nama Barang</td>
@@ -480,15 +480,15 @@ function kosongtextarray(){
 		<td align="center"><strong>Disc3(%)</strong></td>
 		<td align="center"><strong>Disc Rp</strong></td>
 		<td align="center"><strong>Netto</strong></td>
-        <? if ($_GET['id']<>"") { ?>
+        <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="58" align="center"><strong>Edit</strong></td>
         <td width="58" align="center"><b>Hapus</b></td>
-        <? } ?>
+        <?php  } ?>
       </tr>
-      <? if ($_GET['id']=="") { ?>
+      <?php  if ($_GET['id']=="") { ?>
       <tr bgcolor="yellow">
         
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
@@ -506,8 +506,8 @@ function kosongtextarray(){
           <td align="center" colspan="4"><input name="image" type="image" src="../images/add.gif" border="0" /></td>
         </form>
       </tr>
-      <? } ?>
-      <?
+      <?php  } ?>
+      <?php 
 	  	
 		$SQL = "SELECT * FROM $database.mutasi WHERE status = 1 AND nomor = '".$_GET['nomor']."' AND model = ''";
 		//echo $SQL; 		
@@ -516,31 +516,31 @@ function kosongtextarray(){
 		if (mysql_num_rows($hasilj) > 0) { 
 		while ($row=mysql_fetch_array($hasilj)) { 
 	?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<? } else {?> else="else" bgcolor="#CCCCCC"<? }?>>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<?php  } else {?> else="else" bgcolor="#CCCCCC"<?php  }?>>
         <form action="submission_inv.php" method="post" name="frmijin" id="frmijin">
-          <input type="hidden" name="id" value="<?=$_GET['id']?>" />
+          <input type="hidden" name="id" value="<?php  echo $_GET['id']?>" />
           <input type="hidden" name="cmd" value="ngaco" />
-          <td align="center"><?=$nRecord?></td>
-          <td align="center"><?=($row['kodebrg'])?> - <?=$row['namabrg']?></td>
-          <td align="left"><?=$row['qtyin']?>&nbsp;<?=$row['satuan']?></td>
-          <td align="right"><?=number_format($row["harga"],2,'.',',');?></td>
-		  <td align="right"><?=number_format($row["disc"],2,'.',',');?></td>
-		  <td align="right"><?=number_format($row["disc2"],2,'.',',');?></td>
-		  <td align="right"><?=number_format($row["disc3"],2,'.',',');?></td>
-		   <td align="right"><?=number_format($row["discrp"],2,'.',',');?></td>
-		  <td align="right"><?=number_format($row["debet"],2,'.',',');?></td>
-		  <? $t_debet = $t_debet + $row["debet"]; ?>
-          <? if ($_GET['id']<>"") { ?>
+          <td align="center"><?php  echo $nRecord?></td>
+          <td align="center"><?php  echo ($row['kodebrg'])?> - <?php  echo $row['namabrg']?></td>
+          <td align="left"><?php  echo $row['qtyin']?>&nbsp;<?php  echo $row['satuan']?></td>
+          <td align="right"><?php  echo number_format($row["harga"],2,'.',',');?></td>
+		  <td align="right"><?php  echo number_format($row["disc"],2,'.',',');?></td>
+		  <td align="right"><?php  echo number_format($row["disc2"],2,'.',',');?></td>
+		  <td align="right"><?php  echo number_format($row["disc3"],2,'.',',');?></td>
+		   <td align="right"><?php  echo number_format($row["discrp"],2,'.',',');?></td>
+		  <td align="right"><?php  echo number_format($row["debet"],2,'.',',');?></td>
+		  <?php  $t_debet = $t_debet + $row["debet"]; ?>
+          <?php  if ($_GET['id']<>"") { ?>
           <td align="center"><input name="image" type="image" src="../images/approve.gif" border="0" /></td>
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
-          <td align="center"><a href="?mn=<?=$_GET['mn']?>&amp;id=<?=$row["norek"]?>"></a></td>
-          <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?=$row["id"]?>&cmd=del_beli&nonota=<?=$_GET['nonota']?>&supp=<?=$_GET['supp']?>&alamat=<?=$_GET['alamat']?>&kota=<?=$_GET['kota']?>&telp=<?=$_GET['telp']?>&tgl_transaksi=<?=$_GET['tgl_transaksi']?>&saldo=<?=$_GET['saldo']?>&rek=<?=$_GET['rek']?>&namarek=<?=$_GET['namarek']?>&nomor=<?=$_GET['nomor']?>&namasupp=<?=$_GET['namasupp']?>&brg=<?=$row['kodebrg']?>&qtyin=<?=$row['qtyin']?>&netto=<?=$row["debet"]?>')">
+          <?php  } else { ?>
+          <td align="center"><a href="?mn=<?php  echo $_GET['mn']?>&amp;id=<?php  echo $row["norek"]?>"></a></td>
+          <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?php  echo $row["id"]?>&cmd=del_beli&nonota=<?php  echo $_GET['nonota']?>&supp=<?php  echo $_GET['supp']?>&alamat=<?php  echo $_GET['alamat']?>&kota=<?php  echo $_GET['kota']?>&telp=<?php  echo $_GET['telp']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&saldo=<?php  echo $_GET['saldo']?>&rek=<?php  echo $_GET['rek']?>&namarek=<?php  echo $_GET['namarek']?>&nomor=<?php  echo $_GET['nomor']?>&namasupp=<?php  echo $_GET['namasupp']?>&brg=<?php  echo $row['kodebrg']?>&qtyin=<?php  echo $row['qtyin']?>&netto=<?php  echo $row["debet"]?>')">
 		  <img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
-          <? } ?>
+          <?php  } ?>
         </form>
       </tr>
-      <?  
+      <?php   
 		 $nRecord = $nRecord + 1;
 		} ?>
 		<tr>
@@ -552,7 +552,7 @@ function kosongtextarray(){
 	      <td align="center">&nbsp;</td>
 	      <td align="center">&nbsp;</td>
 	      <td align="right">&nbsp;</td>
-	      <td align="right"><?=number_format($t_debet,2,'.',',');?></td>
+	      <td align="right"><?php  echo number_format($t_debet,2,'.',',');?></td>
 	      <td align="center">&nbsp;</td>
 		</tr>
 		<tr>
@@ -560,12 +560,12 @@ function kosongtextarray(){
 			<a href="index.php?mn=pembelian">[ SELESAI ATAU KE NOMOR LPB BERIKUTNYA ]</a>
 		  </td>
 		</tr>
-		<?
+		<?php 
 	} else { ?>
       <tr>
         <td align="center" colspan="11"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
-      <?  } ?>
+      <?php   } ?>
     </table>	
 	<p>&nbsp;</p></td>
   </tr>

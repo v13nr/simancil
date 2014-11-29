@@ -1,4 +1,4 @@
-<? include "otentik_gli.php"; include ("../include/functions.php");?>
+<?php  include "otentik_gli.php"; include ("../include/functions.php");?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,14 +53,14 @@ $(document).ready(function() {
 			<td width="9">:</td>
 			<td width="259">
 				<select name="tahun">
-					<?php
+					<?php 
 						$tahun = $_POST["tahun"];
 						$tahunx = date('Y');
 						//echo $tahun;
 						for ($i=2009; $i<=$tahunx+5;$i++){
 					?>
-					<option value="<?php echo $i;?>" <?php if($tahunx==$i){ echo 'selected="selected"';} ?>><?php echo $i;?></option>
-					<?php } ?>
+					<option value="<?php  echo $i;?>" <?php  if($tahunx==$i){ echo 'selected="selected"';} ?>><?php  echo $i;?></option>
+					<?php  } ?>
 				</select>
 	  </td>
 		</tr>

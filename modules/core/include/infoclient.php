@@ -1,4 +1,4 @@
-<? if ($_GET['update']<>"") { ?>
+<?php  if ($_GET['update']<>"") { ?>
 
 	<script language="JavaScript">
 
@@ -10,8 +10,8 @@
 
 	</script>
 
-<? } ?>
-<?
+<?php  } ?>
+<?php 
 include "globalx.php";
 $SQL = "select * from $database.laporanid";
 $hasil = mysql_query($SQL, $dbh_jogjaide);
@@ -31,9 +31,9 @@ $telpon = $baris["telpon"];
       <td>Telpon</td>
     </tr>
     <tr>
-      <td><input type="text" value="<?php echo $namaclient;?>" name="nama" size="50" /></td>
-      <td><input type="text"  value="<?php echo $jalamclient;?>" name="alamat" size="60" /></td>
-      <td><input type="text" value="<?php echo $telpon;?>" name="telpon"  size="50" /></td>
+      <td><input type="text" value="<?php  echo $namaclient;?>" name="nama" size="50" /></td>
+      <td><input type="text"  value="<?php  echo $jalamclient;?>" name="alamat" size="60" /></td>
+      <td><input type="text" value="<?php  echo $telpon;?>" name="telpon"  size="50" /></td>
     </tr>
     <tr>
       <td>&nbsp;</td>

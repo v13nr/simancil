@@ -1,4 +1,4 @@
-<?php
+<?php 
     $action = $_REQUEST['action'];
     $handler->loadModel('identitas_m');
     $identitasx = new Identitas;

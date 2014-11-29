@@ -1,4 +1,4 @@
-<?php session_start();
+<?php  session_start();
 
 // include common file
 include_once 'library.php';

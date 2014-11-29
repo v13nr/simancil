@@ -1,4 +1,4 @@
-<? @session_start(); include "otentik_inv.php"; 
+<?php  @session_start(); include "otentik_inv.php"; 
 include ("../include/functions.php");
 
 ?>
@@ -47,7 +47,7 @@ include ("../include/functions.php");
 	  <td width="78" class="style3"><div align="center" class="style4">Bangunan</div></td>
 	  <td width="64" class="style3"><div align="center" class="style4">Pajak</div></td>
 	  </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM piutang" ;
 		if($_GET['c_no']<>""){
 			$SQL = $SQL . " AND noinduk LIKE '%".$_GET['c_no']."%'";
@@ -65,38 +65,38 @@ include ("../include/functions.php");
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
     
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
-	  <td class="style3" align="left"><?=$row['nama']?></td>
-	  <td class="style3" align="center"><?=($row['blok'])?></td>
-      <td class="style3" align="center"><? echo ($row['luas']);?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
+	  <td class="style3" align="left"><?php  echo $row['nama']?></td>
+	  <td class="style3" align="center"><?php  echo ($row['blok'])?></td>
+      <td class="style3" align="center"><?php  echo ($row['luas']);?></td>
 	  <td align="left" class="style3"><div align="right">
-	    <?=number_format($row['tanah'],2,'.',',')?>
+	    <?php  echo number_format($row['tanah'],2,'.',',')?>
 	  </div></td>
 	  <td align="left" class="style3"><div align="right">
-        <?=number_format($row['bangunan'],2,'.',',')?>
+        <?php  echo number_format($row['bangunan'],2,'.',',')?>
       </div></td>
 	  <td align="left" class="style3"><div align="right">
-        <?=number_format($row['pajak'],2,'.',',')?>
+        <?php  echo number_format($row['pajak'],2,'.',',')?>
       </div></td>
 	  <td align="left" class="style3"><div align="right">
-        <?=number_format($row['hargarumah'],2,'.',',')?>
+        <?php  echo number_format($row['hargarumah'],2,'.',',')?>
       </div></td>
 	  <td align="left" class="style3"><div align="right">
-        <?php
+        <?php 
 		$total_kons = 0;
 		echo number_format($row['tanah']+$row['bangunan']+$row['pajak']+$row['hargarumah'],2,'.',',');
 		$total_kons = $row['tanah']+$row['bangunan']+$row['pajak']+$row['hargarumah'];
 		?>
       </div></td>
 	  <td align="left" class="style3"><div align="right">
-        <?php
+        <?php 
 			$dp = 0;
 		 $SQLc = "SELECT SUM(nilai) FROM $database.piutang_detail WHERE piutang_id = '".$row['id']."'";
 			$hasilc = mysql_query($SQLc, $dbh_jogjaide) or die(mysql_error());
@@ -106,28 +106,28 @@ include ("../include/functions.php");
 		?>
       </div></td>
 	  <td align="left" class="style3"><div align="right">
-        <?=number_format($row['kpr'],2,'.',',')?>
+        <?php  echo number_format($row['kpr'],2,'.',',')?>
       </div></td>
 	  <td class="style3" align="right">
-	  <?=number_format($total_kons - $dp - $row['kpr'],2,'.',',')?>
-	  <?php $total = $total + $total_kons - $dp - $row['kpr'];?>	  </td>
+	  <?php  echo number_format($total_kons - $dp - $row['kpr'],2,'.',',')?>
+	  <?php  $total = $total + $total_kons - $dp - $row['kpr'];?>	  </td>
       
 	  
 	  
       <td class="style3"><div align="center">
-        <?=$row['tipebayar']?>
+        <?php  echo $row['tipebayar']?>
       </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="22"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
 	
-	<tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
+	<tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
       <td align="center" class="style3">&nbsp;</td>
       <td class="style3" align="center">&nbsp;</td>
       <td class="style3" align="center">&nbsp;</td>
@@ -139,7 +139,7 @@ include ("../include/functions.php");
       <td align="left" class="style3">&nbsp;</td>
       <td align="left" class="style3">&nbsp;</td>
       <td align="left" class="style3">&nbsp;</td>
-      <td class="style3" align="right"><?=number_format($total,2,'.',',')?></td>
+      <td class="style3" align="right"><?php  echo number_format($total,2,'.',',')?></td>
       
       <td class="style3">&nbsp;</td>
     </tr>

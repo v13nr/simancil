@@ -38,11 +38,11 @@
 					$('#combobox_subcarabayar').empty()
 					loadDataCB('subcarabayar',$('#combobox_carabayar option:selected').val());
 					loadDataCB('produk',$('#combobox_carabayar option:selected').val());
-					<? if($_SESSION["sess_kelasuser"]<>"User"){?>
+					<?php  if($_SESSION["sess_kelasuser"]<>"User"){?>
 					nilaix = $('#combobox_carabayar option:selected').val();
-					<? } else { ?>
-					nilaix = "<?=$_SESSION["sess_tipe"]?>";
-					<? } ?>
+					<?php  } else { ?>
+					nilaix = "<?php  echo $_SESSION["sess_tipe"]?>";
+					<?php  } ?>
 					$("#ppk").autocomplete("ajax_auto_barang.php?divisi="+nilaix, {
 						width: 300,
 						max: 20,

@@ -1,4 +1,4 @@
-<? include "otentik_gli.php"; include ("../include/functions.php");?>
+<?php  include "otentik_gli.php"; include ("../include/functions.php");?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -51,15 +51,15 @@ $(document).ready(function() {
 	</tr>
 	<tr bgcolor="#FFFFCC">
 		<td width="81">Periode</td>
-	  <td width="171"><input type="text" name="tgl_awal" id="tgl_awal" size="10" value="<?=$_SESSION["tgl_awal"]?>" class="required" title="Harap Mengisi Tanggal Awal Dahulu" readonly="true" />
+	  <td width="171"><input type="text" name="tgl_awal" id="tgl_awal" size="10" value="<?php  echo $_SESSION["tgl_awal"]?>" class="required" title="Harap Mengisi Tanggal Awal Dahulu" readonly="true" />
       <a href="javascript:showCalendar('tgl_awal')"></a></td>
 		<td width="43" rowspan="2"></td>
 		<td width="74">Divisi</td>
 		<td width="149"><select name="divisi">
-          <? if($_SESSION["sess_kelasuser"]<>"User"){?>
+          <?php  if($_SESSION["sess_kelasuser"]<>"User"){?>
           <option value="">-ALL-</option>
-          <? }?>
-          <?
+          <?php  }?>
+          <?php 
 			$SQL = "SELECT * FROM $database.divisi WHERE subdiv <> ''";
 			if($_SESSION["sess_kelasuser"]=="User"){
 				$SQL = $SQL . " AND subdiv = '".$_SESSION["sess_tipe"]."'";
@@ -67,15 +67,15 @@ $(document).ready(function() {
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-          <option value="<?=$baris['subdiv']?>">
-            <?=$baris['namadiv']?>
+          <option value="<?php  echo $baris['subdiv']?>">
+            <?php  echo $baris['namadiv']?>
           </option>
-          <? } ?>
+          <?php  } ?>
       </select></td>
 	</tr>
 	<tr bgcolor="#FFFFCC">
 		<td>S/d</td>
-	  <td><input type="text" name="tgl_akhir" id="tgl_akhir" size="10" readonly="true" value="<?=$_SESSION["tgl_akhir"]?>" class="required" title="Harap Mengisi Tanggal Akhir Dahulu" />
+	  <td><input type="text" name="tgl_akhir" id="tgl_akhir" size="10" readonly="true" value="<?php  echo $_SESSION["tgl_akhir"]?>" class="required" title="Harap Mengisi Tanggal Akhir Dahulu" />
         <a href="javascript:showCalendar('tgl_akhir')"></a></td>
 		<td>Tipe</td>
 	  <td>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 	/* 
 	 * JQuery autocomplete selalu mengirimkan parameter dengan nama "q"
 	 * dimana isi dari "q" adalah inputan dari textbox pada file "index.html"

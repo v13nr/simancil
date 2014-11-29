@@ -1,4 +1,4 @@
-<?
+<?php 
 // fungsi-fungsi pendukung.
 
 function absen($tipe) {

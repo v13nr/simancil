@@ -1,4 +1,4 @@
-<?php
+<?php 
     $action = $_REQUEST['action'];
     $handler->loadModel('order_m');
     $buyer = new Buyer;

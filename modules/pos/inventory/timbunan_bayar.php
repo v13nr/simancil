@@ -7,7 +7,7 @@
 		}
 	}
 	</script>
-<?php
+<?php 
 	@session_start();
 	require_once('../include/globalx.php');
 	require_once('../include/functions.php');
@@ -40,31 +40,31 @@
   </tr>
   </form>
   
-  <?php
+  <?php 
   		$SQL = "select * from timbunan_bayar";
 		$hasil = mysql_query($SQL);
 		while($baris = mysql_fetch_array($hasil)) {
   ?>
   <tr>
     <td><div align="right">
-      <?=number_format($baris["total_timbunan"])?>
+      <?php  echo number_format($baris["total_timbunan"])?>
     </div></td>
     <td><div align="right">
-      <?=number_format($baris["harga_peret"])?>
+      <?php  echo number_format($baris["harga_peret"])?>
     </div></td>
     <td><div align="right">
-      <?=number_format($baris["total_timbunan"]*$baris["harga_peret"])?>
+      <?php  echo number_format($baris["total_timbunan"]*$baris["harga_peret"])?>
     </div></td>
     <td><div align="center">
-      <?php echo baliktglindo($baris["terbayar_tgl"]);?>
+      <?php  echo baliktglindo($baris["terbayar_tgl"]);?>
     </div></td>
     <td><div align="right">
-      <?=number_format($baris["terbayar_jumlah"])?>
+      <?php  echo number_format($baris["terbayar_jumlah"])?>
     </div></td>
     <td><div align="right">
-      <?=number_format($baris["sisa"])?>
+      <?php  echo number_format($baris["sisa"])?>
     </div></td>
-    <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?php echo $baris['id']; ?>&amp;cmd=del_timbunan_bayar')" title="Hapus"><img src="../../../resources/images/delete.gif" /></a></td>
+    <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?php  echo $baris['id']; ?>&amp;cmd=del_timbunan_bayar')" title="Hapus"><img src="../../../resources/images/delete.gif" /></a></td>
   </tr>
-  <?php } ?>
+  <?php  } ?>
 </table>

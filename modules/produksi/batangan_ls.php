@@ -11,7 +11,7 @@ $( "#datepicker" ).datepicker();
 });
 </script>
 </head>
-<?php
+<?php 
 	@session_start();
 	require_once('modules/produksi/include/globalx.php');
 	require_once('modules/produksi/otentik_produksi_nonBox.php');
@@ -41,24 +41,24 @@ $( "#datepicker" ).datepicker();
 						</thead>
 						<tbody>
 							<form action="modules/produksi/submission_produksi.php" method="post" id="formRekening">
-								<input type="hidden" name="id" value="<?php echo $id;?>">
+								<input type="hidden" name="id" value="<?php  echo $id;?>">
 								<input type="hidden" name="cmd" value="upd_tk" />
 								<tr align="center">
 									<td><img src="images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
-									<td><input type="text" name="norek" value="<?php echo $data['norek']; ?>"></td>
+									<td><input type="text" name="norek" value="<?php  echo $data['norek']; ?>"></td>
 									<td>
-										<input type="text" name="namarek" value="<?php echo $data['namarek']; ?>" style="width: 300px;">
+										<input type="text" name="namarek" value="<?php  echo $data['namarek']; ?>" style="width: 300px;">
 									</td>
 									<td>
 										<select name="tipe" class="tes">
-											<option value="A" <?php echo $data['tipe']=='A' ? 'selected' : ''; ?>>A</option>
-											<option value="P" <?php echo $data['tipe']=='P' ? 'selected' : ''; ?>>P</option>
-											<option value="R" <?php echo $data['tipe']=='R' ? 'selected' : ''; ?>>R</option>
-											<option value="R2" <?php echo $data['tipe']=='R2' ? 'selected' : ''; ?>>R2</option>
+											<option value="A" <?php  echo $data['tipe']=='A' ? 'selected' : ''; ?>>A</option>
+											<option value="P" <?php  echo $data['tipe']=='P' ? 'selected' : ''; ?>>P</option>
+											<option value="R" <?php  echo $data['tipe']=='R' ? 'selected' : ''; ?>>R</option>
+											<option value="R2" <?php  echo $data['tipe']=='R2' ? 'selected' : ''; ?>>R2</option>
 										</select>
 									</td>
 									<td><input type="image" src="resources/images/save.png" title="Simpan" /></td>
-									<td><a href="index.php?mn=rekening_ls&getmodule=<?php echo base64_encode('accounting/gli/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
+									<td><a href="index.php?mn=rekening_ls&getmodule=<?php  echo base64_encode('accounting/gli/');?>"><img src="resources/images/back.png" title="Batal" /></a></td>
 								</tr>							
 							</form>
 						</tbody>
@@ -67,7 +67,7 @@ $( "#datepicker" ).datepicker();
 			</div>
 			<!-- end table -->
 		</div>
-<?php	
+<?php 	
 	}
 	else{	
 		$idDivisi = $_SESSION["sess_tipe"];
@@ -99,7 +99,7 @@ $( "#datepicker" ).datepicker();
 						<form action="index.php" method="get">
 							<div class="input">
 								<input type="hidden" name="mn" value="rekening_ls">
-								<input type="hidden" name="getmodule" value="<?php echo base64_encode('accounting/gli/') ?>">
+								<input type="hidden" name="getmodule" value="<?php  echo base64_encode('accounting/gli/') ?>">
 								<input type="text" id="search" name="search" />
 							</div>
 							<div class="button">
@@ -140,50 +140,50 @@ $( "#datepicker" ).datepicker();
 								</td>
 							</tr>
 					  </form>
-							<?php
+							<?php 
 								if($jumlah == 0){
 							?>
 									<tr>
 										<td colspan="6" style="color:#f00; text-align:center;">Mohon maaf, tidak ada data yang dimaksud</td>
 									</tr>
-							<?
+							<?php 
 								}
 								else{
 									$no = $offset+1;
 									while($data = mysql_fetch_array($datas)){
 							?>
 										<tr align="center">
-											<td><?php echo $no; ?></td>
-											<td><?php echo $data['tanggal']; ?></td>
-											<td align="left"><?php echo $data['nama']; ?></td>
-											<td><?php echo $data['jenis']; ?></td>
-											<td><a href="index.php?mn=rekening_ls&getmodule=<?php echo base64_encode('accounting/gli/');?>&amp;id=<?php echo $data['norek']; ?>" title="Edit"><img src="resources/images/edit.png" /></a></td>
-											<td><a href="javascript:confirmDelete('modules/produksi/submission_produksi.php?id=<?php echo $data['norek']; ?>&amp;cmd=del_rekening')" title="Hapus"><img src="resources/images/delete.gif" /></a></td>
+											<td><?php  echo $no; ?></td>
+											<td><?php  echo $data['tanggal']; ?></td>
+											<td align="left"><?php  echo $data['nama']; ?></td>
+											<td><?php  echo $data['jenis']; ?></td>
+											<td><a href="index.php?mn=rekening_ls&getmodule=<?php  echo base64_encode('accounting/gli/');?>&amp;id=<?php  echo $data['norek']; ?>" title="Edit"><img src="resources/images/edit.png" /></a></td>
+											<td><a href="javascript:confirmDelete('modules/produksi/submission_produksi.php?id=<?php  echo $data['norek']; ?>&amp;cmd=del_rekening')" title="Hapus"><img src="resources/images/delete.gif" /></a></td>
 										</tr>						
-							<?php
+							<?php 
 										$no++;
 									}
 								}
 							?>
 						</tbody>
 					</table>
-					<?php
+					<?php 
 						if($jumlah > 0){
 					?>
 							<!-- pagination -->
 							<div class="pagination pagination-left">
 								<div class="results">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch']))
 											$rekening = mysql_query("SELECT jenis FROM nas_produksi.batangan WHERE jenis LIKE '%$search%' AND id_divisi = '$idDivisi'");
 										else
 											$rekening = mysql_query("SELECT jenis FROM nas_produksi.batangan WHERE id_divisi = '$idDivisi'");	
 										$jumlah_rekening = mysql_num_rows($rekening);
 									?>
-									<span>showing results <?php echo ++$offset.'-'.--$no; ?> of <?php echo $jumlah_rekening; ?></span>
+									<span>showing results <?php  echo ++$offset.'-'.--$no; ?> of <?php  echo $jumlah_rekening; ?></span>
 								</div>
 								<ul class="pager">
-									<?php
+									<?php 
 										if(isset($_GET['submitSearch'])){
 											$query = "SELECT COUNT(*) AS rs_Jumlah FROM batangan WHERE jenis LIKE '%$search%' AND id_divisi = '$idDivisi'";
 											//$link = 
@@ -219,14 +219,14 @@ $( "#datepicker" ).datepicker();
 								</ul>
 							</div>
 							<!-- end pagination -->			
-					<?php
+					<?php 
 						}
 					?>
 				</div>
 			</div>
 			<!-- end table -->
 		</div>
-<?php
+<?php 
 	}
 ?>
 <!-- scripts (jquery) -->

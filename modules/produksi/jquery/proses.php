@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 include "globalx.php";
 $cmd = $_POST['cmd'];

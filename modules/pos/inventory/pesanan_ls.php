@@ -1,4 +1,4 @@
-<? @session_start(); include "otentik_inv.php"; 
+<?php  @session_start(); include "otentik_inv.php"; 
 include ("../include/functions.php");
 
 ?>
@@ -49,12 +49,12 @@ body {
       <td width="17"><div align="center"><img src="../draft/images/calendar.png" width="16" height="16" /></div></td>
       <td width="4"><div align="center">:</div></td>
       <td width="722">&nbsp; 
-	  <? date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
+	  <?php  date_default_timezone_set('Asia/Shanghai'); echo date('l, j F Y'); ?></td>
       </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/Gnome-Appointment-New-48.png" width="16" height="16" /></div></td>
       <td class="style3"><div align="center">:</div></td>
-      <td class="style3"><div align="left"> &nbsp;<?php echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
+      <td class="style3"><div align="left"> &nbsp;<?php  echo gmdate(" H:i:s", time()+60*60*7); ?>  </div></td>
     </tr>
     <tr>
       <td class="style3"><div align="center"><img src="../draft/images/user.png" width="16" height="16" /></div></td>
@@ -84,7 +84,7 @@ body {
 	  
       <td width="124" class="style3"><div align="center" class="style4">Todo</div></td>
     </tr>
-	<?
+	<?php 
 		$SQL = "select * FROM pesanan" ;
 		if($_GET['c_no']<>""){
 			$SQL = $SQL . " AND noinduk LIKE '%".$_GET['c_no']."%'";
@@ -102,51 +102,51 @@ body {
 		$hasil=mysql_query($SQL, $dbh_jogjaide);
 		$id = 0;
 	?>
-	<? 
+	<?php  
 		 $nRecord = 1;
 			if (mysql_num_rows($hasil) > 0) { 
 			while ($row=mysql_fetch_array($hasil)) { 
  	?>
     
-    <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
-      <td align="center" class="style3"><?=++$No?></td>
+    <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
+      <td align="center" class="style3"><?php  echo ++$No?></td>
 	  <td class="style3" align="center">
-	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?=$row['id'] ?>" /></td>
-	  <td class="style3" align="center"><?=baliktglindo($row['tgl'])?></td>
-      <td class="style3" align="let"><? echo "PO/".nobukti($row['nomor']);?></td>
-      <td class="style3" align="left"><?=$row['nama']?></td>
-	  <td class="style3" align="left"><?
+	  	<input type="checkbox" id="tambah" name="tambah[]" value="<?php  echo $row['id'] ?>" /></td>
+	  <td class="style3" align="center"><?php  echo baliktglindo($row['tgl'])?></td>
+      <td class="style3" align="let"><?php  echo "PO/".nobukti($row['nomor']);?></td>
+      <td class="style3" align="left"><?php  echo $row['nama']?></td>
+	  <td class="style3" align="left"><?php 
 	  	$SQLc = "SELECT namadiv FROM divisi WHERE subdiv = '".$row['sub']."'";
 		$hasilc = mysql_query($SQLc);
 		$barisc = mysql_fetch_array($hasilc);
 		echo $barisc[0];
 	  ?></td>
-	  <td class="style3" align="left"><?=$row['alamat']?></td>
+	  <td class="style3" align="left"><?php  echo $row['alamat']?></td>
 	  <td class="style3" align="right">
-	  <?=number_format($row['saldo'],2,'.',',')?>
-	  <?php $total = $total + $row['saldo'];?>
+	  <?php  echo number_format($row['saldo'],2,'.',',')?>
+	  <?php  $total = $total + $row['saldo'];?>
 	  </td>
       
 	  
 	  
       <td class="style3"><div align="center">
-	  <? //if($_SESSION["sess_tipe"]==$row['sub']) 
+	  <?php  //if($_SESSION["sess_tipe"]==$row['sub']) 
 	  { ?>[
-	  <a href="angsuran.php?ida=<?=$row['id'] ?>&nomor=<?php echo $row['nomor']; ?>&amp;width=600&amp;height=350&amp;TB_iframe=true" class="thickbox">Posting Angsuran </a>]
-	  <a href="penjualan_edit.php?nomor=<?=$row['nomor']?>&sub=<?=$row['sub']?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
-	  <? } ?>
+	  <a href="angsuran.php?ida=<?php  echo $row['id'] ?>&nomor=<?php  echo $row['nomor']; ?>&amp;width=600&amp;height=350&amp;TB_iframe=true" class="thickbox">Posting Angsuran </a>]
+	  <a href="penjualan_edit.php?nomor=<?php  echo $row['nomor']?>&sub=<?php  echo $row['sub']?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
+	  <?php  } ?>
 	  </div></td>
     </tr>
-	<?  
+	<?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
 	  <tr bgcolor="white">
 		<td align="center" colspan="17"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
 	  </tr>
-	<?  } ?>
+	<?php   } ?>
 	
-	<tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<? }  else {?>bgcolor="#FFFFCC"<? } ?>>
+	<tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#e4e4e4"<?php  }  else {?>bgcolor="#FFFFCC"<?php  } ?>>
       <td align="center" class="style3">&nbsp;</td>
       <td class="style3" align="center">&nbsp;</td>
       <td class="style3" align="center">&nbsp;</td>
@@ -154,7 +154,7 @@ body {
       <td class="style3" align="left">&nbsp;</td>
       <td class="style3" align="left">&nbsp;</td>
       <td class="style3" align="left">&nbsp;</td>
-      <td class="style3" align="right"><?=number_format($total,2,'.',',')?></td>
+      <td class="style3" align="right"><?php  echo number_format($total,2,'.',',')?></td>
       
       <td class="style3">&nbsp;</td>
     </tr>

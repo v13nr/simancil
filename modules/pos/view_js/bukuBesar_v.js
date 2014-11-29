@@ -5,7 +5,7 @@ var winprint_01 = new Ext.Panel({
   height: 800, 
   width: 1280, 
   title: 'POS', 
-  html: '<?php $urlmodule = '+urlmodule_pos+'; ?><iframe style="display:block;" src="'+urlmodule_pos+'mutasi_ls.php" height=100% width=100% align="left"></iframe>',
+  html: '<?php  $urlmodule = '+urlmodule_pos+'; ?><iframe style="display:block;" src="'+urlmodule_pos+'mutasi_ls.php" height=100% width=100% align="left"></iframe>',
   id: 'laporan',
   autoScroll:false
 });

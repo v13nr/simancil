@@ -1,4 +1,4 @@
-<? @session_start(); include "otentik_inv.php"; ?><head>
+<?php  @session_start(); include "otentik_inv.php"; ?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
@@ -130,11 +130,11 @@ td { padding: 5px; }
 }
 input.kanan{ text-align:right; }
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
-  <? $SQL = "select * from subkon WHERE nama <> ''";
+  <?php  $SQL = "select * from subkon WHERE nama <> ''";
 	 	if ($_GET['id']<>"")
 		{ 
 			$SQL = $SQL." AND id = '". $_GET['id']."'";
@@ -160,12 +160,12 @@ input.kanan{ text-align:right; }
   <tr>
     <td>&nbsp;</td>
     <td><form id="pegForm" method="post" name="pegForm" action="submission_inv.php">
-      <? if($_GET['id']<>""){ ?>
+      <?php  if($_GET['id']<>""){ ?>
       <input type="hidden" name="cmd" value="upd_subkon" />
-      <input type="hidden" name="id" value="<?=$id?>" />
-      <? } else { ?>
+      <input type="hidden" name="id" value="<?php  echo $id?>" />
+      <?php  } else { ?>
       <input type="hidden" name="cmd" value="add_subkon" />
-      <? } ?>
+      <?php  } ?>
       <table align="left" class="x1">
         <tr background="../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1">Form Subkon </span></td>
@@ -173,32 +173,32 @@ input.kanan{ text-align:right; }
         <tr>
           <td><span class="style6">Nama   </span></td>
           <td>:</td>
-          <td><input type="text" name="nama" id="nama"  value="<?=($nama)?>"  class="required" title="Harap Mengisi Kode Barang Dahulu" />            </td>
+          <td><input type="text" name="nama" id="nama"  value="<?php  echo ($nama)?>"  class="required" title="Harap Mengisi Kode Barang Dahulu" />            </td>
         </tr>
         <tr>
           <td>Blok</td>
           <td>:</td>
-          <td><input name="blok" size="40" type="text" class="required " id="blok"  title="Blok harus terisi" value="<?=$blok?>" /></td>
+          <td><input name="blok" size="40" type="text" class="required " id="blok"  title="Blok harus terisi" value="<?php  echo $blok?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Tipe/Luas</span></td>
           <td><span class="style6">:</span></td>
-          <td><input type="text" name="tipe_luas" id="tipe_luas" class="required" title="Tipe/Luas harus terisi" value="<?=$tipe_luas?>" /></td>
+          <td><input type="text" name="tipe_luas" id="tipe_luas" class="required" title="Tipe/Luas harus terisi" value="<?php  echo $tipe_luas?>" /></td>
         </tr>
         <tr>
           <td>Nilai Kontrak </td>
           <td>:</td>
-          <td><input name="kontrak" type="text" id="kontrak"  class="required kanan" title="Nilai Kontrak harus diisi" value="<?=number_format($kontrak)?>" /></td>
+          <td><input name="kontrak" type="text" id="kontrak"  class="required kanan" title="Nilai Kontrak harus diisi" value="<?php  echo number_format($kontrak)?>" /></td>
         </tr>
         <tr>
           <td><span class="style7"></span></td>
           <td><span class="style7"></span></td>
           <td><span class="style6">
-            <? if($_GET['id']<>""){ ?>
+            <?php  if($_GET['id']<>""){ ?>
             <input name="submit" type="submit" value="Update" />
-            <? } else { ?>
+            <?php  } else { ?>
             <input name="submit" type="submit" value="Simpan" />
-            <? } ?>
+            <?php  } ?>
             <input name="button" type="button" onClick="javascript:history.back()" value="Batal" />
           </span></td>
         </tr>

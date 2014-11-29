@@ -1,13 +1,13 @@
-<? session_start(); 
+<?php  session_start(); 
 ?>
-<?
+<?php 
 //taruh skrip ini di file tujuan, misal dari tes.php ke excell.php
 $filename = "Buku Besar -  Tanggal cetak : " . date('Y-m-d') . ".xls";
 header("Content-Disposition: attachment; filename=\"$filename\"");
 header ("Content-Type: application/vnd.ms-excel");
 header ("Expires: 0");
 header ("Cache-Control : must-revalidate, post-check=0, pre-check=0");
-?><?
+?><?php 
 require('../fpdf16/fpdf.php');
 include("../include/globalx.php");
 include("../include/functions.php");
@@ -33,7 +33,7 @@ include "otentik_gli.php";
     <td><div align="center"><strong>Saldo</strong></div></td>
     <td><div align="center"><strong>User</strong></div></td>
   </tr>
-	<?php
+	<?php 
 			$SQLinduk = "SELECT * FROM rekening WHERE substr(norek, -4) <> '0000'";
 			if($_POST['norek'] <> ""){
 				$SQLinduk = $SQLinduk . " AND norek = '".$_POST['norek']."'";
@@ -46,14 +46,14 @@ include "otentik_gli.php";
 	?>
 	
     <tr>
-      <td colspan="3" align="center"><div align="right"><b><?php echo $barisinduk["namarek"].' - '.noreknn($barisinduk["norek"]);?></b></div></td>
+      <td colspan="3" align="center"><div align="right"><b><?php  echo $barisinduk["namarek"].' - '.noreknn($barisinduk["norek"]);?></b></div></td>
       <td>&nbsp;</td>
       <td align="right">&nbsp;</td>
       <td align="right">&nbsp;</td>
       <td align="right">&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
-	<?php
+	<?php 
 	
 			
 			//saldo awal
@@ -110,12 +110,12 @@ include "otentik_gli.php";
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>Saldo Awal</td>
-    <td align="right"><?php echo $barisinduk["saldonormal"] == "D" ? number_format($saldoawal,2,'.',',') : '0,00'; $saldoawal_d = $saldoawal;	$saldoawal_k = 0; ?></td>
-    <td align="right"><?php echo ($barisinduk["saldonormal"] == "K") ? number_format($saldoawal,2,'.',',') : '0,00'; $saldoawal_k = $saldoawal; $saldoawal_d = 0; ?></td>
-    <td align="right"><?=number_format($saldoawal,2,'.',',')?></td>
+    <td align="right"><?php  echo $barisinduk["saldonormal"] == "D" ? number_format($saldoawal,2,'.',',') : '0,00'; $saldoawal_d = $saldoawal;	$saldoawal_k = 0; ?></td>
+    <td align="right"><?php  echo ($barisinduk["saldonormal"] == "K") ? number_format($saldoawal,2,'.',',') : '0,00'; $saldoawal_k = $saldoawal; $saldoawal_d = 0; ?></td>
+    <td align="right"><?php  echo number_format($saldoawal,2,'.',',')?></td>
     <td>&nbsp;</td>
   </tr>
-  <?php
+  <?php 
   $sr_debet = 0;
 	$sr_kredit = 0;
 	$no = 0;
@@ -125,14 +125,14 @@ include "otentik_gli.php";
 		
 		?>
   <tr>
-    <td><?=++$no?></td>
+    <td><?php  echo ++$no?></td>
     <td><div align="center">
-      <?php echo baliktglindo($baris['tanggal']); ?>
+      <?php  echo baliktglindo($baris['tanggal']); ?>
     </div></td>
-    <td align="center"><?=nobukti($baris['nobukti']) ?></td>
-    <td><?=$baris['ket']?></td>
+    <td align="center"><?php  echo nobukti($baris['nobukti']) ?></td>
+    <td><?php  echo $baris['ket']?></td>
     <td><div align="right">
-      <?php 
+      <?php  
 	  if($baris['kd'] == $barisinduk['norek']){
 		  echo  number_format($baris['jumlah'],2,'.',',');
 	  
@@ -156,7 +156,7 @@ include "otentik_gli.php";
 	  ?>
     </div></td>
     <td><div align="right">
-      <?php 
+      <?php  
 	  if($baris['kk'] == $barisinduk['norek']){
 	  echo  number_format($baris['jumlah'],2,'.',',');
 	  	$sr_kredit = $sr_kredit + $baris['jumlah'];
@@ -178,11 +178,11 @@ include "otentik_gli.php";
 	  ?>
     </div></td>
     <td><div align="right">
-      <?=number_format($saldoawal,2,'.',',')?>
+      <?php  echo number_format($saldoawal,2,'.',',')?>
     </div></td>
     <td>&nbsp;</td>
   </tr>
-    <?php
+    <?php 
   		}
   ?>
   <tr>
@@ -196,7 +196,7 @@ include "otentik_gli.php";
     <td>&nbsp;</td>
   </tr>
 
-  <?php } ?>
+  <?php  } ?>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

@@ -1,9 +1,9 @@
-<? session_start(); 
+<?php  session_start(); 
 if(isset($_POST["excell"])){
 	header("location: cetak_neraca_excell.php");
 }
 ?>
-<?php
+<?php 
 require('../fpdf16/fpdf.php');
 include("../include/globalx.php");
 include("../include/functions.php");

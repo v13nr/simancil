@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Buyer extends msDB {
   private $grid; 
   

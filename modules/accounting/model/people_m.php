@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Person extends msDB {
     var $grid;
 

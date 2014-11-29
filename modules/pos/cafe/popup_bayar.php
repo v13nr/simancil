@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
 </head>
 
 <body>
-<?php
+<?php 
 	include "../include/globalx.php";
 	$nonota = $_GET['nonota'];
 	//$split = explode("/",$nonota);
@@ -69,17 +69,17 @@ jQuery(document).ready(function() {
 	$baris = mysql_fetch_array($hasil);
 	$total = $baris[0];
 ?>
-<form method="post" action="cetak_nota.php?nonota=<?=$nonota?>">
+<form method="post" action="cetak_nota.php?nonota=<?php  echo $nonota?>">
 <table width="452" border="0">
   <tr>
     <td colspan="3"><div align="center">PEMBAYARAN<br />
-	ID = <?=$nonota?>
+	ID = <?php  echo $nonota?>
 	</div></td>
   </tr>
   <tr>
     <td width="113">Total  </td>
     <td width="7">:</td>
-    <td align="right" width="172"><input type="text" name="total" class="required kanan"  id="total" value="<?=number_format($total)?>" readonly="true" /></td>
+    <td align="right" width="172"><input type="text" name="total" class="required kanan"  id="total" value="<?php  echo number_format($total)?>" readonly="true" /></td>
   </tr>
   <tr>
     <td>Bayar</td>

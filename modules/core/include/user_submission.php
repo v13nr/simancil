@@ -1,4 +1,4 @@
-<?
+<?php 
 session_start();
 @include ("globalx.php");
 //include ("otentik.php");

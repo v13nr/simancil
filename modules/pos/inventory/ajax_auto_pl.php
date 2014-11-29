@@ -1,4 +1,4 @@
-<?php
+<?php 
 include "../include/globalx.php";
 $q = strtolower($_GET["q"]);
 //if (!$q) return;

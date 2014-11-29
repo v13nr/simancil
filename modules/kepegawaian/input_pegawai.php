@@ -1,4 +1,4 @@
-<? include "otentik_kepeg.php"; include "../../config_sistem.php"; ?><head>
+<?php  include "otentik_kepeg.php"; include "../../config_sistem.php"; ?><head>
 	<script type="text/javascript" src="../../assets/kalendar_files/jsCalendar.js"></script>
 	<link href="../../assets/kalendar_files/calendar.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="../../assets/jquery-1.2.3.pack.js"></script>
@@ -66,11 +66,11 @@ td { padding: 5px; }
 	color: #0000FF;
 }
 </style>
-<? 
+<?php  
 	include "include/globalx.php";
 	include "include/functions.php";
 ?>
-  <? $SQL = "select * from mastpegawai WHERE status = 1";
+  <?php  $SQL = "select * from mastpegawai WHERE status = 1";
 	 	if ($_GET['id']<>"")
 		{ 
 			$SQL = $SQL." AND idno = ". $_GET['id'];
@@ -107,12 +107,12 @@ td { padding: 5px; }
   <tr>
     <td>&nbsp;</td>
     <td><form id="pegForm" method="post" name="pegForm" action="pegawai_submission.php">
-      <? if($_GET['id']<>""){ ?>
+      <?php  if($_GET['id']<>""){ ?>
       <input type="hidden" name="cmd" value="upd_peg" />
-      <input type="hidden" name="id" value="<?=$idno?>" />
-      <? } else { ?>
+      <input type="hidden" name="id" value="<?php  echo $idno?>" />
+      <?php  } else { ?>
       <input type="hidden" name="cmd" value="add_pegawai" />
-      <? } ?>
+      <?php  } ?>
       <table align="left" class="x1">
         <tr background="../../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1">Form Kepegawaian</span></td>
@@ -120,40 +120,40 @@ td { padding: 5px; }
         <tr>
           <td><span class="style6">Nomor Induk </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="noinduk" type="text" class="required " id="noinduk"  title="Nomor Induk harus diisi" value="<?=$noinduk?>" <? if($_GET['id']<>""){?>readonly="true" <? }?> />
+          <td><input name="noinduk" type="text" class="required " id="noinduk"  title="Nomor Induk harus diisi" value="<?php  echo $noinduk?>" <?php  if($_GET['id']<>""){?>readonly="true" <?php  }?> />
           </td>
         </tr>
         <tr>
           <td><span class="style6">Nama</span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="nama" type="text" class="required " id="nama"  title="Nama Induk harus diisi" value="<?=$nama?>" /></td>
+          <td><input name="nama" type="text" class="required " id="nama"  title="Nama Induk harus diisi" value="<?php  echo $nama?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Alamat</span></td>
           <td><span class="style6">:</span></td>
-          <td><textarea name="alamat" cols="40" class="required style2 style7" id="alamat" title="Alamat harus diisi"><?=$alamat?>
+          <td><textarea name="alamat" cols="40" class="required style2 style7" id="alamat" title="Alamat harus diisi"><?php  echo $alamat?>
     </textarea></td>
         </tr>
         <tr>
           <td><span class="style6">No. Telp</span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="notelp" type="text" class="required " id="notelp"  title="Nomor Telp harus diisi" value="<?=$notelp?>" maxlength="12" />
+          <td><input name="notelp" type="text" class="required " id="notelp"  title="Nomor Telp harus diisi" value="<?php  echo $notelp?>" maxlength="12" />
           </td>
         </tr>
         <tr>
           <td><span class="style6">Kelamin</span></td>
           <td><span class="style6">:</span></td>
           <td><span class="style6">
-            <input type="radio" name="kelamin" value="L" <? if ($jkel == "L") {?> checked="checked" <? } ?>  class="required" />
+            <input type="radio" name="kelamin" value="L" <?php  if ($jkel == "L") {?> checked="checked" <?php  } ?>  class="required" />
             Laki - Laki &nbsp;&nbsp;
-            <input type="radio" name="kelamin" value="P" <? if ($jkel == "P") {?> checked="checked" <? } ?>  class="required" />
+            <input type="radio" name="kelamin" value="P" <?php  if ($jkel == "P") {?> checked="checked" <?php  } ?>  class="required" />
             Perempuan</span></td>
         </tr>
         <tr>
           <td><span class="style6">Tanggal Lahir </span></td>
           <td><span class="style6">:</span></td>
           <td><span class="style6">
-            <input name="tgl_lahir" id="tgl_lahir" size="10" type="text"  class="required"  title="Tanggal lahir harus diisi" value="<? if($tgl_lahir<>""){ echo baliktglindo($tgl_lahir);}?>" />
+            <input name="tgl_lahir" id="tgl_lahir" size="10" type="text"  class="required"  title="Tanggal lahir harus diisi" value="<?php  if($tgl_lahir<>""){ echo baliktglindo($tgl_lahir);}?>" />
           <a href="javascript:showCalendar('tgl_lahir')"><img src="../../assets/kalendar_files/calendar_icon.gif" alt="2" border="0" /></a></span></td>
         </tr>
         <tr>
@@ -161,15 +161,15 @@ td { padding: 5px; }
           <td><span class="style6">:</span></td>
           <td><select name="slJabatan" class="required style2 style7"  title="Jabatan harus dipilih">
               <option value="">- Jabatan -</option>
-              <?
+              <?php 
 		  		$SQL = "SELECT * FROM mastjabatan WHERE namajab <>'' AND status = 1";
 				$hasil = mysql_query($SQL);
 				while ($baris = mysql_fetch_array($hasil)) {
 		  ?>
-              <option value="<?=$baris["idjab"]?>" <? if ($baris["idjab"]==$jabatan) { ?>selected="selected" <? } ?>>
-                <?=$baris["namajab"]?>
+              <option value="<?php  echo $baris["idjab"]?>" <?php  if ($baris["idjab"]==$jabatan) { ?>selected="selected" <?php  } ?>>
+                <?php  echo $baris["namajab"]?>
                 </option>
-              <?	} ?>
+              <?php 	} ?>
           </select></td>
         </tr>
         <tr>
@@ -177,22 +177,22 @@ td { padding: 5px; }
           <td><span class="style7"></span></td>
           <td><select name="slDepartemen" class="required style2 style7"  title="Departemen harus dipilih">
               <option value="">- Departemen -</option>
-              <?
+              <?php 
 		  		$SQL = "SELECT * FROM master_dept WHERE namadept <>'' AND status = 1";
 				$hasil = mysql_query($SQL);
 				while ($baris = mysql_fetch_array($hasil)) {
 		  ?>
-              <option value="<?=$baris["iddep"]?>" <? if ($baris["iddep"]==$departemen) { ?>selected="selected" <? } ?>>
-              <?=$baris["namadept"]?>
+              <option value="<?php  echo $baris["iddep"]?>" <?php  if ($baris["iddep"]==$departemen) { ?>selected="selected" <?php  } ?>>
+              <?php  echo $baris["namadept"]?>
               </option>
-              <?	} ?>
+              <?php 	} ?>
           </select></td>
         </tr>
         <tr>
           <td><span class="style6">Mulai Bekerja </span></td>
           <td><span class="style6">:</span></td>
           <td><span class="style6">
-            <input name="tgl_mkerja" id="tgl_mkerja" size="10" type="text" value="<? if($tgl_lahir<>""){ echo baliktglindo($tgl_mkerja);}?>" />
+            <input name="tgl_mkerja" id="tgl_mkerja" size="10" type="text" value="<?php  if($tgl_lahir<>""){ echo baliktglindo($tgl_mkerja);}?>" />
           <a href="javascript:showCalendar('tgl_mkerja')"><img src="../../assets/kalendar_files/calendar_icon.gif" alt="1" border="0" /></a></span></td>
         </tr>
         <tr>
@@ -200,46 +200,46 @@ td { padding: 5px; }
           <td><span class="style6">:</span></td>
           <td><select name="gaji_tipe" class="required style2 style7" title="Pilih Tipe Penggajian">
               <option value="">-Tipe Gaji-</option>
-              <option value="Bulanan" <? if($gaji_tipe =="Bulanan") {?> selected="selected" <? }?>>Bulanan</option>
-              <option value="Mingguan" <? if($gaji_tipe =="Mingguan") {?> selected="selected" <? }?>>Mingguan</option>
-              <option value="Harian" <? if($gaji_tipe =="Harian") {?> selected="selected" <? }?>>Harian</option>
+              <option value="Bulanan" <?php  if($gaji_tipe =="Bulanan") {?> selected="selected" <?php  }?>>Bulanan</option>
+              <option value="Mingguan" <?php  if($gaji_tipe =="Mingguan") {?> selected="selected" <?php  }?>>Mingguan</option>
+              <option value="Harian" <?php  if($gaji_tipe =="Harian") {?> selected="selected" <?php  }?>>Harian</option>
             </select>
           </td>
         </tr>
         <tr>
           <td><span class="style6">Riwayat Pendidikan </span></td>
           <td><span class="style6">:</span></td>
-          <td><textarea name="pendidikan" cols="40" rows="2" class="style2 style7" id="pendidikan"><?=$pendidikan?>
+          <td><textarea name="pendidikan" cols="40" rows="2" class="style2 style7" id="pendidikan"><?php  echo $pendidikan?>
     </textarea></td>
         </tr>
         <tr>
           <td><span class="style6">Riwayat Pekerjaan </span></td>
           <td><span class="style6">:</span></td>
-          <td><textarea name="pekerjaan" cols="40" rows="2" class="style2 style7" id="pekerjaan"><?=$pekerjaan?>
+          <td><textarea name="pekerjaan" cols="40" rows="2" class="style2 style7" id="pekerjaan"><?php  echo $pekerjaan?>
     </textarea></td>
         </tr>
         <tr>
           <td><span class="style6">Riwayat Keluarga </span></td>
           <td><span class="style6">:</span></td>
-          <td><textarea name="keluarga" cols="40" rows="2" class="style2 style7" id="keluarga"><?=$keluarga?>
+          <td><textarea name="keluarga" cols="40" rows="2" class="style2 style7" id="keluarga"><?php  echo $keluarga?>
     </textarea></td>
         </tr>
         <tr>
           <td><span class="style6">Finger Print </span></td>
           <td><span class="style6">:</span></td>
           <td><span class="style6">
-            <input type="text" name="finger" id="finger" readonly="true" size="10" value="<?=$finger?>"/>
+            <input type="text" name="finger" id="finger" readonly="true" size="10" value="<?php  echo $finger?>"/>
           <a href="daftar_finger.php?width=500&amp;height=400&amp;TB_iframe=true" class="thickbox"></a> </span></td>
         </tr>
         <tr>
           <td><span class="style7"></span></td>
           <td><span class="style7"></span></td>
           <td><span class="style6">
-            <? if($_GET['id']<>""){ ?>
+            <?php  if($_GET['id']<>""){ ?>
             <input name="submit" type="submit" value="Update" />
-            <? } else { ?>
+            <?php  } else { ?>
             <input name="submit" type="submit" value="Simpan" />
-            <? } ?>
+            <?php  } ?>
             <input name="button" type="button" onclick="javascript:history.back()" value="Batal" />
           </span></td>
         </tr>

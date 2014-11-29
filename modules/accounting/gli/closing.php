@@ -1,4 +1,4 @@
-<? session_start(); ?>
+<?php  session_start(); ?>
 <style type="text/css">
 <!--
 body {
@@ -10,7 +10,7 @@ body {
 .style5 {color: #000000; }
 -->
 </style>
-<?php  
+<?php   
 require('../fpdf16/fpdf.php');
 include("../include/globalx.php");
 include("../include/functions.php");

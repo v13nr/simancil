@@ -1,4 +1,4 @@
-<?php session_start();
+<?php  session_start();
 include ("config_sistem.php");
 
 class Browser {

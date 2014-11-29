@@ -6,6 +6,6 @@
 </head>
 
 <body>
-<iframe width="100%" height="450" src="<?php echo "modules/".base64_decode($_GET["getmodule"])."/".$_GET["mn"].".php"; ?>"></iframe>
+<iframe width="100%" height="450" src="<?php  echo "modules/".base64_decode($_GET["getmodule"])."/".$_GET["mn"].".php"; ?>"></iframe>
 </body>
 </html>

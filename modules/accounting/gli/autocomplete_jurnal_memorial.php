@@ -1,4 +1,4 @@
-<?php
+<?php 
 	require_once "../include/globalx.php";
 	$cmd = $_GET['cmd'];
 	if($cmd == 'autocomplete'){

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  *  Copyright (C) PT. Netsindo Sentra Computama
  *  Project Manager : Andi Micro
@@ -7,7 +7,7 @@
  *  Date: April 2014
 **/
 ?>
-<?php
+<?php 
 @session_start();
 include("../include/globalx.php");
 switch ($_SESSION['sess_kelasuser']) {

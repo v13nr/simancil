@@ -1,4 +1,4 @@
-<?php
+<?php 
     /* Libchart - PHP chart library
      * Copyright (C) 2005-2011 Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
      * 

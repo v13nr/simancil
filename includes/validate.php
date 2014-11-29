@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 //validating admin store add
 

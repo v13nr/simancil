@@ -1,4 +1,4 @@
-<?
+<?php 
 
 	//Table Base Classs
 	require_once("class.fpdf_table.php");

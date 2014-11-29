@@ -1,5 +1,5 @@
-<? session_start(); ?>
-<? // include "otentik_admin.php"; include ("../include/functions.php");?><head>
+<?php  session_start(); ?>
+<?php  // include "otentik_admin.php"; include ("../include/functions.php");?><head>
 <script type="text/javascript" src="../assets/kalendar_files/jsCalendar.js"></script>
 <link href="../assets/kalendar_files/calendar.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
@@ -56,9 +56,9 @@ input.error, select.error { border: 1px solid red; }
 label.error { color:red; margin-left: 10px; }
 td { padding: 5px; }
 </style>
-<?  
+<?php   
 	include "../include/globalx.php"; ?>
-<?
+<?php 
 	$SQL = "SELECT * FROM $database.meja WHERE id <> ''";
 	if ($_GET['id']<>"") {
 		$SQL = $SQL." and id=".$_GET['id'];
@@ -77,27 +77,27 @@ td { padding: 5px; }
   <tr>
     <td width="32">&nbsp;</td>
     <td><table border="1" align="left" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
-      <? if ($_GET['id']<>"") {?>
+      <?php  if ($_GET['id']<>"") {?>
       <tr>
         <td background="../images/impactg.png" colspan="9" align="center"><font color="white"><b>Edit Meja </b></font></td>
       </tr>
-      <? } else { ?>
+      <?php  } else { ?>
       <tr>
         <td background="../images/impactg.png" colspan="9" align="center"><strong><font color="white">MASTER MEJA </font></strong></td>
       </tr>
-      <? } ?>
+      <?php  } ?>
       <tr bgcolor="#FFCC00">
         <td width="34" align="center"><strong>No</strong></td>
         <td width="150" align="center"><strong>Nama Meja </strong></td>
-        <? if ($_GET['id']<>"") { ?>
+        <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="58" align="center"><strong>Edit</strong></td>
         <td width="58" align="center"><b>Hapus</b></td>
-        <? } ?>
+        <?php  } ?>
       </tr>
-      <? if ($_GET['id']=="") { ?>
+      <?php  if ($_GET['id']=="") { ?>
       <tr bgcolor="yellow">
         <form name="frmijin" id="frmijin" method="post" action="submission_cafe.php">
           <input type="hidden" name="cmd" value="add_meja" />
@@ -106,39 +106,39 @@ td { padding: 5px; }
           <td align="center" colspan="4"><input name="image" type="image" src="../images/add.gif" border="0" /></td>
         </form>
       </tr>
-      <? } ?>
-      <?	 
+      <?php  } ?>
+      <?php 	 
 		$nRecord = 1;
 		if (mysql_num_rows($hasil) > 0) { 
 		while ($row=mysql_fetch_array($hasil)) { 
 	?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<? } else {?> else="else" bgcolor="#CCCCCC"<? }?>>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<?php  } else {?> else="else" bgcolor="#CCCCCC"<?php  }?>>
         <form action="submission_cafe.php" method="post" name="frmijin" id="frmijin">
-          <input type="hidden" name="id" value="<?=$_GET['id']?>" />
+          <input type="hidden" name="id" value="<?php  echo $_GET['id']?>" />
           <input type="hidden" name="cmd" value="upd_meja" />
-          <td align="center"><?=$nRecord?></td>
-          <td align="left"><? if ($_GET['id']<>"") { ?>
-            <input type="text" name="nama" size="50" class="required" title="*"  value="<?=$row['nama']?>">
-            <? } else { ?>
-              <?=$row["nama"]?>
-              <? } ?></td>
-          <? if ($_GET['id']<>"") { ?>
+          <td align="center"><?php  echo $nRecord?></td>
+          <td align="left"><?php  if ($_GET['id']<>"") { ?>
+            <input type="text" name="nama" size="50" class="required" title="*"  value="<?php  echo $row['nama']?>">
+            <?php  } else { ?>
+              <?php  echo $row["nama"]?>
+              <?php  } ?></td>
+          <?php  if ($_GET['id']<>"") { ?>
           <td align="center"><input name="image" type="image" src="../images/approve.gif" border="0" /></td>
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
-          <td align="center"><a href="?mn=<?=$_GET['mn']?>&amp;id=<?=$row["id"]?>"><img src="../images/edit.gif" alt="Edit" border="0" /></a></td>
-          <td align="center"><a href="javascript:confirmDelete('submission_cafe.php?id=<?=$row["id"]?>&amp;cmd=del_meja')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
-          <? } ?>
+          <?php  } else { ?>
+          <td align="center"><a href="?mn=<?php  echo $_GET['mn']?>&amp;id=<?php  echo $row["id"]?>"><img src="../images/edit.gif" alt="Edit" border="0" /></a></td>
+          <td align="center"><a href="javascript:confirmDelete('submission_cafe.php?id=<?php  echo $row["id"]?>&amp;cmd=del_meja')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
+          <?php  } ?>
         </form>
       </tr>
-      <?  
+      <?php   
 		 $nRecord = $nRecord + 1;
 		} 
 	} else { ?>
       <tr>
         <td align="center" colspan="9"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
-      <?  } ?>
+      <?php   } ?>
     </table></td>
   </tr>
 </table>

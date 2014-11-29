@@ -13,7 +13,7 @@
 	</script>
  </head>
 <body>
-<?
+<?php 
  require_once('phppagination.class.php');
  include '../include/globalx.php';
  
@@ -49,7 +49,7 @@ $oPagination = new phpPagination ($nTotalItems, $nItemsPerPage);
  $query = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 ?>
 <form action="" method="post">
- Cari nama: <input type="text" name="search" size="15" value="<?php echo @$_POST['search']; ?>" />
+ Cari nama: <input type="text" name="search" size="15" value="<?php  echo @$_POST['search']; ?>" />
  <input type="submit" name="search_bt" value="Cari" />
 </form>
 <table width="100%" bgcolor="#000000" cellspacing="1" cellpadding="3">	
@@ -57,14 +57,14 @@ $oPagination = new phpPagination ($nTotalItems, $nItemsPerPage);
 		<th>COA</th>
 		<th>Nama</th>
 	</tr>
-	<? while($row = mysql_fetch_object($query)): ?>
+	<?php  while($row = mysql_fetch_object($query)): ?>
 	<tr bgcolor="#FFFFFF">
-		<td align="center"><a href="javascript:pickCOA('<?=$row->norek?>','<?=$row->norek?>','<?=$row->norek?>','<?=$row->namarek?>')"><?=$row->norek?></a></td>
-		<td><?=$row->namarek?></td>
+		<td align="center"><a href="javascript:pickCOA('<?php  echo $row->norek?>','<?php  echo $row->norek?>','<?php  echo $row->norek?>','<?php  echo $row->namarek?>')"><?php  echo $row->norek?></a></td>
+		<td><?php  echo $row->namarek?></td>
 	</tr>
-	<? endwhile; ?>
+	<?php  endwhile; ?>
 </table>
-Halaman : <? // print pagination for current page
+Halaman : <?php  // print pagination for current page
 echo $oPagination->GetHtml($nCurrentPage)."\n"; ?>
 </body>
 </html>

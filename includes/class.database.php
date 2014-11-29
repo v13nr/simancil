@@ -1,4 +1,4 @@
-<?php
+<?php 
 class DB {
 	var $hostname 	= 'localhost';
 	var $username 	= 'root';

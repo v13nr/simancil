@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /**
  * Class extention for Header and Footer Definitions

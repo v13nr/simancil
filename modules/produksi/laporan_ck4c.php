@@ -56,10 +56,10 @@ $(document).ready(function() {
       <td width="28" rowspan="2"></td>
       <td width="83">Divisi</td>
       <td width="276"><select name="divisi">
-          <? if($_SESSION["sess_kelasuser"]<>"User"){?>
+          <?php  if($_SESSION["sess_kelasuser"]<>"User"){?>
           <option value="">-ALL-</option>
-          <? }?>
-          <?
+          <?php  }?>
+          <?php 
 			$SQL = "SELECT * FROM $database.divisi WHERE subdiv <> ''";
 			if($_SESSION["sess_kelasuser"]=="User"){
 				$SQL = $SQL . " AND subdiv = '".$_SESSION["sess_tipe"]."'";
@@ -67,10 +67,10 @@ $(document).ready(function() {
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-          <option value="<?=$baris['subdiv']?>">
-          <?=$baris['namadiv']?>
+          <option value="<?php  echo $baris['subdiv']?>">
+          <?php  echo $baris['namadiv']?>
           </option>
-          <? } ?>
+          <?php  } ?>
       </select></td>
     </tr>
     <tr bgcolor="#FFFFCC">
@@ -80,17 +80,17 @@ $(document).ready(function() {
       <td>No. Rek </td>
       <td><select name="norek" class="" title="Pilih Nomor Rekening Dahulu" style="visibility:hidden" >
           <option value="">-ALL-</option>
-          <?
+          <?php 
 				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -3) <> '000' ORDER BY norek";
 				$hasil = mysql_query($SQL, $dbh_jogjaide);
 				while($baris = mysql_fetch_array($hasil)){
 			?>
-          <option value="<?=$baris['norek']?>">
-          <?=$baris['norek']?>
+          <option value="<?php  echo $baris['norek']?>">
+          <?php  echo $baris['norek']?>
             -
-            <?=$baris['namarek']?>
+            <?php  echo $baris['namarek']?>
           </option>
-          <? } ?>
+          <?php  } ?>
         </select>
         ALL</td>
     </tr>

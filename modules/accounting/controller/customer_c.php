@@ -1,4 +1,4 @@
-<?php
+<?php 
     $action = $_REQUEST['action'];
     $handler->loadModel('customer_m');
     $customer = new Customer;

@@ -1,9 +1,9 @@
-<?php session_start(); ?>
-<?php include "otentik_gli.php";  
+<?php  session_start(); ?>
+<?php  include "otentik_gli.php";  
   include("../../../config_sistem.php");
  include ("../include/functions.php");
  ?>
- <?php $SQLp = "select * FROM mastpegawai WHERE status = 1"; $hasilp = mysql_query($SQLp, $dbh_jogjaide) or die(mysql_error()); $barisp=mysql_fetch_array($hasilp); echo $barisp[0];?>
+ <?php  $SQLp = "select * FROM mastpegawai WHERE status = 1"; $hasilp = mysql_query($SQLp, $dbh_jogjaide) or die(mysql_error()); $barisp=mysql_fetch_array($hasilp); echo $barisp[0];?>
 <style type="text/css">
 <!--
 body {
@@ -210,45 +210,45 @@ $(document).ready(function() {
 	<form name="frmijin" id="frmijin" method="post" action="submission_gli.php">
           <input type="hidden" name="cmd" value="add_jurnal" />
           <input type="hidden" name="khusus" value="gaji" />
-		  <input type="hidden" name="nobukti" value="<?=$_GET['nobukti']?>" />
-		  <input type="hidden" name="bulan" value="<?=$_GET['bulan']?>" />
+		  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
+		  <input type="hidden" name="bulan" value="<?php  echo $_GET['bulan']?>" />
       <tr>
         <td>Tanggal</td>
-        <td><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="Harap Mengisi Tanggal Terlebih Dahulu" value="<?=$_GET['tgl_transaksi']?>" <? if($_GET['tgl_transaksi']<>""){?> readonly="true" <? } ?> />
-		<? if($_GET['tgl_transaksi']==""){?>
+        <td><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="Harap Mengisi Tanggal Terlebih Dahulu" value="<?php  echo $_GET['tgl_transaksi']?>" <?php  if($_GET['tgl_transaksi']<>""){?> readonly="true" <?php  } ?> />
+		<?php  if($_GET['tgl_transaksi']==""){?>
           <a href="javascript:showCalendar('tgl_transaksi')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0"></a></td>
-		  <? } ?>
+		  <?php  } ?>
       </tr>
       <tr>
         <td>No. Bukti </td>
-        <td><input type="text" name="bukti" id="bukti"  class="required" title="Nomor Bukti Harus diisi !" value="<?=$_GET['nobukti'];?>" /></td>
+        <td><input type="text" name="bukti" id="bukti"  class="required" title="Nomor Bukti Harus diisi !" value="<?php  echo $_GET['nobukti'];?>" /></td>
       </tr>
       <tr>
         <td>D/K</td>
         <td><select name="dk" id="dk" class="required" title="*">
-		 <? if ($_GET['dk']<>""){?> 
-		 <option value="<?=$_GET['dk']?>" selected="selected"><?=$_GET['dk']?></option>
-		 <? } else { ?>
-          <option value="Kredit" <? if ($_GET['dk']=="Kredit"){?> selected="selected" <? }?>>Kredit</option>
-		  <? } ?>
+		 <?php  if ($_GET['dk']<>""){?> 
+		 <option value="<?php  echo $_GET['dk']?>" selected="selected"><?php  echo $_GET['dk']?></option>
+		 <?php  } else { ?>
+          <option value="Kredit" <?php  if ($_GET['dk']=="Kredit"){?> selected="selected" <?php  }?>>Kredit</option>
+		  <?php  } ?>
         </select>
         <div id="divAlert"></div>		</td>
       </tr>
       <tr>
         <td>No. Perkiraan </td>
-        <td><input type="text" name="norek" id="norek" readonly="true" maxlength="8" size="10" class="required" title="*" value="AL1-1111" <? if($_GET['norek']<>""){?> <? } ?> />
-		<? if($_GET['norek']==""){?>
-		<? } ?>
+        <td><input type="text" name="norek" id="norek" readonly="true" maxlength="8" size="10" class="required" title="*" value="AL1-1111" <?php  if($_GET['norek']<>""){?> <?php  } ?> />
+		<?php  if($_GET['norek']==""){?>
+		<?php  } ?>
 		<input type="hidden" name="namarek" size="30" value="Kas" readonly="true" />        </td>
       </tr>
       <tr>
         <td>Keterangan </td>
-        <td><input type="text" name="keteranganheader" size="50" class="required" readonly="true" title="*" value="Kas"  <? if($_GET['keteranganheader']<>""){?>  <? } ?>></td>
+        <td><input type="text" name="keteranganheader" size="50" class="required" readonly="true" title="*" value="Kas"  <?php  if($_GET['keteranganheader']<>""){?>  <?php  } ?>></td>
       </tr>
       <tr>
         <td>TOTAL</td>
         <td>
-			<?
+			<?php 
 				$SQLt = "SELECT SUM(jumlah) FROM $database.jurnal_srb WHERE bulan = '".$_GET['bulan']."' AND nobukti = '".$_GET['nobukti']."'";
 				$hasilt= mysql_query($SQLt,$dbh_jogjaide);
 				$barist = mysql_fetch_array($hasilt);
@@ -260,52 +260,52 @@ $(document).ready(function() {
     </table>
 	<br />
 	<table border="1" align="left" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
-      <? if ($_GET['id']<>"") {?>
+      <?php  if ($_GET['id']<>"") {?>
       <tr>
         <td background="../images/impactg.png" colspan="9" align="center"><font color="white"><b>Edit Transaksi </b></font></td>
       </tr>
-      <? } else { ?>
+      <?php  } else { ?>
       <tr>
         <td background="../images/impactg.png" colspan="9" align="center"><strong><font color="white"> TRANSAKSI </font></strong></td>
       </tr>
-      <? } ?>
+      <?php  } ?>
       <tr bgcolor="#FFCC00">
         <td width="34" align="center"><strong>No</strong></td>
         <td width="150" align="center">
 			Debet</td>
         <td width="150" align="center"><strong>Keterangan</strong></td>
         <td width="104" align="center"><strong>Jumlah (Rp. )</strong></td>
-        <? if ($_GET['id']<>"") { ?>
+        <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td width="58" align="center"><strong>Edit</strong></td>
         <td width="58" align="center"><b>Hapus</b></td>
-        <? } ?>
+        <?php  } ?>
       </tr>
-      <? if ($_GET['id']=="") { ?>
+      <?php  if ($_GET['id']=="") { ?>
       <tr bgcolor="yellow">
         
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
           <td align="center"><select name="norek2" id="norek2" class="required" title="*" >
-            <?
+            <?php 
 				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -4) <> '0000' and norek LIKE '%5311' ORDER BY norek";
 				$hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 				while($baris = mysql_fetch_array($hasil)){
 							?>
-					<option value="<?=$baris['norek']?>" selected="selected">
-					<?php echo noreknn($baris['norek']);?>
+					<option value="<?php  echo $baris['norek']?>" selected="selected">
+					<?php  echo noreknn($baris['norek']);?>
 					 @
-					<?php echo $baris['namarek']?>
+					<?php  echo $baris['namarek']?>
 					</option>
 					
-				<? } ?>
+				<?php  } ?>
           </select></td>
-          <td align="center"><?php $SQLp = "select * FROM $database.mastpegawai WHERE status = 1"; $hasilp = mysql_query($SQLp, $dbh_jogjaide); ?>
+          <td align="center"><?php  $SQLp = "select * FROM $database.mastpegawai WHERE status = 1"; $hasilp = mysql_query($SQLp, $dbh_jogjaide); ?>
 		  <select name="keterangantransaksi" id="cketerangantransaksi">
-		  		<?php $SQLp = "select * FROM $database.mastpegawai WHERE status = 1"; $hasilp = mysql_query($SQLp, $dbh_jogjaide) or die(mysql_error()); while($barisp=mysql_fetch_array($hasilp)){?>
-					<option value="<?php echo $barisp["nama"].'@'.$barisp["noinduk"] ?>"><?php echo $barisp["nama"] ?></option>
-				<?php } ?>
+		  		<?php  $SQLp = "select * FROM $database.mastpegawai WHERE status = 1"; $hasilp = mysql_query($SQLp, $dbh_jogjaide) or die(mysql_error()); while($barisp=mysql_fetch_array($hasilp)){?>
+					<option value="<?php  echo $barisp["nama"].'@'.$barisp["noinduk"] ?>"><?php  echo $barisp["nama"] ?></option>
+				<?php  } ?>
 		  </select>
 		  </td>
           <td align="center"><input type="text" name="jumlah"  class="required" title="*" />
@@ -314,8 +314,8 @@ $(document).ready(function() {
           <td align="center" colspan="4"><input name="image" type="image" src="../images/add.gif" border="0" /></td>
         </form>
       </tr>
-      <? } ?>
-      <?
+      <?php  } ?>
+      <?php 
 	  	
 		$SQLj = "SELECT * FROM $database.jurnal_srb WHERE bulan = '".$_GET['bulan']."' AND nobukti = '".$_GET['nobukti']."' AND memorial_id = 0";
 		//echo $SQLj; 		
@@ -324,16 +324,16 @@ $(document).ready(function() {
 		if (mysql_num_rows($hasilj) > 0) { 
 		while ($row=mysql_fetch_array($hasilj)) { 
 	?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<? } else {?> else="else" bgcolor="#CCCCCC"<? }?>>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFFF"<?php  } else {?> else="else" bgcolor="#CCCCCC"<?php  }?>>
         <form action="submission_gli.php" method="post" name="frmijin" id="frmijin">
           <input type="hidden" name="khusus" value="gaji" />
-          <input type="hidden" name="id" value="<?=$_GET['id']?>" />
+          <input type="hidden" name="id" value="<?php  echo $_GET['id']?>" />
           <input type="hidden" name="cmd" value="upd_jurnal" />
-          <td align="center"><?=$nRecord?></td>
-          <td align="center"><? if ($_GET['id']<>"") { ?>
-              <input type="text" name="norek2" size="20" class="required" title="*" maxlength="4" value="<?=$row['norek']?>" />
-              <? } else { ?>
-              <?
+          <td align="center"><?php  echo $nRecord?></td>
+          <td align="center"><?php  if ($_GET['id']<>"") { ?>
+              <input type="text" name="norek2" size="20" class="required" title="*" maxlength="4" value="<?php  echo $row['norek']?>" />
+              <?php  } else { ?>
+              <?php 
 			  if($row["jenis"]=="Kredit"){
 					echo $row["kd"]." -- ".$row["divisi"];
 				}
@@ -342,12 +342,12 @@ $(document).ready(function() {
 				}
 			  
 			  ?>
-              <? } ?>
+              <?php  } ?>
           </td>
-          <td align="left"><? if ($_GET['id']<>"") { ?>
-              <input type="text" name="namarek" size="50" class="required" title="*"  value="<?=$row['namarek']?>" />
-              <? } else { ?>
-              <?
+          <td align="left"><?php  if ($_GET['id']<>"") { ?>
+              <input type="text" name="namarek" size="50" class="required" title="*"  value="<?php  echo $row['namarek']?>" />
+              <?php  } else { ?>
+              <?php 
 			  	//tambah kondisi debet kredit
 				if($row["jenis"]=="Kredit"){
 					echo $row["ket"];
@@ -356,41 +356,41 @@ $(document).ready(function() {
 					echo $row["ket2"];
 				}
 			  ?>
-              <? } ?></td>
-          <td align="right"><? if ($_GET['id']<>"") { ?>
+              <?php  } ?></td>
+          <td align="right"><?php  if ($_GET['id']<>"") { ?>
               <select name="tipe" id="tipe" class="required" title="*">
-                <option value="A" <? if($row['tipe']=="A") {?> selected="selected" <? }?>>A</option>
-                <option value="P" <? if($row['tipe']=="P") {?> selected="selected" <? }?>>P</option>
-                <option value="R" <? if($row['tipe']=="R") {?> selected="selected" <? }?>>R</option>
+                <option value="A" <?php  if($row['tipe']=="A") {?> selected="selected" <?php  }?>>A</option>
+                <option value="P" <?php  if($row['tipe']=="P") {?> selected="selected" <?php  }?>>P</option>
+                <option value="R" <?php  if($row['tipe']=="R") {?> selected="selected" <?php  }?>>R</option>
               </select>
-              <? } else { ?>
-              <?=number_format($row["jumlah"],2,'.',',');?>
-              <? } ?></td>
-          <? if ($_GET['id']<>"") { ?>
+              <?php  } else { ?>
+              <?php  echo number_format($row["jumlah"],2,'.',',');?>
+              <?php  } ?></td>
+          <?php  if ($_GET['id']<>"") { ?>
           <td align="center"><input name="image" type="image" src="../images/approve.gif" border="0" /></td>
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
-          <? } else { ?>
-          <td align="center"><a href="?mn=<?=$_GET['mn']?>&amp;id=<?=$row["norek"]?>"></a></td>
-          <td align="center"><a href="javascript:confirmDelete('submission_gli.php?id=<?=$row["id"]?>&amp;cmd=del_jurnal&nobukti=<?=$_GET['nobukti']?>&tgl_transaksi=<?=$_GET['tgl_transaksi']?>&dk=<?=$_GET['dk']?>&norek=<?=$_GET['norek']?>&namarek=<?=$_GET['namarek']?>&divisi=<?=$_GET['divisi']?>&bulan=<?=$_GET['bulan']?>&keteranganheader=<?=$_GET['keteranganheader']?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
-          <? } ?>
+          <?php  } else { ?>
+          <td align="center"><a href="?mn=<?php  echo $_GET['mn']?>&amp;id=<?php  echo $row["norek"]?>"></a></td>
+          <td align="center"><a href="javascript:confirmDelete('submission_gli.php?id=<?php  echo $row["id"]?>&amp;cmd=del_jurnal&nobukti=<?php  echo $_GET['nobukti']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&dk=<?php  echo $_GET['dk']?>&norek=<?php  echo $_GET['norek']?>&namarek=<?php  echo $_GET['namarek']?>&divisi=<?php  echo $_GET['divisi']?>&bulan=<?php  echo $_GET['bulan']?>&keteranganheader=<?php  echo $_GET['keteranganheader']?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
+          <?php  } ?>
         </form>
       </tr>
-      <?  
+      <?php   
 		 $nRecord = $nRecord + 1;
 		} ?>
 		<tr>
 			<td colspan="20" align="center">
 			<a href="index.php?mn=trans_jurnal_gaji">[ SELESAI ATAU KE NOMOR BUKTI BERIKUTNYA ]</a>
-			<a href="cetak_pdf.php?divisi=<?php echo $div; ?>&nobukti=<?=$_GET['nobukti']?>&bulan=<?=$_GET['bulan']?>&tanggal=<?=$_GET['tgl_transaksi']?>">
+			<a href="cetak_pdf.php?divisi=<?php  echo $div; ?>&nobukti=<?php  echo $_GET['nobukti']?>&bulan=<?php  echo $_GET['bulan']?>&tanggal=<?php  echo $_GET['tgl_transaksi']?>">
 			[ CETAK ]</a>
 			</td>
 		</tr>
-		<?
+		<?php 
 	} else { ?>
       <tr>
         <td align="center" colspan="9"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
-      <?  } ?>
+      <?php   } ?>
     </table>	<p>&nbsp;</p></td>
   </tr>
 </table>

@@ -14,7 +14,7 @@
   </script>
  </head>
 <body>
-<?
+<?php 
  include '../include/globalx.php';
 include ("../include/functions.php");
  
@@ -34,7 +34,7 @@ include ("../include/functions.php");
 		<th width="18%">Sisa Harga Kontrak </th>
 		<th width="14%">Posting</th>
 	</tr>
-	<? 
+	<?php  
 	 
  $SQL = "SELECT * FROM $database.piutang_detail WHERE piutang_id = '".$_GET["ida"]."' AND ket = 'Uang Muka'";
  if(isset($_POST['search'])){
@@ -44,36 +44,36 @@ include ("../include/functions.php");
 	 while($row = mysql_fetch_object($query)){ ?>
 	<tr  bgcolor="#FFFFFF">
 	  <td align="center">&nbsp;</td>
-	  <td align="center"><?=baliktglindo($row->jtempo)?></td>
+	  <td align="center"><?php  echo baliktglindo($row->jtempo)?></td>
 	  <td align="center">-</td>
 	  <td align="center">-</td>
 	  <td align="center">-</td>
 	  <td align="center"><div align="right">
-	    <?php 
+	    <?php  
 	  	$SQLt = "SELECT saldo from piutang WHERE nomor = ".$_GET["nomor"];
 	  	$hasilt = mysql_query($SQLt, $dbh_jogjaide);
 		$barist = mysql_fetch_array($hasilt);
 		$kontrak = $barist[0];
 	  ?>
-	    <?php $sisa = $kontrak -  $sisa; echo number_format($sisa);?>
+	    <?php  $sisa = $kontrak -  $sisa; echo number_format($sisa);?>
       </div></td>
 	  <td align="center">&nbsp;</td>
   </tr>
 	<tr  bgcolor="#FFFFFF">
 	  <td align="center">Uang Muka </td>
-	  <td align="center"><?=baliktglindo($row->jtempo)?></td>
+	  <td align="center"><?php  echo baliktglindo($row->jtempo)?></td>
 	  <td align="center">-</td>
 	  <td align="center"><div align="right">
-        <?php echo number_format($row->nilai); $angsuran = $angsuran + $row->nilai; ?>
+        <?php  echo number_format($row->nilai); $angsuran = $angsuran + $row->nilai; ?>
       </div></td>
-	  <td align="center"><div align="right"> <?php echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
+	  <td align="center"><div align="right"> <?php  echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
 	  <td align="center"><div align="right">
-	    <?php $bayar = $row->nilai; $sisa =   $sisa -$bayar ; echo number_format($sisa);?>
+	    <?php  $bayar = $row->nilai; $sisa =   $sisa -$bayar ; echo number_format($sisa);?>
 	  </div></td>
 	  <td align="center">&nbsp;</td>
   </tr>
-  <?php } ?>
-	<? 
+  <?php  } ?>
+	<?php  
 	 
  $SQL = "SELECT * FROM $database.piutang_detail WHERE piutang_id = '".$_GET["ida"]."' AND ket <> 'Uang Muka'";
  if(isset($_POST['search'])){
@@ -84,35 +84,35 @@ include ("../include/functions.php");
 	
 	
 	<tr  bgcolor="#FFFFFF">
-		<td align="center"><?php echo $nourut++;?></td>
-		<td align="center"><?=baliktglindo($row->jtempo)?></td>
-		<td align="center"><div align="right"><?php
+		<td align="center"><?php  echo $nourut++;?></td>
+		<td align="center"><?php  echo baliktglindo($row->jtempo)?></td>
+		<td align="center"><div align="right"><?php 
 			$bunga =  ($row->bunga /100) * (1/12) * $sisa;
 			echo number_format($bunga);
 			$tbunga = $tbunga + $bunga;
 		?></div>
 	      <div align="right"></div></td>
-		<td align="center"><div align="right"><input type="text" value="<?php echo number_format($row->nilai); ?>" name="tes"> <?php $angsuran = $angsuran + $row->nilai; ?></div></td>
-		<td align="center"><div align="right"> <?php echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
+		<td align="center"><div align="right"><input type="text" value="<?php  echo number_format($row->nilai); ?>" name="tes"> <?php  $angsuran = $angsuran + $row->nilai; ?></div></td>
+		<td align="center"><div align="right"> <?php  echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
 		<td align="center"><div align="right">
-		  <?php $bayar = $row->nilai; $sisa =   $sisa -$bayar ; echo number_format($sisa);?>
+		  <?php  $bayar = $row->nilai; $sisa =   $sisa -$bayar ; echo number_format($sisa);?>
 		</div></td>
 		<td align="center">
-		<?php  if($row->posted == 0){ ?>
-			<a href="submission_gli.php?cmd=posting_susut&id=<?php echo $row->id; ?>&ida=<?=$_GET["ida"] ?>&tgl=<?php echo baliktglindo($row->mano_post); ?>">Posting Now</a>
-		<?php } else {echo "OK"; } ?>		</td>
+		<?php   if($row->posted == 0){ ?>
+			<a href="submission_gli.php?cmd=posting_susut&id=<?php  echo $row->id; ?>&ida=<?php  echo $_GET["ida"] ?>&tgl=<?php  echo baliktglindo($row->mano_post); ?>">Posting Now</a>
+		<?php  } else {echo "OK"; } ?>		</td>
 	</tr>
-	<? endwhile; ?>
+	<?php  endwhile; ?>
 	<tr  bgcolor="#FFFFFF">
 	  <td colspan="2" align="center">Jumlah Total </td>
 	  <td align="center"><div align="right">
-	    <?php
+	    <?php 
 			$bunga =  ($row->bunga /100) * (1/12) * $sisa;
 			echo number_format($tbunga);
 		?>
       </div></td>
-	  <td align="center"><div align="right"><?php echo number_format($angsuran);  ?></div></td>
-	  <td align="center"><div align="right"> <?php echo number_format($tbayar);  ?> </div></td>
+	  <td align="center"><div align="right"><?php  echo number_format($angsuran);  ?></div></td>
+	  <td align="center"><div align="right"> <?php  echo number_format($tbayar);  ?> </div></td>
 	  <td align="center">&nbsp;</td>
 	  <td align="center">&nbsp;</td>
   </tr>

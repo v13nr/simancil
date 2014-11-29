@@ -1,4 +1,4 @@
-<?
+<?php 
 // fungsi-fungsi pendukung.
 function minuss($jumlah){
 	if(substr($jumlah,0,1) == "-"){

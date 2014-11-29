@@ -32,7 +32,7 @@ This <a href="http://www.fpdf.org">FPDF</a> Add On Class allows the creation of 
 <h4 class="title1">Table, Headers and Cell properties Example:</h4>
 <blockquote>
 <div class='codediv'>
-<?php 
+<?php  
 	highlight_file("table_def_ex.inc");
 ?>
 </div>
@@ -41,7 +41,7 @@ This <a href="http://www.fpdf.org">FPDF</a> Add On Class allows the creation of 
 <blockquote>
 <b>Source Code:</b>
 <div class='codediv'>
-<?php 
+<?php  
 	highlight_file("example_base.php");
 ?>
 </div>

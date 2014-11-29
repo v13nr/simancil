@@ -14,7 +14,7 @@
   </script>
  </head>
 <body>
-<?
+<?php 
  include '../include/globalx.php';
  
  $SQL = "SELECT * FROM $database.supplier WHERE status = 1";
@@ -25,7 +25,7 @@
  //echo $SQL;
 ?>
 <form action="" method="post">
- Cari Nama Rekening: <input type="text" name="search_name" size="15" value="<?php echo @$_POST['search_name']; ?>" />
+ Cari Nama Rekening: <input type="text" name="search_name" size="15" value="<?php  echo @$_POST['search_name']; ?>" />
  <input type="submit" name="search" value="Cari" />
 </form>
 <table width="100%" bgcolor="#000000" cellspacing="1" cellpadding="3">	
@@ -33,15 +33,15 @@
 		<th>Kode Supplier</th>
 		<th>Nama Supplier</th>
 	</tr>
-	<? while($row = mysql_fetch_object($query)): ?>
+	<?php  while($row = mysql_fetch_object($query)): ?>
 	<tr bgcolor="#FFFFFF">
 		<!-- fungsi selectBuku di deklarasikan di index.html dan file ini bisa memanggilnya selama file ini
 			 dipanggil oleh thickbox dari index.html, fungsi dari selectPegawai adalah untuk memasukan nilai
 			 NIP dan nama pegawai dari masing-masing baris di daftar pegawai ini -->
-		<td align="center"><a href="javascript:selectSupp('<?=$row->kode?>','<?=$row->nama?>')"><?=$row->kode?></a></td>
-		<td><?=$row->nama?></td>
+		<td align="center"><a href="javascript:selectSupp('<?php  echo $row->kode?>','<?php  echo $row->nama?>')"><?php  echo $row->kode?></a></td>
+		<td><?php  echo $row->nama?></td>
 	</tr>
-	<? endwhile; ?>
+	<?php  endwhile; ?>
 </table>
 </body>
 </html>

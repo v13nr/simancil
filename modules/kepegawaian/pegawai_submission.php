@@ -1,4 +1,4 @@
-<?
+<?php 
 session_start();
 include ("../../config_sistem.php");
 include ("include/functions.php");

@@ -1,4 +1,4 @@
-<?
+<?php 
 include("../include/globalx.php");
 
 function periode($tgl){

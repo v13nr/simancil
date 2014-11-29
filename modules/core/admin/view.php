@@ -5,11 +5,11 @@
 <script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script src="../assets/app.js" type="text/javascript"></script>
 <title>Tes</title>
-<? include "../include/globalx.php";?>
+<?php  include "../include/globalx.php";?>
 <script type='text/javascript'>
   function show(page,div){
     do_scroll(0);
-    var site = "<?=$site_path;?>";
+    var site = "<?php  echo $site_path;?>";
     $.ajax({
       url: site+"/"+page,
       success: function(response){			
@@ -22,7 +22,7 @@
   }
   function load(page,div){
     do_scroll(0);
-    var site = "<?php echo $site_path;?>";
+    var site = "<?php  echo $site_path;?>";
     $.ajax({
       url: site+"/"+page,
       success: function(response){			
@@ -33,7 +33,7 @@
     return false;
   }
   function showx(page, div){
-var site = "<?=$site_path;?>";
+var site = "<?php  echo $site_path;?>";
     url= site+"/"+page;
 window.location.href = url;      
     return false;
@@ -45,7 +45,7 @@ window.location.href = url;
 <body>
 <a href="javascript:void(0)" onclick='show("admin/index.php?mn=user","#content")' >Ubah Password</a>
 <div id="content">
-      <?php
+      <?php 
         //$this->load->view('admin/index.php?mn=user');
       ?>
     </div>

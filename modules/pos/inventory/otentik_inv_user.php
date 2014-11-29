@@ -4,6 +4,6 @@
 	javascript:history.back();
 </script>
 
-<? exit(); ?>
+<?php  exit(); ?>
 
 

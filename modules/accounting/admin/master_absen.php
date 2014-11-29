@@ -1,4 +1,4 @@
-<? include "../include/otentik_admin.php"; 
+<?php  include "../include/otentik_admin.php"; 
 require_once('phppagination.absen.class.php');
 
  $nTotalItems = 0;
@@ -54,40 +54,40 @@ body {
 		<td bgcolor="#FFCC33"><div align="center"><span class="style3">IP</span></div></td>
 		<td bgcolor="#FFCC33"><div align="center"><span class="style3">Waktu Logout </span></div></td>
 	</tr>
-	<? $nRecord = 1; while ($row=mysql_fetch_array($hasil)) { ?>
-	<tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<? } else{ ?>bgcolor="#FFFFFF" <? } ?>>
+	<?php  $nRecord = 1; while ($row=mysql_fetch_array($hasil)) { ?>
+	<tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<?php  } else{ ?>bgcolor="#FFFFFF" <?php  } ?>>
 		<td><div align="center" class="style4">
-          <?=++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?>
+          <?php  echo ++$No + (($nCurrentPage -1 ) * $nItemsPerPage)?>
 	    .</div></td>
 		<td><span class="style4">
-	    <?=$row['user']?>
+	    <?php  echo $row['user']?>
 		</span></td>
 		<td><span class="style4">
-	    <?=$row['nama']?>
+	    <?php  echo $row['nama']?>
 		</span></td>
 		<td><span class="style4">
-	    <?=$row['waktu_datang']?>
+	    <?php  echo $row['waktu_datang']?>
 		</span></td>
 		<td><span class="style4">
-	    <?=$row['browser']?>
+	    <?php  echo $row['browser']?>
 		</span></td>
 		<td><span class="style4">
-	    <?=$row['version']?>
+	    <?php  echo $row['version']?>
 		</span></td>
 		<td><span class="style4">
-	    <?=$row['os']?>
+	    <?php  echo $row['os']?>
 		</span></td>
 		<td><span class="style4">
-	    <?=$row['ip']?>
+	    <?php  echo $row['ip']?>
 		</span></td>
 		<td><span class="style4">
-	    <?=$row['waktu_pulang']?>
+	    <?php  echo $row['waktu_pulang']?>
 		</span></td>
 	</tr>
-	<? $nRecord = $nRecord + 1;} ?>
+	<?php  $nRecord = $nRecord + 1;} ?>
 </table>
 <div align="center">
 <span class="style4">Halaman :</span> 
-<? // print pagination for current page
+<?php  // print pagination for current page
 echo $oPagination->GetHtml($nCurrentPage)."\n"; ?>
 </div>

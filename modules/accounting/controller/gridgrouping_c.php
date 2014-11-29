@@ -1,4 +1,4 @@
-<?php
+<?php 
     $action = $_REQUEST['action'];
     $handler->loadModel('gridgrouping_m');
     $obj = new GridGrouping;

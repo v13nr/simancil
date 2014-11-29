@@ -1,4 +1,4 @@
-<? 
+<?php  
 @session_start();
 if ($_GET['update']<>"") { ?>
 
@@ -12,18 +12,18 @@ if ($_GET['update']<>"") { ?>
 
 	</script>
 
-<? } ?>
+<?php  } ?>
 <script type="text/javascript" src="../../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../../assets/jquery.validate.pack.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
 	
-<? if($_GET['id']==""){ ?>	
+<?php  if($_GET['id']==""){ ?>	
     $("#username").val('');
 	$("#password").val('');
 	$("#password_again").val('');
-<? } ?>
+<?php  } ?>
 	
 	$("#userForm").validate({
 		rules: {
@@ -57,11 +57,11 @@ td { padding: 5px; }
 <table class="x1">
 	<tr>
 		<td>Nama</td>
-		<td><input type="text" name="nama" id="nama" readonly="true" class="required" title="*" value="<?=$_SESSION["sess_name"]?>" /></td>
+		<td><input type="text" name="nama" id="nama" readonly="true" class="required" title="*" value="<?php  echo $_SESSION["sess_name"]?>" /></td>
 	</tr>
 	<tr>
 		<td>User Name</td>
-		<td><input type="text" name="usernama" readonly="true" id="usernama" class="required" title="*" value="<?=$_SESSION["sess_uname"]?>" /></td>
+		<td><input type="text" name="usernama" readonly="true" id="usernama" class="required" title="*" value="<?php  echo $_SESSION["sess_uname"]?>" /></td>
 	</tr>
 	<tr>
 		<td>Password Baru</td>

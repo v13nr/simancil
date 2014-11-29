@@ -1,4 +1,4 @@
-<? include "otentik_inv.php"; ?><head>
+<?php  include "otentik_inv.php"; ?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
@@ -130,11 +130,11 @@ td { padding: 5px; }
 }
 input.kanan{ text-align:right; }
 </style>
-<? 
+<?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
 ?>
-  <? $SQL = "select * from supplier WHERE status = 1";
+  <?php  $SQL = "select * from supplier WHERE status = 1";
 	 	if ($_GET['id']<>"")
 		{ 
 			$SQL = $SQL." AND kode = ". $_GET['id'];
@@ -169,12 +169,12 @@ input.kanan{ text-align:right; }
   <tr>
     <td>&nbsp;</td>
     <td><form id="pegForm" method="post" name="pegForm" action="submission_inv.php">
-      <? if($_GET['id']<>""){ ?>
+      <?php  if($_GET['id']<>""){ ?>
       <input type="hidden" name="cmd" value="upd_supp" />
-      <input type="hidden" name="id" value="<?=$id?>" />
-      <? } else { ?>
+      <input type="hidden" name="id" value="<?php  echo $id?>" />
+      <?php  } else { ?>
       <input type="hidden" name="cmd" value="add_supp" />
-      <? } ?>
+      <?php  } ?>
       <table align="left" class="x1">
         <tr background="../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1">Form Supplier </span></td>
@@ -182,62 +182,62 @@ input.kanan{ text-align:right; }
         <tr>
           <td><span class="style6">Kode</span></td>
           <td>:</td>
-          <td><input type="text" name="kode" id="kode" class="required" size="10" maxlength="6" title="Harap Mengisi Kode Supplier Dahulu" value="<?=($id)?>"/>            </td>
+          <td><input type="text" name="kode" id="kode" class="required" size="10" maxlength="6" title="Harap Mengisi Kode Supplier Dahulu" value="<?php  echo ($id)?>"/>            </td>
         </tr>
         <tr>
           <td><span class="style6">Nama  </span></td>
           <td>:</td>
-          <td><input name="nama" size="40" type="text" class="required " id="nama"  title="Nama Supllier harus terisi" value="<?=$nama?>" /></td>
+          <td><input name="nama" size="40" type="text" class="required " id="nama"  title="Nama Supllier harus terisi" value="<?php  echo $nama?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Alamat</span></td>
           <td><span class="style6">:</span></td>
-          <td><input type="text" size="100" name="alamat" id="alamat" class="" title="Alamat harus terisi" value="<?=$alamat?>" /></td>
+          <td><input type="text" size="100" name="alamat" id="alamat" class="" title="Alamat harus terisi" value="<?php  echo $alamat?>" /></td>
         </tr>
         <tr> 
           <td><span class="style6">Kota  </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="kota" type="text" id="kota"  class="" title="Kota harus diisi" value="<?=$kota?>" /></td>
+          <td><input name="kota" type="text" id="kota"  class="" title="Kota harus diisi" value="<?php  echo $kota?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Telpon </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="telp" type="text" class="" id="telp"  title="Telpon harus diisi" value="<?=$telp?>" /></td>
+          <td><input name="telp" type="text" class="" id="telp"  title="Telpon harus diisi" value="<?php  echo $telp?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Nomor Rekening </span></td>
           <td>:</td>
-          <td><input type="text" name="norek" id="norek" maxlength="4" size="10" class="" title="Harap Mengisi Nomor Rekening Dahulu" value="<?=$norek?>"/>
+          <td><input type="text" name="norek" id="norek" maxlength="4" size="10" class="" title="Harap Mengisi Nomor Rekening Dahulu" value="<?php  echo $norek?>"/>
             <a href="daftar_rek_inv.php?width=400&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>   <div id="divAlert"></div>         </td>
         </tr>
         <tr>
           <td><span class="style6">Nama Rekening </span></td>
           <td>:</td>
-          <td><input type="text" name="namarekeninginduk" value="<?=$namarekeninginduk?>" readonly="true" size="40" class="" title="Nama Rekening harus terisi" /></td>
+          <td><input type="text" name="namarekeninginduk" value="<?php  echo $namarekeninginduk?>" readonly="true" size="40" class="" title="Nama Rekening harus terisi" /></td>
         </tr>
         <tr>
           <td>Nama Bank </td>
           <td>:</td>
-          <td><input name="namabank" type="text" class="" id="telp2"  title="Nama Bank harus diisi" value="<?=$namabank?>" /></td>
+          <td><input name="namabank" type="text" class="" id="telp2"  title="Nama Bank harus diisi" value="<?php  echo $namabank?>" /></td>
         </tr>
         <tr>
           <td>Rek. Bank </td>
           <td>:</td>
-          <td><input name="rekbank" type="text" class="" id="telp3"  title="Rekening Bank harus diisi" value="<?=$rekbank?>" /></td>
+          <td><input name="rekbank" type="text" class="" id="telp3"  title="Rekening Bank harus diisi" value="<?php  echo $rekbank?>" /></td>
         </tr>
         <tr>
           <td>a/n. Bank </td>
           <td>:</td>
-          <td><input name="anbank" type="text" class="" id="telp4"  title="Telpon harus diisi" value="<?=$anbank?>" /></td>
+          <td><input name="anbank" type="text" class="" id="telp4"  title="Telpon harus diisi" value="<?php  echo $anbank?>" /></td>
         </tr>
         <tr>
           <td>Divisi</td>
           <td>:</td>
           <td><select name="divisi" class="required" title="Pilih Divisi">
-            <? if($_SESSION["sess_kelasuser"]<>"User"){?>
+            <?php  if($_SESSION["sess_kelasuser"]<>"User"){?>
             <option value="">-Pilih Divisi-</option>
-            <? }?>
-            <?
+            <?php  }?>
+            <?php 
 			$SQL = "SELECT * FROM divisi WHERE subdiv <> ''";
 			if($_SESSION["sess_kelasuser"]=="User"){
 				$SQL = $SQL . " AND subdiv = '".$_SESSION["sess_tipe"]."'";
@@ -245,21 +245,21 @@ input.kanan{ text-align:right; }
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-            <option value="<?=$baris['subdiv']?>" <? if($baris['subdiv']==$divisi){ ?> selected="selected" <? }?>>
-              <?=$baris['namadiv']?>
+            <option value="<?php  echo $baris['subdiv']?>" <?php  if($baris['subdiv']==$divisi){ ?> selected="selected" <?php  }?>>
+              <?php  echo $baris['namadiv']?>
               </option>
-            <? } ?>
+            <?php  } ?>
           </select></td>
         </tr>
         <tr>
           <td><span class="style7"></span></td>
           <td><span class="style7"></span></td>
           <td><span class="style6">
-            <? if($_GET['id']<>""){ ?>
+            <?php  if($_GET['id']<>""){ ?>
             <input name="submit" type="submit" value="Update" />
-            <? } else { ?>
+            <?php  } else { ?>
             <input name="submit" type="submit" value="Simpan" />
-            <? } ?>
+            <?php  } ?>
             <input name="button" type="button" onClick="javascript:history.back()" value="Batal" />
           </span></td>
         </tr>

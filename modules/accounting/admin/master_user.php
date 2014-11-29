@@ -7,7 +7,7 @@
 	}
 //-->
 </script>
-<? include "../include/otentik_admin.php"; 
+<?php  include "../include/otentik_admin.php"; 
 
 	$SQL = "SELECT * FROM ml_user WHERE status = 1";
 	if(isset($_GET['id'])){
@@ -65,42 +65,42 @@ body {
         <td bgcolor="#CCCC66" class="style7"><div align="center">Edit</div></td>
         <td bgcolor="#CCCC66" class="style7"><div align="center">Hapus</div></td>
       </tr>
-      <? $nRecord = 1; while ($row=mysql_fetch_array($hasil)) { ?>
-      <tr <?	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<? } else{ ?>bgcolor="#FFFFFF" <? } ?>>
+      <?php  $nRecord = 1; while ($row=mysql_fetch_array($hasil)) { ?>
+      <tr <?php 	 if (($nRecord % 2)==0) {?>bgcolor="#FFFFCC"<?php  } else{ ?>bgcolor="#FFFFFF" <?php  } ?>>
         <td class="style7"><div align="center">
-            <?=++$no?>
+            <?php  echo ++$no?>
           .</div></td>
-        <td class="style7"><?=$row['user']?>
+        <td class="style7"><?php  echo $row['user']?>
         </td>
-        <td class="style7"><?=$row['nama']?>
+        <td class="style7"><?php  echo $row['nama']?>
         </td>
-        <td class="style7"><?=$row['kelasuser']?>
+        <td class="style7"><?php  echo $row['kelasuser']?>
         </td>
 		<td align="center" class="style7">
-			<?
+			<?php 
 				$SQLc = "SELECT namadiv FROM divisi WHERE subdiv = '".$row['tipe']."'";
 				$hasilc = mysql_query($SQLc);
 				$barisc = mysql_fetch_array($hasilc);
 				echo $barisc[0];
 			?>
 		</td>
-        <? if ($row['aktif']=="1"){?>
+        <?php  if ($row['aktif']=="1"){?>
         <td align="center" class="style7">On</td>
-        <? } else { ?>
+        <?php  } else { ?>
         <td align="center" class="style7">Off</td>
-        <? } ?>
+        <?php  } ?>
 		
-        <? if ($row['id']=="1" || $row['id']=="2"){?>
+        <?php  if ($row['id']=="1" || $row['id']=="2"){?>
         <td class="style7">&nbsp;</td>
         <td class="style7">&nbsp;</td>
 		<td class="style7">&nbsp;</td>
-        <? }else { ?>
-		<td align="center" class="style7"><a href="index.php?mn=user_akses&amp;id=<?=$row["id"]?>&nama=<?=$row['nama']?>"><img src="../images/icons/icon-key.png" alt="Edit" width="16" height="16" border="0" /></a></td>
-        <td align="center" class="style7"><a href="index.php?mn=user_form&amp;id=<?=$row["id"]?>"><img src="../images/icons/edit2.gif" alt="Edit" border="0" /></a></td>
-        <td align="center" class="style7"><a href="javascript:confirmDelete('admin_submission.php?cmd=del_user&amp;id=<?=$row["id"]?>')"><img src="../images/icons/hapus.gif" alt="Hapus" border="0" /></a></a></td>
-        <? } ?>
+        <?php  }else { ?>
+		<td align="center" class="style7"><a href="index.php?mn=user_akses&amp;id=<?php  echo $row["id"]?>&nama=<?php  echo $row['nama']?>"><img src="../images/icons/icon-key.png" alt="Edit" width="16" height="16" border="0" /></a></td>
+        <td align="center" class="style7"><a href="index.php?mn=user_form&amp;id=<?php  echo $row["id"]?>"><img src="../images/icons/edit2.gif" alt="Edit" border="0" /></a></td>
+        <td align="center" class="style7"><a href="javascript:confirmDelete('admin_submission.php?cmd=del_user&amp;id=<?php  echo $row["id"]?>')"><img src="../images/icons/hapus.gif" alt="Hapus" border="0" /></a></a></td>
+        <?php  } ?>
       </tr>
-      <? $nRecord = $nRecord + 1; } ?>
+      <?php  $nRecord = $nRecord + 1; } ?>
       <tr bgcolor="white">
         <td colspan="10" align="center" class="style7"><a href="index.php?mn=user_form">Tambah User</a></td>
       </tr>

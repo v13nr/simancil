@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 	/*
 		lisensi @Nanang Rustianto http://facebook.com/nanang.rustianto 

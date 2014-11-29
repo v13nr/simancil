@@ -1,4 +1,4 @@
-<?
+<?php 
 	// Agar memastikan bahwa halaman ini diakses dengan parameter POST: cari
 	//isset($_POST['cari']) or die('Error parameter');
 	

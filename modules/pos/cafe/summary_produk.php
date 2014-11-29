@@ -21,17 +21,17 @@
   <tr>
     <td width="142">Tanggal Awal </td>
     <td width="35">&nbsp;</td>
-    <td width="283"><input type="text" name="tgl_awal" id="tgl_awal" size="10" class="required" title="*" value="<?
+    <td width="283"><input type="text" name="tgl_awal" id="tgl_awal" size="10" class="required" title="*" value="<?php 
 		echo date('d/m/Y');
-		?>" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?> />
+		?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?> />
     <a href="javascript:showCalendar('tgl_awal')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0"></a></td>
   </tr>
   <tr>
     <td>Tanggal Akhir </td>
     <td>&nbsp;</td>
-    <td><input type="text" name="tgl_akhir" id="tgl_akhir" size="10" class="required" title="*" value="<?
+    <td><input type="text" name="tgl_akhir" id="tgl_akhir" size="10" class="required" title="*" value="<?php 
 		echo date('d/m/Y');
-		?>" <? if($_GET['nomor']<>""){ ?>  readonly="true"  <? }?> />
+		?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?> />
           <a href="javascript:showCalendar('tgl_akhir')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0"></a></td>
   </tr>
   <tr>
@@ -39,15 +39,15 @@
     <td>&nbsp;</td>
     <td><select name="shift">
       <option value="">Pilih Shift</option>
-      <?php 
+      <?php  
 	 		$SQL = "select * FROM ml_user b where kelasuser = 'User' and status = 1";
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
 			while($baris = mysql_fetch_array($hasil)){
 		 ?>
-      <option value="<?=$baris["id"]?>">
-        <?=($baris["nama"])?>
+      <option value="<?php  echo $baris["id"]?>">
+        <?php  echo ($baris["nama"])?>
         </option>
-      <? }?>
+      <?php  }?>
     </select></td>
   </tr>
   <tr>

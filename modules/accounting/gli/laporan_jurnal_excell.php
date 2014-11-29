@@ -1,4 +1,4 @@
-<? include "otentik_gli.php"; include ("../include/functions.php");?>
+<?php  include "otentik_gli.php"; include ("../include/functions.php");?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -57,10 +57,10 @@ $(document).ready(function() {
 		<td width="64">Divisi</td>
 		<td width="133">
 		<select name="divisi">
-		<? if($_SESSION["sess_kelasuser"]<>"User"){?>
+		<?php  if($_SESSION["sess_kelasuser"]<>"User"){?>
 		<option value="">-ALL-</option>
-		<? }?>
-		<?
+		<?php  }?>
+		<?php 
 			$SQL = "SELECT * FROM divisi WHERE subdiv <> ''";
 			if($_SESSION["sess_kelasuser"]=="User"){
 				$SQL = $SQL . " AND subdiv = '".$_SESSION["sess_tipe"]."'";
@@ -68,8 +68,8 @@ $(document).ready(function() {
 			$hasil = mysql_query($SQL);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-		<option value="<?=$baris['subdiv']?>"><?=$baris['namadiv']?></option>
-		<? } ?>
+		<option value="<?php  echo $baris['subdiv']?>"><?php  echo $baris['namadiv']?></option>
+		<?php  } ?>
 		</select>	  </td>
 	</tr>
 	<tr bgcolor="#FFFFCC">
@@ -79,15 +79,15 @@ $(document).ready(function() {
 		<td>User</td>
 		<td><select name="user">
           <option value="">-ALL-</option>
-          <?
+          <?php 
 			$SQL = "SELECT * FROM ml_user WHERE status = 1 AND id <> 1";
 			$hasil = mysql_query($SQL);
 			while($baris = mysql_fetch_array($hasil)){
 		?>
-          <option value="<?=$baris['id']?>">
-            <?=$baris['nama']?>
+          <option value="<?php  echo $baris['id']?>">
+            <?php  echo $baris['nama']?>
           </option>
-          <? } ?>
+          <?php  } ?>
         </select></td>
 	</tr>
 	<tr  bgcolor="#FFFFCC">

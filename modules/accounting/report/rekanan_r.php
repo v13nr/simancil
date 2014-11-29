@@ -1,4 +1,4 @@
-<?php
+<?php 
    $handler->loadModel("rekanan_m"); 
   $people = new Person;
   

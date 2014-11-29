@@ -1,4 +1,4 @@
-<?
+<?php 
 session_start();
 include ("../include/globalx.php");
 include ("../include/otentik_admin.php");

@@ -1,4 +1,4 @@
-<?
+<?php 
 include "../include/globalx.php";
 $SQL = "select * from laporanid";
 $hasil = mysql_query($SQL);

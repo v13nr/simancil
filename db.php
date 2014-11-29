@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php
+<?php 
 require_once "config_sistem.php";
 ?>
 <html><head>
@@ -482,13 +482,13 @@ require_once "config_sistem.php";
 
                       <div class="media-body">
                         <small>Jumlah Pelanggan Tetap</small>
-						<?php 
+						<?php  
 						$sql = "select count(kode) from konsumen";
 						$hasil = mysql_query($sql) or die(mysql_error());
 						$baris = mysql_fetch_array($hasil); 
 						$jum_user = $baris[0]; 
 						?>
-                        <h2 class="media-heading animate-number" data-value="<?php echo $jum_user;?>" data-animation-duration="1500"><?php echo number_format($jum_user);?></h2>
+                        <h2 class="media-heading animate-number" data-value="<?php  echo $jum_user;?>" data-animation-duration="1500"><?php  echo number_format($jum_user);?></h2>
                       </div>
                     </div> 
 
@@ -527,14 +527,14 @@ require_once "config_sistem.php";
 
                       <div class="media-body">
                         <small>Total Pendapatan Kotor</small>
-						<?php 
+						<?php  
 						$sql = "select sum((harga-modal)*qtyout) from mutasi WHERE model = 'INV'";
 						$hasil = mysql_query($sql) or die(mysql_error());
 						$baris = mysql_fetch_array($hasil); 
 						$jum_untung = $baris[0]; 
 						?>
-                        <h2 class="media-heading animate-number" data-value="<?php echo number_format($jum_untung);?>" data-animation-duration="1500">
-						<?php echo  number_format($jum_untung);?></h2>
+                        <h2 class="media-heading animate-number" data-value="<?php  echo number_format($jum_untung);?>" data-animation-duration="1500">
+						<?php  echo  number_format($jum_untung);?></h2>
                       </div>
                     </div> 
 
@@ -574,13 +574,13 @@ require_once "config_sistem.php";
 
                       <div class="media-body">
                         <small>Sales</small>
-						<?php 
+						<?php  
 						$sql = "select sum(harga*qtyout) from mutasi WHERE model = 'INV'";
 						$hasil = mysql_query($sql) or die(mysql_error());
 						$baris = mysql_fetch_array($hasil); 
 						$jum_sales = $baris[0]; 
 						?>
-                        <h2 class="media-heading animate-number" data-value="<?php echo  number_format($jum_sales);?>" data-animation-duration="1500"><?php echo  number_format($jum_sales);?></h2>
+                        <h2 class="media-heading animate-number" data-value="<?php  echo  number_format($jum_sales);?>" data-animation-duration="1500"><?php  echo  number_format($jum_sales);?></h2>
                       </div>
                     </div>
 
@@ -740,14 +740,14 @@ require_once "config_sistem.php";
                           </tr>
                         </thead>
                         <tbody>
-						<?php
+						<?php 
 							$sql = "select * from hutang";
 							$hasil = mysql_query($sql) or die(mysql_error());
 							while($baris = mysql_fetch_array($hasil)){
 						?>
                           <tr>
                             <td>1</td>
-                            <td><?php echo $baris["nama"]; ?> <i class="fa fa-heart"><i class="fa fa-smile-o"> </i> </i></td>
+                            <td><?php  echo $baris["nama"]; ?> <i class="fa fa-heart"><i class="fa fa-smile-o"> </i> </i></td>
                             <td class="color-red priority">High priority</td>
                             <td class="progress-cell">
                               <div class="progress-info">
@@ -759,7 +759,7 @@ require_once "config_sistem.php";
                             </td>
                             <td class="text-right"><span id="projectbar1"><canvas height="20" width="39" style="display: inline-block; width: 39px; height: 20px; vertical-align: top;"></canvas></span></td>
                           </tr>
-                         <?php } ?>
+                         <?php  } ?>
                         </tbody>
                       </table>
                     </div>
@@ -1036,62 +1036,62 @@ require_once "config_sistem.php";
       });
 
       // Initialize flot chart
-      var d1 =[ [1, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '01' AND YEAR(tgl) = '". date('Y') ."' "; 
+      var d1 =[ [1, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '01' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [2, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '02' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [2, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '02' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [3, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '03' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [3, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '03' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [4, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '04' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [4, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '04' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [5, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '05' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [5, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '05' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [6, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '06' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [6, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '06' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [7, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '07' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [7, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '07' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [8, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '08' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [8, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '08' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [9, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '09' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [9, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '09' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [10, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '10' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [10, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '10' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [11, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '11' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [11, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '11' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>],
-            [12, <?php $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '12' AND YEAR(tgl) = '". date('Y') ."' "; 
+            [12, <?php  $sql = "select sum(harga*qtyout) from mutasi WHERE MONTH(tgl) = '12' AND YEAR(tgl) = '". date('Y') ."' "; 
 	  $hasil = mysql_query($sql) or die(mysql_error());
 	  $baris = mysql_fetch_array($hasil);
 	  echo $baris[0] != null?$baris[0]:0;
