@@ -4,7 +4,7 @@
  *  Project Manager : Andi Micro
  *  Lead Programmer : Nanang Rustianto
  *  Email : info@netsindo.com
- *  Date: April 2014
+ *  Date: April 2014; Desember 2014
 **/
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,10 +40,11 @@ include "otentik_admin.php";
 
 		//hitungan update
 		$split_server = explode('.', $versi_server);
-		$userver = $split_server[2];
+		$main_version = $split_server[1];
+		$userver = $main_version=="3" ? $split_server[2] : 0;
 		$split_client = explode('.', $baris[0]);
-		$uclient = $split_client[2];
-		$paket = ($userver - $uclient);
+		$uclient = $main_version=="3" ? $split_client[2] : 0;
+		$paket = $main_version=="3" ? ($userver - $uclient) : "0";
 		echo "<br>Anda Akan Update Minor dari versi : ". ($uclient). " s/d " .$userver;
 		echo "<br> Paket Update : ".$paket;
 		//
@@ -89,8 +90,8 @@ if(isset($_GET["cmd"])) {
 
 
 				unlink('version.txt');
-				$hostfile = fopen("http://repo.simancil.com/update/arsip/1.2.".$i.".zip", 'r');
-				$fh = fopen("1.2.".$i.".zip", 'w');
+				$hostfile = fopen("http://repo.simancil.com/update/arsip/1.3.".$i.".zip", 'r');
+				$fh = fopen("1.3.".$i.".zip", 'w');
 				while (!feof($hostfile)) {
 					$output = fread($hostfile, 8192);
 					fwrite($fh, $output);
@@ -98,13 +99,13 @@ if(isset($_GET["cmd"])) {
 				fclose($hostfile);
 				fclose($fh);
 				  require_once('pclzip.lib.php');
-				  $archive = new PclZip('1.2.'.$i.'.zip');
+				  $archive = new PclZip('1.3.'.$i.'.zip');
 				  if (($v_result_list = $archive->extract()) == 0) {
 					die("Error : ".$archive->errorInfo(true));
 				  }
 				  echo "<pre>";
 				  echo "</pre>";
-				unlink('1.2.'.$i.'.zip');
+				unlink('1.3.'.$i.'.zip');
 			
 				//simpan versi update
 				$handle = @fopen("version.txt", "r");
@@ -121,7 +122,7 @@ if(isset($_GET["cmd"])) {
 				$sql = "INSERT INTO versi(id,versi,keterangan) VALUES('','$versi','Update Sukses')";
 				$hasil = mysql_query($sql);
 
-				echo "<br>Paket.....1.2.".$i.".zip......[done]";
+				echo "<br>Paket.....1.3.".$i.".zip......[done]";
 			}
 		}
 	
