@@ -20,7 +20,7 @@ include "otentik_admin.php";
 		$onoff = (!$fp) ? "Offline" : "Online";
 		echo "<br>Status : ".$onoff."<br>";
 
-		$handle = @fopen("http://repo.simancil.com/update/release.txt", "r");
+		$handle = @fopen("http://repo.simancil.com/update/release-1.3.txt", "r");
 		if ($handle) {
 			while (($buffer = fgets($handle, 4096)) !== false) {
 				$versi_server = $buffer;
@@ -52,7 +52,7 @@ include "otentik_admin.php";
 if(isset($_GET["cmd"])) {
 		if($paket==1){
 			echo "<br>Paket.....".$paket."......<br>";
-			$hostfile = fopen("http://repo.simancil.com/update/latest.zip", 'r');
+			$hostfile = fopen("http://repo.simancil.com/update/latest-1.3.zip", 'r');
 			$fh = fopen("latest.zip", 'w');
 			while (!feof($hostfile)) {
 				$output = fread($hostfile, 8192);
@@ -90,7 +90,7 @@ if(isset($_GET["cmd"])) {
 
 
 				unlink('version.txt');
-				$hostfile = fopen("http://repo.simancil.com/update/arsip/1.3.".$i.".zip", 'r');
+				$hostfile = fopen("http://repo.simancil.com/update/arsip-1.3/1.3.".$i.".zip", 'r');
 				$fh = fopen("1.3.".$i.".zip", 'w');
 				while (!feof($hostfile)) {
 					$output = fread($hostfile, 8192);
