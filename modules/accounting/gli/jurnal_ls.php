@@ -147,7 +147,7 @@ s/d
 			$SQL = $SQL . " AND tanggal BETWEEN '".baliktgl($_GET['tgl_awal'])."' AND '".baliktgl($_GET['tgl_akhir'])."'";
 		}
 		//$SQL = $SQL." ORDER BY nobukti, bulan";
-		$SQL = $SQL." ORDER BY tanggal DESC";
+		$SQL = $SQL." ORDER BY tanggal DESC, nobukti ASC";
 		//echo $SQL;
 		//echo $_GET['mn'];
 		$hasil=mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
@@ -216,6 +216,9 @@ s/d
 		}
 		if($row['tipe_jurnal']=="JPG"){
 			$strurl = "index.php?mn=trans_jurnal_gaji&nobukti=".$row['nobukti']."&tgl_transaksi=".baliktglindo($row['tanggal'])."&dk=".$row['jenis']."&norek=".$norek."&namarek=".$namarek."&divisi=".$divisi."&keteranganheader=".$keteranganheader."&bulan=".$row['bulan']."&khusus=pembelian";
+		}
+		if($row['tipe_jurnal']=="JKB"){
+			$strurl = "jurnal_kasbon.php?nobukti=".$row['nobukti']."&tgl_transaksi=".baliktglindo($row['tanggal'])."&dk=".$row['jenis']."&norek=".$norek."&namarek=".$namarek."&divisi=".$divisi."&keteranganheader=".$keteranganheader."&bulan=".$row['bulan']."&khusus=pembelian";
 		}
 	  ?>
 	  <td align="center">

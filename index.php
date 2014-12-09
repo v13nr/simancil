@@ -167,7 +167,7 @@ include ("config_sistem.php");
                           <?php  echo $baris_1['title']; ?>
                         </a>
                         <ul>
-									<?php  $SQL_2 = "SELECT *, a.id as ibu3 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_1['ibu2']."' AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_2 = mysql_query($SQL_2); while($baris_2=mysql_fetch_array($hasil_2)) { ?>
+									<?php  $SQL_2 = "SELECT *, a.id as ibu3 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_1['ibu2']."' AND b.user_id = '".$_SESSION["sess_user_id"]."' ORDER BY menu_order"; $hasil_2 = mysql_query($SQL_2); while($baris_2=mysql_fetch_array($hasil_2)) { ?>
                                   <li class="">
                                     <a href="index.php?mn=<?php  echo $baris_2['file']; ?>&getmodule=
 <?php  echo base64_encode($baris_2['modul']); ?>&box=<?php  echo $baris_2['frame']; ?>">

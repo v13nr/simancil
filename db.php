@@ -517,7 +517,7 @@ require_once "config_sistem.php";
 
 
               <div class="card-container col-lg-3 col-sm-6 col-sm-12">
-                <div class="card card-blue hover flip">
+                <div class="card card-blue hover">
                   <div class="front">        
                     
                     <div class="media">                  

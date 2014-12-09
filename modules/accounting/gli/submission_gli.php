@@ -280,6 +280,10 @@ switch ($cmd) {
 		periode($_POST['tgl_transaksi']);
 		$tipe = $_POST['divisi'];
 		$nomor = $_POST['bukti'];
+		if(isset($_POST['karyawan_id'])){
+			$split1 = explode('@',$_POST['keterangantransaksi']);
+			$karyawan_id = $split1[1];
+		}
 		//asumsi jika nomor bukti terkirim berarti harus disimpan, karena nomor bukti harus unique
 		$SQL = "INSERT INTO $database.nomorbukti(id, nomorbukti) VALUES ('', '". $nomor ."')";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
@@ -287,7 +291,7 @@ switch ($cmd) {
 			
 			$jumlah = ereg_replace("[^0-9.]", "", $_POST['jumlah']);
 			if($_POST['dk']=="Kredit"){
-				$SQL = "INSERT INTO $database.jurnal_srb(id, tipe_jurnal, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
+				$SQL = "INSERT INTO $database.jurnal_srb(id, tipe_jurnal, tanggal, jenis, kd, kk, ket, ket2, jumlah, karyawan_id, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
 				'',
 				'".$_POST['tipe_jurnal']."',
 				'".baliktgl($_POST['tgl_transaksi'])."',
@@ -297,6 +301,7 @@ switch ($cmd) {
 				'".$_POST['keterangantransaksi']."',
 				'".$_POST['keteranganheader']."',
 				'".$jumlah."',
+				'$karyawan_id',
 				'".$_POST['dollar']."',
 				'$tipe',
 				'".$_POST['divisi']."',
@@ -306,7 +311,7 @@ switch ($cmd) {
 				)";
 			}
 			if($_POST['dk']=="Debet"){
-				$SQL = "INSERT INTO $database.jurnal_srb(id, tipe_jurnal, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
+				$SQL = "INSERT INTO $database.jurnal_srb(id, tipe_jurnal, tanggal, jenis, kd, kk, ket, ket2, jumlah, karyawan_id, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
 				'',
 				'".$_POST['tipe_jurnal']."',
 				'".baliktgl($_POST['tgl_transaksi'])."',
@@ -316,6 +321,7 @@ switch ($cmd) {
 				'".$_POST['keteranganheader']."',
 				'".$_POST['keterangantransaksi']."',
 				'".$jumlah."',
+				'$karyawan_id',
 				'".$_POST['dollar']."',
 				'$tipe',
 				'".$_POST['divisi']."',
@@ -333,6 +339,15 @@ switch ($cmd) {
 		if($_POST['nobukti']<>""){
 			 if ($_POST["khusus"]=="gaji" ) {
 				$strurl = "index.php?mn=trans_jurnal_gaji&nobukti=".$nomor
+				."&tgl_transaksi=".$_POST['tgl_transaksi']
+				."&divisi=".$_POST['divisi']
+				."&dk=".$_POST['dk']
+				."&norek=".$_POST['norek']
+				."&namarek=".$_POST['namarek']
+				."&keteranganheader=".$_POST['keteranganheader']
+				."&bulan=".$bulan;
+			} elseif ($_POST["khusus"]=="kasbon" ) {
+				$strurl = "jurnal_kasbon.php?nobukti=".$nomor
 				."&tgl_transaksi=".$_POST['tgl_transaksi']
 				."&divisi=".$_POST['divisi']
 				."&dk=".$_POST['dk']
@@ -362,6 +377,15 @@ switch ($cmd) {
 			."&bulan=".$bulan;
 		} else if ($_POST["khusus"]=="gaji" ) {
 			$strurl = "index.php?mn=trans_jurnal_gaji&nobukti=".$nomor
+			."&tgl_transaksi=".$_POST['tgl_transaksi']
+			."&divisi=".$_POST['divisi']
+			."&dk=".$_POST['dk']
+			."&norek=".$_POST['norek']
+			."&namarek=".$_POST['namarek']
+			."&keteranganheader=".$_POST['keteranganheader']
+			."&bulan=".$bulan;
+		} else if ($_POST["khusus"]=="kasbon" ) {
+			$strurl = "jurnal_kasbon.php?nobukti=".$nomor
 			."&tgl_transaksi=".$_POST['tgl_transaksi']
 			."&divisi=".$_POST['divisi']
 			."&dk=".$_POST['dk']
@@ -404,6 +428,20 @@ switch ($cmd) {
 		$hasil=mysql_query($SQL);
 		
 		$strurl = "index.php?mn=trans_jurnal_gaji&nobukti=".$_GET['nobukti']
+			."&tgl_transaksi=".$_GET['tgl_transaksi']
+			."&dk=".$_GET['dk']
+			."&norek=".$_GET['norek']
+			."&namarek=".$_GET['namarek']
+			."&keteranganheader=".$_GET['keteranganheader']
+			."&divisi=".$_GET['divisi']
+			."&bulan=".$_GET['bulan'];
+	break;
+	case "del_jurnal_kasbon" :
+		$SQL = "DELETE FROM $database.jurnal_srb WHERE id = ".$_GET['id'];
+		$hasil = mysql_query($SQL, $dbh_jogjaide);
+		$SQL = "UPDATE $database.mutasi SET status = 0 WHERE jurnal_id = '".$_GET['id']."'";
+		$hasil=mysql_query($SQL);
+		$strurl = "jurnal_kasbon.php?nobukti=".$_GET['nobukti']
 			."&tgl_transaksi=".$_GET['tgl_transaksi']
 			."&dk=".$_GET['dk']
 			."&norek=".$_GET['norek']

@@ -308,6 +308,7 @@ $(document).ready(function() {
 					<option value="<?php  echo $barisp["nama"].'@'.$barisp["noinduk"] ?>"><?php  echo $barisp["nama"] ?></option>
 				<?php  } ?>
 		  </select>
+          <input type="hidden" name="karyawan_id" />
 		  </td>
           <td align="center"><input type="text" name="jumlah"  class="required" title="*" />
             
