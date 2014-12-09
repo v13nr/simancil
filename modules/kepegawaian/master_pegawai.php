@@ -187,19 +187,23 @@ $oPagination = new phpPagination ($nTotalItems, $nItemsPerPage);
 	  <br />
 	  <?php 
 	  	//Pinjaman
-		$s_pj = "SELECT SUM(totalangsuran) FROM kop_pinjaman WHERE noinduk = '".$row['noinduk']."'";
+		$s_pj = "SELECT SUM(jumlah) FROM jurnal_srb WHERE karyawan_id = '".$row['noinduk']."' AND kd = 'AL2-1113'";
 		$h_pj = mysql_query($s_pj);
 		$b_pj = mysql_fetch_array($h_pj);
 		echo "Pinjaman : " . number_format($b_pj[0]);
 	  ?>
-
+<br />
+	  <?php 
+	  	//Pinjaman
+		$s_pj2 = "SELECT SUM(jumlah) FROM jurnal_srb WHERE karyawan_id = '".$row['noinduk']."' AND kk = 'AL2-1113'";
+		$h_pj2 = mysql_query($s_pj2);
+		$b_pj2 = mysql_fetch_array($h_pj2);
+		echo "Pembayaran : " . number_format($b_pj2[0]);
+	  ?>
 	  <br />
 	   <?php 
 	  	//sisa ANgsuran
-		$s_a = "SELECT SUM(b.totalpb) FROM kop_pinjaman a, kop_pinjaman_detail b WHERE a.idp = b.idp AND a.noinduk = '".$row['noinduk']."' AND lunas = 0";
-		$h_a = mysql_query($s_a);
-		$b_a = mysql_fetch_array($h_a);
-		echo "Sisa Angsuran : " . number_format(round($b_a[0],-3));
+		echo "Sisa Angsuran : " . number_format($b_pj[0]-$b_pj2[0]);
 	  ?>
 	  </font>
 	   </div></td>
