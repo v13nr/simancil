@@ -3,7 +3,7 @@
   include("../../../config_sistem.php");
  include ("../include/functions.php");
  ?>
- <?php  $SQLp = "select * FROM mastpegawai WHERE status = 1"; $hasilp = mysql_query($SQLp, $dbh_jogjaide) or die(mysql_error()); $barisp=mysql_fetch_array($hasilp); echo $barisp[0];?>
+
 <style type="text/css">
 <!--
 body {
@@ -209,6 +209,7 @@ $(document).ready(function() {
 	<table class="x1">
 	<form name="frmijin" id="frmijin" method="post" action="submission_gli.php">
           <input type="hidden" name="cmd" value="add_jurnal" />
+          <input type="hidden" name="tipe_jurnal" value="JPG" />
           <input type="hidden" name="khusus" value="gaji" />
 		  <input type="hidden" name="nobukti" value="<?php  echo $_GET['nobukti']?>" />
 		  <input type="hidden" name="bulan" value="<?php  echo $_GET['bulan']?>" />
@@ -220,7 +221,7 @@ $(document).ready(function() {
 		  <?php  } ?>
       </tr>
       <tr>
-        <td>No. Bukti </td>
+        <td>No. Nota </td>
         <td><input type="text" name="bukti" id="bukti"  class="required" title="Nomor Bukti Harus diisi !" value="<?php  echo $_GET['nobukti'];?>" /></td>
       </tr>
       <tr>
@@ -259,22 +260,22 @@ $(document).ready(function() {
       </tr>
     </table>
 	<br />
-	<table border="1" align="left" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
+	<table border="1" align="left" bordercolor="#FFFFFF" cellpadding="3" cellspacing="0" bordercolorlight="silver" bordercolordark="#FFFFFF">
       <?php  if ($_GET['id']<>"") {?>
       <tr>
-        <td background="../images/impactg.png" colspan="9" align="center"><font color="white"><b>Edit Transaksi </b></font></td>
+        <td background="../images/impactg.png" colspan="10" align="center"><font color="white"><b>Edit Transaksi </b></font></td>
       </tr>
       <?php  } else { ?>
       <tr>
-        <td background="../images/impactg.png" colspan="9" align="center"><strong><font color="white"> TRANSAKSI </font></strong></td>
+        <td background="../images/impactg.png" colspan="10" align="center"><strong><font color="white"> TRANSAKSI </font></strong></td>
       </tr>
       <?php  } ?>
       <tr bgcolor="#FFCC00">
         <td width="34" align="center"><strong>No</strong></td>
         <td width="150" align="center">
 			Debet</td>
-        <td width="150" align="center"><strong>Keterangan</strong></td>
-        <td width="104" align="center"><strong>Jumlah (Rp. )</strong></td>
+        <td width="200" align="center"><strong>Nama Pegawai@Nopeg</strong></td>
+        <td width="52" align="center"><strong>Jumlah</strong></td>
         <?php  if ($_GET['id']<>"") { ?>
         <td width="58" align="center"><b>Update</b></td>
         <td width="58" align="center"><b>Batal</b></td>
@@ -289,7 +290,7 @@ $(document).ready(function() {
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
           <td align="center"><select name="norek2" id="norek2" class="required" title="*" >
             <?php 
-				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -4) <> '0000' and norek LIKE '%5311' ORDER BY norek";
+				$SQL = "SELECT * FROM $database.rekening WHERE substr(norek, -4) <> '0000' and (norek LIKE '%5311' OR norek LIKE '%5323') ORDER BY norek";
 				$hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 				while($baris = mysql_fetch_array($hasil)){
 							?>
@@ -371,7 +372,7 @@ $(document).ready(function() {
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
           <?php  } else { ?>
           <td align="center"><a href="?mn=<?php  echo $_GET['mn']?>&amp;id=<?php  echo $row["norek"]?>"></a></td>
-          <td align="center"><a href="javascript:confirmDelete('submission_gli.php?id=<?php  echo $row["id"]?>&amp;cmd=del_jurnal&nobukti=<?php  echo $_GET['nobukti']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&dk=<?php  echo $_GET['dk']?>&norek=<?php  echo $_GET['norek']?>&namarek=<?php  echo $_GET['namarek']?>&divisi=<?php  echo $_GET['divisi']?>&bulan=<?php  echo $_GET['bulan']?>&keteranganheader=<?php  echo $_GET['keteranganheader']?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
+          <td align="center"><a href="javascript:confirmDelete('submission_gli.php?id=<?php  echo $row["id"]?>&amp;cmd=del_jurnal_gaji&nobukti=<?php  echo $_GET['nobukti']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&dk=<?php  echo $_GET['dk']?>&norek=<?php  echo $_GET['norek']?>&namarek=<?php  echo $_GET['namarek']?>&divisi=<?php  echo $_GET['divisi']?>&bulan=<?php  echo $_GET['bulan']?>&keteranganheader=<?php  echo $_GET['keteranganheader']?>')"><img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
           <?php  } ?>
         </form>
       </tr>
@@ -379,7 +380,7 @@ $(document).ready(function() {
 		 $nRecord = $nRecord + 1;
 		} ?>
 		<tr>
-			<td colspan="20" align="center">
+			<td colspan="21" align="center">
 			<a href="index.php?mn=trans_jurnal_gaji">[ SELESAI ATAU KE NOMOR BUKTI BERIKUTNYA ]</a>
 			<a href="cetak_pdf.php?divisi=<?php  echo $div; ?>&nobukti=<?php  echo $_GET['nobukti']?>&bulan=<?php  echo $_GET['bulan']?>&tanggal=<?php  echo $_GET['tgl_transaksi']?>">
 			[ CETAK ]</a>
@@ -388,7 +389,7 @@ $(document).ready(function() {
 		<?php 
 	} else { ?>
       <tr>
-        <td align="center" colspan="9"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
+        <td align="center" colspan="10"><font color="red">Mohon maaf, tidak ada Data dimaksud.</font></td>
       </tr>
       <?php   } ?>
     </table>	<p>&nbsp;</p></td>

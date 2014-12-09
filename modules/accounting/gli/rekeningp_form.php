@@ -83,7 +83,7 @@ td { padding: 5px; }
 		if($_GET['id']<>""){
 			while ($baris=mysql_fetch_array($hasil)) {
 				$induk = substr($baris['norek'],0,4);
-					$SQLc = "SELECT namarek FROM $database.rek WHERE norek = '$induk' AND status = 1";
+					$SQLc = "SELECT namarek FROM $database.rek WHERE norek LIKE '$induk%' AND status = 1";
 					$hasilc = mysql_query($SQLc, $dbh_jogjaide);
 					$barisc = mysql_fetch_array($hasilc);
 					$namarekeninginduk = $barisc[0];

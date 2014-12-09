@@ -287,8 +287,9 @@ switch ($cmd) {
 			
 			$jumlah = ereg_replace("[^0-9.]", "", $_POST['jumlah']);
 			if($_POST['dk']=="Kredit"){
-				$SQL = "INSERT INTO $database.jurnal_srb(id, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
+				$SQL = "INSERT INTO $database.jurnal_srb(id, tipe_jurnal, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
 				'',
+				'".$_POST['tipe_jurnal']."',
 				'".baliktgl($_POST['tgl_transaksi'])."',
 				'".$_POST['dk']."',
 				'".$_POST['norek2']."',
@@ -305,8 +306,9 @@ switch ($cmd) {
 				)";
 			}
 			if($_POST['dk']=="Debet"){
-				$SQL = "INSERT INTO $database.jurnal_srb(id, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
+				$SQL = "INSERT INTO $database.jurnal_srb(id, tipe_jurnal, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id) VALUES (
 				'',
+				'".$_POST['tipe_jurnal']."',
 				'".baliktgl($_POST['tgl_transaksi'])."',
 				'".$_POST['dk']."',
 				'".$_POST['norek']."',
@@ -387,6 +389,21 @@ switch ($cmd) {
 		$hasil=mysql_query($SQL);
 		
 		$strurl = "index.php?mn=trans_jurnal&nobukti=".$_GET['nobukti']
+			."&tgl_transaksi=".$_GET['tgl_transaksi']
+			."&dk=".$_GET['dk']
+			."&norek=".$_GET['norek']
+			."&namarek=".$_GET['namarek']
+			."&keteranganheader=".$_GET['keteranganheader']
+			."&divisi=".$_GET['divisi']
+			."&bulan=".$_GET['bulan'];
+	break;
+	case "del_jurnal_gaji" :
+		$SQL = "DELETE FROM $database.jurnal_srb WHERE id = ".$_GET['id'];
+		$hasil = mysql_query($SQL, $dbh_jogjaide);
+		$SQL = "UPDATE $database.mutasi SET status = 0 WHERE jurnal_id = '".$_GET['id']."'";
+		$hasil=mysql_query($SQL);
+		
+		$strurl = "index.php?mn=trans_jurnal_gaji&nobukti=".$_GET['nobukti']
 			."&tgl_transaksi=".$_GET['tgl_transaksi']
 			."&dk=".$_GET['dk']
 			."&norek=".$_GET['norek']

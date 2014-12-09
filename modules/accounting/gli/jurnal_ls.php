@@ -214,6 +214,9 @@ s/d
 		if($row['khusus']=="pembelian"){
 			$strurl = "index.php?mn=trans_jurnal_pbm&nobukti=".$row['nobukti']."&tgl_transaksi=".baliktglindo($row['tanggal'])."&dk=".$row['jenis']."&norek=".$norek."&namarek=".$namarek."&divisi=".$divisi."&keteranganheader=".$keteranganheader."&bulan=".$row['bulan']."&khusus=pembelian";
 		}
+		if($row['tipe_jurnal']=="JPG"){
+			$strurl = "index.php?mn=trans_jurnal_gaji&nobukti=".$row['nobukti']."&tgl_transaksi=".baliktglindo($row['tanggal'])."&dk=".$row['jenis']."&norek=".$norek."&namarek=".$namarek."&divisi=".$divisi."&keteranganheader=".$keteranganheader."&bulan=".$row['bulan']."&khusus=pembelian";
+		}
 	  ?>
 	  <td align="center">
 	  	<?php  if($row['mutasi_id']=="0") {?>
