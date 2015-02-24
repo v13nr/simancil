@@ -132,7 +132,7 @@ s/d
       <td width="138" class="style3"><div align="center" class="style4">Jumlah</div></td>
 	  <td width="138" class="style3"><div align="center" class="style4">No Bukti </div></td>
 	  <td width="52" class="style3"><div align="center" class="style4">User</div></td>
-      <td width="61" class="style3"><div align="center" class="style4">Divisi</div></td>
+      <td width="61" class="style3"><div align="center" class="style4">Tipe</div></td>
 	  <td width="72" class="style3"><div align="center" class="style4">Edit</div></td>
     </tr>
 	<?php 
@@ -185,15 +185,7 @@ s/d
 			//echo $barisuser[0];
 			echo $row['user_id'];
 		?>		</td>
-      <td class="style3" align="center">
-	  <?php 
-	  	$SQLuser = "SELECT $database.namadiv FROM divisi WHERE subdiv = '".$row['divisi']."'";
-			//$hasiluser= mysql_query($SQLuser, $dbh_jogjaide);
-			//$barisuser = mysql_fetch_array($hasiluser);
-			//echo $barisuser[0];
-			echo $row['divisi'];
-			$divisi = $row['divisi'];
-	  ?></td>
+      <td class="style3" align="center"><?php  echo $row['tipe_jurnal']?></td>
 	  <?php 
 	  	if($row['jenis']=="Debet"){
 			$norek=$row['kd'];
