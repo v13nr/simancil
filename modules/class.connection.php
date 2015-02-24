@@ -13,7 +13,7 @@ class mysql {
 			'host' => 'localhost',
 			'user' => 'root',
 			'pass' => 'BiasaAjaLah',
-			'db' => 'simancil'
+			'db' => 'sima'
 		);
 		$db = array_merge($default,$db);
 		$this->con=mysql_connect($db['host'],$db['user'],$db['pass'],true) or die ('Error connecting to MySQL');

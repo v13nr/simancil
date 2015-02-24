@@ -7,20 +7,17 @@
 
 <body>
 <p>&nbsp;</p>
-<p align="center"><img src="images/simancil logo.png" alt="SiManCiL" width="300"/></p>
-<p align="center">SISTEM INFORMASI<BR /> MANAJEMEN USAHA KECIL</p>
-<p align="center"><a href="http://simancil.com" target="_blank">www.simancil.com</a></p>
-<p align="center">&copy;2013 PT. NETSINDO SENTRA COMPUTAMA <br /> 
-<a href="http://netsindo.com" target="_blank">www.netsindo.com</a> </p>
+<p align="center"><img src="images/sima logo.png" alt="SiMa" width="300"/></p>
+<p align="center">SISTEM INFORMASI<BR /> MANAJEMEN USAHA </p>
+<p align="center"><a href="http://www.jogjaide.web.id" target="_blank">www.jogjaide.web.id</a></p>
+<p align="center">&copy;2014 Nanang Rustianto <br /> 
 <div align="center">
   <p>&nbsp;</p>
-  <p align="center">Kontributor</p>
-  <div align="center"> Andi Micro<br />
+  <p align="center">Programmer</p>
     Nanang Rustianto <br />
-    Aryadi Gunawan</div>
 </div>
 <p>&nbsp;</p>
-<p align="center">Versi 1.2</p>
+<p align="center">Versi 1.0</p>
 <p align="center">&nbsp;</p>
 <p align="center">&nbsp;</p>
 </body>

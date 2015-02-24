@@ -147,7 +147,7 @@ var ajaxSubmit = function(formObj,action,responseDIV) {
 								$("input").not("button, submit, reset, hidden").each( function() {
 										this.value = this.defaultValue;     
 									}); //reset
-								alert (respon.pesand);
+								alert (respon.pesan);
 							}
                     }
                 });

@@ -1,27 +1,28 @@
 <?php 
-
+	@session_start();
 	$host ="localhost";
-    $user="simancil";
-    $password="simancil";
-    $database="simancil";
+    $user="root";
+    $password="TidakAda";
+    $database="sima_expedisi";
     $dbh_jogjaide = mysql_connect($host,$user,$password) or die("Koneksi server gagal");
     mysql_select_db($database);
-	$url_site = "http://localhost/simancil/modules/accounting/gli/";
+	$url_site = "http://localhost/sima_expedisi/modules/accounting/gli/";
 	
 	define('SQL_HOST',     'localhost');
-	define('SQL_USER',     'simancil');
-	define('SQL_PASSWD',   'simancil');
-	define('SQL_DATABASE', 'simancil');
+	define('SQL_USER',     'root');
+	define('SQL_PASSWD',   'TidakAda');
+	define('SQL_DATABASE', 'sima_expedisi');
 	define('SQL_PREFIX',   'phpc_');
 	define('SQL_TYPE',     'mysqli');
 	
 	// MySQL configuration
 define('HOST','localhost');        // Your database server
-define('USER','simancil');        // Your mysql username
-define('PASS','simancil');                // Your mysql password
-define('DB','simancil');        // Your mysql database name
-define('SITE_TITLE','CV. Berkah');
+define('USER','root');        // Your mysql username
+define('PASS','TidakAda');                // Your mysql password
+define('DB','sima_expedisi');        // Your mysql database name
+define('SITE_TITLE','CV. GGE');
 define('MENU_TITLE','');
 define( 'ABSPATH', dirname(__FILE__) . '/' );
-	
+
+		
 ?>

@@ -1,9 +1,9 @@
 <?php 
 /**
- *  Copyright (C) PT. Netsindo Sentra Computama
- *  Project Manager : Andi Micro
+ *  Copyright (C) CV. Jogjaide Ent.
+ *  Project Manager : Nanang Rustianto
  *  Lead Programmer : Nanang Rustianto
- *  Email : info@netsindo.com
+ *  Email : anangr2001@yahoo.com
  *  Date: April 2014; Desember 2014
 **/
 ?>
@@ -11,16 +11,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Update SiMancil</title>
+<title>Update SiMa</title>
 <?php 
 include "otentik_admin.php";
 		include "config_sistem.php";
 
-		$fp = @fsockopen("repo.simancil.com", 80, $errno, $errstr, 10);
+		$fp = @fsockopen("repo.jogjaide.web.id", 80, $errno, $errstr, 10);
 		$onoff = (!$fp) ? "Offline" : "Online";
 		echo "<br>Status : ".$onoff."<br>";
 
-		$handle = @fopen("http://repo.simancil.com/update/release-1.3.txt", "r");
+		$handle = @fopen("http://repo.jogjaide.web.id/update/release-1.3.txt", "r");
 		if ($handle) {
 			while (($buffer = fgets($handle, 4096)) !== false) {
 				$versi_server = $buffer;
@@ -52,7 +52,7 @@ include "otentik_admin.php";
 if(isset($_GET["cmd"])) {
 		if($paket==1){
 			echo "<br>Paket.....".$paket."......<br>";
-			$hostfile = fopen("http://repo.simancil.com/update/latest-1.3.zip", 'r');
+			$hostfile = fopen("http://repo.jogjaide.web.id/update/latest-1.3.zip", 'r');
 			$fh = fopen("latest.zip", 'w');
 			while (!feof($hostfile)) {
 				$output = fread($hostfile, 8192);
@@ -90,7 +90,7 @@ if(isset($_GET["cmd"])) {
 
 
 				unlink('version.txt');
-				$hostfile = fopen("http://repo.simancil.com/update/arsip-1.3/1.3.".$i.".zip", 'r');
+				$hostfile = fopen("http://repo.jogjaide.web.id/update/arsip-1.3/1.3.".$i.".zip", 'r');
 				$fh = fopen("1.3.".$i.".zip", 'w');
 				while (!feof($hostfile)) {
 					$output = fread($hostfile, 8192);

@@ -1,13 +1,25 @@
 ﻿<?php 
 /**
- *  Copyright (C) PT. Netsindo Sentra Computama
- *  Project Manager : Andi Micro
+ *  Copyright (C) CV. Jogjaide Ent.
+ *  Project Manager : Nanang Rustianto
  *  Lead Programmer : Nanang Rustianto
- *  Email : info@netsindo.com
+ *  Email : anangr2001@yahoo.com
  *  Date: April 2014
 **/
 ?>
 <?php  @session_start();  
+	
+	function menuAkses($id){
+		$group_id = $_SESSION['sess_user_id'];
+		$SQL = "SELECT menu_id FROM jo_menu_detail WHERE menu_id = '$id' AND user_id = '".$group_id."'";
+		//echo "<br>".($SQL);
+		$hasil = mysql_query($SQL);
+		if(mysql_num_rows($hasil) < 1){
+			echo "ANDA TIDAK MEMILIKI HAK AKSES MENU INI !";
+			exit();
+		}
+	}
+	
 if($_SESSION["is_login"] != "yes")
 {
 echo'
@@ -23,7 +35,7 @@ include ("config_sistem.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>SiMANCiL</title>
+    <title>SAJI: Sistem Informasi Jasa Ekspedisi</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css" />
@@ -71,7 +83,7 @@ include ("config_sistem.php");
         }
                          );
       </script>
-	  <link rel="shortcut icon" href="favicon.png" />
+	  <link rel="shortcut icon" href="logo.gif" />
   </head>
   <body>
     <div id="colors-switcher" class="color">
@@ -95,9 +107,7 @@ include ("config_sistem.php");
       <!-- logo -->
       <div id="logo">
         
-          <a href="" title="Simancil Admin">
-            <img src="resources/images/logo.png" alt="SiMANCiL" />
-          </a>
+         
 		  <ul id="user">
 		  	<li style="color:#FFFFFF"><strong><?php  echo SITE_TITLE; ?></strong></li>
 		  </ul>
@@ -128,7 +138,7 @@ include ("config_sistem.php");
                 </a>
               </li>
               <li class="last highlight">
-                <a href="http://www.netsindo.com/">
+                <a href="#">
                   View Site
                 </a>
               </li>
@@ -202,9 +212,12 @@ include ("config_sistem.php");
 								<a href="index.php?mn=rec_stok_ls&getmodule=
 <?php  echo base64_encode("pos/inventory"); ?>" title="Recycle Inventory">Recycle Inventory</a>   
 							</li>
+							<li>
+								<a href="index.php?mn=mysql-backup&getmodule=
+<?php  echo base64_encode("backuprestore/"); ?>&box=1" title="Recycle Inventory">Backup Restore</a>   
+							</li>
 						</ul>			
 					</li>
-				    <li>        <a href="index.php?mn=about" title="Home">          <span class="normal">            About Us          </span>        </a>     </li>
               </ul>
   </li>
   <?php  } ?>
@@ -271,8 +284,8 @@ if($_GET["mn"]==""){
 <div id="footer">
   <p>
     Copyright &copy; 2014-2015 
-    <a href="http://www.netsindo.com" target="_blank">
-      PT. Netsindo Sentra Komputama
+    <a href="http://www.jogjaide.web.id" target="_blank">
+      #
     </a>
     . All Rights Reserved.
   </p>

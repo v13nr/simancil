@@ -155,7 +155,7 @@ $oPagination = new phpPagination ($nTotalItems, $nItemsPerPage);
 		$SQL = $SQL." ORDER BY idno DESC LIMIT "
     .($nCurrentPage-1)*$nItemsPerPage
     .", $nItemsPerPage";
-	$hasil=mysql_query($SQL, $dbh1);
+	$hasil=mysql_query($SQL);
 	
 		$hasil=mysql_query($SQL);
 		$id = 0;

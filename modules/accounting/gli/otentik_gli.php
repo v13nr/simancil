@@ -1,9 +1,9 @@
 <?php 
 /**
- *  Copyright (C) PT. Netsindo Sentra Computama
- *  Project Manager : Andi Micro
+ *  Copyright (C) CV. Jogjaide Ent.
+ *  Project Manager : Nanang Rustianto
  *  Lead Programmer : Nanang Rustianto
- *  Email : info@netsindo.com
+ *  Email : anangr2001@yahoo.com
  *  Date: April 2014
 **/
 ?>

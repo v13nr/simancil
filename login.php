@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>SiMANCiL</title>
+		<title>SAJI: Sistem Informasi Jasa Ekspedisi </title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<!-- stylesheets -->
 		<link rel="stylesheet" type="text/css" href="resources/css/reset.css" />
@@ -33,13 +33,13 @@
 				$("input:submit, input:reset").button();
 			});
 		</script>
-		<link rel="shortcut icon" href="favicon.png" />
+		<link rel="shortcut icon" href="logo.gif" />
 	</head>
 	<body>
 		<div id="login">
 			<!-- login -->
 			<div class="title">
-				<h5>Sistem Manajemen Usaha Kecil </h5>
+				<h5>SAJI: Sistem Informasi Jasa Ekspedisi</h5>
 				<div class="corner tl"></div>
 				<div class="corner tr"></div>
 			</div>
@@ -95,7 +95,7 @@
 					<!-- end fields -->
 					<!-- links -->
 					<div class="links">
-						<a href="http://www.netsindo.com">PT. Netsindo Sentra Computama</a>					</div>
+						<a href="http://www.jogjaide.web.id"></a>		2015			</div>
 					<!-- end links -->
 				</div>
 				</form>

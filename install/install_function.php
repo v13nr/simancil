@@ -95,7 +95,7 @@ $cfg = "<?php
     \$database=\"{$_POST['dbname']}\";
     \$dbh_jogjaide = mysql_connect(\$host,\$user,\$password) or die(\"Koneksi server gagal\");
     mysql_select_db(\$database);
-	\$url_site = \"http://localhost/simancil/modules/accounting/gli/\";
+	\$url_site = \"http://localhost/sima/modules/accounting/gli/\";
 	
 	define('SQL_HOST',     '{$_POST['dbserver']}');
 	define('SQL_USER',     '{$_POST['dbuser']}');

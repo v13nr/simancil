@@ -8,7 +8,7 @@
  $dbserver 	= isset($_POST["dbserver"])?$_POST["dbserver"]:"localhost"; 
  $dbuser 	= isset($_POST["dbuser"])?$_POST["dbuser"]:"root"; 
  $dbpass	= isset($_POST["dbpass"])?$_POST["dbpass"]:""; 
- $dbname 	= isset($_POST["dbname"])?$_POST["dbname"]:"simancil";
+ $dbname 	= isset($_POST["dbname"])?$_POST["dbname"]:"sima";
  $site_title 	= isset($_POST["site_title"])?$_POST["site_title"]:"isi Nama Usaha";
  $menu_title 	= isset($_POST["menu_title"])?$_POST["menu_title"]:"Main Menu";
  

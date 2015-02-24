@@ -57,7 +57,7 @@ body {
       <td width="53" rowspan="3" valign="bottom"><div align="center" class="style4"><a href="index.php?mn=trans_jurnal"><img src="../images/user_add.png" width="32" height="32" border="0" align="absbottom" class="style3" /></a></div></td>
       <td width="51" rowspan="3" valign="bottom"><div align="center" class="style4"></div></td>
       <td width="50" rowspan="3" valign="bottom"><div align="center" class="style4"><a id="cari">
-        <img src="../images/cari.png" width="32" height="32" /></a>
+        <img src="../../../images/cari.png" width="32" height="32" /></a>
       </div></td>
       <td width="50" rowspan="3" valign="bottom"><div align="center"><a href=""><img src="../images/fileex.png" border="0" width="32" height="32" /></a></div></td>
       <td width="48" rowspan="3">&nbsp;</td>

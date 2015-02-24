@@ -1,0 +1,477 @@
+html, body {
+height: 100%;
+} 
+
+/*The below styles how the header DIV will look*/
+.header {
+	font-family: tahoma;
+	font-size: 20px;
+	text-align: left;
+	color: #000000;
+	margin-left: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 60px;
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	background-position: center left;
+	height: 48px;
+	line-height: 200%;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*The below styles how the logout DIV will look*/
+.logout {
+	font-family: tahoma;
+	font-size: 12px;
+	text-align: right;
+	color: #000000;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 20px;
+	margin-right: 15px;
+	text-decoration: none;
+	background-image: url(../images/logout.png);
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+
+/*The below styles how the logout link will look*/
+.logout a:link, .logout a:visited {
+	font-family: tahoma;
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+}
+
+/*The below styles how the main DIV which holds the all other DIVs will look*/
+.placeholder {
+	margin-bottom: 25px;
+	text-align: center;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*The below styles how the purge link will look*/
+.purgelink, .purgelink a, purgelink a:link, purgelink a:visited {
+text-decoration: none;
+padding-left: 5px;
+}
+
+/*The below styles how the admin icons will look*/
+.adminicon {
+border: 0px;
+padding-left: 10px;
+}
+
+/*The below styles how the rounded corner DIVS will look */
+/*To change the background colour of these boxes change every occurrence of #EEEEEE*/
+.container{
+  display:block; 
+  }
+
+.container *  {
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+  background:#EEEEEE}
+
+.container1{
+  margin-left:3px;
+  margin-right:3px;
+  padding-left:1px;
+  padding-right:1px;
+  border-left:1px solid #EEEEEE;
+  border-right:1px solid #EEEEEE;
+  background:#EEEEEE}
+
+.container2{
+  margin-left:1px;
+  margin-right:1px;
+  padding-right:1px;
+  padding-left:1px;
+  border-left:1px solid #EEEEEE;
+  border-right:1px solid #EEEEEE;
+  background:#EEEEEE}
+
+.container3  {
+  margin-left:1px;
+  margin-right:1px;
+  border-left:1px solid #EEEEEE;
+  border-right:1px solid #EEEEEE;}
+
+.container4{
+  border-left:1px solid #EEEEEE;
+  border-right:1px solid #EEEEEE}
+
+.container5{
+  border-left:1px solid #EEEEEE;
+  border-right:1px solid #EEEEEE}
+
+/*The below styles how the content contained within the rounded edged boxes will look*/
+/*To change the background colour of this box change #EEEEEE*/
+.containercontent{
+ padding: 20px;
+ color: #000000;
+ text-align: left;
+ font-family: Tahoma;
+ background:#EEEEEE}
+ 
+.containercontent a:link, .containercontent a:visited {
+text-decoration: none;
+}
+
+/*The below styles how the login p will look*/
+.login {
+	display: block;
+	text-align: center;
+	}
+
+/*The below styles how the add link button will look*/
+.addlink {
+border: 1px solid #000000;
+height: 20px;
+background-image: url(../images/link.png);
+background-repeat: no-repeat;
+background-position: center left;
+margin-left: 10px;
+padding-left: 15px;
+margin-bottom: 5px;
+}
+
+/*The below styles how the login input fields will look*/
+.logininput {
+	font-family: tahoma;
+	font-size: 14px;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	margin-left: 10px;
+	}
+
+
+fieldset {
+width: 550px;
+padding: 10px;
+margin-left: auto;
+margin-right: auto;
+}
+
+legend {
+font-family: tahoma;
+font-size: 18px;
+color: #000000;
+}
+
+/*The below styles how input fields will look*/	
+.input        {
+	font-family: tahoma;
+	font-size: 14px;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	margin-left: 15px;
+	width: 300px;
+	}
+
+.inputcheckbox {
+	margin-left: 15px;
+	}
+
+.inputlabel {
+width: 150px;
+display: inline-block;
+}
+
+/*The below styles how the form buttons look*/
+.logincontainer      {
+	margin-bottom: 25px;
+	text-align: center;
+	width: 112px;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 25px;
+}
+
+/*The below styles how buttons will look*/	
+.button {
+	font-family: Arial;
+	font-size: 14px;
+	color: #ffffff;
+	background-image: url(../images/button_bg.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 0;
+	height: 25px;
+	width: 112px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-top: 15px;
+	padding-left: 4px;
+	padding-top: 10px;
+	text-align: center;
+	}
+	
+/*The below styles how input buttons will look*/		
+.inputbutton {
+	font-family: Arial;
+	font-size: 14px;
+	color: #ffffff;
+	background-image: url(../images/button_bg.png);
+	background-repeat: no-repeat;
+	border: 0;
+	height: 25px;
+	width: 112px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-top: 20px;
+	}
+
+/*The below styles the look of the screen blackout when the delete button is pressed*/	
+.blackout{
+	position: fixed;
+	z-index: 5;
+	background-color: #000000;
+	filter:alpha(opacity=80);
+	-moz-opacity: 0.8;
+	opacity: 0.8;
+	top: 0; 
+	right: 0; 
+	bottom: 0; 
+	left: 0;
+	width: 100%;
+	text-align: center;
+	line-height: 0;	
+	height: 100%;
+	min-height: 100%;
+}
+
+/*The below styles how the box in the middle of the blackout screen will look*/
+.box {
+	color: #000000;
+	margin-top: 200px;
+	text-align: center;
+	background-color: #ffffff;
+	width: 500px;
+	min-height: 300px;
+	left: 0;
+	line-height: 0;	
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*The below styles how the text at the of the box in the middle of the blackout screen will look*/
+.boxheader {
+	font-family: tahoma;
+	font-size: 18px;
+	font-weight: bold;
+	display: block;
+	padding-bottom: 10px;
+	}
+
+/*The below styles how the text in the box in the middle of the blackout screen will look*/
+.boxtext {
+	font-family: tahoma;
+	font-size: 14px;
+	color: #000000;
+	padding: 20px;
+	line-height: 100%;
+	padding-top: 50px;
+	}
+
+.boxtext a:link, .boxtext a:visited{
+	color: #ffffff;
+	text-decoration: none;
+	}
+
+/*The below styles how the footer text will look*/
+.footer {
+	font-family: tahoma;
+	font-size: 12px;
+	color: #000000;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	}
+.footer a, .footer a:link, .footer a:visited {
+	text-decoration: none;
+	color: #76A6BA; 
+	}
+
+/*The below styles how error messages will look*/	
+.errortext {
+border: 1px solid #920000;
+background: #ECCED0;
+color: #000000;
+min-height: 25px;
+font-family: tahoma;
+font-size: 14px;
+line-height: 170%;
+margin-left: 5px;
+margin-right: 5px;
+padding: 5px;
+display: block;
+margin-bottom: 5px;
+}
+
+/*The below styles how success messages will look*/	
+.successtext {
+border: 1px solid #BBD861;
+background: #E4F2BD;
+color: #000000;
+min-height: 25px;
+font-family: tahoma;
+font-size: 14px;
+line-height: 170%;
+margin-left: 5px;
+margin-right: 5px;
+padding: 5px;
+display: block;
+margin-bottom: 5px;
+}
+
+/*The below styles how the backup lists table will look*/	
+.backuplisttable {
+margin-top: 40px;
+font-family: tahoma;
+font-size: 11px;
+width: 650px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.backupitemheader {
+padding: 10px;
+font-weight: bold;
+}
+
+.backupitem {
+padding: 10px;
+border-bottom: 1px dotted #CCCCCC;
+border-top: 1px dotted #CCCCCC;
+}
+
+/*The below styles how the waiting message will look*/	
+.informationtext {
+border: 1px solid #38599F;
+background: #859ED1;
+color: #000000;
+min-height: 25px;
+font-family: tahoma;
+font-size: 14px;
+line-height: 170%;
+margin-left: 5px;
+margin-right: 5px;
+padding: 5px;
+display: block;
+margin-bottom: 5px;
+}
+
+#nav_rounded_white {
+background:#fff;
+padding:10px 0px 0px 20px;
+height:40px;
+width: 800px;
+margin-left: auto;
+margin-right: auto;
+list-style: none;
+text-transform: lowercase;
+font-family: arial, "lucida console", sans-serif;   }
+
+#nav_rounded_white ul {
+margin: 0;
+padding: 0;   }
+
+#nav_rounded_white li {
+float: left;
+margin: 0;
+padding:0px 10px 0px 0px;   }
+
+#nav_rounded_white a {
+display:block;
+line-height: 30px;
+margin: 0;
+padding: 0 20px 0 15px;
+font-size: 18pt;
+color:#000000;
+letter-spacing:-1px;
+text-decoration: none;
+-moz-border-radius:10px;
+-webkit-border-radius:10px;
+background:#eeeeee;
+}
+
+#nav_rounded_white a:hover {
+text-decoration:none;
+background:#004455;
+color:#ffffff;
+}
+
+#accordion {
+  border: 1px solid #ccc;
+  border-bottom: none;
+  margin: 0 auto;
+	width: 700px;
+}
+ 
+	#accordion .section {
+		background: url(../images/accordion-bg.gif) repeat-x 0 0;
+		border-bottom: 1px solid #ccc;
+		padding: 12px;
+	}	
+ 
+	#accordion h2 {
+		background: url(../images/plus.png) no-repeat 0 4px;
+		cursor: pointer;
+		font-size: 14px;
+		outline: none;
+		padding-left: 18px;
+	}
+ 
+	#accordion .ui-state-active {
+		background: url(../images/minus.png) no-repeat 0 4px;
+	}
+ 
+	#accordion .section-content {
+		padding: 20px 18px;
+	}
+ 
+	#accordion h3 {
+		border-bottom: 2px dotted #CCC;
+		color: #666;
+		font-size: 12px;
+		font-weight: bold;
+		padding: 22px 0 5px 0;
+	}
+ 
+	#accordion p {
+		padding-top: 12px;
+	}
+ 
+	#accordion ol,
+	#accordion ul {
+		margin: 12px 0 0 40px;
+	}
+ 
+	#accordion li {
+		padding-bottom: 5px;
+	}
+
+.uploadprogress {
+	font-family: tahoma;
+	font-size: 16px;
+	color: #000000;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 25px;
+	padding-left: 60px;
+	background-image: url(../images/loading.gif);
+	background-repeat: no-repeat;
+	background-position: center left;
+	height: 48px;
+	width: 250px;
+}

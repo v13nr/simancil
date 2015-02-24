@@ -483,7 +483,7 @@ require_once "config_sistem.php";
                       <div class="media-body">
                         <small>Jumlah Pelanggan Tetap</small>
 						<?php  
-						$sql = "select count(kode) from konsumen";
+						$sql = "select SUM(total_ongkos) from expedisi";
 						$hasil = mysql_query($sql) or die(mysql_error());
 						$baris = mysql_fetch_array($hasil); 
 						$jum_user = $baris[0]; 
@@ -507,7 +507,7 @@ require_once "config_sistem.php";
 
                   </div>
                   <div class="back">
-                    <a href="#">
+                    <a href="index.php?mn=konsumen_ls&getmodule=cG9zL2ludmVudG9yeQ==&box=1" target="_PARENT">
                       <i class="fa fa-bar-chart-o fa-4x"></i>
                       <span>Check Summary</span>
                     </a>  
@@ -522,19 +522,18 @@ require_once "config_sistem.php";
                     
                     <div class="media">                  
                       <span class="pull-left">
-                        <i class="fa fa-usd media-object"></i>
+                        <i class="fa fa-usdrp media-object"></i>
                       </span>
 
                       <div class="media-body">
                         <small>Total Pendapatan Kotor</small>
 						<?php  
-						$sql = "select sum((harga-modal)*qtyout) from mutasi WHERE model = 'INV'";
+						$sql = "select sum(total_ongkos) from expedisi";
 						$hasil = mysql_query($sql) or die(mysql_error());
 						$baris = mysql_fetch_array($hasil); 
 						$jum_untung = $baris[0]; 
 						?>
-                        <h2 class="media-heading animate-number" data-value="<?php  echo number_format($jum_untung);?>" data-animation-duration="1500">
-						<?php  echo  number_format($jum_untung);?></h2>
+                        <h2 class="media-heading" data-value="<?php  echo $jum_untung;?>" data-animation-duration="1500">Rp.<?php  echo number_format($jum_untung);?></h2>
                       </div>
                     </div> 
 
@@ -573,14 +572,14 @@ require_once "config_sistem.php";
                       </span>
 
                       <div class="media-body">
-                        <small>Sales</small>
+                        <small>Administratif</small>
 						<?php  
-						$sql = "select sum(harga*qtyout) from mutasi WHERE model = 'INV'";
+						$sql = "select sum(biaya_administrasi) from expedisi";
 						$hasil = mysql_query($sql) or die(mysql_error());
 						$baris = mysql_fetch_array($hasil); 
 						$jum_sales = $baris[0]; 
 						?>
-                        <h2 class="media-heading animate-number" data-value="<?php  echo  number_format($jum_sales);?>" data-animation-duration="1500"><?php  echo  number_format($jum_sales);?></h2>
+                        <h2 class="media-heading" data-value="<?php  echo  ($jum_sales);?>" data-animation-duration="1500"><?php  echo  number_format($jum_sales);?></h2>
                       </div>
                     </div>
 
@@ -618,8 +617,14 @@ require_once "config_sistem.php";
                       </span>
 
                       <div class="media-body">
-                        <small>Visits</small>
-                        <h2 class="media-heading animate-number" data-value="9634" data-animation-duration="1500">9,634</h2>
+                        <small>Supplier</small>
+                        <?php  
+						$sql = "select COUNT(*) from supplier WHERE status = 1";
+						$hasil = mysql_query($sql) or die(mysql_error());
+						$baris = mysql_fetch_array($hasil); 
+						$jum_sales = $baris[0]; 
+						?>
+                        <h2 class="media-heading" data-value="<?php  echo  ($jum_sales);?>" data-animation-duration="1500"><?php  echo  number_format($jum_sales);?></h2>
                       </div>
                     </div> 
 
@@ -638,7 +643,7 @@ require_once "config_sistem.php";
 
                   </div>
                   <div class="back">
-                    <a href="#">
+                    <a href="index.php?mn=supplier_ls&getmodule=cG9zL2ludmVudG9yeQ==&box=1" target="_PARENT">
                       <i class="fa fa-bar-chart-o fa-4x"></i>
                       <span>Check Summary</span>
                     </a>
@@ -1097,18 +1102,66 @@ require_once "config_sistem.php";
 	  echo $baris[0] != null?$baris[0]:0;
 	  ?>]
       ];
-      var d2 =[ [1, 1000],
-                [2, 578],
-                [3, 327],
-                [4, 984],
-                [5, 1268],
-                [6, 1684],
-                [7, 1425],
-                [8, 1233],
-                [9, 1354],
-                [10, 1200],
-                [11, 1260],
-                [12, 1320]
+      var d2 =[ [1, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '01' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [2, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '02' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [3, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '03' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [4, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '04' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [5, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '05' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [6, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '06' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [7, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '07' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [8, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '08' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [9, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '09' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [10, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '10' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [11, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '11' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>],
+            [12, <?php  $sql = "select sum(harga*qtyin) from mutasi WHERE MONTH(tgl) = '12' AND YEAR(tgl) = '". date('Y') ."' "; 
+	  $hasil = mysql_query($sql) or die(mysql_error());
+	  $baris = mysql_fetch_array($hasil);
+	  echo $baris[0] != null?$baris[0]:0;
+	  ?>]
       ];
       var months = ["January", "February", "March", "April", "May", "Juny", "July", "August", "September", "October", "November", "December"];
 
@@ -1122,7 +1175,7 @@ require_once "config_sistem.php";
             shadowSize:0,
             color: '#ffffff'
           },
-          { label: "Visits",
+          { label: "Purchase",
             data: d2, 
             animator: {steps: 99, duration: 500, start:200, direction: "right"},   
             lines: {        
@@ -1137,7 +1190,7 @@ require_once "config_sistem.php";
             color: '#fff',        
             shadowSize:0
           },
-          { label: "Visits",
+          { label: "Purchase",
             data: d2, 
             points: { show: true, fill: true, radius:6,fillColor:"rgba(255,255,255,.2)",lineWidth:2 }, 
             color: '#fff',        

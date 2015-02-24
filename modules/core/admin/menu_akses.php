@@ -6,8 +6,9 @@
 <title>Untitled Document</title>
 
 
+
+<script type="text/javascript" src="../../../assets/jquery.js"></script>
 <SCRIPT language=javascript src="popcalendar.js"></SCRIPT>
-<script type="text/javascript" src="../assets/jquery.js"></script>
 <script language"javascript" type="text/javascript">
 	
 	function jqCheckAll2( id, name )
@@ -89,7 +90,7 @@ body {
     <tr height="30" background="../images/impactg.png">
 	  <td width="56" class="style3"><div align="center" class="style4">No.</div></td>
       <td width="64" class="style3"><div align="center" class="style4">
-        <input name="checkAllYourCB" id="checkAllYourCB" onclick="jqCheckAll2( this.id, 'tambah' )" type="checkbox" />
+        <input name="checkAllMyCB" id="checkAllMyCB" onclick="jqCheckAll2( this.id, 'tambah' )" type="checkbox" />
       </div></td>
       <td width="173" class="style3"><div align="center" class="style4">Modul</div></td>
       <td width="190" class="style3"><div align="center" class="style4">Type</div></td>

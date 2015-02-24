@@ -51,7 +51,7 @@ $(document).ready(function() {
 	</tr>
 	<tr bgcolor="#FFFFCC">
 		<td width="66">Periode</td>
-		<td width="209"><input type="text" name="tgl_awal" id="tgl_awal" size="10" value="01-01-2014" class="required" title="Harap Mengisi Tanggal Awal Dahulu" />
+		<td width="209"><input type="text" name="tgl_awal" id="tgl_awal" size="10" value="01-01-2015" class="required" title="Harap Mengisi Tanggal Awal Dahulu" />
       <a href="javascript:showCalendar('tgl_awal')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0" /></a></td>
 		<td width="28" rowspan="2"></td>
 		<td width="83">Divisi</td>
@@ -75,7 +75,7 @@ $(document).ready(function() {
 	</tr>
 	<tr bgcolor="#FFFFCC">
 		<td>S/d</td>
-		<td><input type="text" name="tgl_akhir" id="tgl_akhir" size="10" class="required" title="Harap Mengisi Tanggal Akhir Dahulu" value="31-12-2014" />
+		<td><input type="text" name="tgl_akhir" id="tgl_akhir" size="10" class="required" title="Harap Mengisi Tanggal Akhir Dahulu" value="31-12-2015" />
           <a href="javascript:showCalendar('tgl_akhir')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0" /></a></td>
 		<td>No. Rek </td>
 		<td><select name="norek" class="" title="Pilih Nomor Rekening Dahulu" style="visibility:hidden" >
