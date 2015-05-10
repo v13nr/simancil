@@ -150,6 +150,7 @@ input.kanan{ text-align:right; }
 				$divisi = $baris['divisi'];
 				$namabank = $baris['namabank'];
 				$rekbank = $baris['rekbank'];
+				$cp = $baris['cp'];
 				$anbank = $baris['anbank'];
 				$norek = $baris['norek'];
 					$SQLc = "SELECT namarek FROM rek WHERE norek = '$norek' AND status = 1";
@@ -188,6 +189,11 @@ input.kanan{ text-align:right; }
           <td><span class="style6">Nama  </span></td>
           <td>:</td>
           <td><input name="nama" size="40" type="text" class="required " id="nama"  title="Nama Supllier harus terisi" value="<?php  echo $nama?>" /></td>
+        </tr>
+        <tr>
+          <td>Contact Person</td>
+          <td>:</td>
+          <td><input name="cp" size="40" type="text" class="required " id="cp"  title="CP Supllier harus terisi" value="<?php  echo $cp?>" /></td>
         </tr>
         <tr>
           <td><span class="style6">Alamat</span></td>

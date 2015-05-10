@@ -582,7 +582,7 @@ switch ($cmd) {
 		$modal = preg_replace('#[^0-9]#', '', $_POST['modal']);
 		$hargaeceran = preg_replace('#[^0-9]#', '', $_POST['hargaeceran']);
 		$hargapartai = preg_replace('#[^0-9]#', '', $_POST['hargapartai']);
-		$SQL = "UPDATE stock SET namabrg = '".$_POST['namabrg']."', divisi = '".$_POST['divisi']."', expedisi = '".$_POST['expedisi']."', satuank = '".$_POST['satuank']."', isi = '".$isi."', satuanb = '".$_POST['satuanb']."', grup = '".$_POST['group']."', modal = '".$modal."', norek = '".$_POST['norek']."', kodebrg = '".$_POST['kodebrg']."', hargaeceran = '".$hargaeceran."', hargapartai = '".$hargapartai."' WHERE kodebrg = '".$_POST['id']."'";
+		$SQL = "UPDATE stock SET namabrg = '".$_POST['namabrg']."', divisi = '".$_POST['divisi']."', expedisi = '".$_POST['expedisi']."', satuank = '".$_POST['satuank']."', isi = '".$isi."', satuanb = '".$_POST['satuanb']."', grup = '".$_POST['group']."', modal = '".$modal."', norek = '".$_POST['norek']."', kodebrg = '".$_POST['kodebrg']."', hargaeceran = '".$hargaeceran."', hargapartai = '".$hargapartai."', supplier_id =  '".$_POST['supplier_id']."' WHERE kodebrg = '".$_POST['id']."'";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
 		$strurl = "index.php?mn=persediaan";
 	break;
@@ -606,12 +606,12 @@ switch ($cmd) {
 		$strurl = "index.php?mn=sp&nama=".$_POST['nama']."&alamat=".$_POST['alamat']."&kota=".$_POST['kota'];
 	break;
 	case "add_supp" :
-		$SQL = "INSERT INTO supplier(kode, nama, alamat, kota, telp, norek, namabank, rekbank, anbank, divisi, status) VALUES('".$_POST['kode']."', '".$_POST['nama']."', '".$_POST['alamat']."', '".$_POST['kota']."', '".$_POST['telp']."', '".$_POST['norek']."', '".$_POST['namabank']."', '".$_POST['rekbank']."', '".$_POST['anbank']."', '".$_POST['divisi']."',  1)";
+		$SQL = "INSERT INTO supplier(kode, nama, cp, alamat, kota, telp, norek, namabank, rekbank, anbank, divisi, status) VALUES('".$_POST['kode']."', '".$_POST['nama']."', '".$_POST['cp']."', '".$_POST['alamat']."', '".$_POST['kota']."', '".$_POST['telp']."', '".$_POST['norek']."', '".$_POST['namabank']."', '".$_POST['rekbank']."', '".$_POST['anbank']."', '".$_POST['divisi']."',  1)";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
 		$strurl = "index.php?mn=sp";
 	break;
 	case "upd_supp" :
-		$SQL = "UPDATE supplier SET nama = '".$_POST['nama']."', alamat = '".$_POST['alamat']."', kota = '".$_POST['kota']."', telp = '".$_POST['telp']."', norek = '".$_POST['norek']."', namabank = '".$_POST['namabank']."', rekbank = '".$_POST['rekbank']."', anbank = '".$_POST['anbank']."',  divisi = '".$_POST['divisi']."', kode = '".$_POST['kode']."' WHERE kode = '".$_POST['id']."'";
+		$SQL = "UPDATE supplier SET nama = '".$_POST['nama']."', alamat = '".$_POST['alamat']."', kota = '".$_POST['kota']."', telp = '".$_POST['telp']."', norek = '".$_POST['norek']."', namabank = '".$_POST['namabank']."', rekbank = '".$_POST['rekbank']."', anbank = '".$_POST['anbank']."',  divisi = '".$_POST['divisi']."', kode = '".$_POST['kode']."', cp = '".$_POST['cp']."' WHERE kode = '".$_POST['id']."'";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
 		$strurl = "index.php?mn=sp";
 	break;

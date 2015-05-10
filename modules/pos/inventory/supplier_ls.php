@@ -73,7 +73,7 @@ body {
         <a id="kartu"><img src="../images/Packing-32.png" width="32" height="32" /></a>
       </div></td>
       <td width="50" rowspan="3" valign="bottom"><div align="center" class="style4">
-        <input name="image" type="image" src="../images/cari.png" width="32" height="32" />
+        <input name="image" type="image" src="../assets/button_search.png" width="32" height="32" />
       </div></td>
       <td width="50" rowspan="3" valign="bottom"><div align="center"><a href=""><img src="../images/fileex.png" border="0" width="32" height="32" /></a></div></td>
       <td width="48" rowspan="3">&nbsp;</td>
