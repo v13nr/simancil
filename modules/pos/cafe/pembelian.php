@@ -477,7 +477,7 @@ function kosongtextarray(){
         <td align="center"><strong>Harga <div id="output"></div></strong></td>
 		<td align="center"><strong>Disc(%)</strong></td>
 		<td align="center"><strong>Disc2(%)</strong></td>
-		<td align="center"><strong>Disc3(%)</strong></td>
+		<td align="center"><strong>PPN</strong></td>
 		<td align="center"><strong>Disc Rp</strong></td>
 		<td align="center"><strong>Netto</strong></td>
         <?php  if ($_GET['id']<>"") { ?>
@@ -500,7 +500,7 @@ function kosongtextarray(){
           <td align="center"><input type="text" name="harga" id="harga"  class="required kanan" title="*" onkeyup="hitung()" /></td>
 		  <td align="center"><input type="text" name="disc" id="disc" size="10" class="required kanan" title="*" value="0" onkeyup="hitung()" /></td>
 		  <td align="center"><input type="text" name="disc2" id="disc2" size="10" class="required kanan" title="*" value="0"  onkeyup="hitung()" /></td>
-		  <td align="center"><input type="text" name="disc3" id="disc3" size="10" class="required kanan" title="*" value="0"  onkeyup="hitung()" /></td>
+		  <td align="center"><input type="hidden" name="disc3" id="disc3" size="10" class="required kanan" title="*" value="0"  onkeyup="hitung()" /><input type="text" name="ppn" id="ppn" size="10" class="required kanan" title="*" value="0"  onkeyup="hitung()" /></td>
 		  <td align="center"><input type="text" id="discrp" name="discrp" size="15" class="required kanan" title="*" value="0" onkeyup="hitung()" /></td>
 		  <td align="center"><input type="text" id="netto" name="netto" size="15" class="required kanan" title="*" value="0" readonly="true" /></td>
           <td align="center" colspan="4"><input name="image" type="image" src="../images/add.gif" border="0" /></td>

@@ -107,6 +107,23 @@ switch ($cmd) {
 		}
 	break;
 	case "add_jual" :
+	//0
+		//prevent from zero
+		$SQL = "SELECT hargaeceran from stock where kodebrg = '".$_POST['barang']."'";
+		$hasil = mysql_query($SQL);
+		$baris = mysql_fetch_array($hasil);
+		$iszero = $baris[0];
+		if($iszero <= 0){
+			die("Harga Jual belum diinput! Klik Tombol Back");
+		}
+		//prevent from zero
+		$SQL = "SELECT modal from stock where kodebrg = '".$_POST['barang']."'";
+		$hasil = mysql_query($SQL);
+		$baris = mysql_fetch_array($hasil);
+		$iszero = $baris[0];
+		if($iszero <= 0){
+			die("Harga Beli belum diinput! Klik Tombol Back");
+		}
 		//1. cari divisi dan nomor lpb
 		$nomor = 1;
 		$tipe = "CFD";
@@ -230,6 +247,23 @@ switch ($cmd) {
 		}
 	break;
 	case "add_jualRetail" :
+		//0
+		//prevent from zero
+		$SQL = "SELECT hargaeceran from stock where kodebrg = '".$_POST['barang']."'";
+		$hasil = mysql_query($SQL);
+		$baris = mysql_fetch_array($hasil);
+		$iszero = $baris[0];
+		if($iszero <= 0){
+			die("Harga Jual belum diinput! Klik Tombol Back");
+		}
+		//prevent from zero
+		$SQL = "SELECT modal from stock where kodebrg = '".$_POST['barang']."'";
+		$hasil = mysql_query($SQL);
+		$baris = mysql_fetch_array($hasil);
+		$iszero = $baris[0];
+		if($iszero <= 0){
+			die("Harga Beli belum diinput! Klik Tombol Back");
+		}
 		//1. cari divisi dan nomor lpb
 		$nomor = 1;
 		$tipe = "CFD";

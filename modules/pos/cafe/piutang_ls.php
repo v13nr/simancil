@@ -132,8 +132,8 @@ body {
       <td class="style3"><div align="center">
 	  <?php  //if($_SESSION["sess_tipe"]==$row['sub']) 
 	  { ?>[
-	  <a href="angsuran.php?ida=<?php  echo $row['id'] ?>&nomor=<?php  echo $row['nomor']; ?>&amp;width=600&amp;height=350&amp;TB_iframe=true" class="thickbox">Posting Angsuran </a>]
-	  <a href="penjualan_edit.php?nomor=<?php  echo $row['nomor']?>&sub=<?php  echo $row['sub']?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
+	  <a href="angsuran.php?ida=<?php  echo $row['id'] ?>&nomor=<?php  echo $row['nota']; ?>&amp;width=600&amp;height=350&amp;TB_iframe=true" class="thickbox">Posting Angsuran </a>]
+	  <a href="penjualan_kredit_edit.php?nonota=<?php  echo $row['nota']?>&sub=<?php  echo $row['sub']?>"><img src="../draft/images/user_go.png" border="0" width="16" height="16"></a>
 	  <?php  } ?>
 	  </div></td>
     </tr>

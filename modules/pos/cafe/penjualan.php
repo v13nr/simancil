@@ -351,7 +351,7 @@ function clearNum(number){
 	<table width="1140" border="0">
   <tr>
     <td width="32"><img src="../images/calendar.png" width="32" height="32" title="POS PHP" /></td>
-    <td width="1090"><span class="style1">PEMAKAIAN / BARANG KELUAR </span>
+    <td width="1090"><span class="style1">PENJUALAN / BARANG KELUAR </span>
       <hr /></td>
   </tr>
   <tr>

@@ -1,9 +1,9 @@
 <?php 
 /**
- *	Copyright (C) PT. Netsindo Sentra Computama
- *  Project Manager : Andi Micro
+ *	Copyright (C) CV. Jogjaide Ent.
+ *  Project Manager : Nanang Rustianto
  *  Lead Programmer : Nanang Rustianto
- *  Email : info@netsindo.com
+ *  Email : anangr2001@yahoo.com
  *	Date: April 2014
 **/
 ?>
@@ -20,6 +20,8 @@ include "phppagination.persediaan.class.php";
 <script type="text/javascript" src="../assets/jquery.js"></script>
 <SCRIPT language=javascript src="popcalendar.js"></SCRIPT>
 </SCRIPT>
+ <script type='text/javascript' src='assets/thickbox/thickbox.js'></script>
+<link  href="assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
 	<script language"javascript" type="text/javascript">
 	function PopUp(url){
 		window.open(url,'', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,width=800,height=400,left = 300,top = 150');
@@ -70,7 +72,13 @@ function jqCheckAll2( id, name )
 	$("INPUT[@name^=" + name + "][type='checkbox']").attr('checked', $('#' + id).is(':checked')); 	
 }
 
-</script>
+  function thickboxPopup3(){
+	 var str = $('#dynamic_select').val();
+	var n=str.split("=");
+	  var vNIP = n[1];
+	tb_show('Adjust Stock', 'adj_stok.php?kdbarang='+vNIP+'&TB_iframe=true&height=380&width=720', null);
+}
+	</script>
 <style type="text/css">
 <!--
 body {
@@ -159,7 +167,7 @@ body {
 	  <td width="31" class="style3"><div align="center" class="style4">No.</div></td>
       <td width="35" class="style3"><div align="center" class="style4"><input name="checkAllMyCB" id="checkAllMyCB" onClick="jqCheckAll2( this.id, 'tambah' )" type="checkbox"></div></td>
 	  <td width="35" class="style3"><div align="center" class="style4">Divisi</div></td>
-          <td width="35" class="style3"><div align="center" class="style4">Expedisi</div></td>
+          <td width="35" class="style3"><div align="center" class="style4">Supplier</div></td>
       <td width="107" class="style3"><div align="center" class="style4">Group</div></td>
       <td width="71" class="style3"><div align="center" class="style4">Kode Barang </div></td>
       <td width="247" class="style3"><div align="center" class="style4">Nama Barang </div></td>
@@ -231,11 +239,12 @@ else
 		$barisc = mysql_fetch_array($hasilc);
 		echo $barisc[0];
 	  ?></td>
-          <td class="style3" align="center"><?php  echo $row['expedisi']?></td>
+          <td class="style3" align="center"><?php  echo $row['supplier_id']?></td>
 	  <td class="style3" align="center"><?php  echo $row['grup']?></td>
       <td class="style3" align="center"><?php  echo ($row['kodebrg'])?></td>
       <td class="style3" align="left"><?php  echo $row['namabrg']?></td>
-	  <td class="style3" align="center"><?php  echo number_format(($row['qtyin']-$row['qtyout']),2,'.',',')?></td>
+	  <td class="style3" align="center"><a href="adj_stok.php?kdbarang=<?php echo $row['kodebrg']; ?>&width=400&amp;height=350&amp;TB_iframe=true" class="thickbox" title="Adjusment Stock">	  
+	  <?php  echo number_format(($row['qtyin']-$row['qtyout']),2,'.',',')?></a></td>
 	  <td class="style3" align="center"><?php  echo number_format($row['isi'],2,'.',',')?></td>
       <td class="style3" align="center"><?php  echo number_format($row['hargaeceran'])?></td>
       <td class="style3" align="center"><?php  echo number_format($row['hargapartai'])?></td>

@@ -94,8 +94,8 @@ $(document).ready(function(){
 
  <script type="text/javascript">
  function selectBuku(no, nama, tipe){
-  $('input[@name=norek]').val(no);
-  $('input[@name=namarekeninginduk]').val(nama);
+  $('input[@name=supplier_id]').val(no);
+  $('input[@name=namaSupp]').val(nama);
   //tb_remove(); // hilangkan dialog thickbox
 }
 
@@ -139,7 +139,7 @@ label.error { color:red; margin-left: 10px; }
 input.kanan{ text-align:right; }
 </style>
 <?php  
-	include "../include/globalx.php";
+	include "../../../config_sistem.php";
 	include "../include/functions.php";
 ?>
   <?php  $SQL = "select * from stock WHERE kodebrg <> ''";
@@ -162,11 +162,11 @@ input.kanan{ text-align:right; }
 				$hargaeceran = $baris['hargaeceran'];
 				$hargapartai = $baris['hargapartai'];
 				$tarif = $baris['tarif'];
-				$norek = $baris['norek'];
-					$SQLc = "SELECT namarek FROM rek WHERE norek = '$norek' AND status = 1";
+				$supplier_id = $baris['supplier_id'];
+					$SQLc = "SELECT nama FROM supplier WHERE kode = '$supplier_id' AND status = 1";
 					$hasilc = mysql_query($SQLc);
 					$barisc = mysql_fetch_array($hasilc);
-					$namarekeninginduk = $barisc[0];
+					$namaSupp = $barisc[0];
 			}	
 		}
 	?>
@@ -241,15 +241,16 @@ input.kanan{ text-align:right; }
           <td><input name="modal" type="text" class="required kanan" id="modal"  title="Modal harus diisi" value="<?php  echo number_format($modal)?>" /></td>
         </tr>
         <tr>
-          <td><span class="style6">Nomor Rekening </span></td>
+          <td><span class="style6">Supplier </span></td>
           <td>:</td>
-          <td><input type="text" name="norek" id="norek" maxlength="10" size="10" readonly="true" class="" title="Harap Mengisi Nomor Rekening Dahulu" value="<?php  echo $norek?>"/>
-            <a href="../../accounting/gli/daftar_rekp.php?width=400&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>   <div id="divAlert"></div>         </td>
+          <td><input type="hidden" name="norek" id="norek" maxlength="10" size="10" readonly="true" class="" title="Harap Mengisi Nomor Rekening Dahulu" value="<?php  echo $norek?>"/>
+            <input type="text" name="supplier_id" id="supplier_id" maxlength="10" size="10" readonly="readonly" class="" title="Harap Mengisi Kode Supplier Dahulu" value="<?php  echo $supplier_id?>"/>
+            <a href="daftar_supp.php?width=400&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>   <div id="divAlert"></div>         </td>
         </tr>
         <tr>
-          <td><span class="style6">Nama Rekening </span></td>
+          <td><span class="style6">Nama Supplier</span></td>
           <td>:</td>
-          <td><input type="text" name="namarekeninginduk" value="<?php  echo $namarekeninginduk?>" readonly="true" size="40" class="" title="Nama Rekening Harus Terisi" /></td>
+          <td><input type="text" name="namaSupp" value="<?php  echo $namaSupp; ?>" readonly="true" size="40" class="" title="Nama Rekening Harus Terisi" /></td>
         </tr>
         <tr>
           <td>Divisi</td>

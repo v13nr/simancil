@@ -21,6 +21,46 @@ if ($cmd==""){
 $a = session_id();
 	
 switch ($cmd) {
+		case "upd_angsuran" :
+		$nilai = preg_replace('#[^0-9]#', '', $_POST['nilai']);
+		$SQL = "UPDATE piutang_detail SET posted = 1, nilai = '".$nilai."', jtempo = '".baliktgl($_POST['jtempo'])."' WHERE id = '".$_POST['id']."'";
+		$hasil = mysql_query($SQL);
+		if(isset($_POST["cancel_angsuran"])){			
+			$SQL = "UPDATE piutang_detail SET posted = 0, nilai = 0 WHERE id = '".$_POST['id']."'";
+			$hasil = mysql_query($SQL);	
+				//delete jurnal
+			$SQL = "delete from jurnal_srb WHERE angsuran_id = '".$_POST['id']."'";
+			$hasil = mysql_query($SQL);
+		} else {
+		// jurnal
+			// kas vs piutang dagang / angsuran
+			// link ke jurnal_srb
+					$tglposjtempo = $_POST['jtempo'];
+					$notax = $_POST["nomor"];
+					$SQL = "INSERT INTO jurnal_srb(id, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id, piutang_id, tipe_jurnal, angsuran_id) VALUES (
+					'',
+					'".baliktgl($_POST['jtempo'])."',
+					'Debet',
+					'AL1-1111',
+					'AL2-1112',
+					'Kas',
+					'Piutang Dagang',
+					'".$nilai."',
+					'0',
+					'".$_SESSION["sess_tipe"]."',
+					'".$_SESSION["sess_tipe"]."',
+					'". $_POST["ida"] ."',
+					'$bulan',
+					'".$_SESSION["sess_user_id"]."',
+					'$notax',
+					'JANG',
+					'".$_POST['id']."'
+					)";
+					$hasil=mysql_query($SQL) or die(mysql_error());
+					//die($SQL);
+			}
+		$strurl = "angsuran.php?ida=".$_POST["ida"]."&nomor=".$_POST["nomor"];
+	break;
 	case "upd_setting" :
 		$id       = $_POST[id];
 	  	$jml_data = count($id);
@@ -39,6 +79,23 @@ switch ($cmd) {
 		$strurl = "index.php?mn=setting&confirm=y";
 	break;
 	case "add_jual_kredit" :
+		//0
+		//prevent from zero
+		$SQL = "SELECT hargaeceran from stock where kodebrg = '".$_POST['barang']."'";
+		$hasil = mysql_query($SQL);
+		$baris = mysql_fetch_array($hasil);
+		$iszero = $baris[0];
+		if($iszero <= 0){
+			die("Harga Jual belum diinput! Klik Tombol Back");
+		}
+		//prevent from zero
+		$SQL = "SELECT modal from stock where kodebrg = '".$_POST['barang']."'";
+		$hasil = mysql_query($SQL);
+		$baris = mysql_fetch_array($hasil);
+		$iszero = $baris[0];
+		if($iszero <= 0){
+			die("Harga Beli belum diinput! Klik Tombol Back");
+		}
 		//1. cari divisi dan nomor lpb
 		$nomor = 1;
 		$tipe = "YFD";
@@ -51,16 +108,11 @@ switch ($cmd) {
 		if($_POST['nomor']<>""){
 			$nomor = $_POST['nomor'];
 		}
+		if($_POST['nonota']<>""){
+			$nomor = $_POST['nonota'];
+		}
 		//2. insert mutasi
-		/*
-		$harga = ereg_replace("[^0-9]", "", $_POST['harga']);
-		$disc = ereg_replace("[^0-9]", "", $_POST['disc']);
-		$disc2 = ereg_replace("[^0-9]", "", $_POST['disc2']);
-		$disc3 = ereg_replace("[^0-9]", "", $_POST['disc3']);
-		$discrp = ereg_replace("[^0-9]", "", $_POST['discrp']);
-		$netto = ereg_replace("[^0-9]", "", $_POST['netto']);
-		$qty = ereg_replace("[^0-9]", "", $_POST['qty']);
-		*/
+		
 		$harga = preg_replace('#[^0-9]#', '', $_POST['harga']);
 		$disc = preg_replace('#[^0-9]#', '', $_POST['disc']);
 		$disc2 = preg_replace('#[^0-9]#', '', $_POST['disc2']);
@@ -96,6 +148,9 @@ switch ($cmd) {
 		'".$_SESSION["sess_user_id"]."', 1
 		)";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
+		
+		$mutasi_id = mysql_insert_id();
+		
 		//3. update stok
 		$SQL = "UPDATE stock SET qtyout = qtyout + $qty WHERE kodebrg = '".$_POST['brg']."'";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
@@ -126,21 +181,90 @@ switch ($cmd) {
 			'".$_POST['divisi']."',
 			'".$_POST['nonota']."'
 			)";
-			$hasili = mysql_query($SQLi);			
+			$hasili = mysql_query($SQLi);
+			$idp = mysql_insert_id();
 		} else {
 			//update ke piutang
 			$SQLu = "UPDATE piutang SET saldo = saldo + '".$netto."' WHERE kode = '".$_POST["pembeli"]."' AND nomor = '".$_POST['nonota']."'";
 			$hasilu = mysql_query($SQLu);
 		}
 		
+		// detail angsuran
+			
+			$purchase_date = baliktgl($_POST['tgl_transaksi']);
+			$nilai = ($netto) / $_POST['angsuran']; //gak dipakai karena manual ji
+			for ($i=1;$i<= $_POST['angsuran'];$i++) {
+				$purchase_date_timestamp = strtotime($purchase_date);
+				$purchase_date_1month = strtotime("+$i months", $purchase_date_timestamp);
+				$jtempo = date("Y-m-d", $purchase_date_1month);
+				$SQL = "INSERT INTO piutang_detail(id, posted, piutang_id, jtempo, nilai, bunga) VALUES('', 0, '$idp', '$jtempo', '0', '$bunga')";
+				$hasil=mysql_query($SQL);
+			}
+		// cleaning
+			$SQL = "DELETE FROM piutang_detail WHERE piutang_id = 0";
+			$hasil = mysql_query($SQL);
+
+		//Konek ke akunting
+		//1. Jurnal Pembelian Kredit
+		//1.a Terhadap  keuangan
+				
+				$SQL = "INSERT INTO $database.jurnal_srb(id, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id, mutasi_id, tipe_jurnal) VALUES (
+				'',
+				'".baliktgl($_POST['tgl_transaksi'])."',
+				'Debet',
+				'AL2-1112',
+				'PD1-411',
+				'Piutang Dagang',
+				'Penjualan',
+				'".($harga * $qty)."',
+				'".$_POST['dollar']."',
+				'$tipe',
+				'".$_SESSION["divisi"]."',
+				'$nomor',
+				'$bulan',
+				'".$_SESSION["sess_user_id"]."',
+				'".$mutasi_id."',
+				'JPK'
+				)";
+			
+			$hasil = mysql_query($SQL, $dbh_jogjaide);
+			
+			//1.b mengurangi Terhadap persediaan
+				
+				$sql = "select modal from stock where kodebrg = '". $_POST['brg'] ."'";
+				$hasil = mysql_query($sql);
+				$baris = mysql_fetch_array($hasil);
+				$hpp = $baris[0];
+				
+				$SQL = "INSERT INTO $database.jurnal_srb(id, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id, mutasi_id, tipe_jurnal) VALUES (
+				'',
+				'".baliktgl($_POST['tgl_transaksi'])."',
+				'Debet',
+				'HPP-5100',
+				'AL6-1117',
+				'Harga Pokok Penjualan',
+				'Persediaan',
+				'".($hpp * $qty)."',
+				'".$_POST['dollar']."',
+				'$tipe',
+				'".$_SESSION["divisi"]."',
+				'$nomor',
+				'$bulan',
+				'".$_SESSION["sess_user_id"]."',
+				'".$mutasi_id."',
+				'JPK'
+				)";
+			
+			$hasil = mysql_query($SQL, $dbh_jogjaide);
+			
 		//link back
 		if($_POST['nomor']<>""){
-			$strurl = "penjualan_kredit_edit.php?mn=penjualan&nonota=".$_POST['nonota']."&supp=".$_POST['pembeli']."&alamat=".$_POST['alamat']."&kota=".$_POST['kota']."&telp=".$_POST['telp']."&tgl_transaksi=".$_POST['tgl_transaksi']."&saldo=".$_POST['saldo']."&rek=".$_POST['rek']."&namarek=".$_POST['namarek']."&nomor=".$_POST['nonota']."&namasupp=".$_POST['namasupp']."&sub=".$_POST['sub'];
+			$strurl = "penjualan_kredit_edit.php?mn=penjualan&nonota=".$_POST['nonota']."&supp=".$_POST['pembeli']."&alamat=".$_POST['alamat']."&kota=".$_POST['kota']."&telp=".$_POST['telp']."&tgl_transaksi=".$_POST['tgl_transaksi']."&saldo=".$_POST['saldo']."&rek=".$_POST['rek']."&namarek=".$_POST['namarek']."&nomor=".$_POST['nonota']."&namasupp=".$_POST['namasupp']."&sub=".$_POST['sub']."&angsuran=".$_POST['angsuran'];
 			if($_POST['cmd2']=="edit"){
-				$strurl = "penjualan_kredit_edit.php?nonota=".$_POST['nonota']."&sub=".$_POST['sub'];
+				$strurl = "penjualan_kredit_edit.php?nonota=".$_POST['nonota']."&sub=".$_POST['sub']."&angsuran=".$_POST['angsuran'];
 			}
 		} else {
-			$strurl = "penjualan_kredit_edit.php?mn=penjualan&nonota=".$_POST['nonota']."&supp=".$_POST['pembeli']."&alamat=".$_POST['alamat']."&kota=".$_POST['kota']."&telp=".$_POST['telp']."&tgl_transaksi=".$_POST['tgl_transaksi']."&saldo=".$_POST['saldo']."&rek=".$_POST['rek']."&namarek=".$_POST['namarek']."&nomor=".$_POST['nonota']."&namasupp=".$_POST['namasupp']."&sub=".$_POST['divisi'];
+			$strurl = "penjualan_kredit_edit.php?mn=penjualan&nonota=".$_POST['nonota']."&supp=".$_POST['pembeli']."&alamat=".$_POST['alamat']."&kota=".$_POST['kota']."&telp=".$_POST['telp']."&tgl_transaksi=".$_POST['tgl_transaksi']."&saldo=".$_POST['saldo']."&rek=".$_POST['rek']."&namarek=".$_POST['namarek']."&nomor=".$_POST['nonota']."&namasupp=".$_POST['namasupp']."&angsuran=".$_POST['angsuran'];
 		}
 	break;
 	case "add_beli" :
@@ -201,6 +325,37 @@ switch ($cmd) {
 		)";
 		$hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 		$mutasi_id = mysql_insert_id();
+		
+		//insert to show ppn
+		if($_POST["ppn"]!="0"){
+			$ppn = preg_replace('#[^0-9]#', '', $_POST['ppn']);
+			$SQL = "INSERT INTO $database.mutasi(id, tgl, nota, nobukti, kode, sub, nomor, nama, alamat, kota, tlp, kodebrg, namabrg, qtyin,   satuan, disc, disc2, disc3, discrp, harga, debet, user_id, status) VALUES(
+			'',
+			'".baliktgl($_POST['tgl_transaksi'])."',
+			'".$_POST['nonota']."',
+			'',
+			'".$_POST['supp']."',
+			'".$_POST["divisi"]."',
+			'$nomor',
+			'".$_POST['namasupp']."',
+			'".$_POST['alamat']."',
+			'".$_POST['kota']."',
+			'".$_POST['telp']."',
+			'".$_POST['brg']."',
+			'PPN @".$_POST['namabrg']."',
+			'".$qty."',
+			'".$_POST['satuan']."',
+			'0',
+			'0',
+			'0',
+			'0',
+			'$ppn',
+			'$ppn',
+			'".$_SESSION["sess_user_id"]."', 1
+			)";
+			$hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
+		}
+		
 		//3. update stok
 		$SQL = "UPDATE stock SET qtyin = qtyin + $qty WHERE kodebrg = '".$_POST['brg']."'";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
@@ -297,6 +452,32 @@ switch ($cmd) {
 			//echo $SQL;
 			//exit();
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
+			
+			//jurnal ppn
+			if($_POST["ppn"]!="0"){
+				$ppn = preg_replace('#[^0-9]#', '', $_POST['ppn']);
+				$SQL = "INSERT INTO $database.jurnal_srb(id, tanggal, jenis, kd, kk, ket, ket2, jumlah, dollar, sub, divisi, nobukti, bulan, user_id, mutasi_id) VALUES (
+				'',
+				'".baliktgl($_POST['tgl_transaksi'])."',
+				'Debet',
+				'AL3-1121',
+				'AL1-1111',
+				'PPN Masukan',
+				'Kas',
+				'".$ppn."',
+				'".$_POST['dollar']."',
+				'$tipe',
+				'".$_SESSION["divisi"]."',
+				'JUH-$nomor',
+				'$bulan',
+				'".$_SESSION["sess_user_id"]."',
+				'".$mutasi_id."'
+				)";
+			
+				//echo $SQL;
+				//exit();
+				$hasil = mysql_query($SQL, $dbh_jogjaide);
+			}
 			
 		
 		//link back
@@ -522,9 +703,13 @@ switch ($cmd) {
 		$SQL = "UPDATE piutang SET saldo = saldo - '".$_GET['netto']."' WHERE sub = '".$_GET["sub"]."' AND nomor = '".$_GET['nomor']."'";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
 		
+		//delete jurnal_srb
+		$SQL = "DELETE FROM jurnal_srb WHERE mutasi_id = '".$_GET['id']."'";
+		$hasil = mysql_query($SQL);
+		
 		$strurl = "penjualan_kredit.php?mn=penjualan&nonota=".$_GET['nonota']."&supp=".$_GET['supp']."&alamat=".$_GET['alamat']."&kota=".$_GET['kota']."&telp=".$_GET['telp']."&tgl_transaksi=".$_GET['tgl_transaksi']."&saldo=".$_GET['saldo']."&rek=".$_GET['rek']."&namarek=".$_GET['namarek']."&nomor=".$_GET['nomor']."&namasupp=".$_GET['namasupp'];
 		if($_GET['cmd2']=="edit"){
-		$strurl = "penjualan_kredit_edit.php?nonota=".$_GET['nonota']."&supp=".$_GET['supp']."&alamat=".$_GET['alamat']."&kota=".$_GET['kota']."&telp=".$_GET['telp']."&tgl_transaksi=".$_GET['tgl_transaksi']."&saldo=".$_GET['saldo']."&rek=".$_GET['rek']."&namarek=".$_GET['namarek']."&nomor=".$_GET['nomor']."&namasupp=".$_GET['namasupp']."&sub=".$_GET['sub'];
+		$strurl = "penjualan_kredit_edit.php?nonota=".$_GET['nonota']."&supp=".$_GET['supp']."&alamat=".$_GET['alamat']."&kota=".$_GET['kota']."&telp=".$_GET['telp']."&tgl_transaksi=".$_GET['tgl_transaksi']."&saldo=".$_GET['saldo']."&rek=".$_GET['rek']."&namarek=".$_GET['namarek']."&nomor=".$_GET['nomor']."&namasupp=".$_GET['namasupp']."&sub=".$_GET['sub']."&angsuran=".$_GET['angsuran'];
 		}
 	break;
 	case "del_mutasi" :
@@ -550,7 +735,7 @@ switch ($cmd) {
 		$modal = ereg_replace("[^0-9]", "", $_POST['modal']);
 		$hargaeceran = ereg_replace("[^0-9]", "", $_POST['hargaeceran']);
 		$hargapartai = ereg_replace("[^0-9]", "", $_POST['hargapartai']);
-		$SQL = "INSERT into stock(tarif, kodebrg, divisi, expedisi, namabrg, satuank, isi, satuanb, grup, modal, norek, hargaeceran, hargapartai, status) VALUES('".$_POST['tarif']."','".$_POST['kodebrg']."','".$_POST['divisi']."','".$_POST['expedisi']."','".$_POST['namabrg']."','".$_POST['satuank']."','".$isi."','".$_POST['satuanb']."','".$_POST['group']."','".$modal."','".$_POST['norek']."',  '".$hargaeceran."',  '".$hargapartai."', 1)";
+		$SQL = "INSERT into stock(tarif, kodebrg, divisi, expedisi, namabrg, satuank, isi, satuanb, grup, modal, norek, hargaeceran, hargapartai, status, supplier_id) VALUES('".$_POST['tarif']."','".$_POST['kodebrg']."','".$_POST['divisi']."','".$_POST['expedisi']."','".$_POST['namabrg']."','".$_POST['satuank']."','".$isi."','".$_POST['satuanb']."','".$_POST['group']."','".$modal."','".$_POST['norek']."',  '".$hargaeceran."',  '".$hargapartai."', 1,'".$_POST['supplier_id']."')";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
 		$strurl = "stok_ls.php";
 	break;
@@ -559,7 +744,7 @@ switch ($cmd) {
 		$modal = preg_replace('#[^0-9]#', '', $_POST['modal']);
 		$hargaeceran = preg_replace('#[^0-9]#', '', $_POST['hargaeceran']);
 		$hargapartai = preg_replace('#[^0-9]#', '', $_POST['hargapartai']);
-		$SQL = "UPDATE stock SET namabrg = '".$_POST['namabrg']."', divisi = '".$_POST['divisi']."', expedisi = '".$_POST['expedisi']."', satuank = '".$_POST['satuank']."',tarif = '".$_POST['tarif']."', isi = '".$isi."', satuanb = '".$_POST['satuanb']."', grup = '".$_POST['group']."', modal = '".$modal."', norek = '".$_POST['norek']."', kodebrg = '".$_POST['kodebrg']."', hargaeceran = '".$hargaeceran."', hargapartai = '".$hargapartai."' WHERE kodebrg = '".$_POST['id']."'";
+		$SQL = "UPDATE stock SET namabrg = '".$_POST['namabrg']."', divisi = '".$_POST['divisi']."', expedisi = '".$_POST['expedisi']."', satuank = '".$_POST['satuank']."',tarif = '".$_POST['tarif']."', isi = '".$isi."', satuanb = '".$_POST['satuanb']."', grup = '".$_POST['group']."', modal = '".$modal."', norek = '".$_POST['norek']."', kodebrg = '".$_POST['kodebrg']."', hargaeceran = '".$hargaeceran."', hargapartai = '".$hargapartai."', supplier_id =  '".$_POST['supplier_id']."' WHERE kodebrg = '".$_POST['id']."'";
 		$hasil = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 		$strurl = "stok_ls.php";
 	break;

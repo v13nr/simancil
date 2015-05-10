@@ -1,4 +1,4 @@
-<?php  @session_start(); ?>
+<?php  session_start(); ?>
 <?php  include ("../include/functions.php");?>
 <?php  include ("../include/globalx.php");?>
 <style type="text/css">
@@ -495,7 +495,7 @@ function hitung(){
           <td align="center"><?php  echo $nRecord?></td>
           <td align="left"><?php  echo $row['kodebrg']?></td>
           <td align="left"><?php  echo $row['namabrg']?></td>
-          <td align="right"><input type="text" class="kanan" value="<?php  echo $row['qtyout']?>" name="<?php  echo $row['id']?>" size="5"  onBlur="hitungUlang(this.value+'-'+this.name+'-'+<?php  echo $row['kodebrg']?>+'-'+<?php  echo $_GET['nomor']?>+'-'+<?php  echo $row['harga']?>);" onfocus= "this.select()"/></td>
+          <td align="right"><input type="text" class="kanan" value="<?php  echo $row['qtyout']?>" name="<?php  echo $row['id']?>" size="5"  onBlur="hitungUlang('<?php  echo $row['kodebrg']?>-<?php  echo $_GET['nomor']?>-<?php  echo $row['harga']?>-'+this.value+'-<?php  echo $row['id']?>');" onfocus= "this.select()"/></td>
           <td align="right"><?php  echo number_format($row["harga"],2,'.',',');?></td>
 		  <td align="right"><?php  echo $row["disc"];?></td>
 		  <td align="right"><?php  echo number_format(($row["harga"] * $row["qtyout"])-($row["harga"] * $row["qtyout"]*$row["disc"]/100),2,'.',',')?></td>
@@ -529,7 +529,7 @@ function hitung(){
 		</tr>
 		<tr>
 			<td colspan="20" align="center">
-			<a href="popup_bayar.php?width=500&height=300&nonota=<?php  echo $_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="penjualan_retail.php">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
+			<a href="popup_bayar.php?width=500&height=300&nonota=<?php  echo $_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="cetak_penjualan_faktur.php?nota=<?php  echo $_GET['nomor']?>" target="_BLANK">[ FAKTUR ]</a>&nbsp;<a href="penjualan_retail.php">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
 		  </td>
 		</tr>
 		<?php 

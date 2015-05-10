@@ -164,10 +164,27 @@ function clearNum(number){
 	  );
 	}
   );
+  
+  //nonota
+    $('#nonota').blur( // beri event pada saat onBlur inputan kode pegawai
+	function(){			
+	  var vNIP = $(this).val();
+	  $.get('../include/cari.php?cari=pembelian&mode=nonota',{id: vNIP},
+		function(nama_pegawai){
+		  // jika response tidak kosong nilainya maka masukkan nilai ke inputan nama pegawai
+		  if(nama_pegawai.length > 0){ 
+			alert("Nomor Faktur sudah dipakai.");
+			$('input[@name=nonota]').val("");
+		  }else {
+		   }
+		}
+	  );
+	}
+  );
     $('#brg').blur( // beri event pada saat onBlur inputan kode pegawai
 	function(){			
 	  var vNIP = $(this).val();
-	  $.get('../include/cari.php?cari=barang&mode=harga',{id: vNIP},
+	  $.get('../include/cari.php?cari=barang&mode=hargajual',{id: vNIP},
 		function(nama_pegawai){
 		  // jika response tidak kosong nilainya maka masukkan nilai ke inputan nama pegawai
 		  if(nama_pegawai.length > 0){ 
@@ -360,11 +377,14 @@ $().ready(function() {
 		}
 	});
 	$("#namapl").result(function(event, data, formatted) {
-		if (data)
-			//$(this).parent().next().find("input").val(data[1]);
+		if (data){			//$(this).parent().next().find("input").val(data[1]);
 			//--- plus
 			$("#pembeli").val(data[1]);
 			// -----
+			$("#pembeli").blur();
+		}
+			//nng
+			
 	});
 	
 
@@ -377,6 +397,12 @@ function kosongtext(){
 function kosongtextpl(){
 	document.frmijin.namapl.value = "";
 	document.frmijin.pembeli.value = "";
+	document.frmijin.alamat.value = "";
+	document.frmijin.kota.value = "";
+	document.frmijin.telp.value = "";
+	document.frmijin.saldo.value = "";
+	document.frmijin.rek.value = "";
+	document.frmijin.namarek.value = "";
 }
 function kosongtextarray(){
 	$('input[@name=text_array]').click(
@@ -389,7 +415,7 @@ function kosongtextarray(){
 	<table width="1140" border="0">
   <tr>
     <td width="32"><img src="../images/calendar.png" width="32" height="32" /></td>
-    <td width="1090"><span class="style1">PEMAKAIAN / BARANG KELUAR </span></td>
+    <td width="1090"><span class="style1">PENJUALAN KREDIT / BARANG KELUAR </span></td>
   </tr>
   <tr>
     <td width="32">&nbsp;</td>
@@ -404,7 +430,7 @@ function kosongtextarray(){
 		  <input type="hidden" name="nomor" value="<?php  echo $_GET['nomor']?>" />
       <tr>
         <td width="143">No. Faktur </td>
-        <td width="205"><input type="text" name="nonota" value=""   class="required" /></td>
+        <td width="205"><input type="text" name="nonota" id="nonota" value=""   class="required" /></td>
         <td width="107">Tanggal</td>
         <td width="188"><input type="text" name="tgl_transaksi" id="tgl_transaksi" size="10" class="required" title="*" value="<?php  echo $_GET['tgl_transaksi']?>" <?php  if($_GET['nomor']<>""){ ?>  readonly="true"  <?php  }?> />
           <a href="javascript:showCalendar('tgl_transaksi')"><img src="../assets/kalendar_files/calendar_icon.gif" border="0"></a></td>
@@ -430,8 +456,8 @@ function kosongtextarray(){
           </select>
 		  <?php  } ?>
 		  </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>Angsuran x</td>
+        <td><input type="text" name="angsuran" id="angsuran" class="kanan" value="<?php  echo $_GET['angsuran']?>" /></td>
       </tr>
       <tr>
         <td>Konsumen </td>

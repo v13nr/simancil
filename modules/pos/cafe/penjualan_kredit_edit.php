@@ -167,7 +167,7 @@ function clearNum(number){
 $('#brg').blur( // beri event pada saat onBlur inputan kode pegawai
 	function(){			
 	  var vNIP = $(this).val();
-	  $.get('../include/cari.php?cari=barang&mode=harga',{id: vNIP},
+	  $.get('../include/cari.php?cari=barang&mode=hargajual',{id: vNIP},
 		function(nama_pegawai){
 		  // jika response tidak kosong nilainya maka masukkan nilai ke inputan nama pegawai
 		  if(nama_pegawai.length > 0){ 
@@ -260,7 +260,6 @@ $(document).ready(function() {
 	});
 })
 </script>
-	<script type="text/javascript">
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$("#satuan").change(onSelectChange);
@@ -379,7 +378,7 @@ function kosongtextb(){
 	<table width="1140" border="0">
   <tr>
     <td width="32"><img src="../images/calendar.png" width="32" height="32" /></td>
-    <td width="1090"><span class="style1">PEMAKAIAN / BARANG KELUAR </span>
+    <td width="1090"><span class="style1">PENJUALAN / BARANG KELUAR </span>
       <hr /></td>
   </tr>
   <tr>
@@ -426,10 +425,10 @@ function kosongtextb(){
       <tr>
         <td>Divisi</td>
         <td><?php  echo $divisi?></td>
+        <td>Angsuran x</td>
+        <td><input type="text" name="angsuran" id="angsuran" class="kanan" readonly="readonly" value="<?php  echo $_GET['angsuran']?>" /></td>
 		<input type="hidden" name="divisi" value="<?php  echo $_GET['sub']?>" />
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+        </tr>
       <tr>
         <td>Konsumen </td>
         <td>
@@ -503,7 +502,7 @@ function kosongtextb(){
 		  <td align="center"><input type="text" name="disc" id="disc" size="5" class="required kanan" title="*" value="0" onKeyUp="hitung()" /></td>
 		  <td align="center"><input type="text" name="disc2" id="disc2" size="5" class="required kanan" title="*" value="0"  onkeyup="hitung()" /></td>
 		  <td align="center"><input type="text" name="disc3" id="disc3" size="5" class="required kanan" title="*" value="0"  onkeyup="hitung()" /></td>
-		  <td align="center"><input type="text" id="jumlah" name="jumlah" size="15" class="required kanan" title="*" value="0"  readonly="true"" /></td>
+		  <td align="center"><input type="text" id="jumlah" name="jumlah" size="15" class="required kanan" title="*" value="0"  readonly="true" /></td>
 		  <td align="center"><input type="text" id="discrp" name="discrp" size="15" class="required kanan" title="*" value="0" onKeyUp="hitung()" /></td>
 		  <td align="center"><input type="text" id="netto" name="netto" size="15" class="required kanan" title="*" value="0" readonly="true" /></td>
           <td align="center" colspan="4"><input name="image" type="image" src="../images/add.gif" border="0" /></td>
@@ -540,7 +539,7 @@ function kosongtextb(){
           <td align="center"><a href="javascript:history.back()"><img src="../images/kal_prev.gif" alt="Sebelumnya" border="0" /></a></td>
           <?php  } else { ?>
           <td align="center"><a href=""></a></td>
-          <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?php  echo $row["id"]?>&cmd=del_jual_kredit&cmd2=edit&nonota=<?php  echo $_GET['nonota']?>&supp=<?php  echo $_GET['supp']?>&alamat=<?php  echo $_GET['alamat']?>&kota=<?php  echo $_GET['kota']?>&telp=<?php  echo $_GET['telp']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&saldo=<?php  echo $_GET['saldo']?>&rek=<?php  echo $_GET['rek']?>&namarek=<?php  echo $_GET['namarek']?>&nomor=<?php  echo $_GET['nomor']?>&namasupp=<?php  echo $_GET['namasupp']?>&brg=<?php  echo $row['kodebrg']?>&qtyout=<?php  echo $row['qtyout']?>&netto=<?php  echo $row["kredit"]?>&sub=<?php  echo $_GET['sub']?>')">
+          <td align="center"><a href="javascript:confirmDelete('submission_inv.php?id=<?php  echo $row["id"]?>&cmd=del_jual_kredit&cmd2=edit&nonota=<?php  echo $_GET['nonota']?>&supp=<?php  echo $_GET['supp']?>&alamat=<?php  echo $_GET['alamat']?>&kota=<?php  echo $_GET['kota']?>&telp=<?php  echo $_GET['telp']?>&tgl_transaksi=<?php  echo $_GET['tgl_transaksi']?>&saldo=<?php  echo $_GET['saldo']?>&rek=<?php  echo $_GET['rek']?>&namarek=<?php  echo $_GET['namarek']?>&nomor=<?php  echo $_GET['nomor']?>&namasupp=<?php  echo $_GET['namasupp']?>&brg=<?php  echo $row['kodebrg']?>&qtyout=<?php  echo $row['qtyout']?>&netto=<?php  echo $row["kredit"]?>&sub=<?php  echo $_GET['sub']?>&angsuran=<?php  echo $_GET['angsuran']?>')">
 		  <img src="../images/hapus.gif" alt="Hapus" border="0" /></a></td>
           <?php  } ?>
         </form>

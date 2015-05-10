@@ -68,61 +68,46 @@ function clearNum(number){
  </head>
 <body>
 <?php 
- include '../include/globalx.php';
-include ("../include/functions.php");
- 
+ include '../../../config_sistem.php';
+ include '../../../include/functions.php';
  $SQL = "SELECT * FROM piutang_detail WHERE piutang_id = '".$_GET["ida"]."'";
  if(isset($_POST['search'])){
  }
- $query = mysql_query($SQL, $dbh_jogjaide);
+ $query = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 ?>
 
 <table width="100%" bgcolor="#000000" cellspacing="1" cellpadding="3">	
-	<tr bgcolor="#DDDDDD">
+  <tr bgcolor="#DDDDDD">
 		<th width="13%">Angsuran Ke  </th>
 		<th width="9%">Tgl Bayar </th>
 		<th width="11%">Bunga</th>
 		<th width="17%">Angsuran</th>
 		<th width="15%">Jumlah Pembayaran </th>
-		<th width="16%">Sisa Harga Kontrak </th>
+		<th width="16%">Sisa Nilai Piutang </th>
 		<th width="19%">Posting</th>
 	</tr>
 	<?php  
-	 
- $SQL = "SELECT * FROM piutang_detail WHERE piutang_id = '".$_GET["ida"]."' AND ket = 'Uang Muka'";
+	  $SQL = "SELECT * FROM piutang WHERE id = '".$_GET["ida"]."'";
  if(isset($_POST['search'])){
  }
- $query = mysql_query($SQL, $dbh_jogjaide);
+ $query = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 
 	 while($row = mysql_fetch_object($query)){ ?>
 	<tr  bgcolor="#FFFFFF">
-	  <td align="center">DP</td>
+	  <td align="center">Nilai Piutang</td>
 	  <td align="center"><?php  echo baliktglindo($row->jtempo)?></td>
 	  <td align="center">-</td>
 	  <td align="center">-</td>
 	  <td align="center">-</td>
 	  <td align="center"><div align="right">
 	    <?php  
-	  	$SQLt = "SELECT saldo from piutang WHERE nomor = ".$_GET["nomor"];
-	  	$hasilt = mysql_query($SQLt, $dbh_jogjaide);
+	  	$SQLt = "SELECT saldo from piutang WHERE id = ".$_GET["ida"];
+	  	$hasilt = mysql_query($SQLt);
 		$barist = mysql_fetch_array($hasilt);
 		$kontrak = $barist[0];
 	  ?>
 	    <?php  $sisa = $kontrak -  $sisa; echo number_format($sisa);?>
       </div></td>
-	  <td align="center">&nbsp;</td>
-  </tr>
-	<tr  bgcolor="#FFFFFF">
-	  <td align="center">Booking Fee </td>
-	  <td align="center"><?php  echo baliktglindo($row->jtempo)?></td>
-	  <td align="center">-</td>
-	  <td align="center"><div align="right">
-        <?php  echo number_format($row->nilai); $angsuran = $angsuran + $row->nilai; ?>
-      </div></td>
-	  <td align="center"><div align="right"> <?php  echo number_format($row->nilai + $bunga); $tbayar = $tbayar + $row->nilai  + $bunga; ?> </div></td>
-	  <td align="center"><div align="right">
-	    <?php  $bayar = $row->nilai; $sisa =   $sisa -$bayar ; echo number_format($sisa);?>
-	  </div></td>
 	  <td align="center">&nbsp;</td>
   </tr>
   <?php  } ?>
@@ -131,7 +116,7 @@ include ("../include/functions.php");
  $SQL = "SELECT * FROM piutang_detail WHERE piutang_id = '".$_GET["ida"]."' AND ket <> 'Uang Muka'";
  if(isset($_POST['search'])){
  }
- $query = mysql_query($SQL, $dbh_jogjaide);
+ $query = mysql_query($SQL, $dbh_jogjaide) or die(mysql_error());
 
 	$nourut = 1; 
 	while($row = mysql_fetch_object($query)): ?>
@@ -162,7 +147,7 @@ include ("../include/functions.php");
 		<td align="center">
 		<?php   if($row->posted == 0){ ?>
 			<input type="submit" value="Posting Now">
-		<?php  } else {echo "OK"; //echo '&nbsp;&nbsp;&nbsp;<input type="submit" name="cancel_angsuran" value="X">'; 
+		<?php  } else { echo '&nbsp;&nbsp;&nbsp;<input type="submit" name="cancel_angsuran" value="X">'; 
 		}?>	</td>
 	</tr>
 	</form>
