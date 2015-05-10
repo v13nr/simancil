@@ -140,7 +140,7 @@ td { padding: 5px; }
         <tr> 
           <td><span class="style6">Nomor Rekening </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="norek" type="text" id="suggest"  maxlength="4" class="required " title="Nomor Rekening Pembantu harus diisi" value="<?php  echo $norek?>" <?php  if($_GET['id']<>""){?>readonly="true" <?php  }?> /></td>
+          <td><input name="norek" type="text" id="suggest"  maxlength="8" class="required " title="Nomor Rekening Pembantu harus diisi" value="<?php  echo $norek?>" <?php  if($_GET['id']<>""){?>readonly="true" <?php  }?> /></td>
         </tr>
         <tr>
           <td><span class="style6">Nama Rekening </span></td>

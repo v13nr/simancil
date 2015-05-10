@@ -35,7 +35,7 @@ include ("config_sistem.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>SAJI: Sistem Informasi Jasa Ekspedisi</title>
+    <title>SIMA: Sistem Informasi USAHA</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css" />
