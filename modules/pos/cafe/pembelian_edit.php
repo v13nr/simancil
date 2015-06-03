@@ -443,13 +443,13 @@ function kosongtextb(){
         <td>Alamat</td>
         <td><input type="text" name="alamat" id="alamat" readonly="true" size="40" value="<?php  echo $alamat ?>"></td>
         <td>Rek</td>
-        <td><input type="text" name="rek" id="rek" readonly="true" value="<?php  echo $rek ?>"></td>
+        <td><input type="text" name="rek" id="rek" readonly="true" value="<?php  echo $_GET["rek"] ?>"></td>
       </tr>
       <tr>
         <td>Kota</td>
         <td><input type="text" name="kota" id="kota" readonly="true" value="<?php  echo $kota ?>"></td>
         <td>Nama Rek </td>
-        <td><input type="text" name="namarek" readonly="true" value="<?php  echo $namarek?>"></td>
+        <td><input type="text" name="namarek" readonly="true" value="<?php  echo $_GET["namarek"]?>"></td>
       </tr>
       <tr>
         <td>Telp.</td>
@@ -488,6 +488,28 @@ function kosongtextb(){
         <?php  } ?>
       </tr>
       <?php  if ($_GET['id']=="") { ?>
+      <tr bgcolor="yellow">
+        <td align="center">&nbsp;</td>
+        <td colspan="5" align="left"><select name="norek2" id="norek2" class="required" title="*" >
+          <option value="">-Pilih-</option>
+          <?php 
+				$SQL21 = "SELECT * FROM rekening WHERE substr(norek, -4) <> '0000' ORDER BY norek";
+				$hasil21 = mysql_query($SQL21) or die(mysql_error());
+				while($baris21 = mysql_fetch_array($hasil21)){
+			?>
+          <option value="<?php  echo $baris21['norek']?>">
+            <?php  echo ($baris21['norek']);?>
+            @
+  <?php  echo $baris21['namarek']?>
+            </option>
+          <?php  } ?>
+        </select></td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center" colspan="4">&nbsp;</td>
+        <td>        
+      </tr>
       <tr bgcolor="yellow">
         
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>

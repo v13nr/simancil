@@ -3,7 +3,7 @@ include("../include/globalx.php");
 
 function periode($tgl){
 	$sql = "SELECT tahun FROM periode WHERE aktif = 1";
-	$hasil = mysql_query($sql);
+	$hasil = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_array($hasil);
 	if(substr($tgl,-4) != $row[0]){
 		die("Periode Tidak Berlaku.");

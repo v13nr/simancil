@@ -153,7 +153,7 @@ while($barisinduk = mysql_fetch_array($hasilinduk)){
 		$pdf->setY($y);
 		$pdf->cell(8,5,++$no, 1, 0, 'C');
 		$pdf->cell(15,5,baliktglindo($baris['tanggal']), 1, 0, 'C');
-		$pdf->cell(15,5,(substr($baris['nobukti'],0,3) == "GGE")? substr($baris['nobukti'],-4) : "", 1, 0, 'C');
+		$pdf->cell(15,5,$baris['sub'].'/'.nobukti($baris['nobukti']), 1, 0, 'C');
 		$pdf->cell(50,5,substr($baris['ket'],0,30), 1, 0, 'L');
 		if($baris['kd'] == $barisinduk['norek']){
 			$pdf->cell(28,5,number_format($baris['jumlah'],2,'.',','), 1, 0, 'R'); //debet

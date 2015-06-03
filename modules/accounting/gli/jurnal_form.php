@@ -26,7 +26,7 @@ input.kanan{ text-align:right; }
 <script type="text/javascript" src="../assets/kalendar_files/jsCalendar.js"></script>
 <link href="../assets/kalendar_files/calendar.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
-<script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
+
  <script language="javascript" src="../assets/thickbox/thickbox.js"></script>
  <script language="javascript" src="../assets/thickbox/thickbox.js"></script>
  <script language="javascript" src="../assets/jquery.price_format.1.8.js"></script>
@@ -311,7 +311,7 @@ $(document).ready(function() {
 					
 				<?php  } ?>
           </select></td>
-          <td align="center"><input type="text" size="40" name="keterangantransaksi" id="keterangantransaksi" class=" keterangantransaksi" title="*" value=""><select name="keterangantransaksi" class="keterangantransaksi_upah"></select></td>
+          <td align="center"><input type="text" size="40" name="keterangantransaksi" id="keterangantransaksi" class=" keterangantransaksi" title="*" value=""></td>
           <td align="center"><input type="text" name="jumlah"  class="required" title="*" />
             
             <input type="hidden" name="dollar"  title="Dollar" /></td>

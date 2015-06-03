@@ -82,7 +82,7 @@ while($baris = mysql_Fetch_array($hasil)){
 				$pdf->cell(8,5,($Nocd == 1)? ++$no :"", 1, 0, 'C');
 				++$No;
 				$pdf->cell(15,5,($Nocd == 1)? baliktglindo($baris['tanggal']) : "", 1, 0, 'C');
-				$pdf->cell(15,5,(substr($baris['nobukti'],0,3) == "GGE")? substr($baris['nobukti'],-4) : $baris['nobukti'], 1, 0, 'C');
+				$pdf->cell(15,5,($Nocd == 1)? substr($baris['jenis'],0,1).'/'.$bariscd['nobukti'] : "", 1, 0, 'C');
 				$Nocd++;
 			
 				if($bariscd['jenis']=="Debet") {
@@ -106,7 +106,7 @@ while($baris = mysql_Fetch_array($hasil)){
 			$pdf->cell(8,5,++$no, 1, 0, 'C');
 			++$No;
 			$pdf->cell(15,5,baliktglindo($baris['tanggal']), 1, 0, 'C');
-			$pdf->cell(15,5,(substr($baris['nobukti'],0,3) == "GGE")? substr($baris['nobukti'],-4) : $baris['nobukti'], 1, 0, 'C');
+			$pdf->cell(15,5,substr($baris['jenis'],0,1).'/'.nobukti($baris['nobukti']), 1, 0, 'C');
 		
 			if($baris['jenis']=="Debet") {
 				$pdf->cell(15,5,$baris['kd'], 1, 0, 'C');
@@ -137,7 +137,7 @@ while($baris = mysql_Fetch_array($hasil)){
 		if($i==0 && $baris['jenis']=="Kredit") {
 			$pdf->cell(8,5,++$no, 1, 0, 'C');
 			$pdf->cell(15,5,baliktglindo($baris['tanggal']), 1, 0, 'C');
-			$pdf->cell(15,5,(substr($baris['nobukti'],0,3) == "GGE")? substr($baris['nobukti'],-4) : $baris['nobukti'], 1, 0, 'C');
+			$pdf->cell(15,5,substr($baris['jenis'],0,1).'/'.($baris['nobukti']), 1, 0, 'C');
 		} else {
 			$pdf->cell(8,5,'', 1, 0, 'C');
 			$pdf->cell(15,5,'', 1, 0, 'C');

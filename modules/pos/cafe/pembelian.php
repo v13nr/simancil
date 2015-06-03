@@ -1,5 +1,7 @@
 <?php  session_start(); ?>
-<?php  include "otentik_inv.php"; include ("../include/functions.php");?>
+<?php  include "otentik_inv.php"; include ("../include/functions.php"); include "../../../config_sistem.php";
+
+				?>
 <style type="text/css">
 <!--
 body {
@@ -41,7 +43,7 @@ input.kanan{ text-align:right; }
 </script>
  <script type="text/javascript">
  function selectBuku(no, nama){
-  $('input[@name=norek]').val(no);
+  $('input[@name=rek]').val(no);
   $('input[@name=namarek]').val(nama);
   //tb_remove(); // hilangkan dialog thickbox
 }
@@ -444,7 +446,10 @@ function kosongtextarray(){
         <td>Alamat</td>
         <td><input type="text" name="alamat" id="alamat" readonly="true" size="40"></td>
         <td>Rek</td>
-        <td><input type="text" name="rek" id="rek" readonly="true"></td>
+        <td><input type="text" name="rek" id="rek" readonly="true" size="15">
+        <?php  if($_GET['norek']==""){?>
+        <a href="../../accounting/gli/daftar_rekp.php?width=400&amp;height=350&amp;TB_iframe=true" class="thickbox"><img src="../assets/button_search.png" alt="Pilih Akun" border="0" /></a>
+		<?php  } ?></td>
       </tr>
       <tr>
         <td>Kota</td>
@@ -489,6 +494,28 @@ function kosongtextarray(){
         <?php  } ?>
       </tr>
       <?php  if ($_GET['id']=="") { ?>
+      <tr bgcolor="yellow">
+        <td align="center">&nbsp;</td>
+        <td colspan="5" align="left"><select name="norek2" id="norek2" class="required" title="*" >
+          <option value="">-Pilih-</option>
+          <?php 
+				$SQL21 = "SELECT * FROM rekening WHERE substr(norek, -4) <> '0000' ORDER BY norek";
+				$hasil21 = mysql_query($SQL21) or die(mysql_error());
+				while($baris21 = mysql_fetch_array($hasil21)){
+			?>
+          <option value="<?php  echo $baris21['norek']?>">
+            <?php  echo ($baris21['norek']);?>
+            @
+  <?php  echo $baris21['namarek']?>
+            </option>
+          <?php  } ?>
+        </select></td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center" colspan="4">&nbsp;</td>
+        <td>        
+      </tr>
       <tr bgcolor="yellow">
         
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>

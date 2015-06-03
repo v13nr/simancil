@@ -17,7 +17,9 @@ include "../include/globalx.php";
 				$query = mysql_query($sql, $dbh_jogjaide);		
 				break;
 			case 'subcarabayar': 
-				$sql = "SELECT kode id, nama FROM $database.supplier WHERE divisi = '$parent_id'"; 
+				//$sql = "SELECT kode id, nama FROM $database.supplier WHERE divisi = '$parent_id'"; 
+				//$query = mysql_query($sql, $dbh_jogjaide);	
+				$sql = "SELECT kode id, nama FROM $database.supplier "; 
 				$query = mysql_query($sql, $dbh_jogjaide);		
 				break;
 			case 'carabayar':
@@ -34,7 +36,7 @@ include "../include/globalx.php";
 					$response[] = $row; 
 				}
 			}else{
-				$response['error'] = 'Data kosong'; // memberi respon ketika data kosong
+				//$response['error'] = 'Data kosong'; // memberi respon ketika data kosong
 			}
 		}else{
 			$response['error'] = ' invalid query : '.mysql_error(); // memberi respon ketika query salah
