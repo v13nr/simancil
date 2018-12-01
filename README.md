@@ -2,4 +2,5 @@ sima
 ========
 Skrip disini adalah skrip development
 
-CV. Jogjaide Ent.
+- CV. Jogjaide Enterprise
+- PT. Sogi Muami Daring
