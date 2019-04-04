@@ -51,13 +51,8 @@ include "../include/functions.php";
   		$SQL = "SELECT * from stock";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
 		while($baris=mysql_fetch_array($hasil)){
-  ?>
-  <tr>
-    <td><?php  echo ++$no?></td>
-    <td><?php  echo $baris["namabrg"] ?></td>
-    <td>
-		<?php  
-				$sqlk = "SELECT SUM(qtyout) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
+			
+			$sqlk = "SELECT SUM(qtyout) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
 				if($_POST['shift']<>""){
 					$sqlk = $sqlk . " AND user_id = '".$_POST['shift']."'";
 				}
@@ -66,37 +61,56 @@ include "../include/functions.php";
 				//echo $sqlk;
 				$hasilk = mysql_query($sqlk);
 				$barisk = mysql_fetch_array($hasilk);
-				echo $barisk["jumlah"];
-		?>	</td>
-    <td align="right"><?php 
-			$sqld = "SELECT SUM(qtyout*harga*disc/100) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
-				if($_POST['shift']<>""){
-					$sqld = $sqld . " AND user_id = '".$_POST['shift']."'";
-				}
 				
-				$sqld = $sqld . " AND mutasi.tgl between '". baliktgl($_POST["tgl_awal"]) ."' AND '". baliktgl($_POST["tgl_akhir"]) ."'";
-				//echo $sqlk;
-				$hasild = mysql_query($sqld);
-				$barisd = mysql_fetch_array($hasild);
-			echo number_format($barisd["jumlah"]);
-			
-			//$totalp = $totalp + ($baris["harga"] * $baris["qtyout"]);
-	?></td>
-    <td align="right"><?php 
-			$sqld = "SELECT SUM(qtyout*harga-(qtyout*harga*disc/100)) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
-				if($_POST['shift']<>""){
-					$sqld = $sqld . " AND user_id = '".$_POST['shift']."'";
-				}
+				if($barisk["jumlah"]>0){
+				?>
+									
+									
+					  <tr>
+						<td><?php  echo ++$no?></td>
+						<td><?php  echo $baris["namabrg"] ?></td>
+						<td>
+							<?php  
+									
+									echo $barisk["jumlah"];
+							?>	</td>
+						<td align="right"><?php 
+								$sqld = "SELECT SUM(qtyout*harga*disc/100) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
+									if($_POST['shift']<>""){
+										$sqld = $sqld . " AND user_id = '".$_POST['shift']."'";
+									}
+									
+									$sqld = $sqld . " AND mutasi.tgl between '". baliktgl($_POST["tgl_awal"]) ."' AND '". baliktgl($_POST["tgl_akhir"]) ."'";
+									//echo $sqlk;
+									$hasild = mysql_query($sqld);
+									$barisd = mysql_fetch_array($hasild);
+								echo number_format($barisd["jumlah"]);
+								
+								//$totalp = $totalp + ($baris["harga"] * $baris["qtyout"]);
+						?></td>
+						<td align="right"><?php 
+								$sqld = "SELECT SUM(qtyout*harga-(qtyout*harga*disc/100)) as jumlah FROM mutasi where kodebrg = '". $baris["kodebrg"] ."' AND status = 1";
+									if($_POST['shift']<>""){
+										$sqld = $sqld . " AND user_id = '".$_POST['shift']."'";
+									}
+									
+									$sqld = $sqld . " AND mutasi.tgl between '". baliktgl($_POST["tgl_awal"]) ."' AND '". baliktgl($_POST["tgl_akhir"]) ."'";
+									//echo $sqlk;
+									$hasild = mysql_query($sqld);
+									$barisd = mysql_fetch_array($hasild);
+								echo number_format($barisd["jumlah"]);
+								$totalp = $totalp + $barisd["jumlah"];
+								//$totalp = $totalp + ($baris["harga"] * $baris["qtyout"]);
+						?></td>
+					  </tr>
 				
-				$sqld = $sqld . " AND mutasi.tgl between '". baliktgl($_POST["tgl_awal"]) ."' AND '". baliktgl($_POST["tgl_akhir"]) ."'";
-				//echo $sqlk;
-				$hasild = mysql_query($sqld);
-				$barisd = mysql_fetch_array($hasild);
-			echo number_format($barisd["jumlah"]);
-			$totalp = $totalp + $barisd["jumlah"];
-			//$totalp = $totalp + ($baris["harga"] * $baris["qtyout"]);
-	?></td>
-  </tr>
+				
+				<?php
+					
+					
+					
+				}
+  ?>
   <?php  } ?>
   <tr>
     <td>&nbsp;</td>

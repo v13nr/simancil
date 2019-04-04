@@ -7,10 +7,7 @@
    }
   </style>
   <script language="javascript">
-   function selectBuku(no,nama){
-	   window.parent.selectBuku(no,nama);
-	   window.parent.tb_remove();
-   }
+   
   </script>
  </head>
 <body>
@@ -38,7 +35,7 @@
 		<!-- fungsi selectBuku di deklarasikan di index.html dan file ini bisa memanggilnya selama file ini
 			 dipanggil oleh thickbox dari index.html, fungsi dari selectPegawai adalah untuk memasukan nilai
 			 NIP dan nama pegawai dari masing-masing baris di daftar pegawai ini -->
-		<td align="center"><a href="javascript:selectBuku('<?php  echo $row->kode?>','<?php  echo $row->nama?>')"><?php  echo $row->kode?></a></td>
+		<td align="center"><a href="javascript:void(0)" onclick="selectBuku('<?php  echo $row->kode?>','<?php  echo $row->nama?>')"><?php  echo $row->kode?></a></td>
 		<td><?php  echo $row->nama?></td>
 	</tr>
 	<?php  endwhile; ?>
