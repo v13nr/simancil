@@ -529,7 +529,7 @@ function hitung(){
 		</tr>
 		<tr>
 			<td colspan="20" align="center">
-			<a href="popup_bayar.php?width=500&height=300&nonota=<?php  echo $_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="cetak_penjualan_faktur.php?nota=<?php  echo $_GET['nomor']?>" target="_BLANK">[ FAKTUR ]</a>&nbsp;<a href="penjualan_retail.php">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
+			<a href="popup_bayar.php?width=500&height=300&nonota=<?php  echo $_GET['nomor']?>&TB_iframe=true" id="cari" class="thickbox" title="Pembayaran">[ CETAK ]</a>&nbsp;<a href="cetak_penjualan_faktur_lx.php?nota=<?php  echo $_GET['nomor']?>" target="_BLANK">[ FAKTUR LX]</a><a href="cetak_penjualan_faktur.php?nota=<?php  echo $_GET['nomor']?>" target="_BLANK">[ FAKTUR ]</a>&nbsp;<a href="penjualan_retail.php">[ SELESAI ATAU KE NOMOR INV BERIKUTNYA ]</a>
 		  </td>
 		</tr>
 		<?php 

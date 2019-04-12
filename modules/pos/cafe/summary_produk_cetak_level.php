@@ -231,7 +231,7 @@ $sqlk = $sqlk . " AND mutasi.tgl between '". baliktgl($_POST["tgl_awal"]) ."' AN
                             
 ?></td>
 																																																		<td align="right"><?php
-                            $sqld = "SELECT SUM(qtyout*harga-(qtyout*harga*disc/100)) as jumlah FROM mutasi where kodebrg = '" . $baris6["kodebrg"] . "' AND status = 1";
+                            $sqld = "SELECT SUM(qtyout*harga-(qtyout*harga*disc/100)) as jumlah FROM mutasi where kodebrg = '" . $baris6["kodebrg"] . "' ";
                             if ($_POST['shift'] <> "")
                             {
                                 $sqld = $sqld . " AND user_id = '" . $_POST['shift'] . "'";

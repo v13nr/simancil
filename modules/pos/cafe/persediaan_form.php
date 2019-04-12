@@ -42,7 +42,7 @@
 
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
  <script language="javascript" src="../assets/thickbox/thickbox.js"></script>
- <link href="../assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />j
+ <link href="../assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript" src="../assets/kalendar_files/jsCalendar.js"></script>
 <link href="../assets/kalendar_files/calendar.css" rel="stylesheet" type="text/css">
 <script src="../../../assets/jquery-3.2.1.slim.min.js"></script>
@@ -219,8 +219,11 @@ $(document).ready(function(){
     reloadjenjang2();
     reloadjenjang3();
     reloadjenjang4();
+    //reloadjenjang5();
+    reloadFinal();
 });
 
+adaid="<?php echo $_GET["id"];?>";
 
   function reloadjenjang(){
           $("#jenjang1").empty();
@@ -269,6 +272,11 @@ $(document).ready(function(){
 						$('#jenjang2').val(<?php echo $level_2;?>);
 						
 						$("#jenjang2").trigger('change');
+						if(adaid==""){
+							
+							$("#namabrg").val( $("#jenjang1  option:selected").text());
+							
+						}
                 });
             }
           });
@@ -299,6 +307,11 @@ $(document).ready(function(){
 						$('#jenjang3').val(<?php echo $level_3;?>);
 						
 						$("#jenjang3").trigger('change');
+						if(adaid==""){
+							
+							$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text());
+							
+						}
                 });
             }
           });
@@ -328,7 +341,12 @@ $(document).ready(function(){
 						$('#jenjang4').val(<?php echo $level_4;?>);
 						
 						$("#jenjang4").trigger('change');
-                });
+						if(adaid==""){
+							
+							
+							$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text()+"#"+$("#jenjang3  option:selected").text());
+							}
+				});
             }
           });
 
@@ -354,7 +372,10 @@ $(document).ready(function(){
                    // var option=$('<option val="'+item.id+'"></option>').text(item.label);
                     $('#jenjang5').append($('<option></option>').val(item.id).html(item.label));
 
-						$('#jenjang5').val(<?php echo $level_5;?>);
+						$('#jenjang5').val(<?php echo $level_5;?>);	
+						if(adaid==""){						
+							$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text()+"#"+$("#jenjang3  option:selected").text()+"#"+$("#jenjang4  option:selected").text());
+						}
 						
                 });
             }
@@ -363,6 +384,13 @@ $(document).ready(function(){
 
   }
 
+	function reloadFinal(){
+		if(adaid==""){
+			$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text()+"#"+$("#jenjang3  option:selected").text()+"#"+$("#jenjang4  option:selected").text()+"#"+$("#jenjang5  option:selected").text());
+        }        
+						
+                
+	}
 
 </script>
  <script type="text/javascript">
@@ -594,7 +622,7 @@ input.kanan{ text-align:right; }
         <tr>
           <td>Divisi</td>
           <td>:</td>
-          <td><input type="text" name="divisi" value="01" readonly="true" /></td>
+          <td><input type="text" name="divisi" value="01" /></td>
         </tr>
         <tr>
           <td><span class="style6">Expedisi </span></td>
@@ -659,7 +687,7 @@ input.kanan{ text-align:right; }
         <tr>
           <td>Level 5</td>
           <td>:</td>
-          <td><select name="jenjang5"  id="jenjang5"  style="height: 30px; width: 170px" />
+          <td><select name="jenjang5"  id="jenjang5"  style="height: 30px; width: 170px" onchange="reloadFinal()" />
               <option value="0">0</option>
           </select><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal5">
  +

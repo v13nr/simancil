@@ -114,7 +114,7 @@ switch ($cmd) {
 		$baris = mysql_fetch_array($hasil);
 		$iszero = $baris[0];
 		if($iszero <= 0){
-			die("Harga Jual belum diinput! Klik Tombol Back");
+			//die("Harga Jual belum diinput! Klik Tombol Back");
 		}
 		//prevent from zero
 		$SQL = "SELECT modal from stock where kodebrg = '".$_POST['barang']."'";
@@ -122,7 +122,7 @@ switch ($cmd) {
 		$baris = mysql_fetch_array($hasil);
 		$iszero = $baris[0];
 		if($iszero <= 0){
-			die("Harga Beli belum diinput! Klik Tombol Back");
+			//die("Harga Beli belum diinput! Klik Tombol Back");
 		}
 		//1. cari divisi dan nomor lpb
 		$nomor = 1;
@@ -254,7 +254,7 @@ switch ($cmd) {
 		$baris = mysql_fetch_array($hasil);
 		$iszero = $baris[0];
 		if($iszero <= 0){
-			die("Harga Jual belum diinput! Klik Tombol Back");
+			//die("Harga Jual belum diinput! Klik Tombol Back");
 		}
 		//prevent from zero
 		$SQL = "SELECT modal from stock where kodebrg = '".$_POST['barang']."'";
@@ -262,7 +262,7 @@ switch ($cmd) {
 		$baris = mysql_fetch_array($hasil);
 		$iszero = $baris[0];
 		if($iszero <= 0){
-			die("Harga Beli belum diinput! Klik Tombol Back");
+			//die("Harga Beli belum diinput! Klik Tombol Back");
 		}
 		//1. cari divisi dan nomor lpb
 		$nomor = 1;
