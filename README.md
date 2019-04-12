@@ -5,4 +5,4 @@ Skrip disini adalah skrip development
 - CV. Jogjaide Enterprise
 - PT. Sogi Muami Daring
 
-ONLY FOR LOCALHOST WITH DATABASE PASSWORD
+ONLY FOR LOCALHOST OFFLINE WITH DATABASE PASSWORD
