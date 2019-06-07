@@ -1,4 +1,7 @@
 <?php 
+@session_start();
+
+
 
 	$host ="localhost";
     $user="root";
@@ -24,4 +27,6 @@ define('SITE_TITLE','DR. AKI');
 define('MENU_TITLE','');
 define( 'ABSPATH', dirname(__FILE__) . '/' );
 	
+
+
 ?>

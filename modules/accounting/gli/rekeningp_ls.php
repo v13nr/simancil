@@ -3,6 +3,11 @@ include "../../../config_sistem.php";
 include "otentik_gli.php"; 
 include ("../include/functions.php");
 
+
+
+
+
+cekAkses($_SESSION["sess_user_id"], 'rekeningp_ls');
 ?>
 
 <html>

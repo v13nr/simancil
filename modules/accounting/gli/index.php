@@ -29,6 +29,9 @@ table.x1 td {
 </head>
 <body>
 <?php 	
+
+
+
 date_default_timezone_set('Asia/Shanghai');
 include "../include/globalx.php"; 
 include "otentik_gli.php"; 
@@ -37,6 +40,7 @@ switch($_GET['mn']) {
 		include "rekening_ls.php";
 		break;
 	case "rekp" :
+		//cekAkses($_SESSION["sess_user_id"], 'rekeningp_ls');
 		include "rekeningp_ls.php";
 		break;
 	case "input_rp" :

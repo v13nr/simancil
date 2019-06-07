@@ -1,6 +1,23 @@
 <?php 
 include("../include/globalx.php");
 
+
+function cekAkses($userID, $mnfront){
+    $strSQL = "SELECT A.user_id FROM jo_menu_detail A,  jo_menu B WHERE A.menu_id = B.id AND A.user_id = '".$userID
+    ."' AND B.file = '" . $mnfront . "' LIMIT 1";
+    //echo $strSQL;
+    $data = mysql_query($strSQL) or die(mysql_error());
+    $row = mysql_fetch_array($data);
+    
+    if($_SESSION["sess_user_id"]=$row[0]){
+
+    } else {
+    	die("And tidak memiliki hak akses fitur ini. Terimakasih.");
+    }
+}
+
+
+
 function periode($tgl){
 	$sql = "SELECT tahun FROM periode WHERE aktif = 1";
 	$hasil = mysql_query($sql) or die(mysql_error());
