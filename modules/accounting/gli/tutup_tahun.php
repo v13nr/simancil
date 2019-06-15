@@ -1,4 +1,11 @@
-<?php  if ($_GET['update']<>"") { ?>
+<?php 
+
+
+include ("../include/functions.php");
+
+cekAkses($_SESSION["sess_user_id"], 'tutup_tahun');
+
+ if ($_GET['update']<>"") { ?>
 
 	<script language="JavaScript">
 
