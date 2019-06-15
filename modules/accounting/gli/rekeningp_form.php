@@ -72,6 +72,10 @@ td { padding: 5px; }
 <?php  
 	include "../include/globalx.php";
 	include "../include/functions.php";
+
+
+
+cekAkses($_SESSION["sess_user_id"], 'rekeningp_ls');
 ?>
   <?php  $SQL = "select * from $database.rekening WHERE status = 1";
 	 	if ($_GET['id']<>"")

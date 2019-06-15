@@ -1,4 +1,11 @@
-<?php  include "otentik_gli.php"; ?><head>
+<?php  include "otentik_gli.php"; 
+
+
+
+cekAkses($_SESSION["sess_user_id"], 'inventaris_ls');
+
+
+?><head>
  
 	<script type="text/javascript" src="../assets/jquery-1.2.3.pack.js"></script>
 <script type="text/javascript" src="../assets/jquery.validate.pack.js"></script>
