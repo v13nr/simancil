@@ -2,6 +2,9 @@
 <?php  include "otentik_gli.php"; include ("../include/globalx.php"); 
  include "../../../modules/core/include/globalx.php";
  include ("../include/functions.php");
+
+
+cekAkses($_SESSION["sess_user_id"], 'jurnal_form_kasmasuk');
  ?>
 <style type="text/css">
 <!--
