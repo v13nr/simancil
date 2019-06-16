@@ -1,15 +1,12 @@
-<?php  session_start(); ?>
-<?php 
+<?php  session_start(); ?><?php 
 //taruh skrip ini di file tujuan, misal dari tes.php ke excell.php
 $filename = "Laba(Rugi) -  Tanggal cetak : " . date('Y-m-d') . ".xls";
-header("Content-Disposition: attachment; filename=\"$filename\"");
-header ("Content-Type: application/vnd.ms-excel");
-header ("Expires: 0");
-header ("Cache-Control : must-revalidate, post-check=0, pre-check=0");
-?>
-
-
-<?php 
+header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
+header("Content-Disposition: attachment; filename=\"$filename\"");  //File name extension was wrong
+header("Expires: 0");
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+header("Cache-Control: private",false);
+?><?php 
 include("../include/globalx.php");
 require_once "../include/functions.php";
 include("../include/infoclient.php");
