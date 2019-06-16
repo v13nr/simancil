@@ -1,6 +1,10 @@
 <?php 
 	include "../../../modules/core/include/globalx.php";
 	include "otentik_gli.php";
+ 
+ include ("../include/functions.php");
+ 
+cekAkses($_SESSION["sess_user_id"], 'memorial_input');
 
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
   <head>
