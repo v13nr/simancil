@@ -55,8 +55,12 @@ function clearNum(number){
 	return number;
 }
 	function hitung(){
-		qty = clearNum(document.getElementById("kubikasi").value) * 1;
+		//qty = clearNum(document.getElementById("kubikasi").value) * 1;
 		harga = clearNum(document.getElementById("harga").value) * 1;
+		batang = clearNum(document.getElementById("batang").value) * 1;
+		ukuran1 = clearNum(document.getElementById("ukuran1").value) * 1;
+		ukuran2 = clearNum(document.getElementById("ukuran2").value) * 1;
+		ukuran3 = clearNum(document.getElementById("ukuran3").value) * 1;
 		disc = 0; //clearNum(document.getElementById("disc").value) * 1;
 		disc2 = 0; //clearNum(document.getElementById("disc2").value) * 1;
 		disc3 = 0; //clearNum(document.getElementById("disc3").value) * 1;
@@ -65,9 +69,10 @@ function clearNum(number){
 			netto = (qty * harga)-((disc + disc2 + disc3) / 100 * harga * qty);
 			document.getElementById("discrp").value = formatCurrency((disc + disc2 + disc3) / 100 * harga * qty)
 		} else {
-			netto = (qty * harga) - discrp;
+			//netto = (qty * harga) - discrp;
 		}
-		document.getElementById("nilai").value = formatCurrency(harga*qty);
+		document.getElementById("kubikasi").value = formatCurrency(ukuran1*ukuran2*ukuran3*batang);
+		document.getElementById("nilai").value = formatCurrency(harga*ukuran1*ukuran2*ukuran3*batang);
 		//document.getElementById("netto").value = formatCurrency(netto);
 	}
 
@@ -125,9 +130,13 @@ function clearNum(number){
 	}
 	return number;
 }
-	function hitung(){
-		qty = clearNum(document.getElementById("kubikasi").value) * 1;
+function hitung(){
+		//qty = clearNum(document.getElementById("kubikasi").value) * 1;
 		harga = clearNum(document.getElementById("harga").value) * 1;
+		batang = clearNum(document.getElementById("batang").value) * 1;
+		ukuran1 = clearNum(document.getElementById("ukuran1").value) * 1;
+		ukuran2 = clearNum(document.getElementById("ukuran2").value) * 1;
+		ukuran3 = clearNum(document.getElementById("ukuran3").value) * 1;
 		disc = 0; //clearNum(document.getElementById("disc").value) * 1;
 		disc2 = 0; //clearNum(document.getElementById("disc2").value) * 1;
 		disc3 = 0; //clearNum(document.getElementById("disc3").value) * 1;
@@ -136,9 +145,10 @@ function clearNum(number){
 			netto = (qty * harga)-((disc + disc2 + disc3) / 100 * harga * qty);
 			document.getElementById("discrp").value = formatCurrency((disc + disc2 + disc3) / 100 * harga * qty)
 		} else {
-			netto = (qty * harga) - discrp;
+			//netto = (qty * harga) - discrp;
 		}
-		document.getElementById("nilai").value = formatCurrency(harga*qty);
+		document.getElementById("kubikasi").value = formatCurrency(ukuran1*ukuran2*ukuran3*batang);
+		document.getElementById("nilai").value = formatCurrency(harga*ukuran1*ukuran2*ukuran3*batang);
 		//document.getElementById("netto").value = formatCurrency(netto);
 	}
 </script>
@@ -205,6 +215,42 @@ $(document).ready(function(){
 					//	document.forms["frmijin"].submit();
 				  }else {
 					$('input[@name=harga]').val("");
+				   }
+				}
+			  );
+			 $.get('../include/cari.php?cari=barang&mode=ukuran1',{id: $("#brg").val()},
+				function(nama_pegawai){
+				  // jika response tidak kosong nilainya maka masukkan nilai ke inputan nama pegawai
+				  if(nama_pegawai.length > 0){ 
+					$('input[@name=ukuran1]').val(nama_pegawai);	
+					hitung();
+					//	document.forms["frmijin"].submit();
+				  }else {
+					$('input[@name=ukuran1]').val("");
+				   }
+				}
+			  );
+			 $.get('../include/cari.php?cari=barang&mode=ukuran2',{id: $("#brg").val()},
+				function(nama_pegawai){
+				  // jika response tidak kosong nilainya maka masukkan nilai ke inputan nama pegawai
+				  if(nama_pegawai.length > 0){ 
+					$('input[@name=ukuran2]').val(nama_pegawai);	
+					hitung();
+					//	document.forms["frmijin"].submit();
+				  }else {
+					$('input[@name=ukuran2]').val("");
+				   }
+				}
+			  );
+			 $.get('../include/cari.php?cari=barang&mode=ukuran3',{id: $("#brg").val()},
+				function(nama_pegawai){
+				  // jika response tidak kosong nilainya maka masukkan nilai ke inputan nama pegawai
+				  if(nama_pegawai.length > 0){ 
+					$('input[@name=ukuran3]').val(nama_pegawai);	
+					hitung();
+					//	document.forms["frmijin"].submit();
+				  }else {
+					$('input[@name=ukuran3]').val("");
 				   }
 				}
 			  );
@@ -389,11 +435,11 @@ $(document).ready(function(){
           <td align="center"><img src="../images/kal_next.gif" alt="Selanjutnya" border="0" /></td>
           <td align="center"><input name="namabrg" type="text" id="ppk" class="data-entry-kanan" required />
           <input name="brg" type="text" id="brg" value="" size="8" readonly="readonly" class="required" required title="Jenis Kayu Harus Terisi !"/></td>
-          <td align="center"><input type="text" name="ukuran1" id="ukuran1" size="5" class="required kanan" required title="*" value="0"/></td>
-		  <td align="center"><input type="text" name="ukuran2" id="ukuran2" size="5" class="required kanan" required title="*" value="0"    /></td>
-		  <td align="center"><input type="text" name="ukuran3" id="ukuran3" size="5" class="required kanan" required title="*" value="0"    /></td>
-		  <td align="center"><input type="text" name="batang" id="batang"  size="10"  class="required kanan" required title="*" /></td>
-		  <td align="center"><input type="text" id="kubikasi" name="kubikasi" oninput="hitung()" size="10" class="required kanan" required title="*" value="0"  /></td>
+          <td align="center"><input type="text" name="ukuran1" id="ukuran1" readonly  oninput="hitung()"  size="5" class="required kanan" required title="*" value="0"/></td>
+		  <td align="center"><input type="text" name="ukuran2" id="ukuran2" readonly oninput="hitung()"  size="5" class="required kanan" required title="*" value="0"    /></td>
+		  <td align="center"><input type="text" name="ukuran3" id="ukuran3" readonly oninput="hitung()"  size="5" class="required kanan" required title="*" value="0"    /></td>
+		  <td align="center"><input type="text" name="batang" id="batang"  oninput="hitung()"  size="10"  class="required kanan" required title="*" value="0"/></td>
+		  <td align="center"><input type="text" id="kubikasi" name="kubikasi" readonly size="10" class="required kanan" required title="*" value="0"  /></td>
 		  <td align="center"><input type="text" id="harga" name="harga" readonly size="10" class="required kanan" required title="*" value="0"/></td>
 		  <td align="center"><input type="text" id="nilai" name="nilai" size="15" readonly class="required kanan" required title="*" value="0" /></td>
           <td align="center" colspan="4"><input name="image" type="image" src="../images/add.gif" border="0" /></td>

@@ -25,7 +25,10 @@
 				$hargapartai = $baris['hargapartai'];
 				$tarif = $baris['tarif'];
 				$supplier_id = $baris['supplier_id'];
-				$level_1 = $baris['level_1'];
+        $ukuran1 = $baris['ukuran1'];
+        $ukuran2 = $baris['ukuran2'];
+        $ukuran3 = $baris['ukuran3'];
+        $level_1 = $baris['level_1'];
 				//die($level_1);
 				$level_2 = $baris['level_2'];
 				$level_3 = $baris['level_3'];
@@ -45,7 +48,7 @@
  <link href="../assets/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript" src="../assets/kalendar_files/jsCalendar.js"></script>
 <link href="../assets/kalendar_files/calendar.css" rel="stylesheet" type="text/css">
-<script src="../../../assets/jquery-3.2.1.slim.min.js"></script>
+<script src="../../../assets/jquery.js"></script>
 <script src="../../../assets/bootstrap.min.js"></script>
 <link href="../../../assets/bootstrap.min.css" rel="stylesheet">
   <script type="text/javascript" src="../../../assets/jquery.min.js"></script>
@@ -274,7 +277,7 @@ adaid="<?php echo $_GET["id"];?>";
 						$("#jenjang2").trigger('change');
 						if(adaid==""){
 							
-							$("#namabrg").val( $("#jenjang1  option:selected").text());
+						//	$("#namabrg").val( $("#jenjang1  option:selected").text());
 							
 						}
                 });
@@ -374,7 +377,7 @@ adaid="<?php echo $_GET["id"];?>";
 
 						$('#jenjang5').val(<?php echo $level_5;?>);	
 						if(adaid==""){						
-							$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text()+"#"+$("#jenjang3  option:selected").text()+"#"+$("#jenjang4  option:selected").text());
+						//	$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text()+"#"+$("#jenjang3  option:selected").text()+"#"+$("#jenjang4  option:selected").text());
 						}
 						
                 });
@@ -386,7 +389,8 @@ adaid="<?php echo $_GET["id"];?>";
 
 	function reloadFinal(){
 		if(adaid==""){
-			$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text()+"#"+$("#jenjang3  option:selected").text()+"#"+$("#jenjang4  option:selected").text()+"#"+$("#jenjang5  option:selected").text());
+		//
+    //	$("#namabrg").val( $("#jenjang1  option:selected").text()+"#"+$("#jenjang2  option:selected").text()+"#"+$("#jenjang3  option:selected").text()+"#"+$("#jenjang4  option:selected").text()+"#"+$("#jenjang5  option:selected").text());
         }        
 						
                 
@@ -568,39 +572,54 @@ input.kanan{ text-align:right; }
           <td><input name="namabrg" size="40" type="text" onblur="cekstring();" class="required " id="namabrg"  title="Nama Barang harus terisi" value="<?php  echo $namabrg?>" /></td>
         </tr>
         <tr>
+          <td><span class="style6">Ukuran 1  </span></td>
+          <td>:</td>
+          <td><input name="ukuran1" size="40" type="text" class="required " id="ukuran1"  title="Ukuran 1 harus terisi" value="<?php  echo $ukuran1?>" /></td>
+        </tr>
+        <tr>
+          <td><span class="style6">Ukuran 2  </span></td>
+          <td>:</td>
+          <td><input name="ukuran2" size="40" type="text"  class="required " id="ukuran2"  title="Ukuran 2 harus terisi" value="<?php  echo $ukuran2?>" /></td>
+        </tr>
+        <tr>
+          <td><span class="style6">Ukuran 3  </span></td>
+          <td>:</td>
+          <td><input name="ukuran3" size="40" type="text" class="required " id="ukuran3"  title="Ukuran 3 harus terisi" value="<?php  echo $ukuran3?>" /></td>
+        </tr>
+        <tr style="display: none;">
           <td><span class="style6">Satuan Eceran</span></td>
           <td><span class="style6">:</span></td>
-          <td><input type="text" name="satuank" id="satuank"  title="Satuan Kecil harus terisi" value="<?php  echo $satuank?>" /></td>
+          <td><input type="text" name="satuank" id="satuank"  title="Satuan Kecil harus terisi" value="Kubikasi" /></td>
         </tr>
-        <tr>
+        <tr style="display: none;">
           <td><span class="style6">Satuan Partai </span></td>
           <td><span class="style6">:</span></td>
-          <td><input name="satuanb" type="text" id="satuanb"  title="Satuan Besar harus diisi" value="<?php  echo $satuanb?>" /></td>
+          <td><input name="satuanb" type="text" id="satuanb"  title="Satuan Besar harus diisi" value="Kubikasi" /></td>
         </tr>
-        <tr>
+        <tr style="display: none;">
           <td><span class="style6">Isi </span></td>
           <td>&nbsp;</td>
-          <td><input name="isi" type="text" id="isi"  class="required kanan" title="Isi harus diisi" value="<?php  echo number_format($isi)?>" /></td>
+          <td><input name="isi" type="text" id="isi"  class="required kanan" title="Isi harus diisi" value="0" /></td>
         </tr>
         <tr>
-          <td>HJE </td>
+          <td>Harga Jual </td>
           <td>:</td>
           <td><input name="hargaeceran" type="text" id="hargaeceran"  class="required kanan" title="Harga eceran harus diisi" value="<?php  echo number_format($hargaeceran)?>" /></td>
         </tr>
-        <tr>
+        <tr style="display: none;">
           <td>Harga Partai </td>
           <td>:</td>
-          <td><input name="hargapartai" type="text" id="hargapartai"  class="required kanan" title="Harga Partai harus diisi" value="<?php  echo number_format($hargapartai)?>" /></td>
+          <td><input name="hargapartai" type="text" id="hargapartai"  class="required kanan" title="Harga Partai harus diisi" value="0" /></td>
         </tr>
-        <tr>
+        <tr style="display: none;">
           <td>Tarif / Cukai </td>
           <td>:</td>
-          <td><input name="tarif" type="text" id="tarif"  class="" title="" value="<?php  echo ($tarif)?>" /></td>
+          <td><input name="tarif" type="text" id="tarif"  class="" title="" value="0" /></td>
         </tr>
-        <tr>
+        <tr style="display: none;">
           <td><span class="style6">Group</span></td>
           <td>:</td>
-          <td><input type="text" name="group"  value="<?php  echo ($group)?>" /></td>
+          <td><input type="text" name="group"  value="Kayu" /></td>
         </tr>
         <tr>
           <td><span class="style6">Modal/Harga Beli </span></td>
@@ -643,7 +662,7 @@ input.kanan{ text-align:right; }
         </tr>
       </table>
 
-      <table align="left" class="x1" width="300px">
+      <table align="left" class="x1" width="300px" style="display: none">
         <tr background="../images/impactg.png" height="30">
           <td colspan="3" align="center"><span class="style1"><font color="white">Jenjang Produk</font> </span></td>
         </tr>
@@ -703,7 +722,7 @@ input.kanan{ text-align:right; }
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -727,7 +746,7 @@ input.kanan{ text-align:right; }
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -752,7 +771,7 @@ input.kanan{ text-align:right; }
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -778,7 +797,7 @@ input.kanan{ text-align:right; }
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -804,7 +823,7 @@ input.kanan{ text-align:right; }
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

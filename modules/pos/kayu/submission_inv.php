@@ -65,6 +65,7 @@ switch ($cmd) {
 		$ukuran2 = preg_replace('#[^0-9]#', '', $_POST['ukuran2']);
 		$ukuran3 = preg_replace('#[^0-9]#', '', $_POST['ukuran3']);
 		$netto = preg_replace('#[^0-9]#', '', $_POST['nilai']);
+		$qty = preg_replace('#[^0-9]#', '', $_POST['kubikasi']);
 
 		
 		$SQL = "INSERT INTO mutasi(id, model, nota, tgl, nobukti, kode, sub, nomor, nama, alamat, kota, tlp, kodebrg, namabrg, qtyout,   satuan, ukuran1, ukuran2, ukuran3, batang, harga, kredit, user_id, status) VALUES(

@@ -735,8 +735,16 @@ switch ($cmd) {
 		$modal = ereg_replace("[^0-9]", "", $_POST['modal']);
 		$hargaeceran = ereg_replace("[^0-9]", "", $_POST['hargaeceran']);
 		$hargapartai = ereg_replace("[^0-9]", "", $_POST['hargapartai']);
+
+
+		$ukuran1 = preg_replace('#[^0-9]#', '', $_POST['ukuran1']);
+
+		$ukuran2 = preg_replace('#[^0-9]#', '', $_POST['ukuran2']);
+
+		$ukuran3 = preg_replace('#[^0-9]#', '', $_POST['ukuran3']);
+
 		$SQL = "INSERT into stock(tarif, kodebrg, divisi, expedisi, namabrg, satuank, isi, satuanb, grup, 
-		modal, norek, hargaeceran, hargapartai, status, supplier_id, level_1,level_2,level_3,level_4,level_5) 
+		modal, norek, hargaeceran, hargapartai, status, supplier_id, level_1,level_2,level_3,level_4,level_5, ukuran1, ukuran2, ukuran3) 
 		VALUES('".$_POST['tarif']."','".$_POST['kodebrg']."','".$_POST['divisi']."','".$_POST['expedisi']."',
 		'".$_POST['namabrg']."','".$_POST['satuank']."','".$isi."','".$_POST['satuanb']."',
 		'".$_POST['group']."','".$modal."','".$_POST['norek']."',  '".$hargaeceran."',  '".$hargapartai."', 1,'".$_POST['supplier_id']."',
@@ -744,7 +752,11 @@ switch ($cmd) {
 		'".$_POST['jenjang2']."',
 		'".$_POST['jenjang3']."',
 		'".$_POST['jenjang4']."',
-		'".$_POST['jenjang5']."'
+		'".$_POST['jenjang5']."',
+		'$ukuran1',
+		'$ukuran2',
+		'$ukuran3'
+		
 		
 		)";
 		$hasil = mysql_query($SQL, $dbh_jogjaide);
@@ -755,12 +767,21 @@ switch ($cmd) {
 		$modal = preg_replace('#[^0-9]#', '', $_POST['modal']);
 		$hargaeceran = preg_replace('#[^0-9]#', '', $_POST['hargaeceran']);
 		$hargapartai = preg_replace('#[^0-9]#', '', $_POST['hargapartai']);
+
+
+
+		$ukuran1 = preg_replace('#[^0-9]#', '', $_POST['ukuran1']);
+
+		$ukuran2 = preg_replace('#[^0-9]#', '', $_POST['ukuran2']);
+
+		$ukuran3 = preg_replace('#[^0-9]#', '', $_POST['ukuran3']);
+
+
 		$SQL = "UPDATE stock SET namabrg = '".$_POST['namabrg']."', divisi = '".$_POST['divisi']."', 
 		expedisi = '".$_POST['expedisi']."', satuank = '".$_POST['satuank']."',tarif = '".$_POST['tarif']."', 
 		isi = '".$isi."', satuanb = '".$_POST['satuanb']."', grup = '".$_POST['group']."', modal = '".$modal."', 
 		norek = '".$_POST['norek']."', kodebrg = '".$_POST['kodebrg']."', hargaeceran = '".$hargaeceran."', 
-		hargapartai = '".$hargapartai."', supplier_id =  '".$_POST['supplier_id']."' 
-		,
+		hargapartai = '".$hargapartai."', supplier_id =  '".$_POST['supplier_id']."', ukuran1 = '$ukuran1', ukuran2 = '$ukuran2', ukuran3 = '$ukuran3',
 		level_1 = '".$_POST['jenjang1']."',
 		level_2 = '".$_POST['jenjang2']."',
 		level_3 = '".$_POST['jenjang3']."',
