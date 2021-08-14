@@ -285,7 +285,7 @@ if($_GET["mn"]==""){
   <p>
     Copyright &copy; 2014-2021 
     <a href="http://www.jogjaide.web.id" target="_blank">
-      #
+      #Jogjaide
     </a>
     . All Rights Reserved.
   </p>
