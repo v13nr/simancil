@@ -3,4 +3,4 @@ sima
 Skrip disini adalah skrip development
 
 
-ONLY FOR LOCALHOST OFFLINE WITH DATABASE PASSWORD
+UNTUK MASA PRODUKSI RENAME FOLDER instal_xxxxxx menjadi install
