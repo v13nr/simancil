@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+﻿<?php
+
+$folderinstall = 'install';
+
+if(is_dir($folderinstall))
+{
+    header('location: ./install/index.php');
+}
+
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Sima: Sistem Informasi Usaha </title>
@@ -95,7 +104,7 @@
 					<!-- end fields -->
 					<!-- links -->
 					<div class="links">
-						<a href="http://www.jogjaide.web.id"></a>		2015 - 2019			</div>
+						<a href="http://www.jogjaide.web.id"></a>		2015 - 2021			</div>
 					<!-- end links -->
 				</div>
 				</form>
