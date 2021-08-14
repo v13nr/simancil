@@ -3,7 +3,7 @@
 	$host ="localhost";
     $user="root";
     $password="99";
-    $database="simancil";
+    $database="simapos";
     $dbh_jogjaide = mysql_connect($host,$user,$password) or die("Koneksi server gagal");
     mysql_select_db($database);
 	$url_site = "http://localhost/sima/modules/accounting/gli/";
@@ -11,7 +11,7 @@
 	define('SQL_HOST',     'localhost');
 	define('SQL_USER',     'root');
 	define('SQL_PASSWD',   '99');
-	define('SQL_DATABASE', 'simancil');
+	define('SQL_DATABASE', 'simapos');
 	define('SQL_PREFIX',   'phpc_');
 	define('SQL_TYPE',     'mysqli');
 	
@@ -19,8 +19,8 @@
 define('HOST','localhost');        // Your database server
 define('USER','root');        // Your mysql username
 define('PASS','99');                // Your mysql password
-define('DB','simancil');        // Your mysql database name
-define('SITE_TITLE','Jogjaide');
+define('DB','simapos');        // Your mysql database name
+define('SITE_TITLE','isi Nama Usaha');
 define('MENU_TITLE','');
 define( 'ABSPATH', dirname(__FILE__) . '/' );
 	

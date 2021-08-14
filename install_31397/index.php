@@ -252,7 +252,8 @@ function doInstall() {
       </tr>
     </table>
     <?php  } ?>
-	<br>HAPUS FOLDER INSTALL JIKA SUDAH SELESAI INSTALASI
+	<br>[ <a href="../rename.php">RENAME FOLDER INSTALL DAN LOGIN JIKA SUDAH SELESAI INSTALASI</a>  ]<br>
+	
   </form>
 </div>
   
