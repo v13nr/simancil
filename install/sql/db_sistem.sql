@@ -1,16 +1,18 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.5.34 - MySQL Community Server (GPL)
--- Server OS:                    Win32
--- HeidiSQL Version:             9.1.0.4867
+-- Server version:               10.4.18-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table sima_expedisi.aktiva
+-- Dumping structure for table simancil.aktiva
 DROP TABLE IF EXISTS `aktiva`;
 CREATE TABLE IF NOT EXISTS `aktiva` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -32,12 +34,11 @@ CREATE TABLE IF NOT EXISTS `aktiva` (
   KEY `rekdebet` (`rekdebet`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.aktiva: 0 rows
+-- Dumping data for table simancil.aktiva: 0 rows
 /*!40000 ALTER TABLE `aktiva` DISABLE KEYS */;
 /*!40000 ALTER TABLE `aktiva` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.aktiva_details
+-- Dumping structure for table simancil.aktiva_details
 DROP TABLE IF EXISTS `aktiva_details`;
 CREATE TABLE IF NOT EXISTS `aktiva_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -49,12 +50,11 @@ CREATE TABLE IF NOT EXISTS `aktiva_details` (
   KEY `aktiva_id` (`aktiva_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.aktiva_details: 0 rows
+-- Dumping data for table simancil.aktiva_details: 0 rows
 /*!40000 ALTER TABLE `aktiva_details` DISABLE KEYS */;
 /*!40000 ALTER TABLE `aktiva_details` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.armada
+-- Dumping structure for table simancil.armada
 DROP TABLE IF EXISTS `armada`;
 CREATE TABLE IF NOT EXISTS `armada` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -64,15 +64,14 @@ CREATE TABLE IF NOT EXISTS `armada` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.armada: ~2 rows (approximately)
+-- Dumping data for table simancil.armada: ~2 rows (approximately)
 /*!40000 ALTER TABLE `armada` DISABLE KEYS */;
 INSERT INTO `armada` (`id`, `nopol`, `sopir`, `keterangan`) VALUES
 	(1, 'DD 345 RR', 'Roni', 'Armada wilayah Jatim'),
 	(2, 'B 123 KU', 'Tungadi', 'Armada wilayah Jakarta');
 /*!40000 ALTER TABLE `armada` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.bahanjadi
+-- Dumping structure for table simancil.bahanjadi
 DROP TABLE IF EXISTS `bahanjadi`;
 CREATE TABLE IF NOT EXISTS `bahanjadi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,62 +85,59 @@ CREATE TABLE IF NOT EXISTS `bahanjadi` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.bahanjadi: 0 rows
+-- Dumping data for table simancil.bahanjadi: 0 rows
 /*!40000 ALTER TABLE `bahanjadi` DISABLE KEYS */;
 /*!40000 ALTER TABLE `bahanjadi` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.buyers
+-- Dumping structure for table simancil.buyers
 DROP TABLE IF EXISTS `buyers`;
 CREATE TABLE IF NOT EXISTS `buyers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `address` varchar(128) DEFAULT NULL,
-  `information` text,
-  `status` tinyint(4) DEFAULT '1',
+  `information` text DEFAULT NULL,
+  `status` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.buyers: 2 rows
+-- Dumping data for table simancil.buyers: 2 rows
 /*!40000 ALTER TABLE `buyers` DISABLE KEYS */;
 INSERT INTO `buyers` (`id`, `name`, `address`, `information`, `status`) VALUES
 	(33, 'Nanang', 'Mawar', '', 1),
 	(34, 'Tika', 'Mawar', '', 1);
 /*!40000 ALTER TABLE `buyers` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.cafeid
+-- Dumping structure for table simancil.cafeid
 DROP TABLE IF EXISTS `cafeid`;
 CREATE TABLE IF NOT EXISTS `cafeid` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `nama` varchar(200) COLLATE latin1_general_ci NOT NULL,
   `alamat` varchar(300) COLLATE latin1_general_ci NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `status` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.cafeid: 1 rows
+-- Dumping data for table simancil.cafeid: 1 rows
 /*!40000 ALTER TABLE `cafeid` DISABLE KEYS */;
 INSERT INTO `cafeid` (`id`, `nama`, `alamat`, `status`) VALUES
 	(1, 'Coffeday', 'Jl. Urip Sumoharjo No. 121', 1);
 /*!40000 ALTER TABLE `cafeid` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.coa
+-- Dumping structure for table simancil.coa
 DROP TABLE IF EXISTS `coa`;
 CREATE TABLE IF NOT EXISTS `coa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL DEFAULT 0,
   `title` varchar(32) NOT NULL,
   `tipe` varchar(10) NOT NULL,
   `iconcls` varchar(32) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '1',
-  `sort_id` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `published` tinyint(1) NOT NULL DEFAULT 1,
+  `sort_id` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.coa: 6 rows
+-- Dumping data for table simancil.coa: 6 rows
 /*!40000 ALTER TABLE `coa` DISABLE KEYS */;
 INSERT INTO `coa` (`id`, `parent_id`, `title`, `tipe`, `iconcls`, `published`, `sort_id`, `status`) VALUES
 	(19, 18, 'Kas Kecil', '', '', 1, 19, 1),
@@ -152,8 +148,7 @@ INSERT INTO `coa` (`id`, `parent_id`, `title`, `tipe`, `iconcls`, `published`, `
 	(18, 14, 'Kas', '', '', 0, 18, 1);
 /*!40000 ALTER TABLE `coa` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.dbfn
+-- Dumping structure for table simancil.dbfn
 DROP TABLE IF EXISTS `dbfn`;
 CREATE TABLE IF NOT EXISTS `dbfn` (
   `norek` varchar(9) NOT NULL,
@@ -163,15 +158,15 @@ CREATE TABLE IF NOT EXISTS `dbfn` (
   `debet` decimal(15,2) NOT NULL,
   `kredit` decimal(15,2) NOT NULL,
   `saldoakhir` decimal(15,2) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `status` int(11) NOT NULL DEFAULT 1,
   `id` varchar(100) NOT NULL,
   `periode` varchar(50) NOT NULL,
   `divisi` varchar(50) NOT NULL,
   `saldonormal` varchar(1) NOT NULL,
-  `generate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `generate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.dbfn: 80 rows
+-- Dumping data for table simancil.dbfn: 80 rows
 /*!40000 ALTER TABLE `dbfn` DISABLE KEYS */;
 INSERT INTO `dbfn` (`norek`, `namarek`, `tipe`, `saldoawal`, `debet`, `kredit`, `saldoakhir`, `status`, `id`, `periode`, `divisi`, `saldonormal`, `generate`) VALUES
 	('BA1-5324', 'Beban Pengiriman Barang', 'R', 0.00, 1300000.00, 100000.00, 0.00, 1, '6m3debndr9il1hnosqo63umnl2', '01-01-2015 s/d 31-12-2015', 'ALL', 'D', '2015-01-02 19:19:14'),
@@ -256,27 +251,25 @@ INSERT INTO `dbfn` (`norek`, `namarek`, `tipe`, `saldoawal`, `debet`, `kredit`, 
 	('KL3-214', 'Simpanan Sukarela', 'P', 0.00, 0.00, 0.00, 0.00, 1, '6m3debndr9il1hnosqo63umnl2', '01-01-2015 s/d 31-12-2015', 'ALL', 'K', '2015-01-02 19:19:14');
 /*!40000 ALTER TABLE `dbfn` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.divisi
+-- Dumping structure for table simancil.divisi
 DROP TABLE IF EXISTS `divisi`;
 CREATE TABLE IF NOT EXISTS `divisi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subdiv` varchar(4) NOT NULL,
   `namadiv` varchar(50) NOT NULL,
-  `aktif` tinyint(4) NOT NULL DEFAULT '1',
-  `status` tinyint(4) DEFAULT '1',
+  `aktif` tinyint(4) NOT NULL DEFAULT 1,
+  `status` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `subdiv` (`subdiv`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.divisi: 1 rows
+-- Dumping data for table simancil.divisi: 1 rows
 /*!40000 ALTER TABLE `divisi` DISABLE KEYS */;
 INSERT INTO `divisi` (`id`, `subdiv`, `namadiv`, `aktif`, `status`) VALUES
 	(1, '01', 'Makassar', 1, 1);
 /*!40000 ALTER TABLE `divisi` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.donasi
+-- Dumping structure for table simancil.donasi
 DROP TABLE IF EXISTS `donasi`;
 CREATE TABLE IF NOT EXISTS `donasi` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
@@ -287,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `donasi` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Dumping data for table sima_expedisi.donasi: 7 rows
+-- Dumping data for table simancil.donasi: 7 rows
 /*!40000 ALTER TABLE `donasi` DISABLE KEYS */;
 INSERT INTO `donasi` (`id`, `noresi`, `dari`, `tujuan`, `statusx`) VALUES
 	(1, 'GGE2014120001', 'Malang', 'Jakarta', 'Signed'),
@@ -299,12 +292,11 @@ INSERT INTO `donasi` (`id`, `noresi`, `dari`, `tujuan`, `statusx`) VALUES
 	(12, 'GGE2015010007', 'Jakarta', 'Semarang', 'Not Arrived');
 /*!40000 ALTER TABLE `donasi` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.expedisi
+-- Dumping structure for table simancil.expedisi
 DROP TABLE IF EXISTS `expedisi`;
 CREATE TABLE IF NOT EXISTS `expedisi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nourut` int(11) NOT NULL DEFAULT '0',
+  `nourut` int(11) NOT NULL DEFAULT 0,
   `nonota` varchar(50) NOT NULL DEFAULT '0',
   `jenis_pembayaran` varchar(50) NOT NULL DEFAULT '0',
   `tanggal` date NOT NULL,
@@ -332,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `expedisi` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.expedisi: 5 rows
+-- Dumping data for table simancil.expedisi: 5 rows
 /*!40000 ALTER TABLE `expedisi` DISABLE KEYS */;
 INSERT INTO `expedisi` (`id`, `nourut`, `nonota`, `jenis_pembayaran`, `tanggal`, `nama_pengirim`, `alamat_pengirim`, `telpon_pengirim`, `isi_kiriman`, `satuan_packing`, `memo_pengirim`, `harga_barang_ttp`, `berat_barang`, `kubikasi`, `total_biaya`, `nama_penerima`, `alamat_penerima`, `telepon_penerima`, `banyak_barang`, `satuan`, `jenis_layanan`, `biaya_administrasi`, `biaya_lainnya`, `discount`, `total_ongkos`, `closing`) VALUES
 	(1, 1, 'GGE2014120001', 'Kredit', '2014-12-31', 'Anton', 'Mawar', '098', '', '', '', 20000, 4.00, 80000.00, 80000, 'Joni', 'Malang', '', 0.00, '', '2', 0, 0, 0, 80000, 'Y'),
@@ -342,8 +334,7 @@ INSERT INTO `expedisi` (`id`, `nourut`, `nonota`, `jenis_pembayaran`, `tanggal`,
 	(5, 7, 'GGE2015010007', 'Tunai', '2015-01-24', 'RUT', '', '98990099', 'Pakaian', 'Dos', '', 20000, 5.00, 100000.00, 105000, 'TRU', 'SUrabta', '', 0.00, 'Kg', '2', 5000, 0, 0, 105000, 'N');
 /*!40000 ALTER TABLE `expedisi` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.hutang
+-- Dumping structure for table simancil.hutang
 DROP TABLE IF EXISTS `hutang`;
 CREATE TABLE IF NOT EXISTS `hutang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -363,24 +354,23 @@ CREATE TABLE IF NOT EXISTS `hutang` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.hutang: 0 rows
+-- Dumping data for table simancil.hutang: 0 rows
 /*!40000 ALTER TABLE `hutang` DISABLE KEYS */;
 /*!40000 ALTER TABLE `hutang` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.iconcls
+-- Dumping structure for table simancil.iconcls
 DROP TABLE IF EXISTS `iconcls`;
 CREATE TABLE IF NOT EXISTS `iconcls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `clsname` varchar(128) NOT NULL,
   `icon` varchar(128) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `status` int(11) NOT NULL DEFAULT 1,
   `divisi` varchar(3) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.iconcls: 65 rows
+-- Dumping data for table simancil.iconcls: 65 rows
 /*!40000 ALTER TABLE `iconcls` DISABLE KEYS */;
 INSERT INTO `iconcls` (`id`, `title`, `clsname`, `icon`, `status`, `divisi`) VALUES
 	(1, 'Computer', 'base', 'application_cascade.png', 1, '01'),
@@ -450,8 +440,7 @@ INSERT INTO `iconcls` (`id`, `title`, `clsname`, `icon`, `status`, `divisi`) VAL
 	(85, 'sort', 'sort', 'text_padding_right.png', 1, '01');
 /*!40000 ALTER TABLE `iconcls` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.jenis
+-- Dumping structure for table simancil.jenis
 DROP TABLE IF EXISTS `jenis`;
 CREATE TABLE IF NOT EXISTS `jenis` (
   `kode` varchar(10) NOT NULL,
@@ -459,15 +448,14 @@ CREATE TABLE IF NOT EXISTS `jenis` (
   PRIMARY KEY (`kode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.jenis: 2 rows
+-- Dumping data for table simancil.jenis: 2 rows
 /*!40000 ALTER TABLE `jenis` DISABLE KEYS */;
 INSERT INTO `jenis` (`kode`, `nama`) VALUES
 	('KK', 'Jenis 1'),
 	('OO', 'Jenis 2');
 /*!40000 ALTER TABLE `jenis` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.jenis_layanan
+-- Dumping structure for table simancil.jenis_layanan
 DROP TABLE IF EXISTS `jenis_layanan`;
 CREATE TABLE IF NOT EXISTS `jenis_layanan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -477,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `jenis_layanan` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.jenis_layanan: 3 rows
+-- Dumping data for table simancil.jenis_layanan: 3 rows
 /*!40000 ALTER TABLE `jenis_layanan` DISABLE KEYS */;
 INSERT INTO `jenis_layanan` (`id`, `layanan`, `satuan`, `harga`) VALUES
 	(1, 'Kediri', 'Kg', 10000),
@@ -485,25 +473,24 @@ INSERT INTO `jenis_layanan` (`id`, `layanan`, `satuan`, `harga`) VALUES
 	(3, 'Surabaya', 'Ons', 15000);
 /*!40000 ALTER TABLE `jenis_layanan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.jo_menu
+-- Dumping structure for table simancil.jo_menu
 DROP TABLE IF EXISTS `jo_menu`;
 CREATE TABLE IF NOT EXISTS `jo_menu` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `parent_id` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `title` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT '',
   `url` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT '',
   `file` varchar(29) COLLATE latin1_general_ci NOT NULL DEFAULT '',
   `modul` varchar(30) COLLATE latin1_general_ci NOT NULL DEFAULT '',
   `icon` varchar(20) COLLATE latin1_general_ci NOT NULL DEFAULT 'world_link.png',
-  `frame` tinyint(4) NOT NULL DEFAULT '1',
-  `menu_order` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '1',
-  `aktif` int(11) NOT NULL DEFAULT '1',
+  `frame` tinyint(4) NOT NULL DEFAULT 1,
+  `menu_order` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `aktif` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=112 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.jo_menu: 80 rows
+-- Dumping data for table simancil.jo_menu: 80 rows
 /*!40000 ALTER TABLE `jo_menu` DISABLE KEYS */;
 INSERT INTO `jo_menu` (`id`, `parent_id`, `title`, `url`, `file`, `modul`, `icon`, `frame`, `menu_order`, `status`, `aktif`) VALUES
 	(1, 0, 'Menu Master', '', '', '', 'cog.png', 1, 0, 1, 1),
@@ -588,17 +575,16 @@ INSERT INTO `jo_menu` (`id`, `parent_id`, `title`, `url`, `file`, `modul`, `icon
 	(111, 95, 'Closing Expedisi', '', 'closing_ex', 'expedisi', 'world_link.png', 1, 0, 1, 1);
 /*!40000 ALTER TABLE `jo_menu` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.jo_menu_detail
+-- Dumping structure for table simancil.jo_menu_detail
 DROP TABLE IF EXISTS `jo_menu_detail`;
 CREATE TABLE IF NOT EXISTS `jo_menu_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` tinyint(4) NOT NULL,
   `menu_id` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.jo_menu_detail: 72 rows
+-- Dumping data for table simancil.jo_menu_detail: 72 rows
 /*!40000 ALTER TABLE `jo_menu_detail` DISABLE KEYS */;
 INSERT INTO `jo_menu_detail` (`id`, `user_id`, `menu_id`) VALUES
 	(1, 1, 1),
@@ -655,7 +641,6 @@ INSERT INTO `jo_menu_detail` (`id`, `user_id`, `menu_id`) VALUES
 	(52, 1, 81),
 	(53, 1, 82),
 	(54, 1, 83),
-	(55, 1, 94),
 	(56, 1, 95),
 	(57, 1, 96),
 	(58, 1, 105),
@@ -672,11 +657,11 @@ INSERT INTO `jo_menu_detail` (`id`, `user_id`, `menu_id`) VALUES
 	(72, 5, 95),
 	(73, 5, 96),
 	(74, 5, 101),
-	(75, 5, 102);
+	(75, 5, 102),
+	(77, 1, 66);
 /*!40000 ALTER TABLE `jo_menu_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.jurnal
+-- Dumping structure for table simancil.jurnal
 DROP TABLE IF EXISTS `jurnal`;
 CREATE TABLE IF NOT EXISTS `jurnal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -685,36 +670,34 @@ CREATE TABLE IF NOT EXISTS `jurnal` (
   `keterangan` varchar(45) DEFAULT NULL,
   `debet` decimal(15,2) NOT NULL,
   `kredit` decimal(15,2) NOT NULL,
-  `status` int(10) DEFAULT '1',
+  `status` int(10) DEFAULT 1,
   `user_id` int(11) NOT NULL,
   `nobukti` varchar(50) NOT NULL,
   PRIMARY KEY (`id`,`buyer_id`),
   KEY `buyer_id` (`buyer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.jurnal: 0 rows
+-- Dumping data for table simancil.jurnal: 0 rows
 /*!40000 ALTER TABLE `jurnal` DISABLE KEYS */;
 /*!40000 ALTER TABLE `jurnal` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.jurnal_header
+-- Dumping structure for table simancil.jurnal_header
 DROP TABLE IF EXISTS `jurnal_header`;
 CREATE TABLE IF NOT EXISTS `jurnal_header` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `address` varchar(128) DEFAULT NULL,
-  `information` text,
+  `information` text DEFAULT NULL,
   `tanggal` date NOT NULL,
-  `status` int(10) DEFAULT '1',
+  `status` int(10) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.jurnal_header: 0 rows
+-- Dumping data for table simancil.jurnal_header: 0 rows
 /*!40000 ALTER TABLE `jurnal_header` DISABLE KEYS */;
 /*!40000 ALTER TABLE `jurnal_header` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.jurnal_srb
+-- Dumping structure for table simancil.jurnal_srb
 DROP TABLE IF EXISTS `jurnal_srb`;
 CREATE TABLE IF NOT EXISTS `jurnal_srb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -730,20 +713,20 @@ CREATE TABLE IF NOT EXISTS `jurnal_srb` (
   `sub` varchar(20) NOT NULL,
   `konsumen_id` varchar(20) NOT NULL DEFAULT '0',
   `karyawan_id` varchar(10) NOT NULL,
-  `aktiva_id` int(11) NOT NULL DEFAULT '0',
+  `aktiva_id` int(11) NOT NULL DEFAULT 0,
   `divisi` varchar(4) NOT NULL,
   `nobukti` varchar(30) NOT NULL,
   `bulan` varchar(6) NOT NULL,
   `user_id` int(11) NOT NULL,
   `supplier` varchar(20) NOT NULL DEFAULT '0',
   `khusus` varchar(20) NOT NULL DEFAULT '0',
-  `mutasi_id` int(11) NOT NULL DEFAULT '0',
+  `mutasi_id` int(11) NOT NULL DEFAULT 0,
   `piutang_id` varchar(50) NOT NULL DEFAULT '0',
-  `angsuran_id` int(11) NOT NULL DEFAULT '0',
-  `memorial_id` int(11) NOT NULL DEFAULT '0',
-  `expedisi_id` int(11) NOT NULL DEFAULT '0',
-  `muatan_id` int(11) NOT NULL DEFAULT '0',
-  `inputx` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `angsuran_id` int(11) NOT NULL DEFAULT 0,
+  `memorial_id` int(11) NOT NULL DEFAULT 0,
+  `expedisi_id` int(11) NOT NULL DEFAULT 0,
+  `muatan_id` int(11) NOT NULL DEFAULT 0,
+  `inputx` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `kk` (`kk`),
   KEY `kd` (`kd`),
@@ -751,7 +734,7 @@ CREATE TABLE IF NOT EXISTS `jurnal_srb` (
   KEY `konsumen_id` (`konsumen_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.jurnal_srb: 12 rows
+-- Dumping data for table simancil.jurnal_srb: 12 rows
 /*!40000 ALTER TABLE `jurnal_srb` DISABLE KEYS */;
 INSERT INTO `jurnal_srb` (`id`, `tipe_jurnal`, `tanggal`, `jenis`, `kd`, `kk`, `ket`, `ket2`, `jumlah`, `dollar`, `sub`, `konsumen_id`, `karyawan_id`, `aktiva_id`, `divisi`, `nobukti`, `bulan`, `user_id`, `supplier`, `khusus`, `mutasi_id`, `piutang_id`, `angsuran_id`, `memorial_id`, `expedisi_id`, `muatan_id`, `inputx`) VALUES
 	(1, 'JEX', '2014-12-31', 'Debet', 'AL2-1112', 'PD1-412', 'Piutang Usaha', 'Pendapatan Jasa', 80000.00, 0.00, '', '0', '', 0, '', 'GGE2014120001', '12', 1, '0', '0', 0, '0', 0, 0, 1, 0, '2015-01-01 02:10:43'),
@@ -768,8 +751,7 @@ INSERT INTO `jurnal_srb` (`id`, `tipe_jurnal`, `tanggal`, `jenis`, `kd`, `kk`, `
 	(22, 'JEX', '2015-01-06', 'Debet', 'AL1-1111', 'PD1-412', 'Kas', 'Pendapatan Jasa', 105000.00, 0.00, '', '0', '', 0, '', 'GGE2015010007', '01', 1, '0', '0', 0, '0', 0, 0, 5, 0, '2015-01-24 14:30:00');
 /*!40000 ALTER TABLE `jurnal_srb` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.konsumen
+-- Dumping structure for table simancil.konsumen
 DROP TABLE IF EXISTS `konsumen`;
 CREATE TABLE IF NOT EXISTS `konsumen` (
   `kode` varchar(20) NOT NULL DEFAULT '',
@@ -781,11 +763,11 @@ CREATE TABLE IF NOT EXISTS `konsumen` (
   `divisi` varchar(2) NOT NULL,
   `plafon` int(11) NOT NULL,
   `umur` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `status` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`kode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table sima_expedisi.konsumen: 50 rows
+-- Dumping data for table simancil.konsumen: 50 rows
 /*!40000 ALTER TABLE `konsumen` DISABLE KEYS */;
 INSERT INTO `konsumen` (`kode`, `nama`, `alamat`, `kota`, `telp`, `norek`, `divisi`, `plafon`, `umur`, `status`) VALUES
 	('1030', 'HINDARTO CAHYADI', 'JL. ANDALAS 46', 'MAKASSAR', '', '', '01', 0, 0, 1),
@@ -840,8 +822,7 @@ INSERT INTO `konsumen` (`kode`, `nama`, `alamat`, `kota`, `telp`, `norek`, `divi
 	('556', 'KIOS LOMPOBATTANG', 'JL. G. LOMPOBATTANG', 'MAKASSAR', '', '', '01', 0, 0, 1);
 /*!40000 ALTER TABLE `konsumen` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kop_pinjaman
+-- Dumping structure for table simancil.kop_pinjaman
 DROP TABLE IF EXISTS `kop_pinjaman`;
 CREATE TABLE IF NOT EXISTS `kop_pinjaman` (
   `idp` int(11) NOT NULL AUTO_INCREMENT,
@@ -864,12 +845,11 @@ CREATE TABLE IF NOT EXISTS `kop_pinjaman` (
   PRIMARY KEY (`idp`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kop_pinjaman: 0 rows
+-- Dumping data for table simancil.kop_pinjaman: 0 rows
 /*!40000 ALTER TABLE `kop_pinjaman` DISABLE KEYS */;
 /*!40000 ALTER TABLE `kop_pinjaman` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kop_pinjaman_detail
+-- Dumping structure for table simancil.kop_pinjaman_detail
 DROP TABLE IF EXISTS `kop_pinjaman_detail`;
 CREATE TABLE IF NOT EXISTS `kop_pinjaman_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -884,12 +864,11 @@ CREATE TABLE IF NOT EXISTS `kop_pinjaman_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kop_pinjaman_detail: 0 rows
+-- Dumping data for table simancil.kop_pinjaman_detail: 0 rows
 /*!40000 ALTER TABLE `kop_pinjaman_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `kop_pinjaman_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kop_simpanan
+-- Dumping structure for table simancil.kop_simpanan
 DROP TABLE IF EXISTS `kop_simpanan`;
 CREATE TABLE IF NOT EXISTS `kop_simpanan` (
   `ids` int(11) NOT NULL AUTO_INCREMENT,
@@ -899,7 +878,7 @@ CREATE TABLE IF NOT EXISTS `kop_simpanan` (
   PRIMARY KEY (`ids`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kop_simpanan: 3 rows
+-- Dumping data for table simancil.kop_simpanan: 3 rows
 /*!40000 ALTER TABLE `kop_simpanan` DISABLE KEYS */;
 INSERT INTO `kop_simpanan` (`ids`, `nama`, `jumlah`, `status`) VALUES
 	(1, 'Simpanan Wajib Karyawan Bulanan', 25000, 1),
@@ -907,8 +886,7 @@ INSERT INTO `kop_simpanan` (`ids`, `nama`, `jumlah`, `status`) VALUES
 	(3, 'Simpanan Swakelola', 50000, 1);
 /*!40000 ALTER TABLE `kop_simpanan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kop_simpanan_detail
+-- Dumping structure for table simancil.kop_simpanan_detail
 DROP TABLE IF EXISTS `kop_simpanan_detail`;
 CREATE TABLE IF NOT EXISTS `kop_simpanan_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -922,12 +900,11 @@ CREATE TABLE IF NOT EXISTS `kop_simpanan_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.kop_simpanan_detail: 0 rows
+-- Dumping data for table simancil.kop_simpanan_detail: 0 rows
 /*!40000 ALTER TABLE `kop_simpanan_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `kop_simpanan_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kpr_bni
+-- Dumping structure for table simancil.kpr_bni
 DROP TABLE IF EXISTS `kpr_bni`;
 CREATE TABLE IF NOT EXISTS `kpr_bni` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -935,11 +912,11 @@ CREATE TABLE IF NOT EXISTS `kpr_bni` (
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `blok` varchar(50) NOT NULL DEFAULT '0',
   `tipe` varchar(50) NOT NULL DEFAULT '0',
-  `kpr` int(11) NOT NULL DEFAULT '0',
+  `kpr` int(11) NOT NULL DEFAULT 0,
   `tanggal_t1` date NOT NULL,
   `tanggal_t2` date NOT NULL,
   `cair_t2` int(11) NOT NULL,
-  `cair_t1` int(11) NOT NULL DEFAULT '0',
+  `cair_t1` int(11) NOT NULL DEFAULT 0,
   `tanggal_t3` date NOT NULL,
   `cair_t3` int(11) NOT NULL,
   `totalcair` int(11) NOT NULL,
@@ -949,15 +926,14 @@ CREATE TABLE IF NOT EXISTS `kpr_bni` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kpr_bni: 2 rows
+-- Dumping data for table simancil.kpr_bni: 2 rows
 /*!40000 ALTER TABLE `kpr_bni` DISABLE KEYS */;
 INSERT INTO `kpr_bni` (`id`, `kode`, `nama`, `blok`, `tipe`, `kpr`, `tanggal_t1`, `tanggal_t2`, `cair_t2`, `cair_t1`, `tanggal_t3`, `cair_t3`, `totalcair`, `terhold`, `terhold5`, `tanggal_akad`) VALUES
 	(2, '9021', 'H. SULAEMAN - 9021 ', '1', '11', 20000000, '2013-12-12', '2013-11-11', 0, 90000, '0000-00-00', 0, 3000000, 7000, 0, '2013-12-12'),
 	(4, '1030', 'HINDARTO CAHYADI - 1030 ', '', '', 0, '0000-00-00', '0000-00-00', 2300000, 0, '0000-00-00', 1000000, 0, 0, 10000, '0000-00-00');
 /*!40000 ALTER TABLE `kpr_bni` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kpr_bnisy
+-- Dumping structure for table simancil.kpr_bnisy
 DROP TABLE IF EXISTS `kpr_bnisy`;
 CREATE TABLE IF NOT EXISTS `kpr_bnisy` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -965,11 +941,11 @@ CREATE TABLE IF NOT EXISTS `kpr_bnisy` (
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `blok` varchar(50) NOT NULL DEFAULT '0',
   `tipe` varchar(50) NOT NULL DEFAULT '0',
-  `kpr` int(11) NOT NULL DEFAULT '0',
+  `kpr` int(11) NOT NULL DEFAULT 0,
   `tanggal_t1` date NOT NULL,
   `tanggal_t2` date NOT NULL,
   `cair_t2` int(11) NOT NULL,
-  `cair_t1` int(11) NOT NULL DEFAULT '0',
+  `cair_t1` int(11) NOT NULL DEFAULT 0,
   `tanggal_t3` date NOT NULL,
   `cair_t3` int(11) NOT NULL,
   `totalcair` int(11) NOT NULL,
@@ -979,15 +955,14 @@ CREATE TABLE IF NOT EXISTS `kpr_bnisy` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kpr_bnisy: 2 rows
+-- Dumping data for table simancil.kpr_bnisy: 2 rows
 /*!40000 ALTER TABLE `kpr_bnisy` DISABLE KEYS */;
 INSERT INTO `kpr_bnisy` (`id`, `kode`, `nama`, `blok`, `tipe`, `kpr`, `tanggal_t1`, `tanggal_t2`, `cair_t2`, `cair_t1`, `tanggal_t3`, `cair_t3`, `totalcair`, `terhold`, `terhold5`, `tanggal_akad`) VALUES
 	(2, '9021', 'H. SULAEMAN - 9021 ', '1', '11', 20000000, '2013-12-12', '2013-11-11', 0, 90000, '0000-00-00', 0, 3000000, 7000, 0, '2013-12-12'),
 	(4, '1030', 'HINDARTO CAHYADI - 1030 ', '', '', 15000000, '0000-00-00', '0000-00-00', 2300000, 0, '0000-00-00', 1000000, 0, 0, 10000, '0000-00-00');
 /*!40000 ALTER TABLE `kpr_bnisy` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kpr_bri
+-- Dumping structure for table simancil.kpr_bri
 DROP TABLE IF EXISTS `kpr_bri`;
 CREATE TABLE IF NOT EXISTS `kpr_bri` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -995,9 +970,9 @@ CREATE TABLE IF NOT EXISTS `kpr_bri` (
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `blok` varchar(50) NOT NULL DEFAULT '0',
   `tipe` varchar(50) NOT NULL DEFAULT '0',
-  `kpr` int(11) NOT NULL DEFAULT '0',
+  `kpr` int(11) NOT NULL DEFAULT 0,
   `tanggal75` date NOT NULL,
-  `cair75` int(11) NOT NULL DEFAULT '0',
+  `cair75` int(11) NOT NULL DEFAULT 0,
   `tanggal60` date NOT NULL,
   `cair60` int(11) NOT NULL,
   `tanggal40` date NOT NULL,
@@ -1015,15 +990,14 @@ CREATE TABLE IF NOT EXISTS `kpr_bri` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kpr_bri: 2 rows
+-- Dumping data for table simancil.kpr_bri: 2 rows
 /*!40000 ALTER TABLE `kpr_bri` DISABLE KEYS */;
 INSERT INTO `kpr_bri` (`id`, `kode`, `nama`, `blok`, `tipe`, `kpr`, `tanggal75`, `cair75`, `tanggal60`, `cair60`, `tanggal40`, `cair40`, `tanggal20`, `cair20`, `tanggal15`, `cair15`, `totalcair`, `jumlah_terhold_1`, `persen_terhold_1`, `jumlah_terhold_2`, `persen_terhold_2`, `tanggal_akad`) VALUES
 	(2, '9021', 'H. SULAEMAN - 9021 ', '1', '11', 20000000, '2013-12-12', 90000, '2013-11-11', 0, '0000-00-00', 0, '0000-00-00', 0, '0000-00-00', 0, 3000000, 0, 0, 0, 0, '0000-00-00'),
 	(3, '1030', 'HINDARTO CAHYADI - 1030 ', '', '', 15000000, '2013-09-09', 4000000, '0000-00-00', 0, '0000-00-00', 5000000, '0000-00-00', 0, '0000-00-00', 0, 0, 6000000, 0, 2000000, 0, '0000-00-00');
 /*!40000 ALTER TABLE `kpr_bri` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kpr_btnsy
+-- Dumping structure for table simancil.kpr_btnsy
 DROP TABLE IF EXISTS `kpr_btnsy`;
 CREATE TABLE IF NOT EXISTS `kpr_btnsy` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -1031,11 +1005,11 @@ CREATE TABLE IF NOT EXISTS `kpr_btnsy` (
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `blok` varchar(50) NOT NULL DEFAULT '0',
   `tipe` varchar(50) NOT NULL DEFAULT '0',
-  `kpr` int(11) NOT NULL DEFAULT '0',
+  `kpr` int(11) NOT NULL DEFAULT 0,
   `tanggal_t1` date NOT NULL,
   `tanggal_t2` date NOT NULL,
   `cair_t2` int(11) NOT NULL,
-  `cair_t1` int(11) NOT NULL DEFAULT '0',
+  `cair_t1` int(11) NOT NULL DEFAULT 0,
   `tanggal_t3` date NOT NULL,
   `cair_t3` int(11) NOT NULL,
   `totalcair` int(11) NOT NULL,
@@ -1045,15 +1019,14 @@ CREATE TABLE IF NOT EXISTS `kpr_btnsy` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kpr_btnsy: 2 rows
+-- Dumping data for table simancil.kpr_btnsy: 2 rows
 /*!40000 ALTER TABLE `kpr_btnsy` DISABLE KEYS */;
 INSERT INTO `kpr_btnsy` (`id`, `kode`, `nama`, `blok`, `tipe`, `kpr`, `tanggal_t1`, `tanggal_t2`, `cair_t2`, `cair_t1`, `tanggal_t3`, `cair_t3`, `totalcair`, `persen5`, `total`, `tanggal_akad`) VALUES
 	(2, '9021', 'H. SULAEMAN - 9021 ', '1', '11', 20000000, '2013-12-12', '2013-11-11', 0, 90000, '0000-00-00', 0, 3000000, 0, 0, '2013-12-12'),
 	(4, '1030', 'HINDARTO CAHYADI - 1030 ', '', '', 0, '0000-00-00', '0000-00-00', 2300000, 0, '0000-00-00', 1000000, 0, 0, 0, '0000-00-00');
 /*!40000 ALTER TABLE `kpr_btnsy` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kpr_mandiri
+-- Dumping structure for table simancil.kpr_mandiri
 DROP TABLE IF EXISTS `kpr_mandiri`;
 CREATE TABLE IF NOT EXISTS `kpr_mandiri` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -1061,11 +1034,11 @@ CREATE TABLE IF NOT EXISTS `kpr_mandiri` (
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `blok` varchar(50) NOT NULL DEFAULT '0',
   `tipe` varchar(50) NOT NULL DEFAULT '0',
-  `kpr` int(11) NOT NULL DEFAULT '0',
+  `kpr` int(11) NOT NULL DEFAULT 0,
   `tanggal_t1` date NOT NULL,
   `tanggal_t2` date NOT NULL,
   `cair_t2` int(11) NOT NULL,
-  `cair_t1` int(11) NOT NULL DEFAULT '0',
+  `cair_t1` int(11) NOT NULL DEFAULT 0,
   `tanggal_t3` date NOT NULL,
   `cair_t3` int(11) NOT NULL,
   `tanggal_t4` date NOT NULL,
@@ -1077,15 +1050,14 @@ CREATE TABLE IF NOT EXISTS `kpr_mandiri` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kpr_mandiri: 2 rows
+-- Dumping data for table simancil.kpr_mandiri: 2 rows
 /*!40000 ALTER TABLE `kpr_mandiri` DISABLE KEYS */;
 INSERT INTO `kpr_mandiri` (`id`, `kode`, `nama`, `blok`, `tipe`, `kpr`, `tanggal_t1`, `tanggal_t2`, `cair_t2`, `cair_t1`, `tanggal_t3`, `cair_t3`, `tanggal_t4`, `cair_t4`, `totalcair`, `persen10`, `sisa`, `tanggal_akad`) VALUES
 	(2, '9021', 'H. SULAEMAN - 9021 ', '1', '11', 20000000, '2013-12-12', '2013-11-11', 0, 90000, '0000-00-00', 0, '0000-00-00', 0, 3000000, 0, 0, '2013-12-12'),
 	(5, '1030', 'HINDARTO CAHYADI - 1030 ', '', '', 0, '2013-12-20', '0000-00-00', 0, 1000000, '0000-00-00', 0, '2012-12-12', 1000000, 0, 0, 0, '2013-12-12');
 /*!40000 ALTER TABLE `kpr_mandiri` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.kpr_mandirisy
+-- Dumping structure for table simancil.kpr_mandirisy
 DROP TABLE IF EXISTS `kpr_mandirisy`;
 CREATE TABLE IF NOT EXISTS `kpr_mandirisy` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -1093,9 +1065,9 @@ CREATE TABLE IF NOT EXISTS `kpr_mandirisy` (
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `blok` varchar(50) NOT NULL DEFAULT '0',
   `tipe` varchar(50) NOT NULL DEFAULT '0',
-  `kpr` int(11) NOT NULL DEFAULT '0',
+  `kpr` int(11) NOT NULL DEFAULT 0,
   `tanggal70` date NOT NULL,
-  `cair70` int(11) NOT NULL DEFAULT '0',
+  `cair70` int(11) NOT NULL DEFAULT 0,
   `tanggal20` date NOT NULL,
   `cair20` int(11) NOT NULL,
   `tanggal10` date NOT NULL,
@@ -1107,47 +1079,44 @@ CREATE TABLE IF NOT EXISTS `kpr_mandirisy` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.kpr_mandirisy: 2 rows
+-- Dumping data for table simancil.kpr_mandirisy: 2 rows
 /*!40000 ALTER TABLE `kpr_mandirisy` DISABLE KEYS */;
 INSERT INTO `kpr_mandirisy` (`id`, `kode`, `nama`, `blok`, `tipe`, `kpr`, `tanggal70`, `cair70`, `tanggal20`, `cair20`, `tanggal10`, `cair10`, `totalcair`, `sisa`, `terhold10`, `tanggal_akad`) VALUES
 	(2, '9021', 'H. SULAEMAN - 9021 ', '1', '11', 20000000, '2013-12-12', 90000, '2013-11-11', 0, '0000-00-00', 0, 3000000, 0, 0, '0000-00-00'),
 	(3, '1030', 'HINDARTO CAHYADI - 1030 ', '', '', 15000000, '2013-09-09', 4000000, '0000-00-00', 0, '0000-00-00', 5000000, 0, 6000000, 9000, '2013-12-12');
 /*!40000 ALTER TABLE `kpr_mandirisy` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.laporanid
+-- Dumping structure for table simancil.laporanid
 DROP TABLE IF EXISTS `laporanid`;
 CREATE TABLE IF NOT EXISTS `laporanid` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `nama` varchar(200) COLLATE latin1_general_ci NOT NULL,
   `alamat` varchar(300) COLLATE latin1_general_ci NOT NULL,
   `telpon` varchar(30) COLLATE latin1_general_ci NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `status` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.laporanid: 1 rows
+-- Dumping data for table simancil.laporanid: 1 rows
 /*!40000 ALTER TABLE `laporanid` DISABLE KEYS */;
 INSERT INTO `laporanid` (`id`, `nama`, `alamat`, `telpon`, `status`) VALUES
-	(1, 'GOGOEXPRESS', 'Jl. Antang Raya No. 78B Kediri', '081 343 773 078', 1);
+	(1, '', 'Jl. Antang Raya No. 78B Kediri', '081 343 773 078', 1);
 /*!40000 ALTER TABLE `laporanid` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.logo
+-- Dumping structure for table simancil.logo
 DROP TABLE IF EXISTS `logo`;
 CREATE TABLE IF NOT EXISTS `logo` (
   `foto` varchar(50) NOT NULL,
   PRIMARY KEY (`foto`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.logo: 1 rows
+-- Dumping data for table simancil.logo: 1 rows
 /*!40000 ALTER TABLE `logo` DISABLE KEYS */;
 INSERT INTO `logo` (`foto`) VALUES
 	('logo.png');
 /*!40000 ALTER TABLE `logo` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.master_dept
+-- Dumping structure for table simancil.master_dept
 DROP TABLE IF EXISTS `master_dept`;
 CREATE TABLE IF NOT EXISTS `master_dept` (
   `iddep` int(11) NOT NULL AUTO_INCREMENT,
@@ -1156,7 +1125,7 @@ CREATE TABLE IF NOT EXISTS `master_dept` (
   PRIMARY KEY (`iddep`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.master_dept: 9 rows
+-- Dumping data for table simancil.master_dept: 9 rows
 /*!40000 ALTER TABLE `master_dept` DISABLE KEYS */;
 INSERT INTO `master_dept` (`iddep`, `namadept`, `status`) VALUES
 	(1, 'Marketing', 1),
@@ -1170,8 +1139,7 @@ INSERT INTO `master_dept` (`iddep`, `namadept`, `status`) VALUES
 	(14, 'TEST', 0);
 /*!40000 ALTER TABLE `master_dept` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.mastjabatan
+-- Dumping structure for table simancil.mastjabatan
 DROP TABLE IF EXISTS `mastjabatan`;
 CREATE TABLE IF NOT EXISTS `mastjabatan` (
   `idjab` int(11) NOT NULL AUTO_INCREMENT,
@@ -1180,7 +1148,7 @@ CREATE TABLE IF NOT EXISTS `mastjabatan` (
   PRIMARY KEY (`idjab`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.mastjabatan: 20 rows
+-- Dumping data for table simancil.mastjabatan: 20 rows
 /*!40000 ALTER TABLE `mastjabatan` DISABLE KEYS */;
 INSERT INTO `mastjabatan` (`idjab`, `namajab`, `status`) VALUES
 	(1, 'Presiden', 1),
@@ -1205,8 +1173,7 @@ INSERT INTO `mastjabatan` (`idjab`, `namajab`, `status`) VALUES
 	(20, 'rr tukang', 0);
 /*!40000 ALTER TABLE `mastjabatan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.mastpegawai
+-- Dumping structure for table simancil.mastpegawai
 DROP TABLE IF EXISTS `mastpegawai`;
 CREATE TABLE IF NOT EXISTS `mastpegawai` (
   `idno` int(11) NOT NULL AUTO_INCREMENT,
@@ -1230,16 +1197,15 @@ CREATE TABLE IF NOT EXISTS `mastpegawai` (
   UNIQUE KEY `noinduk` (`noinduk`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.mastpegawai: 3 rows
+-- Dumping data for table simancil.mastpegawai: 3 rows
 /*!40000 ALTER TABLE `mastpegawai` DISABLE KEYS */;
 INSERT INTO `mastpegawai` (`idno`, `noinduk`, `nama`, `alamat`, `jkel`, `notelp`, `tgllahir`, `jabatan`, `departemen`, `mulkerja`, `ri_pendidikan`, `ri_pekerjaan`, `ri_keluarga`, `gaji_tipe`, `foto`, `finger`, `status`) VALUES
 	(1, 'ABG21', 'Atikah Nasyla Putri', 'Pengayoman', 'P', '', '2010-01-16', 0, 11, '0000-00-00', '                            ', '                            ', '                            ', '', '04.jpg', '', 1),
 	(2, 'ABG22', 'Aisyah Zahira Putri', '    ', 'P', '', '0000-00-00', 13, 2, '0000-00-00', '    ', '    ', '    ', '', '06.jpg', '', 1),
-	(3, 'ORT10', 'Nanang Rustianto', 'Mawar D16 Makassar', 'L', '', '0000-00-00', 1, 0, '0000-00-00', '    ', '    ', '    ', '', 'nophoto.jpg', '', 1);
+	(3, 'ORT10', 'Nanang Rustianto', 'Mawar D16 Makassar', 'L', '', '0000-00-00', 1, 0, '0000-00-00', '    ', '    ', '    ', '', 'canvas.png', '', 1);
 /*!40000 ALTER TABLE `mastpegawai` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.meja
+-- Dumping structure for table simancil.meja
 DROP TABLE IF EXISTS `meja`;
 CREATE TABLE IF NOT EXISTS `meja` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -1247,7 +1213,7 @@ CREATE TABLE IF NOT EXISTS `meja` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.meja: 3 rows
+-- Dumping data for table simancil.meja: 3 rows
 /*!40000 ALTER TABLE `meja` DISABLE KEYS */;
 INSERT INTO `meja` (`id`, `nama`) VALUES
 	(1, 'MEJA 01'),
@@ -1255,27 +1221,26 @@ INSERT INTO `meja` (`id`, `nama`) VALUES
 	(7, 'MEJA 03');
 /*!40000 ALTER TABLE `meja` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.menu
+-- Dumping structure for table simancil.menu
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL DEFAULT 0,
   `title` varchar(32) NOT NULL,
   `iconcls` varchar(32) NOT NULL,
   `handler` varchar(128) NOT NULL,
-  `status` tinyint(128) NOT NULL DEFAULT '1',
+  `status` tinyint(128) NOT NULL DEFAULT 1,
   `ajax` varchar(128) NOT NULL,
   `report` varchar(128) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '1',
-  `sort_id` int(11) NOT NULL DEFAULT '0',
+  `published` tinyint(1) NOT NULL DEFAULT 1,
+  `sort_id` int(11) NOT NULL DEFAULT 0,
   `module` varchar(50) NOT NULL,
   `divisi` varchar(3) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_menu_modules` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.menu: 64 rows
+-- Dumping data for table simancil.menu: 64 rows
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 INSERT INTO `menu` (`id`, `parent_id`, `title`, `iconcls`, `handler`, `status`, `ajax`, `report`, `published`, `sort_id`, `module`, `divisi`) VALUES
 	(4, 33, 'Sample Grid', 'app-grid', '', 1, '', '', 1, 14, 'samples', '01'),
@@ -1344,19 +1309,18 @@ INSERT INTO `menu` (`id`, `parent_id`, `title`, `iconcls`, `handler`, `status`, 
 	(78, 42, 'Jr. Pengeluaran Kas', 'menu-remove', 'kas_keluar_v.js', 1, '', '', 1, 57, 'accounting', '');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.menu_event
+-- Dumping structure for table simancil.menu_event
 DROP TABLE IF EXISTS `menu_event`;
 CREATE TABLE IF NOT EXISTS `menu_event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(11) NOT NULL,
   `event_name` varchar(128) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `status` int(11) NOT NULL DEFAULT 1,
   `divisi` varchar(3) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.menu_event: 46 rows
+-- Dumping data for table simancil.menu_event: 46 rows
 /*!40000 ALTER TABLE `menu_event` DISABLE KEYS */;
 INSERT INTO `menu_event` (`id`, `menu_id`, `event_name`, `status`, `divisi`) VALUES
 	(1, 1, 'PRINT_DATA', 1, ''),
@@ -1407,8 +1371,7 @@ INSERT INTO `menu_event` (`id`, `menu_id`, `event_name`, `status`, `divisi`) VAL
 	(55, 76, 'ADD_DATA', 1, '');
 /*!40000 ALTER TABLE `menu_event` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.ml_absen
+-- Dumping structure for table simancil.ml_absen
 DROP TABLE IF EXISTS `ml_absen`;
 CREATE TABLE IF NOT EXISTS `ml_absen` (
   `IDAbsen` int(11) NOT NULL AUTO_INCREMENT,
@@ -1420,9 +1383,9 @@ CREATE TABLE IF NOT EXISTS `ml_absen` (
   `os` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `ip` varchar(50) COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`IDAbsen`)
-) ENGINE=MyISAM AUTO_INCREMENT=195 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=197 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.ml_absen: 194 rows
+-- Dumping data for table simancil.ml_absen: 196 rows
 /*!40000 ALTER TABLE `ml_absen` DISABLE KEYS */;
 INSERT INTO `ml_absen` (`IDAbsen`, `IDUser`, `waktu_datang`, `waktu_pulang`, `browser`, `version`, `os`, `ip`) VALUES
 	(1, 1, '2012-02-05 12:51:42', '0000-00-00 00:00:00', 'Mozilla', '9.0.1', 'windows', '::1'),
@@ -1618,27 +1581,28 @@ INSERT INTO `ml_absen` (`IDAbsen`, `IDUser`, `waktu_datang`, `waktu_pulang`, `br
 	(191, 5, '2015-01-05 01:30:01', '2015-01-05 01:54:05', 'chrome', '537.36', 'windows', '::1'),
 	(192, 1, '2015-01-06 04:10:44', '0000-00-00 00:00:00', 'mozilla', '34.0', 'windows', '::1'),
 	(193, 1, '2015-01-24 10:37:07', '2015-01-24 15:16:35', 'mozilla', '35.0', 'windows', '::1'),
-	(194, 1, '2015-01-26 12:42:07', '0000-00-00 00:00:00', 'mozilla', '35.0', 'windows', '::1');
+	(194, 1, '2015-01-26 12:42:07', '0000-00-00 00:00:00', 'mozilla', '35.0', 'windows', '::1'),
+	(195, 1, '2021-08-14 19:40:32', '2021-08-14 21:21:19', 'mozilla', '91.0', 'windows', '127.0.0.1'),
+	(196, 5, '2021-08-14 20:02:27', '0000-00-00 00:00:00', 'chrome', '537.36', 'windows', '::1');
 /*!40000 ALTER TABLE `ml_absen` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.ml_user
+-- Dumping structure for table simancil.ml_user
 DROP TABLE IF EXISTS `ml_user`;
 CREATE TABLE IF NOT EXISTS `ml_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
-  `pass2` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `pass2` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `kelasuser` varchar(50) NOT NULL,
   `nama` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `aktif` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT 0,
+  `aktif` int(11) NOT NULL DEFAULT 0,
   `tipe` varchar(4) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user` (`user`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.ml_user: 5 rows
+-- Dumping data for table simancil.ml_user: 5 rows
 /*!40000 ALTER TABLE `ml_user` DISABLE KEYS */;
 INSERT INTO `ml_user` (`id`, `user`, `pass`, `pass2`, `kelasuser`, `nama`, `status`, `aktif`, `tipe`) VALUES
 	(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2014-12-24 04:21:16', 'Super Admin', 'Administrator', 1, 1, '01'),
@@ -1648,22 +1612,21 @@ INSERT INTO `ml_user` (`id`, `user`, `pass`, `pass2`, `kelasuser`, `nama`, `stat
 	(5, 'fo', 'eed807024939b808083f0031a56e9872', '0000-00-00 00:00:00', 'Admin', 'Front Office', 1, 1, '01');
 /*!40000 ALTER TABLE `ml_user` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.modules
+-- Dumping structure for table simancil.modules
 DROP TABLE IF EXISTS `modules`;
 CREATE TABLE IF NOT EXISTS `modules` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `module` varchar(50) NOT NULL DEFAULT '0',
   `host` varchar(200) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `aktif` tinyint(4) NOT NULL DEFAULT '1',
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `aktif` tinyint(4) NOT NULL DEFAULT 1,
   `databasee` varchar(50) NOT NULL DEFAULT '',
   `divisi` varchar(3) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.modules: 6 rows
+-- Dumping data for table simancil.modules: 6 rows
 /*!40000 ALTER TABLE `modules` DISABLE KEYS */;
 INSERT INTO `modules` (`id`, `module`, `host`, `status`, `aktif`, `databasee`, `divisi`) VALUES
 	(1, 'accounting', 'http://localhost/GLNAS/modules/accounting/gli/', 1, 1, '', '01'),
@@ -1674,8 +1637,7 @@ INSERT INTO `modules` (`id`, `module`, `host`, `status`, `aktif`, `databasee`, `
 	(10, 'manajemen-proyek', 'http://localhost/NAS-Software/modules/manajemen-proyek/pm/', 1, 0, '', '01');
 /*!40000 ALTER TABLE `modules` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.muatan
+-- Dumping structure for table simancil.muatan
 DROP TABLE IF EXISTS `muatan`;
 CREATE TABLE IF NOT EXISTS `muatan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1689,7 +1651,7 @@ CREATE TABLE IF NOT EXISTS `muatan` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.muatan: 5 rows
+-- Dumping data for table simancil.muatan: 5 rows
 /*!40000 ALTER TABLE `muatan` DISABLE KEYS */;
 INSERT INTO `muatan` (`id`, `notamuatan`, `angkutan_id`, `nopol`, `sopir`, `pa`, `tanggal`, `tujuan`) VALUES
 	(10, '14', 2, 'B 123 KU', 'Tungadi', 'E1', '2015-01-02', 'Jawa Timur'),
@@ -1699,18 +1661,17 @@ INSERT INTO `muatan` (`id`, `notamuatan`, `angkutan_id`, `nopol`, `sopir`, `pa`,
 	(14, '14', 2, 'B 123 KU', 'Tungadi', 'E1', '2015-01-02', 'Jawa Timur');
 /*!40000 ALTER TABLE `muatan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.muatan_detail
+-- Dumping structure for table simancil.muatan_detail
 DROP TABLE IF EXISTS `muatan_detail`;
 CREATE TABLE IF NOT EXISTS `muatan_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `muatan_id` int(11) NOT NULL DEFAULT '0',
+  `muatan_id` int(11) NOT NULL DEFAULT 0,
   `notamuatan` varchar(50) NOT NULL DEFAULT '0',
   `resi` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.muatan_detail: 3 rows
+-- Dumping data for table simancil.muatan_detail: 3 rows
 /*!40000 ALTER TABLE `muatan_detail` DISABLE KEYS */;
 INSERT INTO `muatan_detail` (`id`, `muatan_id`, `notamuatan`, `resi`) VALUES
 	(11, 11, '8', 'GGE2014120002'),
@@ -1718,8 +1679,7 @@ INSERT INTO `muatan_detail` (`id`, `muatan_id`, `notamuatan`, `resi`) VALUES
 	(12, 12, '14', 'GGE2014120001');
 /*!40000 ALTER TABLE `muatan_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.mutasi
+-- Dumping structure for table simancil.mutasi
 DROP TABLE IF EXISTS `mutasi`;
 CREATE TABLE IF NOT EXISTS `mutasi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1751,13 +1711,13 @@ CREATE TABLE IF NOT EXISTS `mutasi` (
   `status` int(11) NOT NULL,
   `meja_id` tinyint(4) NOT NULL,
   `shift_id` int(11) NOT NULL,
-  `upload` tinyint(4) NOT NULL DEFAULT '0',
+  `upload` tinyint(4) NOT NULL DEFAULT 0,
   `dpx` int(11) NOT NULL,
   `po_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.mutasi: 3 rows
+-- Dumping data for table simancil.mutasi: 3 rows
 /*!40000 ALTER TABLE `mutasi` DISABLE KEYS */;
 INSERT INTO `mutasi` (`id`, `model`, `tgl`, `nota`, `nobukti`, `kode`, `sub`, `nomor`, `nama`, `alamat`, `kota`, `tlp`, `kodebrg`, `namabrg`, `qtyin`, `qtyout`, `satuan`, `disc`, `disc2`, `disc3`, `discrp`, `harga`, `modal`, `debet`, `kredit`, `user_id`, `status`, `meja_id`, `shift_id`, `upload`, `dpx`, `po_id`) VALUES
 	(1, 'KRE', '2015-01-03', '201501001', '', 1030, '01', 201501001, 'HINDARTO CAHYADI', 'JL. ANDALAS 46', 'MAKASSAR', '', '8999909096004', 'Sampoerna mild 16s', 0.00, 10.00, 'Lusin', 0.00, 0.00, 0.00, 0.00, 12100.00, 0.00, 0.00, 121000.00, 1, 1, 0, 0, 0, 0, 0),
@@ -1765,18 +1725,17 @@ INSERT INTO `mutasi` (`id`, `model`, `tgl`, `nota`, `nobukti`, `kode`, `sub`, `n
 	(3, 'INV', '2015-01-03', '', '', 0, '', 1, '', '', '', '', '0089686011036', 'IDM goreng pedas 79gr', 0.00, 1.00, '', 0.00, 0.00, 0.00, 0.00, 1500.00, 1190.00, 0.00, 0.00, 1, 1, 0, 4, 0, 0, 0);
 /*!40000 ALTER TABLE `mutasi` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.nomorbukti
+-- Dumping structure for table simancil.nomorbukti
 DROP TABLE IF EXISTS `nomorbukti`;
 CREATE TABLE IF NOT EXISTS `nomorbukti` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nomorbukti` varchar(100) DEFAULT '0',
-  `waktu` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `waktu` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `nomorbukti` (`nomorbukti`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.nomorbukti: 5 rows
+-- Dumping data for table simancil.nomorbukti: 5 rows
 /*!40000 ALTER TABLE `nomorbukti` DISABLE KEYS */;
 INSERT INTO `nomorbukti` (`id`, `nomorbukti`, `waktu`) VALUES
 	(1, 'GGE2015010001', '2015-01-03 22:55:03'),
@@ -1786,33 +1745,31 @@ INSERT INTO `nomorbukti` (`id`, `nomorbukti`, `waktu`) VALUES
 	(5, 'GGE2015010007', '2015-01-06 11:30:50');
 /*!40000 ALTER TABLE `nomorbukti` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.nourut_nota
+-- Dumping structure for table simancil.nourut_nota
 DROP TABLE IF EXISTS `nourut_nota`;
 CREATE TABLE IF NOT EXISTS `nourut_nota` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `waktu` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `waktu` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.nourut_nota: 1 rows
+-- Dumping data for table simancil.nourut_nota: 1 rows
 /*!40000 ALTER TABLE `nourut_nota` DISABLE KEYS */;
 INSERT INTO `nourut_nota` (`id`, `waktu`) VALUES
 	(1, '2015-01-04 01:54:52');
 /*!40000 ALTER TABLE `nourut_nota` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.no_urut
+-- Dumping structure for table simancil.no_urut
 DROP TABLE IF EXISTS `no_urut`;
 CREATE TABLE IF NOT EXISTS `no_urut` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `waktu` timestamp NOT NULL DEFAULT current_timestamp(),
   `tahun` int(11) NOT NULL,
   `bulan` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.no_urut: 7 rows
+-- Dumping data for table simancil.no_urut: 7 rows
 /*!40000 ALTER TABLE `no_urut` DISABLE KEYS */;
 INSERT INTO `no_urut` (`id`, `waktu`, `tahun`, `bulan`) VALUES
 	(1, '2015-01-03 22:54:44', 0, ''),
@@ -1824,8 +1781,7 @@ INSERT INTO `no_urut` (`id`, `waktu`, `tahun`, `bulan`) VALUES
 	(7, '2015-01-06 11:29:56', 0, '');
 /*!40000 ALTER TABLE `no_urut` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.opname
+-- Dumping structure for table simancil.opname
 DROP TABLE IF EXISTS `opname`;
 CREATE TABLE IF NOT EXISTS `opname` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -1834,63 +1790,59 @@ CREATE TABLE IF NOT EXISTS `opname` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.opname: 0 rows
+-- Dumping data for table simancil.opname: 0 rows
 /*!40000 ALTER TABLE `opname` DISABLE KEYS */;
 /*!40000 ALTER TABLE `opname` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.opname_detail
+-- Dumping structure for table simancil.opname_detail
 DROP TABLE IF EXISTS `opname_detail`;
 CREATE TABLE IF NOT EXISTS `opname_detail` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `opname_id` int(10) NOT NULL DEFAULT '0',
-  `parent_id` int(10) NOT NULL DEFAULT '0',
+  `opname_id` int(10) NOT NULL DEFAULT 0,
+  `parent_id` int(10) NOT NULL DEFAULT 0,
   `keterangan` varchar(200) NOT NULL DEFAULT '0',
-  `harikerja` int(10) NOT NULL DEFAULT '0',
-  `upah` int(10) NOT NULL DEFAULT '0',
+  `harikerja` int(10) NOT NULL DEFAULT 0,
+  `upah` int(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.opname_detail: 0 rows
+-- Dumping data for table simancil.opname_detail: 0 rows
 /*!40000 ALTER TABLE `opname_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `opname_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.orders
+-- Dumping structure for table simancil.orders
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `buyer_id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `price` float NOT NULL DEFAULT '0',
-  `count` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(4) DEFAULT '1',
+  `price` float NOT NULL DEFAULT 0,
+  `count` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`,`buyer_id`),
   KEY `buyer_id` (`buyer_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.orders: 2 rows
+-- Dumping data for table simancil.orders: 2 rows
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` (`id`, `buyer_id`, `name`, `price`, `count`, `status`) VALUES
 	(1, 33, 'TES', 1000, 1, 1),
 	(2, 33, 'OK', 29000, 10, 1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.pajak
+-- Dumping structure for table simancil.pajak
 DROP TABLE IF EXISTS `pajak`;
 CREATE TABLE IF NOT EXISTS `pajak` (
   `tahun` int(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.pajak: 1 rows
+-- Dumping data for table simancil.pajak: 1 rows
 /*!40000 ALTER TABLE `pajak` DISABLE KEYS */;
 INSERT INTO `pajak` (`tahun`) VALUES
 	(2010);
 /*!40000 ALTER TABLE `pajak` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.pajak_detail
+-- Dumping structure for table simancil.pajak_detail
 DROP TABLE IF EXISTS `pajak_detail`;
 CREATE TABLE IF NOT EXISTS `pajak_detail` (
   `tahun` int(10) DEFAULT NULL,
@@ -1910,14 +1862,13 @@ CREATE TABLE IF NOT EXISTS `pajak_detail` (
   `pph_terhutang` decimal(15,2) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.pajak_detail: 1 rows
+-- Dumping data for table simancil.pajak_detail: 1 rows
 /*!40000 ALTER TABLE `pajak_detail` DISABLE KEYS */;
 INSERT INTO `pajak_detail` (`tahun`, `lr_sbl_pajak`, `koreksi_fis`, `bb_gajipimpinan`, `bb_sumbangan`, `bb_pajak_penghsl`, `bb_rt_kantor`, `total_koreksi_fis`, `lr_fiskal`, `tkp`, `pdpt_kena_pajak`, `pdpt_kena_pajak_bulat`, `tarif_1`, `tarif_2`, `pph_terhutang`) VALUES
 	(2010, 6151253470.99, 0.00, 5500000.00, 200000.00, 0.00, 0.00, 5700000.00, 3202909727.10, 21120000.00, 3181789727.10, 3181790000.00, 2500000.00, 469768500.00, 472268500.00);
 /*!40000 ALTER TABLE `pajak_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.pelanggan
+-- Dumping structure for table simancil.pelanggan
 DROP TABLE IF EXISTS `pelanggan`;
 CREATE TABLE IF NOT EXISTS `pelanggan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1927,14 +1878,13 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.pelanggan: 1 rows
+-- Dumping data for table simancil.pelanggan: 1 rows
 /*!40000 ALTER TABLE `pelanggan` DISABLE KEYS */;
 INSERT INTO `pelanggan` (`id`, `nama`, `telpon`, `alamat`) VALUES
 	(1, 'Umum', '', '');
 /*!40000 ALTER TABLE `pelanggan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.pemesan
+-- Dumping structure for table simancil.pemesan
 DROP TABLE IF EXISTS `pemesan`;
 CREATE TABLE IF NOT EXISTS `pemesan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1947,12 +1897,11 @@ CREATE TABLE IF NOT EXISTS `pemesan` (
   KEY `shift_id` (`shift_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.pemesan: 0 rows
+-- Dumping data for table simancil.pemesan: 0 rows
 /*!40000 ALTER TABLE `pemesan` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pemesan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.people
+-- Dumping structure for table simancil.people
 DROP TABLE IF EXISTS `people`;
 CREATE TABLE IF NOT EXISTS `people` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1962,30 +1911,28 @@ CREATE TABLE IF NOT EXISTS `people` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.people: 2 rows
+-- Dumping data for table simancil.people: 2 rows
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
 INSERT INTO `people` (`id`, `name`, `birthday`, `height`) VALUES
 	(4, 'nama 1', '2011-04-24', 0),
 	(5, 'nama 2', '1899-11-30', 123456);
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.periode
+-- Dumping structure for table simancil.periode
 DROP TABLE IF EXISTS `periode`;
 CREATE TABLE IF NOT EXISTS `periode` (
   `tahun` int(10) NOT NULL,
-  `aktif` tinyint(4) DEFAULT '0',
+  `aktif` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`tahun`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.periode: 1 rows
+-- Dumping data for table simancil.periode: 1 rows
 /*!40000 ALTER TABLE `periode` DISABLE KEYS */;
 INSERT INTO `periode` (`tahun`, `aktif`) VALUES
 	(2015, 1);
 /*!40000 ALTER TABLE `periode` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.pesanan
+-- Dumping structure for table simancil.pesanan
 DROP TABLE IF EXISTS `pesanan`;
 CREATE TABLE IF NOT EXISTS `pesanan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2001,45 +1948,43 @@ CREATE TABLE IF NOT EXISTS `pesanan` (
   `nogl` varchar(20) NOT NULL,
   `sub` varchar(3) NOT NULL,
   `nomor` int(11) NOT NULL,
-  `angsuran` int(11) NOT NULL DEFAULT '0',
+  `angsuran` int(11) NOT NULL DEFAULT 0,
   `uangmuka` int(11) NOT NULL,
   `bunga` tinyint(4) NOT NULL,
-  `disc` tinyint(4) NOT NULL DEFAULT '0',
+  `disc` tinyint(4) NOT NULL DEFAULT 0,
   `sales` varchar(100) NOT NULL,
   `kode_sales` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.pesanan: 0 rows
+-- Dumping data for table simancil.pesanan: 0 rows
 /*!40000 ALTER TABLE `pesanan` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pesanan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_calendars
+-- Dumping structure for table simancil.phpc_calendars
 DROP TABLE IF EXISTS `phpc_calendars`;
 CREATE TABLE IF NOT EXISTS `phpc_calendars` (
   `cid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `hours_24` tinyint(1) NOT NULL DEFAULT '0',
-  `date_format` tinyint(1) NOT NULL DEFAULT '0',
-  `week_start` tinyint(1) NOT NULL DEFAULT '0',
-  `subject_max` smallint(5) unsigned NOT NULL DEFAULT '50',
-  `events_max` tinyint(4) unsigned NOT NULL DEFAULT '8',
+  `hours_24` tinyint(1) NOT NULL DEFAULT 0,
+  `date_format` tinyint(1) NOT NULL DEFAULT 0,
+  `week_start` tinyint(1) NOT NULL DEFAULT 0,
+  `subject_max` smallint(5) unsigned NOT NULL DEFAULT 50,
+  `events_max` tinyint(4) unsigned NOT NULL DEFAULT 8,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'PHP-Calendar',
-  `anon_permission` tinyint(1) NOT NULL DEFAULT '1',
+  `anon_permission` tinyint(1) NOT NULL DEFAULT 1,
   `timezone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `language` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `theme` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_calendars: 1 rows
+-- Dumping data for table simancil.phpc_calendars: 1 rows
 /*!40000 ALTER TABLE `phpc_calendars` DISABLE KEYS */;
 INSERT INTO `phpc_calendars` (`cid`, `hours_24`, `date_format`, `week_start`, `subject_max`, `events_max`, `title`, `anon_permission`, `timezone`, `language`, `theme`) VALUES
 	(1, 0, 0, 0, 50, 8, 'PHP-Calendar', 1, '', '', '');
 /*!40000 ALTER TABLE `phpc_calendars` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_categories
+-- Dumping structure for table simancil.phpc_categories
 DROP TABLE IF EXISTS `phpc_categories`;
 CREATE TABLE IF NOT EXISTS `phpc_categories` (
   `catid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -2052,34 +1997,32 @@ CREATE TABLE IF NOT EXISTS `phpc_categories` (
   KEY `cid` (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_categories: 0 rows
+-- Dumping data for table simancil.phpc_categories: 0 rows
 /*!40000 ALTER TABLE `phpc_categories` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpc_categories` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_events
+-- Dumping structure for table simancil.phpc_events
 DROP TABLE IF EXISTS `phpc_events`;
 CREATE TABLE IF NOT EXISTS `phpc_events` (
   `eid` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(11) unsigned NOT NULL,
-  `owner` int(11) unsigned NOT NULL DEFAULT '0',
+  `owner` int(11) unsigned NOT NULL DEFAULT 0,
   `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `readonly` tinyint(1) NOT NULL DEFAULT '0',
+  `readonly` tinyint(1) NOT NULL DEFAULT 0,
   `catid` int(11) unsigned DEFAULT NULL,
-  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ctime` timestamp NOT NULL DEFAULT current_timestamp(),
   `mtime` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`eid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_events: 1 rows
+-- Dumping data for table simancil.phpc_events: 1 rows
 /*!40000 ALTER TABLE `phpc_events` DISABLE KEYS */;
 INSERT INTO `phpc_events` (`eid`, `cid`, `owner`, `subject`, `description`, `readonly`, `catid`, `ctime`, `mtime`) VALUES
 	(1, 1, 1, 'Jatuh Tempo PT. EAC INDONESIA', 'Jatuh Tempo PT. EAC INDONESIA', 0, NULL, '2014-01-07 15:02:44', NULL);
 /*!40000 ALTER TABLE `phpc_events` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_groups
+-- Dumping structure for table simancil.phpc_groups
 DROP TABLE IF EXISTS `phpc_groups`;
 CREATE TABLE IF NOT EXISTS `phpc_groups` (
   `gid` int(11) NOT NULL AUTO_INCREMENT,
@@ -2088,29 +2031,27 @@ CREATE TABLE IF NOT EXISTS `phpc_groups` (
   PRIMARY KEY (`gid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_groups: 0 rows
+-- Dumping data for table simancil.phpc_groups: 0 rows
 /*!40000 ALTER TABLE `phpc_groups` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpc_groups` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_logins
+-- Dumping structure for table simancil.phpc_logins
 DROP TABLE IF EXISTS `phpc_logins`;
 CREATE TABLE IF NOT EXISTS `phpc_logins` (
   `uid` int(11) unsigned NOT NULL,
   `series` char(43) COLLATE utf8_unicode_ci NOT NULL,
   `token` char(43) COLLATE utf8_unicode_ci NOT NULL,
-  `atime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atime` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`uid`,`series`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_logins: 1 rows
+-- Dumping data for table simancil.phpc_logins: 1 rows
 /*!40000 ALTER TABLE `phpc_logins` DISABLE KEYS */;
 INSERT INTO `phpc_logins` (`uid`, `series`, `token`, `atime`) VALUES
 	(1, 'gMVPwg1XZNn8vuXLOMl6mrf9012K82aF9JiL9Y9lnFg', 'gMVPwg1XZNn8vuXLOMl6mrf9012K82aF9JiL9Y9lnFg', '2014-01-13 11:47:11');
 /*!40000 ALTER TABLE `phpc_logins` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_occurrences
+-- Dumping structure for table simancil.phpc_occurrences
 DROP TABLE IF EXISTS `phpc_occurrences`;
 CREATE TABLE IF NOT EXISTS `phpc_occurrences` (
   `oid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -2119,12 +2060,12 @@ CREATE TABLE IF NOT EXISTS `phpc_occurrences` (
   `end_date` date DEFAULT NULL,
   `start_ts` timestamp NULL DEFAULT NULL,
   `end_ts` timestamp NULL DEFAULT NULL,
-  `time_type` tinyint(4) NOT NULL DEFAULT '0',
+  `time_type` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`oid`),
   KEY `eid` (`eid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_occurrences: 5 rows
+-- Dumping data for table simancil.phpc_occurrences: 5 rows
 /*!40000 ALTER TABLE `phpc_occurrences` DISABLE KEYS */;
 INSERT INTO `phpc_occurrences` (`oid`, `eid`, `start_date`, `end_date`, `start_ts`, `end_ts`, `time_type`) VALUES
 	(1, 5, '2014-12-08', '2014-12-08', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
@@ -2134,8 +2075,7 @@ INSERT INTO `phpc_occurrences` (`oid`, `eid`, `start_date`, `end_date`, `start_t
 	(5, 1, '2014-12-19', '2014-12-19', NULL, NULL, 1);
 /*!40000 ALTER TABLE `phpc_occurrences` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_permissions
+-- Dumping structure for table simancil.phpc_permissions
 DROP TABLE IF EXISTS `phpc_permissions`;
 CREATE TABLE IF NOT EXISTS `phpc_permissions` (
   `cid` int(11) unsigned NOT NULL,
@@ -2148,19 +2088,18 @@ CREATE TABLE IF NOT EXISTS `phpc_permissions` (
   UNIQUE KEY `cid` (`cid`,`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_permissions: 0 rows
+-- Dumping data for table simancil.phpc_permissions: 0 rows
 /*!40000 ALTER TABLE `phpc_permissions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpc_permissions` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_users
+-- Dumping structure for table simancil.phpc_users
 DROP TABLE IF EXISTS `phpc_users`;
 CREATE TABLE IF NOT EXISTS `phpc_users` (
   `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `admin` tinyint(4) NOT NULL DEFAULT '0',
-  `password_editable` tinyint(1) NOT NULL DEFAULT '1',
+  `admin` tinyint(4) NOT NULL DEFAULT 0,
+  `password_editable` tinyint(1) NOT NULL DEFAULT 1,
   `timezone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `language` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gid` int(11) DEFAULT NULL,
@@ -2168,39 +2107,36 @@ CREATE TABLE IF NOT EXISTS `phpc_users` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_users: 1 rows
+-- Dumping data for table simancil.phpc_users: 1 rows
 /*!40000 ALTER TABLE `phpc_users` DISABLE KEYS */;
 INSERT INTO `phpc_users` (`uid`, `username`, `password`, `admin`, `password_editable`, `timezone`, `language`, `gid`) VALUES
 	(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '', '', 0);
 /*!40000 ALTER TABLE `phpc_users` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_user_groups
+-- Dumping structure for table simancil.phpc_user_groups
 DROP TABLE IF EXISTS `phpc_user_groups`;
 CREATE TABLE IF NOT EXISTS `phpc_user_groups` (
   `gid` int(11) DEFAULT NULL,
   `uid` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_user_groups: 0 rows
+-- Dumping data for table simancil.phpc_user_groups: 0 rows
 /*!40000 ALTER TABLE `phpc_user_groups` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpc_user_groups` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.phpc_version
+-- Dumping structure for table simancil.phpc_version
 DROP TABLE IF EXISTS `phpc_version`;
 CREATE TABLE IF NOT EXISTS `phpc_version` (
-  `version` smallint(5) unsigned NOT NULL DEFAULT '1'
+  `version` smallint(5) unsigned NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sima_expedisi.phpc_version: 1 rows
+-- Dumping data for table simancil.phpc_version: 1 rows
 /*!40000 ALTER TABLE `phpc_version` DISABLE KEYS */;
 INSERT INTO `phpc_version` (`version`) VALUES
 	(1);
 /*!40000 ALTER TABLE `phpc_version` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.piutang
+-- Dumping structure for table simancil.piutang
 DROP TABLE IF EXISTS `piutang`;
 CREATE TABLE IF NOT EXISTS `piutang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2216,25 +2152,25 @@ CREATE TABLE IF NOT EXISTS `piutang` (
   `nogl` varchar(20) NOT NULL,
   `sub` varchar(3) NOT NULL,
   `nomor` int(11) NOT NULL,
-  `angsuran` int(11) NOT NULL DEFAULT '0',
+  `angsuran` int(11) NOT NULL DEFAULT 0,
   `uangmuka` int(11) NOT NULL,
   `bunga` tinyint(4) NOT NULL,
-  `disc` tinyint(4) NOT NULL DEFAULT '0',
+  `disc` tinyint(4) NOT NULL DEFAULT 0,
   `sales` varchar(100) NOT NULL,
   `kode_sales` varchar(10) NOT NULL,
-  `adminis` int(11) NOT NULL DEFAULT '0',
+  `adminis` int(11) NOT NULL DEFAULT 0,
   `tipebayar` varchar(50) NOT NULL DEFAULT '0',
-  `tanah` int(11) NOT NULL DEFAULT '0',
-  `bangunan` int(11) NOT NULL DEFAULT '0',
-  `pajak` int(11) NOT NULL DEFAULT '0',
-  `kpr` int(11) NOT NULL DEFAULT '0',
+  `tanah` int(11) NOT NULL DEFAULT 0,
+  `bangunan` int(11) NOT NULL DEFAULT 0,
+  `pajak` int(11) NOT NULL DEFAULT 0,
+  `kpr` int(11) NOT NULL DEFAULT 0,
   `blok` varchar(50) NOT NULL DEFAULT '0',
   `luas` varchar(50) NOT NULL DEFAULT '0',
-  `hargarumah` int(11) NOT NULL DEFAULT '0',
+  `hargarumah` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.piutang: 3 rows
+-- Dumping data for table simancil.piutang: 3 rows
 /*!40000 ALTER TABLE `piutang` DISABLE KEYS */;
 INSERT INTO `piutang` (`id`, `tgl`, `kode`, `nota`, `nama`, `alamat`, `saldo`, `rekdebet`, `rekkredit`, `keterangan`, `nogl`, `sub`, `nomor`, `angsuran`, `uangmuka`, `bunga`, `disc`, `sales`, `kode_sales`, `adminis`, `tipebayar`, `tanah`, `bangunan`, `pajak`, `kpr`, `blok`, `luas`, `hargarumah`) VALUES
 	(1, '2015-01-03', '1030', '201501001', 'HINDARTO CAHYADI', 'JL. ANDALAS 46', 121000.00, '1030000', '', '', '', '01', 201501001, 0, 0, 0, 0, '', '', 0, '0', 0, 0, 0, 0, '0', '0', 0),
@@ -2242,12 +2178,11 @@ INSERT INTO `piutang` (`id`, `tgl`, `kode`, `nota`, `nama`, `alamat`, `saldo`, `
 	(3, '2015-01-03', '', 'INV/000001', '', '', 1500.00, '1030000', '', '', '', '', 1, 0, 0, 0, 0, '', '', 0, '0', 0, 0, 0, 0, '0', '0', 0);
 /*!40000 ALTER TABLE `piutang` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.piutang_detail
+-- Dumping structure for table simancil.piutang_detail
 DROP TABLE IF EXISTS `piutang_detail`;
 CREATE TABLE IF NOT EXISTS `piutang_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `posted` tinyint(4) NOT NULL DEFAULT '0',
+  `posted` tinyint(4) NOT NULL DEFAULT 0,
   `piutang_id` int(11) NOT NULL,
   `jtempo` date NOT NULL,
   `nilai` int(11) NOT NULL,
@@ -2256,16 +2191,15 @@ CREATE TABLE IF NOT EXISTS `piutang_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.piutang_detail: 0 rows
+-- Dumping data for table simancil.piutang_detail: 0 rows
 /*!40000 ALTER TABLE `piutang_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `piutang_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.po
+-- Dumping structure for table simancil.po
 DROP TABLE IF EXISTS `po`;
 CREATE TABLE IF NOT EXISTS `po` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `posted` tinyint(4) NOT NULL DEFAULT '0',
+  `posted` tinyint(4) NOT NULL DEFAULT 0,
   `model` varchar(50) NOT NULL,
   `tgl` date NOT NULL,
   `nota` varchar(12) NOT NULL,
@@ -2294,17 +2228,16 @@ CREATE TABLE IF NOT EXISTS `po` (
   `status` int(11) NOT NULL,
   `meja_id` tinyint(4) NOT NULL,
   `shift_id` int(11) NOT NULL,
-  `upload` tinyint(4) NOT NULL DEFAULT '0',
-  `final` tinyint(4) NOT NULL DEFAULT '0',
+  `upload` tinyint(4) NOT NULL DEFAULT 0,
+  `final` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.po: 0 rows
+-- Dumping data for table simancil.po: 0 rows
 /*!40000 ALTER TABLE `po` DISABLE KEYS */;
 /*!40000 ALTER TABLE `po` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.po2
+-- Dumping structure for table simancil.po2
 DROP TABLE IF EXISTS `po2`;
 CREATE TABLE IF NOT EXISTS `po2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2315,31 +2248,29 @@ CREATE TABLE IF NOT EXISTS `po2` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.po2: 0 rows
+-- Dumping data for table simancil.po2: 0 rows
 /*!40000 ALTER TABLE `po2` DISABLE KEYS */;
 /*!40000 ALTER TABLE `po2` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.po2_detail
+-- Dumping structure for table simancil.po2_detail
 DROP TABLE IF EXISTS `po2_detail`;
 CREATE TABLE IF NOT EXISTS `po2_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `po_id` int(11) NOT NULL DEFAULT '0',
+  `po_id` int(11) NOT NULL DEFAULT 0,
   `kdbarang` varchar(10) NOT NULL DEFAULT '0',
   `namabarang` varchar(50) NOT NULL DEFAULT '0',
-  `qty` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `qty` decimal(10,2) NOT NULL DEFAULT 0.00,
   `satuan` varchar(10) NOT NULL DEFAULT '0.00',
-  `harga` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `jumlah` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `harga` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `jumlah` decimal(10,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.po2_detail: 0 rows
+-- Dumping data for table simancil.po2_detail: 0 rows
 /*!40000 ALTER TABLE `po2_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `po2_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.project
+-- Dumping structure for table simancil.project
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE IF NOT EXISTS `project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2355,22 +2286,21 @@ CREATE TABLE IF NOT EXISTS `project` (
   `nogl` varchar(20) NOT NULL,
   `sub` varchar(3) NOT NULL,
   `nomor` int(11) NOT NULL,
-  `angsuran` int(11) NOT NULL DEFAULT '0',
+  `angsuran` int(11) NOT NULL DEFAULT 0,
   `uangmuka` int(11) NOT NULL,
   `bunga` tinyint(4) NOT NULL,
-  `disc` tinyint(4) NOT NULL DEFAULT '0',
+  `disc` tinyint(4) NOT NULL DEFAULT 0,
   `sales` varchar(100) NOT NULL,
   `kode_sales` varchar(10) NOT NULL,
-  `final` tinyint(4) NOT NULL DEFAULT '0',
+  `final` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.project: 0 rows
+-- Dumping data for table simancil.project: 0 rows
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.project_detail
+-- Dumping structure for table simancil.project_detail
 DROP TABLE IF EXISTS `project_detail`;
 CREATE TABLE IF NOT EXISTS `project_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2385,12 +2315,11 @@ CREATE TABLE IF NOT EXISTS `project_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.project_detail: 0 rows
+-- Dumping data for table simancil.project_detail: 0 rows
 /*!40000 ALTER TABLE `project_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `project_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.rek
+-- Dumping structure for table simancil.rek
 DROP TABLE IF EXISTS `rek`;
 CREATE TABLE IF NOT EXISTS `rek` (
   `norek` varchar(4) NOT NULL,
@@ -2405,7 +2334,7 @@ CREATE TABLE IF NOT EXISTS `rek` (
   PRIMARY KEY (`norek`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.rek: 21 rows
+-- Dumping data for table simancil.rek: 21 rows
 /*!40000 ALTER TABLE `rek` DISABLE KEYS */;
 INSERT INTO `rek` (`norek`, `namarek`, `tipe`, `tglinput`, `status`, `saldoawal`, `debet`, `kredit`, `id_divisi`) VALUES
 	('KL2-', 'HUTANG PPH25 & 21', 'P', '2013-10-31 19:23:52', 1, 0.00, 0.00, 0.00, '01'),
@@ -2431,8 +2360,7 @@ INSERT INTO `rek` (`norek`, `namarek`, `tipe`, `tglinput`, `status`, `saldoawal`
 	('KL3-', 'TABUNGAN KARYAWAN', 'P', '2013-10-31 19:23:52', 1, 0.00, 0.00, 0.00, '01');
 /*!40000 ALTER TABLE `rek` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.rekening
+-- Dumping structure for table simancil.rekening
 DROP TABLE IF EXISTS `rekening`;
 CREATE TABLE IF NOT EXISTS `rekening` (
   `norek` varchar(9) NOT NULL,
@@ -2444,13 +2372,13 @@ CREATE TABLE IF NOT EXISTS `rekening` (
   `kredit` decimal(15,2) NOT NULL,
   `saldoakhir` decimal(15,2) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `defaul` tinyint(4) DEFAULT '0',
-  `approved` tinyint(4) DEFAULT '0',
+  `defaul` tinyint(4) DEFAULT 0,
+  `approved` tinyint(4) DEFAULT 0,
   `divisi` varchar(3) NOT NULL DEFAULT '',
   PRIMARY KEY (`norek`,`divisi`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.rekening: 80 rows
+-- Dumping data for table simancil.rekening: 80 rows
 /*!40000 ALTER TABLE `rekening` DISABLE KEYS */;
 INSERT INTO `rekening` (`norek`, `namarek`, `saldonormal`, `tipe`, `saldoawal`, `debet`, `kredit`, `saldoakhir`, `status`, `defaul`, `approved`, `divisi`) VALUES
 	('AL1-0000', 'KAS', '', 'A', 0.00, 0.00, 0.00, 0.00, 1, 0, 0, '01'),
@@ -2535,8 +2463,7 @@ INSERT INTO `rekening` (`norek`, `namarek`, `saldonormal`, `tipe`, `saldoawal`, 
 	('KL3-214', 'Simpanan Sukarela', 'K', 'P', 0.00, 0.00, 0.00, 0.00, 1, 0, 0, '01');
 /*!40000 ALTER TABLE `rekening` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.rek_susut
+-- Dumping structure for table simancil.rek_susut
 DROP TABLE IF EXISTS `rek_susut`;
 CREATE TABLE IF NOT EXISTS `rek_susut` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -2546,8 +2473,8 @@ CREATE TABLE IF NOT EXISTS `rek_susut` (
   `ket2` varchar(50) DEFAULT '0',
   `rek_kredit` varchar(9) DEFAULT '0',
   `ket3` varchar(50) DEFAULT '0',
-  `keterangan` tinytext,
-  `status` tinyint(4) DEFAULT '1',
+  `keterangan` tinytext DEFAULT NULL,
+  `status` tinyint(4) DEFAULT 1,
   `divisi` varchar(2) DEFAULT '01',
   PRIMARY KEY (`id`),
   KEY `rek_aktiva` (`rek_aktiva`),
@@ -2555,23 +2482,22 @@ CREATE TABLE IF NOT EXISTS `rek_susut` (
   KEY `rek_kredit` (`rek_kredit`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.rek_susut: 0 rows
+-- Dumping data for table simancil.rek_susut: 0 rows
 /*!40000 ALTER TABLE `rek_susut` DISABLE KEYS */;
 /*!40000 ALTER TABLE `rek_susut` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.role_menu_event_group
+-- Dumping structure for table simancil.role_menu_event_group
 DROP TABLE IF EXISTS `role_menu_event_group`;
 CREATE TABLE IF NOT EXISTS `role_menu_event_group` (
   `role_menu_event_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
-  `is_active` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `is_active` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`role_menu_event_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=306 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.role_menu_event_group: 291 rows
+-- Dumping data for table simancil.role_menu_event_group: 291 rows
 /*!40000 ALTER TABLE `role_menu_event_group` DISABLE KEYS */;
 INSERT INTO `role_menu_event_group` (`role_menu_event_id`, `role_id`, `group_id`, `is_active`, `status`) VALUES
 	(1, 1, 1, 1, 1),
@@ -2867,18 +2793,17 @@ INSERT INTO `role_menu_event_group` (`role_menu_event_id`, `role_id`, `group_id`
 	(305, 55, 12, 0, 1);
 /*!40000 ALTER TABLE `role_menu_event_group` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.role_menu_group
+-- Dumping structure for table simancil.role_menu_group
 DROP TABLE IF EXISTS `role_menu_group`;
 CREATE TABLE IF NOT EXISTS `role_menu_group` (
   `role_menu_id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(11) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`role_menu_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=432 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.role_menu_group: 386 rows
+-- Dumping data for table simancil.role_menu_group: 386 rows
 /*!40000 ALTER TABLE `role_menu_group` DISABLE KEYS */;
 INSERT INTO `role_menu_group` (`role_menu_id`, `menu_id`, `group_id`, `is_active`) VALUES
 	(4, 4, 1, 1),
@@ -3269,8 +3194,7 @@ INSERT INTO `role_menu_group` (`role_menu_id`, `menu_id`, `group_id`, `is_active
 	(431, 78, 12, 0);
 /*!40000 ALTER TABLE `role_menu_group` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.route_tarif
+-- Dumping structure for table simancil.route_tarif
 DROP TABLE IF EXISTS `route_tarif`;
 CREATE TABLE IF NOT EXISTS `route_tarif` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3281,25 +3205,24 @@ CREATE TABLE IF NOT EXISTS `route_tarif` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.route_tarif: 2 rows
+-- Dumping data for table simancil.route_tarif: 2 rows
 /*!40000 ALTER TABLE `route_tarif` DISABLE KEYS */;
 INSERT INTO `route_tarif` (`id`, `dari`, `tujuan`, `satuan`, `tarif`) VALUES
 	(1, 'Kediri', 'Jakarta', 'Kg', 400000),
 	(2, 'Kediri', 'Malang', 'Kg', 30000);
 /*!40000 ALTER TABLE `route_tarif` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.shift
+-- Dumping structure for table simancil.shift
 DROP TABLE IF EXISTS `shift`;
 CREATE TABLE IF NOT EXISTS `shift` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` tinyint(4) NOT NULL,
   `tanggal` date NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Dumping data for table sima_expedisi.shift: 4 rows
+-- Dumping data for table simancil.shift: 4 rows
 /*!40000 ALTER TABLE `shift` DISABLE KEYS */;
 INSERT INTO `shift` (`id`, `user_id`, `tanggal`, `status`) VALUES
 	(1, 27, '2013-06-13', 0),
@@ -3308,8 +3231,7 @@ INSERT INTO `shift` (`id`, `user_id`, `tanggal`, `status`) VALUES
 	(4, 27, '2013-06-14', 1);
 /*!40000 ALTER TABLE `shift` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.stock
+-- Dumping structure for table simancil.stock
 DROP TABLE IF EXISTS `stock`;
 CREATE TABLE IF NOT EXISTS `stock` (
   `kodebrg` varchar(20) NOT NULL DEFAULT '',
@@ -3323,8 +3245,8 @@ CREATE TABLE IF NOT EXISTS `stock` (
   `grup` varchar(20) DEFAULT NULL,
   `modal` decimal(15,2) DEFAULT NULL,
   `norek` varchar(10) DEFAULT NULL,
-  `qtyin` decimal(9,2) DEFAULT '0.00',
-  `qtyout` decimal(9,2) DEFAULT '0.00',
+  `qtyin` decimal(9,2) DEFAULT 0.00,
+  `qtyout` decimal(9,2) DEFAULT 0.00,
   `hargaeceran` decimal(15,2) DEFAULT NULL,
   `hargapartai` decimal(15,2) DEFAULT NULL,
   `tarif` decimal(15,2) DEFAULT NULL,
@@ -3332,7 +3254,7 @@ CREATE TABLE IF NOT EXISTS `stock` (
   PRIMARY KEY (`kodebrg`,`divisi`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table sima_expedisi.stock: 4,273 rows
+-- Dumping data for table simancil.stock: 4.273 rows
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
 INSERT INTO `stock` (`kodebrg`, `divisi`, `supplier_id`, `expedisi`, `namabrg`, `satuank`, `isi`, `satuanb`, `grup`, `modal`, `norek`, `qtyin`, `qtyout`, `hargaeceran`, `hargapartai`, `tarif`, `status`) VALUES
 	('.0089686598933', '01', '', NULL, 'Chitato keju 40g', NULL, NULL, NULL, 'Retail', 2910.00, NULL, 0.00, 0.00, 4000.00, NULL, NULL, 1),
@@ -3350,7 +3272,7 @@ INSERT INTO `stock` (`kodebrg`, `divisi`, `supplier_id`, `expedisi`, `namabrg`, 
 	('0011747235624', '01', '', NULL, 'Teh gunung mutiara 50gr', NULL, NULL, NULL, 'Retail', 939.00, NULL, 0.00, 0.00, 1500.00, NULL, NULL, 1),
 	('002', '01', '', NULL, 'Frestea reff 220 ml', NULL, NULL, NULL, 'Retail', 1608.00, NULL, 0.00, 0.00, 2500.00, NULL, NULL, 1),
 	('0020004', '01', '', NULL, 'Alganax 0.5mg', NULL, NULL, NULL, 'Retail', 1650.00, NULL, 0.00, 0.00, 2000.00, NULL, NULL, 1),
-	('003', '01', '', NULL, 'Frestea green 220 ml reff', NULL, NULL, NULL, 'Retail', 1608.00, NULL, 0.00, 0.00, 2500.00, NULL, NULL, 1),
+	('003', '01', '', NULL, 'Frestea green 220 ml reff', NULL, NULL, NULL, 'Retail', 1608.00, NULL, 10.00, 0.00, 2500.00, NULL, NULL, 1),
 	('004-02060', '01', '', NULL, 'DIANE-35 21\'s', NULL, NULL, NULL, 'Retail', 68200.00, NULL, 0.00, 0.00, 75000.00, NULL, NULL, 1),
 	('0040013', '01', '', NULL, 'Kandistatin drop 12ml', NULL, NULL, NULL, 'Retail', 24750.00, NULL, 0.00, 0.00, 28000.00, NULL, NULL, 1),
 	('0053314502111', '01', '', NULL, 'Kusuka Barbeque 250gr', NULL, NULL, NULL, 'Retail', 7600.00, NULL, 0.00, 0.00, 11000.00, NULL, NULL, 1),
@@ -7147,7 +7069,7 @@ INSERT INTO `stock` (`kodebrg`, `divisi`, `supplier_id`, `expedisi`, `namabrg`, 
 	('Siku 10X12', '02', '', NULL, 'Siku Rak 10X12', NULL, NULL, NULL, 'Bahan Bangunan', 4773.00, NULL, 0.00, 0.00, NULL, NULL, NULL, 1),
 	('Siku 12X14', '02', '', NULL, 'Siku Rak 12X14', NULL, NULL, NULL, 'Bahan Bangunan', 5682.00, NULL, 0.00, 0.00, NULL, NULL, NULL, 1),
 	('Padlock ATS 20m', '02', '', NULL, 'Padlock ATS 20mm', NULL, NULL, NULL, 'Bahan Bangunan', 3787.00, NULL, 0.00, 0.00, NULL, NULL, NULL, 1),
-	('Padlock ATS 25m', '02', '', NULL, 'Padlock ATS 25mm', NULL, NULL, NULL, 'Bahan Bangunan', 3939.00, NULL, 0.00, 0.00, NULL, NULL, NULL, 1),
+	('Padlock ATS 25m', '02', '', NULL, 'Padlock ATS 25mm', NULL, NULL, NULL, 'Bahan Bangunan', 3939.00, NULL, 10.00, 0.00, NULL, NULL, NULL, 1),
 	('Padlock ATS 30m', '02', '', NULL, 'Padlock ATS 30mm', NULL, NULL, NULL, 'Bahan Bangunan', 6060.00, NULL, 0.00, 0.00, NULL, NULL, NULL, 1),
 	('Padlock ATS 40m', '02', '', NULL, 'Padlock ATS 40mm', NULL, NULL, NULL, 'Bahan Bangunan', 6212.00, NULL, 0.00, 0.00, NULL, NULL, NULL, 1),
 	('Padlock iron 30', '02', '', NULL, 'Padlock iron ATS 30mm', NULL, NULL, NULL, 'Bahan Bangunan', 7773.00, NULL, 0.00, 0.00, NULL, NULL, NULL, 1),
@@ -7610,51 +7532,51 @@ INSERT INTO `stock` (`kodebrg`, `divisi`, `supplier_id`, `expedisi`, `namabrg`, 
 	('Tes01', '01', '', '', 'Tes 01', '', 0.00, '', '', 0.00, '', 0.00, 0.00, 0.00, 0.00, 0.00, 1);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.stok_adj
+-- Dumping structure for table simancil.stok_adj
 DROP TABLE IF EXISTS `stok_adj`;
 CREATE TABLE IF NOT EXISTS `stok_adj` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `kdbarang` varchar(30) NOT NULL DEFAULT '0',
   `namabarang` varchar(150) NOT NULL DEFAULT '0',
-  `selisih` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `stok_awal` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `qtyin` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `qtyout` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `stok_koreksi` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `selisih` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `stok_awal` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `qtyin` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `qtyout` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `stok_koreksi` decimal(10,2) NOT NULL DEFAULT 0.00,
   `keterangan` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.stok_adj: 0 rows
+-- Dumping data for table simancil.stok_adj: 2 rows
 /*!40000 ALTER TABLE `stok_adj` DISABLE KEYS */;
+INSERT INTO `stok_adj` (`id`, `tanggal`, `kdbarang`, `namabarang`, `selisih`, `stok_awal`, `qtyin`, `qtyout`, `stok_koreksi`, `keterangan`) VALUES
+	(1, '2021-08-14 21:46:07', 'Padlock ATS 25m', 'Padlock ATS 25mm', 10.00, 0.00, 10.00, 0.00, 10.00, 'Koreksi Stok 2021'),
+	(2, '2021-08-14 21:46:36', '003', 'Frestea green 220 ml reff', 10.00, 0.00, 10.00, 0.00, 10.00, 'Koreksi Stok 2021');
 /*!40000 ALTER TABLE `stok_adj` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.subkon
+-- Dumping structure for table simancil.subkon
 DROP TABLE IF EXISTS `subkon`;
 CREATE TABLE IF NOT EXISTS `subkon` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `tipe_luas` varchar(50) NOT NULL DEFAULT '0',
   `blok` varchar(50) NOT NULL DEFAULT '0',
-  `kontrak` int(11) NOT NULL DEFAULT '0',
+  `kontrak` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.subkon: 1 rows
+-- Dumping data for table simancil.subkon: 1 rows
 /*!40000 ALTER TABLE `subkon` DISABLE KEYS */;
 INSERT INTO `subkon` (`id`, `nama`, `tipe_luas`, `blok`, `kontrak`) VALUES
 	(1, 'H. Kalle', '90', 'L1, L3, M8', 400000000);
 /*!40000 ALTER TABLE `subkon` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.subkon_detail
+-- Dumping structure for table simancil.subkon_detail
 DROP TABLE IF EXISTS `subkon_detail`;
 CREATE TABLE IF NOT EXISTS `subkon_detail` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `subkon_id` int(10) NOT NULL DEFAULT '0',
+  `subkon_id` int(10) NOT NULL DEFAULT 0,
   `tanggal` date NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `jumlah` int(11) NOT NULL,
@@ -7664,7 +7586,7 @@ CREATE TABLE IF NOT EXISTS `subkon_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.subkon_detail: 4 rows
+-- Dumping data for table simancil.subkon_detail: 4 rows
 /*!40000 ALTER TABLE `subkon_detail` DISABLE KEYS */;
 INSERT INTO `subkon_detail` (`id`, `subkon_id`, `tanggal`, `keterangan`, `jumlah`, `material`, `tambahan`, `sisa`) VALUES
 	(1, 1, '2013-11-12', 'TERMIN 1', 30000000, 0, 0, 0),
@@ -7673,8 +7595,7 @@ INSERT INTO `subkon_detail` (`id`, `subkon_id`, `tanggal`, `keterangan`, `jumlah
 	(4, 1, '0000-00-00', 'TERMIN 4', 0, 0, 0, 0);
 /*!40000 ALTER TABLE `subkon_detail` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.supplier
+-- Dumping structure for table simancil.supplier
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE IF NOT EXISTS `supplier` (
   `kode` varchar(20) NOT NULL,
@@ -7692,7 +7613,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   PRIMARY KEY (`kode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.supplier: 9 rows
+-- Dumping data for table simancil.supplier: 9 rows
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
 INSERT INTO `supplier` (`kode`, `nama`, `cp`, `alamat`, `kota`, `telp`, `norek`, `divisi`, `namabank`, `rekbank`, `anbank`, `status`) VALUES
 	('190', 'STOCK AWAL          ?', '', '', '', '', '', '01', '', '', '', 0),
@@ -7706,8 +7627,7 @@ INSERT INTO `supplier` (`kode`, `nama`, `cp`, `alamat`, `kota`, `telp`, `norek`,
 	('9007', 'PT. PRAKARSA URETAN CHEMINDO', '', '', '', '', '', '01', '', '', '', 1);
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.timbunan
+-- Dumping structure for table simancil.timbunan
 DROP TABLE IF EXISTS `timbunan`;
 CREATE TABLE IF NOT EXISTS `timbunan` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -7716,29 +7636,27 @@ CREATE TABLE IF NOT EXISTS `timbunan` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.timbunan: 0 rows
+-- Dumping data for table simancil.timbunan: 0 rows
 /*!40000 ALTER TABLE `timbunan` DISABLE KEYS */;
 /*!40000 ALTER TABLE `timbunan` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.timbunan_bayar
+-- Dumping structure for table simancil.timbunan_bayar
 DROP TABLE IF EXISTS `timbunan_bayar`;
 CREATE TABLE IF NOT EXISTS `timbunan_bayar` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `total_timbunan` int(10) NOT NULL DEFAULT '0',
-  `harga_peret` int(10) NOT NULL DEFAULT '0',
+  `total_timbunan` int(10) NOT NULL DEFAULT 0,
+  `harga_peret` int(10) NOT NULL DEFAULT 0,
   `terbayar_tgl` date NOT NULL,
   `terbayar_jumlah` int(11) NOT NULL,
   `sisa` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.timbunan_bayar: 0 rows
+-- Dumping data for table simancil.timbunan_bayar: 0 rows
 /*!40000 ALTER TABLE `timbunan_bayar` DISABLE KEYS */;
 /*!40000 ALTER TABLE `timbunan_bayar` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.total_dh
+-- Dumping structure for table simancil.total_dh
 DROP TABLE IF EXISTS `total_dh`;
 CREATE TABLE IF NOT EXISTS `total_dh` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -7750,28 +7668,26 @@ CREATE TABLE IF NOT EXISTS `total_dh` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.total_dh: 1 rows
+-- Dumping data for table simancil.total_dh: 1 rows
 /*!40000 ALTER TABLE `total_dh` DISABLE KEYS */;
 INSERT INTO `total_dh` (`id`, `namaBank`, `totalKpr`, `totalCair`, `tahan5`, `tahan10`) VALUES
 	(1, 'Tes', 0, 0, 0, 0);
 /*!40000 ALTER TABLE `total_dh` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.userdata
+-- Dumping structure for table simancil.userdata
 DROP TABLE IF EXISTS `userdata`;
 CREATE TABLE IF NOT EXISTS `userdata` (
-  `userid` int(11) NOT NULL DEFAULT '0',
-  `userdataid` int(11) NOT NULL DEFAULT '0',
+  `userid` int(11) NOT NULL DEFAULT 0,
+  `userdataid` int(11) NOT NULL DEFAULT 0,
   `info` char(200) DEFAULT NULL,
   PRIMARY KEY (`userid`,`userdataid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.userdata: 0 rows
+-- Dumping data for table simancil.userdata: 0 rows
 /*!40000 ALTER TABLE `userdata` DISABLE KEYS */;
 /*!40000 ALTER TABLE `userdata` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.users
+-- Dumping structure for table simancil.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -7781,11 +7697,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `real_name` varchar(128) DEFAULT NULL,
   `kelasuser` varchar(50) NOT NULL DEFAULT 'User',
   `last_login` datetime DEFAULT NULL,
-  `count_login` int(11) DEFAULT '0',
+  `count_login` int(11) DEFAULT 0,
   `date_created` datetime DEFAULT NULL,
   `user_password` varchar(128) DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `status` int(11) NOT NULL DEFAULT 1,
   `person_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
@@ -7793,7 +7709,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `divisi` (`divisi`)
 ) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.users: 4 rows
+-- Dumping data for table simancil.users: 4 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `divisi`, `user_name`, `group_id`, `real_name`, `kelasuser`, `last_login`, `count_login`, `date_created`, `user_password`, `is_active`, `status`, `person_id`) VALUES
 	(1, '01', 'admin', 1, 'Nanang Rustianto', 'Super Admin', '2013-08-05 00:11:21', 330, '2010-02-28 15:03:33', 'YWRtaW4=', 1, 1, 1),
@@ -7802,20 +7718,19 @@ INSERT INTO `users` (`user_id`, `divisi`, `user_name`, `group_id`, `real_name`, 
 	(29, '01', 'administrator', 1, 'Administrator', 'Super Admin', '2013-08-02 10:32:20', 26, '2012-05-29 14:24:30', 'MTIz', 1, 1, 3);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.user_group
+-- Dumping structure for table simancil.user_group
 DROP TABLE IF EXISTS `user_group`;
 CREATE TABLE IF NOT EXISTS `user_group` (
   `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_name` varchar(128) DEFAULT NULL,
   `group_description` varchar(128) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `status` tinyint(4) NOT NULL DEFAULT 1,
   `divisi` varchar(3) NOT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_name` (`group_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.user_group: 6 rows
+-- Dumping data for table simancil.user_group: 6 rows
 /*!40000 ALTER TABLE `user_group` DISABLE KEYS */;
 INSERT INTO `user_group` (`group_id`, `group_name`, `group_description`, `status`, `divisi`) VALUES
 	(1, 'Administrator', 'Super Administrator', 1, '01'),
@@ -7826,18 +7741,17 @@ INSERT INTO `user_group` (`group_id`, `group_name`, `group_description`, `status
 	(12, 'Sinar Putih', 'Yayasan Sinar Putih', 0, '01');
 /*!40000 ALTER TABLE `user_group` ENABLE KEYS */;
 
-
--- Dumping structure for table sima_expedisi.versi
+-- Dumping structure for table simancil.versi
 DROP TABLE IF EXISTS `versi`;
 CREATE TABLE IF NOT EXISTS `versi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `waktu` timestamp NOT NULL DEFAULT current_timestamp(),
   `versi` varchar(50) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sima_expedisi.versi: 14 rows
+-- Dumping data for table simancil.versi: 14 rows
 /*!40000 ALTER TABLE `versi` DISABLE KEYS */;
 INSERT INTO `versi` (`id`, `waktu`, `versi`, `keterangan`) VALUES
 	(1, '2014-03-18 18:39:55', '1.2.0', 'Update Sukses'),
@@ -7855,6 +7769,8 @@ INSERT INTO `versi` (`id`, `waktu`, `versi`, `keterangan`) VALUES
 	(13, '2014-12-01 13:13:12', '1.3.1', 'Manual'),
 	(15, '2014-12-06 11:08:11', '1.3.2', 'Update Sukses');
 /*!40000 ALTER TABLE `versi` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
