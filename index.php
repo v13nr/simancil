@@ -283,7 +283,7 @@ if($_GET["mn"]==""){
 <!-- footer -->
 <div id="footer">
   <p>
-    Copyright &copy; 2014-2015 
+    Copyright &copy; 2014-2021 
     <a href="http://www.jogjaide.web.id" target="_blank">
       #
     </a>
