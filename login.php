@@ -48,7 +48,7 @@ if(is_dir($folderinstall))
 		<div id="login">
 			<!-- login -->
 			<div class="title">
-				<h5>SIMA: Sistem Informasi Usaha</h5>
+				<h5>Sistem Informasi Manajemen Usaha Kecil</h5>
 				<div class="corner tl"></div>
 				<div class="corner tr"></div>
 			</div>
