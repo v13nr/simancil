@@ -1,6 +1,7 @@
 <?php  session_start(); ?>
 <?php  include ("../include/functions.php");?>
-<?php  include ("../include/globalx.php");?>
+<?php  include ("../include/globalx.php");
+cekAkses($_SESSION["sess_user_id"], 'penjualan_retail_edit');?>
 <style type="text/css">
 <!--
 body {
