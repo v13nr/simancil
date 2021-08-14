@@ -22,7 +22,7 @@ function periode($tgl){
 	$sql = "SELECT tahun FROM periode WHERE aktif = 1";
 	$hasil = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_array($hasil);
-	if(substr($tgl,-4) != $row[0]){
+	if(substr($tgl,-4) != $row["tahun"]){
 		die("Periode Tidak Berlaku.");
 	}
 }
