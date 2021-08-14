@@ -252,6 +252,7 @@ function doInstall() {
       </tr>
     </table>
     <?php  } ?>
+	<br>HAPUS FOLDER INSTALL JIKA SUDAH SELESAI INSTALASI
   </form>
 </div>
   
