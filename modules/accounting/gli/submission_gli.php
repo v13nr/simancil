@@ -47,6 +47,7 @@ switch ($cmd) {
 	case "upd_tahunaktif" :
 			$SQL = "UPDATE periode set tahun = '".$_POST["tahun_next"]."'";
 			$hasil = mysql_query($SQL, $dbh_jogjaide);
+			//die($SQL);
 			$strurl = "tutup_tahun.php";
 	break;
 	case "upd_inv" :

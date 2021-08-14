@@ -21,7 +21,7 @@ cekAkses($_SESSION["sess_user_id"], 'tutup_tahun');
 <?php 
 include "../include/globalx.php";
 require_once("otentik_gli.php");
-$SQL = "select * from $database.periode";
+$SQL = "select * from periode";
 $hasil = mysql_query($SQL, $dbh_jogjaide);
 $baris = mysql_fetch_array($hasil);
 $tahun = $baris["tahun"];
