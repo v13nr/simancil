@@ -124,23 +124,7 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	$("#frmijin").validate({
-		rules: {
-			password: "required",
-			password_again: {
-		equalTo: "#password"
-			}
-		},
-		messages: {
-			email: {
-				required: "E-mail harus diisi",
-				email: "Masukkan E-mail yang valid"
-			}
-		},
-		errorPlacement: function(error, element) {
-			error.appendTo(element.parent("td"));
-		}
-	});
+
 })
 </script>
 	<script type="text/javascript">
