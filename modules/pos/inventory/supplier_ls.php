@@ -1,6 +1,8 @@
 <?php  @session_start(); include "otentik_inv.php"; 
 include ("../include/functions.php");
 
+cekAkses($_SESSION["sess_user_id"], 'supplier_ls');
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
