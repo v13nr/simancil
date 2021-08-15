@@ -11,7 +11,7 @@
 	
 	function menuAkses($id){
 		$group_id = $_SESSION['sess_user_id'];
-		$SQL = "SELECT menu_id FROM jo_menu_detail WHERE menu_id = '$id' AND user_id = '".$group_id."'";
+		$SQL = "SELECT menu_id FROM jo_menu_detail WHERE menu_id = '$id' AND is_menu = 1 AND user_id = '".$group_id."'";
 		//echo "<br>".($SQL);
 		$hasil = mysql_query($SQL);
 		if(mysql_num_rows($hasil) < 1){
@@ -160,7 +160,7 @@ include ("config_sistem.php");
       </li>
   <?php  if($_SESSION["sess_kelasuser"]=="Super Admin" || $_SESSION["sess_kelasuser"]=="Admin" || $_SESSION["sess_kelasuser"]=="User"){ ?>
 				  
-				  <?php  $SQL_0 = "SELECT *, a.id as ibu1 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = 0 AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_0 = mysql_query($SQL_0); while($baris_0=mysql_fetch_array($hasil_0)) { ?>
+				  <?php  $SQL_0 = "SELECT *, a.id as ibu1 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND is_menu = 1 AND a.parent_id = 0 AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_0 = mysql_query($SQL_0); while($baris_0=mysql_fetch_array($hasil_0)) { ?>
                   <li>
                     <a href="#" title="">
                       <span class="icon">
@@ -171,13 +171,13 @@ include ("config_sistem.php");
                       </span>
                     </a>
                     <ul>
-						<?php  $SQL_1 = "SELECT *, a.id as ibu2 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_0['ibu1']."' AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_1 = mysql_query($SQL_1); while($baris_1=mysql_fetch_array($hasil_1)) { ?>
+						<?php  $SQL_1 = "SELECT *, a.id as ibu2 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1  AND is_menu = 1 AND a.parent_id = '".$baris_0['ibu1']."' AND b.user_id = '".$_SESSION["sess_user_id"]."'"; $hasil_1 = mysql_query($SQL_1); while($baris_1=mysql_fetch_array($hasil_1)) { ?>
                       <li>
                         <a href="" title="Settings"  class="childs">
                           <?php  echo $baris_1['title']; ?>
                         </a>
                         <ul>
-									<?php  $SQL_2 = "SELECT *, a.id as ibu3 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_1['ibu2']."' AND b.user_id = '".$_SESSION["sess_user_id"]."' ORDER BY menu_order"; $hasil_2 = mysql_query($SQL_2); while($baris_2=mysql_fetch_array($hasil_2)) { ?>
+									<?php  $SQL_2 = "SELECT *, a.id as ibu3 FROM jo_menu a, jo_menu_detail b WHERE a.id = b.menu_id  AND is_menu = 1 AND a.status = 1 AND a.aktif = 1 AND a.parent_id = '".$baris_1['ibu2']."' AND b.user_id = '".$_SESSION["sess_user_id"]."' ORDER BY menu_order"; $hasil_2 = mysql_query($SQL_2); while($baris_2=mysql_fetch_array($hasil_2)) { ?>
                                   <li class="">
                                     <a href="index.php?mn=<?php  echo $baris_2['file']; ?>&getmodule=
 <?php  echo base64_encode($baris_2['modul']); ?>&box=<?php  echo $baris_2['frame']; ?>">

@@ -474,7 +474,7 @@ function hitung(){
 		  </select>
 		  </td>
           <td align="center"><input type="text" name="qty" id="qty" size="5" value="1" class="required kanan" title="*" onKeyUp="hitung()" /></td>
-          <td align="center"><input type="text" name="harga" id="harga"  class="required kanan" title="*" onKeyUp="hitung()" readonly="true"/></td>
+          <td align="center"><input type="text" name="harga" id="harga"  class="required kanan" title="*" onKeyUp="hitung()" /></td>
 		  
 		  <td align="right"><input type="text" name="disc" id="disc" size="10" class="required kanan" title="*" value="0" onkeyup="hitung()" readonly="true" /></td>
 		  <td align="center"><input type="text" id="jumlah" name="jumlah" size="15" class="required kanan" title="*" value="0"  readonly="true"" /></td>
