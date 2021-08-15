@@ -4,7 +4,7 @@
 include "otentik_inv.php"; include ("../include/globalx.php"); 
 
 include ("../include/functions.php");
-cekAkses($_SESSION["sess_user_id"], 'penjualan_edit');
+cekAkses($_SESSION["sess_user_id"], 'penjualan');
 
 ?>
 <style type="text/css">
