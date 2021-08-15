@@ -1,5 +1,12 @@
 <?php  session_start(); ?>
-<?php  include "otentik_inv.php"; include ("../include/globalx.php"); include ("../include/functions.php");?>
+<?php  
+
+include "otentik_inv.php"; include ("../include/globalx.php"); 
+
+include ("../include/functions.php");
+cekAkses($_SESSION["sess_user_id"], 'penjualan_edit');
+
+?>
 <style type="text/css">
 <!--
 body {
