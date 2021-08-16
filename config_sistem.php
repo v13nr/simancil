@@ -23,5 +23,7 @@ define('DB','simapos2');        // Your mysql database name
 define('SITE_TITLE','isi Nama Usaha');
 define('MENU_TITLE','');
 define( 'ABSPATH', dirname(__FILE__) . '/' );
+
+
 	
 ?>
