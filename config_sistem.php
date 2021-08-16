@@ -20,7 +20,7 @@ define('HOST','localhost');        // Your database server
 define('USER','root');        // Your mysql username
 define('PASS','99');                // Your mysql password
 define('DB','simapos2');        // Your mysql database name
-define('SITE_TITLE','isi Nama Usaha');
+define('SITE_TITLE','NEGARA AIR');
 define('MENU_TITLE','');
 define( 'ABSPATH', dirname(__FILE__) . '/' );
 

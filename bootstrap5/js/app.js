@@ -1,0 +1,2 @@
+X_API = "52EA2CCE67CBA5DB6E8BC1ABA6DDDE43";
+SERVER_API  = "https://api.jogjaide.web.id";	
