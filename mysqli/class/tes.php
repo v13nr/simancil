@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include "MysqliDb.php";
-$db = new MysqliDb ('localhost', 'root', '', 'sima') or die("unhost");
+$db = new MysqliDb ('localhost', 'root', '99', 'sima') or die("unhost");
 
 
 $cols = Array ("namabrg", "kodebrg");
