@@ -71,7 +71,7 @@ include "../../../config_sistem_i.php";
 				
 					<td style="padding:6px">
 						<a href="submission_i.php?cmd=del_ritase&sesi=<?php echo $user["sesi"];?>">Hapus</a> &nbsp;&nbsp;&nbsp;
-						<a href="submission_i.php?cmd=del_ritase&sesi=<?php echo $user["sesi"];?>">Cetak</a>
+						<a href="cetak.php?cmd=del_ritase&sesi=<?php echo $user["sesi"];?>">Cetak</a>
 					</td>
 				</tr>
 				
