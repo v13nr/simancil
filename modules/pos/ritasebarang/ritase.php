@@ -3,7 +3,6 @@
       <script src="../../../bootstrap5/js/jquery.validate.min.js"></script>
       <script src="../../../bootstrap5/js/sweetalert.min.js"></script>
       <link href="../../../bootstrap5/css/bootstrap.css" rel="stylesheet">
-      <link href="../../../bootstrap5/css/app.css" rel="stylesheet">
 	  
 	  <div class="row">
 		<div class="col col-md-4">
@@ -43,13 +42,14 @@
  
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Berangkat Ritase</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+	  <form method="post" action="submission_i.php">
 		Hari/Tgl. <input type="date"> &nbsp; &nbsp; &nbsp; Nama Sales <input type="text" size="16"><br><br>
         <table width="100%" border="1">
 			<tr>
@@ -86,8 +86,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
+	  <form>
     </div>
   </div>
 </div>
