@@ -30,7 +30,8 @@ switch ($cmd) {
 		$sesi = generateRandomString();
 		$header = array(
 			'sesi' 	=>	$sesi,
-			'nama_sales' => 'aaa'
+			'nama_sales' => $_POST["nama_sales"],
+			'tanggal' => $_POST["tanggal"]
 
 		);
 		
@@ -39,7 +40,7 @@ switch ($cmd) {
 		for($i=0;$i<$banyaknya; $i++){
 			$data = array(
 				'sesi'		 => $sesi,
-				'nama_sales' => 'ari',
+				'nama_sales' => $_POST["nama_sales"],
 				'kd_barang'	 => $key[$i],
 				'nama_barang'	=> $namabrg[$i]
 			);

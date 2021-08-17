@@ -47,15 +47,18 @@ include "../../../config_sistem_i.php";
 	  
 	  </div>
 	  <div class=""><br><br>
+	  <b>LIST RITASE</b>
 			<table border=1>
 				<tr>
 					<td style="padding:6px">Kode Ritase</td>
+					<td style="padding:6px">Tanggal Ritase</td>
+					<td style="padding:6px">Sales Ritase</td>
 					<td style="padding:6px">Action</td>
 				</tr>
 			<?php
 			
 
-			$cols = Array ("id", "sesi", "nama_sales");
+			$cols = Array ("id", "sesi", "nama_sales", "tanggal");
 			$users = $db->get ("ritase_barang", null, $cols);
 			if ($db->count > 0)
 				foreach ($users as $user) { 
@@ -63,8 +66,13 @@ include "../../../config_sistem_i.php";
 				
 				<tr>
 					<td style="padding:6px"><?php echo $user["sesi"];?></td>
+					<td style="padding:6px"><?php echo $user["tanggal"];?></td>
+					<td style="padding:6px"><?php echo $user["nama_sales"];?></td>
 				
-					<td style="padding:6px"><a href="submission_i.php?cmd=del_ritase&sesi=<?php echo $user["sesi"];?>">Hapus</a></td>
+					<td style="padding:6px">
+						<a href="submission_i.php?cmd=del_ritase&sesi=<?php echo $user["sesi"];?>">Hapus</a> &nbsp;&nbsp;&nbsp;
+						<a href="submission_i.php?cmd=del_ritase&sesi=<?php echo $user["sesi"];?>">Cetak</a>
+					</td>
 				</tr>
 				
 				<?php }  ?>
@@ -82,7 +90,7 @@ include "../../../config_sistem_i.php";
       <div class="modal-body">
 	  <form method="post" action="submission_i.php">
 	  <input type="hidden" name="cmd" value="add_ritase">
-		Hari/Tgl. <input type="date"> &nbsp; &nbsp; &nbsp; Nama Sales <input type="text" size="16"><br><br>
+		Hari/Tgl. <input type="date" required name="tanggal"> &nbsp; &nbsp; &nbsp; Nama Sales <input type="text" size="16" required name="nama_sales"><br><br>
         <table width="100%" border="1">
 			<tr>
 				<td>No.</td>
