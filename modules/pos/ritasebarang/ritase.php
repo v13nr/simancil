@@ -73,6 +73,8 @@
 			   
 					<tr>
 						<td><?php echo ++$no;?>. </td>
+						<input type="hidden" name="kodebrg[]" value="<?php echo $user["kodebrg"];?>">
+						<input type="hidden" name="namabrg[]" value="<?php echo $user["namabrg"];?>">
 						<td><input type="text" size="2"></td>
 						<td><?php echo $user["namabrg"];?></td>
 						<td><input type="text" size="12"></td>

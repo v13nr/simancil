@@ -24,12 +24,21 @@ function generateRandomString($length = 6) {
 
 switch ($cmd) {
 	case "add_ritase" :
+		$key = $_POST["kodebrg"];
+		$namabrg = $_POST["namabrg"];
+		$banyaknya = count($key);
+		$sesi = generateRandomString();
+		for($i=0;$i<$banyaknya; $i++){
 			$data = array(
-				'sesi'		 => generateRandomString(),
+				'sesi'		 => $sesi,
 				'nama_sales' => 'ari',
-				'kd_barang'	 => 'ad',
-				'nama_barang'	=> 'dddd'
+				'kd_barang'	 => $key[$i],
+				'nama_barang'	=> $namabrg[$i]
 			);
 
 			$id = $db->insert ("ritase_barang", $data);
+		}
+		$strurl = "ritase.php";
 }
+
+@header("location: ".$strurl);
