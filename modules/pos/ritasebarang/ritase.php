@@ -1,4 +1,11 @@
-      <script src="../../../bootstrap5/js/jquery.min.js"></script>
+<?php
+
+include "../../../config_sistem_i.php";
+
+//acl belum
+
+?>
+			<script src="../../../bootstrap5/js/jquery.min.js"></script>
       <script src="../../../bootstrap5/js/bootstrap.js"></script>
       <script src="../../../bootstrap5/js/jquery.validate.min.js"></script>
       <script src="../../../bootstrap5/js/sweetalert.min.js"></script>
@@ -39,6 +46,30 @@
 		</div>
 	  
 	  </div>
+	  <div class=""><br><br>
+			<table border=1>
+				<tr>
+					<td style="padding:6px">Kode Ritase</td>
+					<td style="padding:6px">Action</td>
+				</tr>
+			<?php
+			
+
+			$cols = Array ("id", "sesi", "nama_sales");
+			$users = $db->get ("ritase_barang", null, $cols);
+			if ($db->count > 0)
+				foreach ($users as $user) { 
+				?>
+				
+				<tr>
+					<td style="padding:6px"><?php echo $user["sesi"];?></td>
+				
+					<td style="padding:6px"><a href="submission_i.php?cmd=del_ritase&sesi=<?php echo $user["sesi"];?>">Hapus</a></td>
+				</tr>
+				
+				<?php }  ?>
+			</table>
+	  </div>
  
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,7 +93,6 @@
 			</tr>
 			<?php
 			
-			include "../../../config_sistem_i.php";
 
 			$cols = Array ("namabrg", "kodebrg");
 			$users = $db->get ("stock", null, $cols);

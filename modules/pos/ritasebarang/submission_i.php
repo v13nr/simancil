@@ -1,7 +1,7 @@
 <?php
-/* ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL); */
+error_reporting(E_ALL);
 
 $cmd = $_POST['cmd'];
 if ($cmd==""){
@@ -28,6 +28,14 @@ switch ($cmd) {
 		$namabrg = $_POST["namabrg"];
 		$banyaknya = count($key);
 		$sesi = generateRandomString();
+		$header = array(
+			'sesi' 	=>	$sesi,
+			'nama_sales' => 'aaa'
+
+		);
+		
+		$db->insert ("ritase_barang", $header);
+		
 		for($i=0;$i<$banyaknya; $i++){
 			$data = array(
 				'sesi'		 => $sesi,
@@ -36,9 +44,19 @@ switch ($cmd) {
 				'nama_barang'	=> $namabrg[$i]
 			);
 
-			$id = $db->insert ("ritase_barang", $data);
+			$id = $db->insert ("ritase_barang_detail", $data);
 		}
 		$strurl = "ritase.php";
+		break;
+	case "del_ritase" :
+		$strurl = "ritase.php";
+		$db->where('sesi', $_GET["sesi"]);
+		$db->delete('ritase_barang_detail');
+		$db->where('sesi', $_GET["sesi"]);
+		$db->delete('ritase_barang');
+		break;
+	
+	
 }
 
 @header("location: ".$strurl);
