@@ -50,6 +50,7 @@
       </div>
       <div class="modal-body">
 	  <form method="post" action="submission_i.php">
+	  <input type="hidden" name="cmd" value="add_ritase">
 		Hari/Tgl. <input type="date"> &nbsp; &nbsp; &nbsp; Nama Sales <input type="text" size="16"><br><br>
         <table width="100%" border="1">
 			<tr>
